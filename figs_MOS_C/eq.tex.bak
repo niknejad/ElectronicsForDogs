@@ -1,0 +1,54 @@
+\documentclass[letterpaper 12pt]{book}
+\usepackage{amsmath}
+\usepackage{latexsym}
+
+
+
+\input{commands}
+
+\begin{document}
+\[ V_{GB} < V_{FB} \]
+\[ Q_G = C_{ox} (V_{GB} - V_{FB}) \]
+\[ Q_B = |Q_G| \]
+\[ \varphi_{bi} \]
+\[ \voltage{\varphi_{bi}} \]
+\[ \varepsilon_{ox} = 3.9 \varepsilon_0 \]
+\[ \varepsilon_{s} = 11.7  \varepsilon_0 \]
+
+\[ t_{ox} \sim 1\mathrm{nm} \]
+\[ 0 \]
+\[ x \]
+\[ \voltage{V_{ox}} \]
+\[ \voltage{V_{dep}} \]
+\[ X_{d0} \]
+\[ E_{ox} \]
+ 
+ \[ C_{ox} \]
+ \[ C_{dep} \]
+
+\[ V_{GB} > V_{FB} \]
+\[ Q_G(V_{GB}) = -Q_B  \]
+\[ Q_B =-qN_A X_d(V_{GB})  \]
+\[ V_{FB} < 0\mathrm{V} \]
+ 
+ \[ E_{dep}(x) \]
+
+\[ V_{GB} = V_{FB} \]
+ \[ Q_G( V_{FB}) = 0\mathrm{V} \]
+ 
+ 
+ \[ V_{GB} = V_T \]
+ \[ \Psi_s \]
+ 
+ \[ V_{GB} = V_{FB} \]
+ \[ Q_G (V_{GB} = V_{FB}) = 0\mathrm{C} \]
+ \[ Q_B (V_{GB} = V_{FB}) = 0\mathrm{C} \]
+ 
+ 
+\[ 2\voltage{\varphi_{p}} \]
+\[ V_{GS} - V_T \]
+
+\[ E_{ox} \]
+\[ E_{dep}(x) \]
+
+\end{document}
