@@ -1,0 +1,345 @@
+\documentclass{beamer}
+
+\title{Module 2.3: PN}
+
+
+\begin{document}
+
+\begin{frame}{Slide 2}
+\includegraphics[width=.6\columnwidth]{slide2}
+\end{frame}
+
+
+\begin{frame}{Slide 4)}
+
+
+${J_n} = 0 = q{n_0}{\mu _n}{E_0} + q{D_n}\frac{{d{n_o}}}{{dx}}$
+
+$\frac{{d{n_o}}}{{dx}} =  - \left( {\frac{{{\mu _n}}}{{{D_n}}}} \right){n_o}{E_0} = \left( {\frac{q}{{kT}}} \right){n_o}\frac{{d{\varphi _0}}}{{dx}}$
+
+$d{\varphi _0} = \left( {\frac{{kT}}{q}} \right)\frac{{d{n_o}}}{{{n_0}}} = {V_{th}}\frac{{d{n_0}}}{{{n_0}}}$
+
+\end{frame}
+
+\begin{frame}{Slide 5}
+
+ $d{\varphi _0} = \left( {\frac{{kT}}{q}} \right)\frac{{d{n_o}}}{{{n_0}}} = {V_{th}}\frac{{d{n_0}}}{{{n_0}}}$
+
+ ${\varphi _0}(x) - {\varphi _0}({x_0}) = {V_{th}}\ln \frac{{{n_0}(x)}}{{{n_0}({x_0})}}$
+
+ ${\varphi _0}({x_0}) = 0$ $ {n_0}({x_0}) = {n_i}$
+
+\end{frame}
+
+
+ \begin{frame}{Slide 6)}
+
+ ${n_0}(x) = {n_i}{e^{{\varphi _0}(x)/{V_{th}}}}$
+
+ ${p_0}(x) = {n_i}{e^{ - {\varphi _0}(x)/{V_{th}}}}$
+
+ ${n_0}(x){p_0}(x) = n_i^2{e^{ - {\varphi _0}(x)/{V_{th}}}}{e^{{\varphi _0}(x)/{V_{th}}}} = n_i^2$
+
+ \end{frame}
+ \begin{frame}{Slide 7)}
+
+ ${\varphi _0}(x) = {V_{th}}\ln \frac{{{n_0}(x)}}{{{n_i}({x_0})}} = 26{\rm{mV}}\,\,\ln \frac{{{n_0}(x)}}{{{n_i}({x_0})}} \approx 26{\rm{mV}}\,\,\ln 10\,\log \frac{{{n_0}(x)}}{{{{10}^{10}}}}$
+
+ ${\varphi _0}(x) \approx 60{\rm{mV}}\,\,\log \frac{{{n_0}(x)}}{{{{10}^{10}}}}$
+
+ ${\varphi _0}(x) \approx  - 60{\rm{mV}}\,\,\log \frac{{{p_0}(x)}}{{{{10}^{10}}}}$
+
+
+ \end{frame}
+ \begin{frame}{Slide 9)}
+
+ \includegraphics[width=.2\columnwidth]{slide9}
+
+ \end{frame}
+
+ \begin{frame}{Slide 10)}
+
+ ${J_n} = 0 = q{n_0}{\mu _n}{E_0} + q{D_n}\frac{{d{n_o}}}{{dx}}$
+
+ $q{n_0}{\mu _n}{E_0} =  - q{D_n}\frac{{d{n_o}}}{{dx}}$
+
+ ${E_0} = \frac{{ - {D_n}\frac{{d{n_o}}}{{dx}}}}{{{n_0}{\mu _n}}} =  - \frac{{kT}}{q}\frac{1}{{{n_0}}}\frac{{d{n_0}}}{{dx}}$
+
+ ${E_0} = \frac{{{D_p}\frac{{d{p_o}}}{{dx}}}}{{{n_0}{\mu _p}}} =  - \frac{{kT}}{q}\frac{1}{{{p_0}}}\frac{{d{p_0}}}{{dx}}$
+ \end{frame}
+
+
+ \begin{frame}{Slide 11)}
+
+ \includegraphics[width=.6\columnwidth]{slide11}
+
+ \end{frame}
+
+ \begin{frame}{Slide 12)}
+
+
+ ${\rho _0}(x) = q({p_0} - {n_0} + {N_d} - {N_a})$
+
+ ${\rho _0}(x) \approx q({p_0} - {N_a})$
+ $ - {x_{p0}} < x < 0$
+
+ ${N_a} > {p_0}$
+ ${\rho _0}(x) < 0$
+
+ \end{frame}
+
+ \begin{frame}{Slide 13)}
+
+\includegraphics[width=.6\columnwidth]{slide13}
+
+ ${\rho _0}(x) \approx q( - {n_0} + {N_d})$
+ $0 < x < {x_{n0}}$
+
+ ${N_d} > {n_0}$
+ ${\rho _0}(x) > 0$
+ \end{frame}
+
+ \begin{frame}{Slide 14)}
+
+
+ \[
+ \rho _0(x) \cong \left\{ 
+  \begin{array}{*{20}{c}}
+ q({n_i}{e^{ - {\varphi _0}(x)/{V_{th}}}} - {N_a}) &  - {x_{po}} < x < 0\\
+ q({N_d} - {n_i}{e^{{\varphi _0}(x)/{V_{th}}}}) & 0 < x < {x_{n0}}
+ \end{array} 
+ \right.
+ \]
+
+ $\frac{{d{E_0}}}{{dx}} =  - \frac{{{d^2}\varphi }}{{d{x^2}}} = \frac{{{\rho _0}(x)}}{{{\varepsilon _s}}}$
+
+ \end{frame}
+
+ \begin{frame}{Slide 15)}
+
+
+\[
+{\rho _0}(x) \cong \left\{ 
+	\begin{array}{*{20}{c}}
+ 		 - q{N_a} &  - {x_{po}} < x < 0\\
+ 		 + q{N_d} & 0 < x < {x_{n0}}
+ \end{array} 
+ \right.
+ \]
+
+ $\frac{{d{E_0}}}{{dx}} = \frac{{{\rho _0}(x)}}{{{\varepsilon _s}}}$
+
+ ${E_0}(x) = \int_{ - {x_{p0}}}^x {\frac{{{\rho _0}(x')}}{{{\varepsilon _s}}}dx'}  + {E_0}( - {x_{p0}})$
+ \end{frame}
+
+ \begin{frame}{Slide 17)}
+
+ ${E_0}(x) = \int_{ - {x_{p0}}}^x {\frac{{{\rho _0}(x')}}{{{\varepsilon _s}}}dx'}  =  - \frac{{q{N_a}}}{{{\varepsilon _s}}}(x + {x_{po}})$
+
+ ${E_0}({x_{n0}}) = \int_x^{{x_{n0}}} {\frac{{{\rho _0}(x')}}{{{\varepsilon _s}}}dx'}  + {E_0}(x) = \frac{{q{N_d}}}{{{\varepsilon _s}}}({x_{n0}} - x) + {E_0}(x)$
+
+ ${E_0}(x) =  - \frac{{q{N_d}}}{{{\varepsilon _s}}}({x_{n0}} - x)$
+ \end{frame}
+
+
+\begin{frame}{Slide 18)}
+
+\includegraphics[width=.6\columnwidth]{slide18}
+ \end{frame}
+
+ \begin{frame}{Slide 19)}
+
+
+ $E_{_0}^n(x = 0) =  - \frac{{q{N_a}}}{{{\varepsilon _s}}}{x_{po}} =  - \frac{{q{N_d}}}{{{\varepsilon _s}}}{x_{no}} = E_{_0}^p(x = 0)$
+ $q{N_a}{x_{po}} = q{N_d}{x_{no}}$
+
+ \end{frame}
+
+ \begin{frame}{Slide 20)}
+
+ $\varphi (x) = \varphi ( - {x_{po}}) + \int_{ - {x_{p0}}}^x {\frac{{q{N_a}}}{{{\varepsilon _s}}}(x' + {x_{po}})dx'} $
+
+ $\varphi (x) = {\varphi _p} + \left. {\frac{{q{N_a}}}{{{\varepsilon _s}}}\left( {\frac{{x{'^2}}}{2} + x'{x_{po}}} \right)} \right|_{ - {x_{p0}}}^x$
+ \end{frame}
+
+ \begin{frame}{Slide 21)}
+
+ $\varphi _o^p(x) = {\varphi _p} + \frac{{q{N_a}}}{{2{\varepsilon _s}}}{(x + {x_{p0}})^2}$
+
+ Two equations are pictures and cannot be opened
+ \end{frame}
+
+
+ \begin{frame}{Slide 22)}
+
+ ${\varphi _n} - \frac{{q{N_d}}}{{2{\varepsilon _s}}}x_{n0}^2 = {\varphi _p} + \frac{{q{N_a}}}{{2{\varepsilon _s}}}x_{p0}^2$
+
+ $q{N_a}{x_{po}} = q{N_d}{x_{no}}$
+
+ ${x_{no}} = \sqrt {\frac{{2{\varepsilon _s}{\varphi _{bi}}}}{{qN_d^{}}}\left( {\frac{{{N_a}}}{{{N_a} + {N_d}}}} \right)} $
+
+ ${x_{po}} = \sqrt {\frac{{2{\varepsilon _s}{\varphi _{bi}}}}{{qN_a^{}}}\left( {\frac{{{N_d}}}{{{N_d} + {N_a}}}} \right)} $
+
+ ${\varphi _{bi}} \equiv {\varphi _n} - {\varphi _p} > 0$
+
+ \end{frame}
+ 
+\begin{frame}{Slide 23)}
+ ${x_{n0}} = \mathop {\lim }\limits_{{N_d} \to \infty } \sqrt {\frac{{2{\varepsilon _s}{\varphi _{bi}}}}{{qN_d^{}}}\frac{{{N_d}}}{{{N_d} + {N_a}}}}  = 0$
+ 
+ ${x_{p0}} = \mathop {\lim }\limits_{{N_d} \to \infty } \sqrt {\frac{{2{\varepsilon _s}{\varphi _{bi}}}}{{qN_a^{}}}\left( {\frac{{{N_d}}}{{{N_d} + {N_a}}}} \right)}  = \sqrt {\frac{{2{\varepsilon _s}{\varphi _{bi}}}}{{qN_a^{}}}} $
+\end{frame}
+
+\begin{frame}{Slide 24)}
+ ${X_{d0}} = {x_{p0}} + {x_{n0}} = \sqrt {\frac{{2{\varepsilon _s}{\varphi _{bi}}}}{q}\left( {\frac{1}{{{N_a}}} + \frac{1}{{{N_d}}}} \right)} $
+ 
+ ${X_{d0}} = \sqrt {\frac{{2{\varepsilon _s}{\varphi _{bi}}}}{q}\left( {\frac{1}{{{{10}^{15}}}}} \right)}  \approx 1{\rm{\mu }}$
+ 
+ ${E_{pn}} \approx \frac{{1{\rm{V}}}}{{1{\rm{\mu }}}} = {10^4}\frac{{\rm{V}}}{{{\rm{cm}}}}$
+\end{frame}
+
+\begin{frame}{Slide 25)}
+
+\includegraphics[width=.6\columnwidth]{slide25}
+
+ ${\varphi _{bi}} \equiv {\varphi _n} - {\varphi _p} = {V_{th}}\left( {\ln \frac{{{N_D}}}{{{n_i}}} + \ln \frac{{{N_A}}}{{{n_i}}}} \right) = {V_{th}}\ln \frac{{{N_D}{N_A}}}{{n_i^2}}$
+ 
+ ${\varphi _{bi}} = 26{\rm{mV}}\ln \frac{{{N_D}{N_A}}}{{n_i^2}} = 60{\rm{mV}} \times {\rm{log}}\frac{{{\rm{1}}{{\rm{0}}^{{\rm{15}}}}{{10}^{15}}}}{{{{10}^{20}}}} = 600{\rm{mV}}$
+\end{frame}
+
+
+ \begin{frame}{Slide 26)}
+\includegraphics[width=.6\columnwidth]{slide26}
+$0 = {\varphi _{bi}} + {\varphi _{pm}} + {\varphi _{mn}}$
+${\varphi _{bi}} =  - ({\varphi _{pm}} + {\varphi _{mn}})$
+
+ \end{frame}
+
+ \begin{frame}{Slide 27)}
+$q{N_a}{x_{po}} = q{N_d}{x_{no}}$
+ \end{frame}
+
+ \begin{frame}{Slide 28)}
+\includegraphics[width=.6\columnwidth]{slide28}
+ \end{frame}
+ 
+ \begin{frame}{Slide 29)}
+ ${x_n}({V_D}) = \sqrt {\frac{{2{\varepsilon _s}({\varphi _{bi}} - {V_D})}}{{q{N_d}}}\left( {\frac{{{N_a}}}{{{N_a} + {N_d}}}} \right)}  = {x_{n0}}\sqrt {1 - \frac{{{V_D}}}{{{\varphi _{bi}}}}} $
+ 
+ ${x_p}({V_D}) = \sqrt {\frac{{2{\varepsilon _s}({\varphi _{bi}} - {V_D})}}{{q{N_a}}}\left( {\frac{{{N_d}}}{{{N_a} + {N_d}}}} \right)}  = {x_{p0}}\sqrt {1 - \frac{{{V_D}}}{{{\varphi _{bi}}}}} $
+ 
+ ${X_d}({V_D}) = {x_p}({V_D}) + {x_n}({V_D}) = \sqrt {\frac{{2{\varepsilon _s}({\varphi _{bi}} - {V_D})}}{q}\left( {\frac{1}{{{N_a}}} + \frac{1}{{{N_d}}}} \right)} $
+ 
+ ${X_d}({V_D}) = {X_{d0}}\sqrt {1 - \frac{{{V_D}}}{{{\varphi _{bi}}}}} $
+ 
+ \end{frame}
+ 
+\begin{frame}{Slide 30)}
+
+${Q_J}({V_D}) =  - q{N_a}{x_p}({V_D}) =  - q{N_a}\sqrt {1 - \frac{{{V_D}}}{{{\varphi _{bi}}}}} $
+
+${Q_J}({V_D} + {v_D}) = {Q_J}({V_D}) + q({v_D})$
+
+\end{frame}
+
+\begin{frame}{Slide 31)}
+${Q_J}({V_D} + {v_D}) = {Q_J}({V_D}) + {\left. {\frac{{d{Q_D}}}{{dV}}} \right|_{{V_D}}}{v_D} +  \cdots $
+
+$C_j^{} = {C_j}({V_D}) = {\left. {\frac{{dQ_j^{}}}{{dV}}} \right|_{V = {V_D}}} = {\left. {\frac{d}{{dV}}\left( { - q{N_a}{x_{p0}}\sqrt {1 - \frac{V}{{{\varphi _{bi}}}}} } \right)} \right]_{V = {V_R}}}$
+
+${C_j} = \frac{{q{N_a}{x_{p0}}}}{{2{\varphi _{bi}}\sqrt {1 - \frac{{{V_D}}}{{{\varphi _{bi}}}}} }} = \frac{{C_{j0}^{}}}{{\sqrt {1 - \frac{{{V_D}}}{{{\varphi _{bi}}}}} }}$
+
+${C_{j0}} = \frac{{q{N_a}{x_{p0}}}}{{2{\varphi _{bi}}}} = \frac{{q{N_a}}}{{2{\varphi _{bi}}}}\sqrt {\left( {\frac{{2{\varepsilon _s}{\varphi _{bi}}}}{{q{N_a}}}} \right)\left( {\frac{{{N_d}}}{{{N_a} + {N_d}}}} \right)}  = \sqrt {\frac{{q{\varepsilon _s}}}{{2{\varphi _{bi}}}}\frac{{{N_a}{N_d}}}{{{N_a} + {N_d}}}} $
+\end{frame}
+
+\begin{frame}{Slide 32)}
+${C_{j0}} = \sqrt {\frac{{q{\varepsilon _s}}}{{2{\varphi _{bi}}}}\frac{{{N_a}{N_d}}}{{{N_a} + {N_d}}}} $
+
+${C_{j0}} = {\varepsilon _s}\sqrt {\frac{q}{{2{\varepsilon _s}{\varphi _{bi}}}}{{\left( {\frac{1}{{{N_a}}} + \frac{1}{{{N_d}}}} \right)}^{ - 1}}}  = \frac{{{\varepsilon _s}}}{{{X_{d0}}}}$
+
+$C_j^{}({V_D}) = \frac{{{\varepsilon _s}}}{{{X_d}({V_D})}}$
+
+\end{frame}
+
+\begin{frame}{Slide 33)}
+\includegraphics[width=.6\columnwidth]{slide33}
+\end{frame}
+
+\begin{frame}{Slide 34)}
+\end{frame}
+
+\begin{frame}{Slide 35)}
+\includegraphics[width=.6\columnwidth]{slide35}
+\end{frame}
+
+\begin{frame}{Slide 36)}
+\includegraphics[width=.6\columnwidth]{slide36}
+\end{frame}
+
+\begin{frame}{Slide 37)}
+\includegraphics[width=.6\columnwidth]{slide37}
+\end{frame}
+
+\begin{frame}{Slide 38)}
+\includegraphics[width=.6\columnwidth]{slide38}
+\end{frame}
+
+\begin{frame}{Slide 39)}
+$\frac{{{p_n}(x = {x_n})}}{{{p_p}(x =  - {x_p})}} = $
+$ = {e^{ - (Barrier\,Energy)/kT}}$
+$\frac{{{p_n}(x = {x_n})}}{{{N_A}}} = {e^{ - q({\varphi _B} - {V_D})/kT}}$
+
+\end{frame}
+
+\begin{frame}{Slide 40)}
+${p_n}(x = {x_n}) = {N_A}{e^{ - q({\varphi _B} - {V_D})/kT}}$
+${n_p}(x =  - {x_p}) = {N_D}{e^{ - q({\varphi _B} - {V_D})/kT}}$
+\end{frame}
+
+\begin{frame}{Slide 41)}
+\includegraphics[width=.6\columnwidth]{slide41}
+\end{frame}
+
+\begin{frame}{Slide 42)}
+\includegraphics[width=.6\columnwidth]{slide42}
+\[{L_{n,p}} >  > {W_{n,p}}\]
+\end{frame}
+
+\begin{frame}{Slide 43)}
+\includegraphics[width=.6\columnwidth]{slide43}
+\[\frac{{d{n_p}}}{{dx}}(x) \approx \frac{{{n_{p0}}{e^{\frac{{q{V_A}}}{{kT}}}} - {n_{p0}}}}{{ - {x_p} - ( - {W_p})}}\]
+
+\[{n_{p0}} = \frac{{n_i^2}}{{{N_a}}}\]
+
+\[J_n^{diff} = q{D_n}{\left. {\frac{{d{n_p}}}{{dx}}} \right|_{x =  - {x_p}}} \approx q\frac{{{D_n}}}{{{W_p}}}{n_{p0}}\left( {{e^{\frac{{q{V_A}}}{{kT}}}} - 1} \right)\]
+
+\[J_p^{diff} =  - q{D_p}{\left. {\frac{{d{p_n}}}{{dx}}} \right|_{x = {x_n}}} \approx  - q\frac{{{D_p}}}{{{W_n}}}{p_{n0}}\left( {1 - {e^{\frac{{q{V_A}}}{{kT}}}}} \right)\]
+
+\[J_{}^{diff} = qn_i^2\left( {\frac{{{D_p}}}{{{N_d}{W_n}}} + \frac{{{D_n}}}{{{N_a}{W_p}}}} \right)\left( {{e^{\frac{{q{V_A}}}{{kT}}}} - 1} \right)\]
+\end{frame}
+
+\begin{frame}{Slide 44)}
+\includegraphics[width=.6\columnwidth]{slide44}
+\end{frame}
+
+\begin{frame}{Slide 45)}
+\[{I_D} + {i_D} = {I_S}\left( {{e^{\frac{{q({V_d} + {v_d})}}{{kT}}}} - 1} \right) \approx 
+{I_S}{e^{\frac{{q{V_d}}}{{kT}}}}{e^{\frac{{q{v_d}}}{{kT}}}}\]
+
+\[{e^x} = 1 + x + \frac{{{x^2}}}{{2!}} + \frac{{{x^3}}}{{3!}} +  \cdots \]
+
+\[{I_D} + {i_D} \approx {I_D}\left( {1 + \frac{{q({V_d} + {v_d})}}{{kT}} +  \cdots } \right)\]
+
+\[{i_D} \approx \frac{{q{v_d}}}{{kT}} = {g_d}{v_d}\]
+\end{frame}
+
+\begin{frame}{Slide 46)}
+\[{C_j} = A\frac{{{\varepsilon _S}}}{{{X_{dep}}}} \approx 1.4C_{j0}^{}\]
+\end{frame}
+
+\begin{frame}{Slide 47)}
+\includegraphics[width=.6\columnwidth]{slide47}
+\[{C_d} = \frac{1}{2}\frac{{q{I_d}}}{{kT}}\tau \]
+\end{frame}
+
+\end{document}
