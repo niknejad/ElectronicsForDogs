@@ -40,20 +40,13 @@
 %----------------------------------------------------------------------------------------
 %	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
 %----------------------------------------------------------------------------------------
-
 \documentclass[11pt,fleqn]{book} % Default font size and left-justified equations
-
-
 %----------------------------------------------------------------------------------------
-
 \input{structure} % Insert the commands.tex file which contains the majority of the structure behind the template
-
 \begin{document}
-
 %----------------------------------------------------------------------------------------
 %	TITLE PAGE
 %----------------------------------------------------------------------------------------
-
 \begingroup
 \thispagestyle{empty}
 \begin{tikzpicture}[remember picture,overlay]
@@ -69,7 +62,6 @@
 \end{tikzpicture}
 \vfill
 \endgroup
-
 %----------------------------------------------------------------------------------------
 %	COPYRIGHT PAGE
 %----------------------------------------------------------------------------------------
@@ -80,38 +72,21 @@
 \newpage
 ~\vfill
 \thispagestyle{empty}
-
 \noindent Copyright \copyright\ 2020 Ali Niknejad\\ % Copyright notice
-
 \noindent \textsc{Published by Ali Niknejad}\\ % Publisher
-
 \noindent \textsc{rfic.eecs.berkeley.edu/edogs.html}\\ % URL
-
 \noindent Licensed under the Creative Commons Attribution-NonCommercial 3.0 Unported License (the ``License''). You may not use this file except in compliance with the License. You may obtain a copy of the License at \url{http://creativecommons.org/licenses/by-nc/3.0}. Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an \textsc{``as is'' basis, without warranties or conditions of any kind}, either express or implied. See the License for the specific language governing permissions and limitations under the License.\\ % License information
-
 \noindent \textit{First  printing, January 17, 2020} % Printing/edition date
-
 %----------------------------------------------------------------------------------------
 %	TABLE OF CONTENTS
 %----------------------------------------------------------------------------------------
-
 %\chapterimage{Tesla.png} % Table of contents heading image
-
 \pagestyle{empty} % No headers
-
 \tableofcontents % Print the table of contents itself
-
 \cleardoublepage % Forces the first chapter to start on an odd page so it's on the right
-
 \pagestyle{fancy} % Print headers again
-
 %----------------------------------------------------------------------------------------
-%	PART
-%----------------------------------------------------------------------------------------
-
-
-%----------------------------------------------------------------------------------------
-%	CHAPTER 1
+%	CHAPTERS
 %----------------------------------------------------------------------------------------
 \chapterimage{Pictures/logo105.pdf} % Chapter heading image
 \include{ch_LTI}
@@ -128,22 +103,21 @@
 \include{ch_amps_single_stage}
 \include{ch_current_source}
 \include{ch_freq_resp}
-
 \include{ch_multi_stage_amps}
 \include{ch_diffamp}
 \include{ch_opamps_fb}
 \include{ch_opamp_real}
-
 %----------------------------------------------------------------------------------------
-%	PART
+%	INDEX
 %----------------------------------------------------------------------------------------
-
-
-
+\cleardoublepage
+\phantomsection
+\setlength{\columnsep}{0.75cm}
+\addcontentsline{toc}{chapter}{\textcolor{ocre}{Index}}
+\printindex
 %----------------------------------------------------------------------------------------
 %	BIBLIOGRAPHY
 %----------------------------------------------------------------------------------------
-
 %\chapter*{Bibliography}
 %\addcontentsline{toc}{chapter}{\textcolor{ocre}{Bibliography}}
 %\section*{Books}
@@ -152,17 +126,4 @@
 %\section*{Articles}
 %\addcontentsline{toc}{section}{Articles}
 %\printbibliography[heading=bibempty,type=article]
-
-%----------------------------------------------------------------------------------------
-%	INDEX
-%----------------------------------------------------------------------------------------
-
-\cleardoublepage
-\phantomsection
-\setlength{\columnsep}{0.75cm}
-\addcontentsline{toc}{chapter}{\textcolor{ocre}{Index}}
-\printindex
-
-%----------------------------------------------------------------------------------------
-
 \end{document}
