@@ -16,32 +16,33 @@ In this chapter we will review linearity in the context of an Linear Time-Invari
 %                                   SECTION 1.2                                        %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Example:  Analyzing an $RLC$ Circuit}
+\section{Example:  Analyzing an RLC Circuit}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 1.2.1             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Example:  Low Pass Filter (LPF)}
-Let's begin with an example calculation.  Suppose we have a low pass filter\index{Filters!Low pass} as shown in Fig.~\ref{fig:lpf}.  If we drive this system with a source $v_s$ and observe the output at $v_o$, we can write the governing equations as follows by using KVL around the loop:
+Let's begin with an example calculation.  Suppose we have a low pass filter\index{Filters!Low pass} as shown in \emph{Fig.~\ref{fig:lpf}}.  If we drive this system with a source $v_s$ and observe the output at $v_o$, we can write the governing equations as follows by using KVL around the loop:
+    \begin{align*}
+        v_o(t) &= v_s(t) - v_r(t)\\
+        &= v_s(t) - i(t) R
+    \end{align*}
+Recall the current in a capacitor:
     \begin{equation}
-        v_o(t) = v_s(t) - i(t) R
+        i(t) = C \frac{dv_c(t)}{dt} \label{eq:cap_curr}
     \end{equation}
-    Since
-    \begin{equation}
-        i(t) = C \frac{dv_o(t)}{dt}
-    \end{equation}
-    we have
-    \begin{equation}
+Since the current is the same through the resistor and capacitor, and the voltage at the output is the same as the voltage across the capacitor, we have:
+    \begin{equation*}
         v_o(t) = v_s(t) - RC \frac{dv_o(t)}{dt}
-    \end{equation}
-    or in terms of the circuit time constant $\tau = RC$:
+    \end{equation*}
+Or, in terms of the circuit time constant $\tau = RC$:
     \begin{equation}
-        v_o(t) = v_s(t) - \tau \frac{dv_o(t)}{dt}
+        v_o(t) = v_s(t) - \tau \frac{dv_o(t)}{dt} \label{eq:lpf_diff}
     \end{equation}
 Let's suppose that the input signal is given by $v_s(t) = V_s \cos(\omega t)$.  We know that in steady-state  the output amplitude and phase will change: 
     \begin{equation}
         v_o(t) = \underbrace{K \cdot V_s}_{V_o} \cos(\omega t + \phi) \label{eq:kvl1}
     \end{equation}  
-How do we find the change the amplitude and phase of the signal?
+How do we find the change in the amplitude and phase of the signal?
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -56,18 +57,30 @@ How do we find the change the amplitude and phase of the signal?
 %             SUBSECTION 1.2.2             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{LPF the ``hard way"}
-This is the wrong way to solve the problem.  It's important to review it to see how painful it can be even for a simple example.  We start by plugging the known form of the output into the governing equation(Eq.~\ref{eq:kvl1} and verify that it satisfies the equation:
+This is the wrong way to solve the problem.  It's important to review it to see how painful it can be even for a simple example.  We start by plugging the known form of the output(\emph{Eq.~\ref{eq:kvl1}}) into the LHS of the governing equation(\emph{Eq.~\ref{eq:lpf_diff}}), and verify that it satisfies the equation:
+    \begin{align*}
+        V_o \cos(\omega t + \phi) &= v_s(t) - \tau \frac{d}{dt}\bigg( v_o(t) \bigg)\\
+        &= V_s \cos(\omega t) - \tau \frac{d}{dt}\bigg( V_o \cos(\omega t + \phi) \bigg)
+            &\text{\emph{Substituting for $v_s(t)$ and $v_o(t)$}}\\
+        &= V_s \cos(\omega t) - \tau \omega V_o \cos(\omega t + \phi)
+    \end{align*}
+Rearranging, we have:
     \begin{equation}
-        V_s \cos(\omega t) = V_o \cos(\omega t + \phi) - \tau \omega V_o \sin(\omega t + \phi)
+        V_s \cos(\omega t) = V_o \cos(\omega t + \phi) - \tau \omega V_o \sin(\omega t + \phi) \label{eq:kvl2}
     \end{equation}
-Use the following identities:
-    \begin{equation}
-        \cos(x + y) = \cos x \cos y - \sin x \sin y
-    \end{equation}
-    \begin{equation}
-        \sin(x + y) = \sin x \cos y + \cos x \sin y
-    \end{equation}
-We have
+Recall the following trigonometric identities:
+    \begin{align*}
+        \cos(x + y) &= \cos x \cos y - \sin x \sin y &\text{\emph{Sum of angles for cosine}}\\ \\
+        \sin(x + y) &= \sin x \cos y + \cos x \sin y &\text{\emph{Sum of angles for sine}}
+    \end{align*}
+Applying the identities to \emph{Eq.~\ref{eq:kvl2}}:
+    \begin{align*}
+        V_s \cos(\omega t) &= V_o \big(\cos \omega t \cos \phi - \sin \omega t \sin \phi \big)
+            - \tau \omega V_o \big( \sin \omega t \cos \phi + \cos \omega t \sin \phi \big)\\
+        &= V_o \cos \omega t \cos \phi - V_o \sin \omega t \sin \phi
+            - V_o \tau \omega \sin \omega t \cos \phi + V_o \tau \omega \cos \omega t \sin \phi
+    \end{align*}
+Factoring, we have:
     \begin{equation}
         V_s \cos(\omega t) = V_o \cos(\omega t) (\cos \phi - \tau \omega \sin\phi) - V_o \sin(\omega t) (\sin\phi + \tau \omega \cos\phi)
     \end{equation}
