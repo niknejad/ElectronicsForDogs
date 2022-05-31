@@ -47,9 +47,8 @@ How do we find the change in the amplitude and phase of the signal?
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tb]
-\begin{center}
+\centering
 \includegraphics[scale=1]{lpf}
-\end{center}
 \caption{A simple $RC$ low-pass filter. }
 \label{fig:lpf}
 \end{figure}
@@ -57,12 +56,12 @@ How do we find the change in the amplitude and phase of the signal?
 %             SUBSECTION 1.2.2             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{LPF the ``hard way"}
-This is the wrong way to solve the problem.  It's important to review it to see how painful it can be even for a simple example.  We start by plugging the known form of the output(\emph{Eq.~\ref{eq:kvl1}}) into the LHS of the governing equation(\emph{Eq.~\ref{eq:lpf_diff}}), and verify that it satisfies the equation:
+The following is the wrong way to solve the problem.  It's important to review it to see how painful it can be even for a simple example.  We start by plugging the known form of the output(\emph{Eq.~\ref{eq:kvl1}}) into the LHS of the governing equation(\emph{Eq.~\ref{eq:lpf_diff}}), and verify that it satisfies the equation:
     \begin{align*}
         V_o \cos(\omega t + \phi) &= v_s(t) - \tau \frac{d}{dt}\bigg( v_o(t) \bigg)\\
         &= V_s \cos(\omega t) - \tau \frac{d}{dt}\bigg( V_o \cos(\omega t + \phi) \bigg)
             &\text{\emph{Substituting for $v_s(t)$ and $v_o(t)$}}\\
-        &= V_s \cos(\omega t) - \tau \omega V_o \cos(\omega t + \phi)
+        &= V_s \cos(\omega t) + \tau \omega V_o \sin(\omega t + \phi)
     \end{align*}
 Rearranging, we have:
     \begin{equation}
@@ -84,7 +83,7 @@ Factoring, we have:
     \begin{equation}
         V_s \cos(\omega t) = V_o \cos(\omega t) (\cos \phi - \tau \omega \sin\phi) - V_o \sin(\omega t) (\sin\phi + \tau \omega \cos\phi)
     \end{equation}
-Since sine and cosine are linearly independent functions:
+Since sine and cosine are linearly independent\footnote{See Appendix B for a review of linear dependence/independence and a proof for sine and cosine are LI} functions:
     \begin{equation}
         a_1 \sin(\omega t) + a_2 \cos(\omega t) = 0
     \end{equation}
@@ -121,6 +120,23 @@ Likewise we have
         \frac{V_o}{V_s} = \frac{1}{\sqrt{1 + (\tau \omega)^2}}
     \end{equation}
 We can see that both the amplitude and phase response are a strong function of frequency.  At very low frequencies, $\omega \approx 0$, the signal passes undisturbed.  At very high frequencies $\omega \rightarrow \infty$, the signal experiences infinite attenuation and is effectively shorted out by the capacitor.
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                 FIGURE                   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[tbp]
+\centering
+\begin{tabular}{c}
+\includegraphics[width=.65\columnwidth]{mag}\\
+(a)\\
+\includegraphics[width=.65\columnwidth]{phase}\\
+(b)\\
+\includegraphics[width=.65\columnwidth]{dB}\\
+(c)\\
+\end{tabular}
+\caption{The (a) magnitude and (b) phase response of the low-pass filter. The (c) log-log plot of the magnitude response of a low-pass filter (dB scale).}
+\label{fig:magphase}
+\end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %              SUB-SUBSECTION              %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -128,35 +144,7 @@ We can see that both the amplitude and phase response are a strong function of f
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Plots of the magnitude and phase response are shown in Fig.~\ref{fig:magphase}.  The magnitude plot shows that for signal frequencies below the cutoff frequency, $1/\tau$, the signal experiences little attenuation.  In fact, at the passband edge frequency of $1/\tau$, the magnitude is by definition lower by $1/\sqrt{2}$, which corresponds to half the power.  Likewise, the phase response is zero at low frequencies, meaning the signal is not delayed, but even at the cutoff frequency the delay is $45^\circ$, and asymptotically reaches $90^\circ$.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-As is common practice in electrical engineering, we more often plot the magnitude on a log-log scale with units of dB,  as shown in Fig.~\ref{fig:magphasedB}.  On the deciBel (deci = 10) scale, we take the base 10 $\log_{10}$ and multiply by $10$ to get rid of fractional parts.  The "Bel" part is in honor of the inventor of the phone,.  The dB scale allows us to expand the passband and more clearly understand the behavior of the transfer function as a function of frequency.  The multiplication by 10 is just for convenience.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                 FIGURE                   %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[tbp]
-\begin{center}
-\begin{tabular}{c}
-\includegraphics[width=.6\columnwidth]{mag} \\
-(a) \\
-\includegraphics[width=.6\columnwidth]{phase} \\
-\end{tabular}
-\end{center}
-\caption{The (a) magnitude and (b) phase response of the low-pass filter. }
-\label{fig:magphase}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                 FIGURE                   %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[tbp]
-\begin{center}
-\begin{tabular}{c}
-(b) \\
-\includegraphics[width=.6\columnwidth]{dB} \\
-(c) \\
-\end{tabular}
-\end{center}
-\caption{The log-log plot of the magnitude response of a low-pass filter (dB scale) . }
-\label{fig:magphasedB}
-\end{figure}
+As is common practice in electrical engineering, we more often plot the magnitude on a log-log scale with units of dB,  as shown in Fig.~\ref{fig:magphase}.  On the deciBel (deci = 10) scale, we take the base 10 $\log_{10}$ and multiply by $10$ to get rid of fractional parts.  The "Bel" part is in honor of the inventor of the phone,.  The dB scale allows us to expand the passband and more clearly understand the behavior of the transfer function as a function of frequency.  The multiplication by 10 is just for convenience.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 But you'll notice that we often multiply log by $20$ rather than $10$ in the definition of $dB$?   Power is proportional to voltage squared:
     \begin{equation}
@@ -263,9 +251,8 @@ Any complex number $z$ (Fig.~\ref{fig:complex}), expressed as have a real and im
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tb]
-\begin{center}
+\centering
 \includegraphics[width=.6\columnwidth]{complex}
-\end{center}
 \caption{A general complex number $z$ can be repesented by its real and imaginary components or its magnitude and phase. } \label{fig:complex}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -286,13 +273,12 @@ which shows that two counter rotating complex exponentials sum to $\sin$ and $\c
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tb]
-\begin{center}
+\centering
 \begin{tabular}{cc}
 \includegraphics[width=.4\columnwidth]{exp1.pdf}  &
 \includegraphics[width=.4\columnwidth]{exp2.pdf} \\
 (a) & (b) \\
 \end{tabular}
-\end{center}
 \caption{  (a) The complex exponentail $e^{j\omega t}$ rotates around the unit circle counter-clockwise at a rate of $\omega$, or once every $2\pi/\omega$ seconds.  Likewise (b) $e^{-j\omega t}$ rotates around the unit circle clockwise.  See \href{rfic.eecs.berkeley.edu/~niknejad/photos/ee105/exp1.mov}{$e^{j\omega t}$ animation} and \href{http://rfic.eecs.berkeley.edu/~niknejad/photos/ee105/exp2.mov}{$e^{-j\omega t} animation$}.}
 \label{fig:complexexp}
 \end{figure}
@@ -300,9 +286,8 @@ which shows that two counter rotating complex exponentials sum to $\sin$ and $\c
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tb]
-\begin{center}
+\centering
 \includegraphics[width=.5\columnwidth]{exp3.pdf}
-\end{center}
 \caption{We visualize the function $\cos$ by building it through vectorwise addition of $e^{j\omega t}$ and $e^{-j\omega t}$.  See the \href{http://rfic.eecs.berkeley.edu/~niknejad/photos/ee105/exp3.mov}{animation}.}
 \label{fig:cos}
 \end{figure}
@@ -314,9 +299,8 @@ which shows that two counter rotating complex exponentials sum to $\sin$ and $\c
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tb]
-\begin{center}
+\centering
 \includegraphics[width=.75\columnwidth]{lti_sine}
-\end{center}
 \caption{In an LTI system, if we drive it with a sinusoid, the output is a sinusoid at the sam frequency, with a new amplitude and phase. }
 \label{fig:lti_sine}
 \end{figure}
@@ -334,9 +318,8 @@ the phase response is given by $\angle H$.   We see that the complex exponential
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tb]
-\begin{center}
+\centering
 \includegraphics[width=.65\columnwidth]{lti_resp}
-\end{center}
 \caption{The complex exponential response of a linear system is another complex exponential, with an additional magnitude and phase factor. }
 \label{fig:lti_resp}
 \end{figure}
@@ -415,9 +398,8 @@ If this argument does not convince you, there's a slightly more complicated way 
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tb]
-\begin{center}
+\centering
 \includegraphics[width=.75\columnwidth]{lti_cosine}
-\end{center}
 \caption{Sinusoidal response of an LTI system by superposition. }
 \label{fig:lti_cosine}
 \end{figure}
@@ -459,8 +441,7 @@ or more simply
 %             SUBSECTION 1.6.1             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{``Proof'' for Linear Systems}
-%\insfig{}{.85}
- For an arbitrary linear circuit, in other words a black box containing an arbitrary number of inductors, capacitors, resistors, mutual inductors, or linear dependent sources, we can  decompose the system into linear sub-operators, like multiplication by constants, time derivatives, or integrals:
+For an arbitrary linear circuit, in other words a black box containing an arbitrary number of inductors, capacitors, resistors, mutual inductors, or linear dependent sources, we can  decompose the system into linear sub-operators, like multiplication by constants, time derivatives, or integrals:
     \begin{equation}
         y = \mathbf{L}(x) = a x + b_1 \frac{d}{dt} x + b_2\frac{d^2}{dt^2} x + \cdots + c_1 \int x + c_2 \iint x + \cdots
     \end{equation}
@@ -508,9 +489,8 @@ In Fig.~\ref{fig:splane} we show the ``s-plane", and the x mark particular compl
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tb]
-\begin{center}
+\centering
 \includegraphics[width=.85\columnwidth]{exp_graph.pdf}
-\end{center}
 \caption{On the complex plane, the location of the argument $s$ to $e^{st}$ corresponds to either sinusoidal harmonic oscillation (on the imaginary axis), or exponential growth or decay (on the real axis).  Other off-axis locations are a combination of decaying or growing exponential sinusoidal waveforms.}
 \label{fig:splane}
 \end{figure}
@@ -528,9 +508,8 @@ In Fig.~\ref{fig:splane} we show the ``s-plane", and the x mark particular compl
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tb]
-\begin{center}
+\centering
 \includegraphics[width=1\columnwidth]{rect_func}
-\end{center}
 \caption{The unit rectangular function, centered at the origin or shifted by $\tau$. }
 \label{fig:fun_rect}
 \end{figure}
@@ -561,9 +540,8 @@ We can approximate any function as a sum of rectangular shifted functions
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tb]
-\begin{center}
+\centering
 \includegraphics[width=.55\columnwidth]{func_rect}
-\end{center}
 \caption{Representation of a general function by a sum of shifted rectangular functions. }
 \label{fig:func_rect}
 \end{figure}
@@ -575,9 +553,8 @@ We can approximate any function as a sum of rectangular shifted functions
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tb]
-\begin{center}
+\centering
 \includegraphics[width=.5\columnwidth]{rect_func_delta}
-\end{center}
 \caption{The "Delta Function" can be obtained through a limiting process by making the interval of the rectangular function shorter and shorter. }
 \label{fig:rect_func_delta}
 \end{figure}
@@ -588,7 +565,7 @@ Now imagine taking the limit as $\Delta\rightarrow 0$
     \end{equation}
 What do we get?  Is this thing even a function?  A pictorial representation of the limiting process is shown in Fig.~\ref{fig:rect_func_delta}.  We see that the function becomes more and more narrow and taller and taller.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
- No, it's not an ordinary function.\footnote{Mathematicians have made sense of it.  Now it's known as a distribution or generalized function.}  The delta function was originally introduced by Oliver Heaviside $\sim$1900, Dirac co-invented it and gets credit as it's known as the ``Dirac Delta Function".\footnote{Heaviside was derided by the mathematicians of the day for his methods.  He often got the right answer without beging mathematically rigorous, but that's because he way ahead of everyone in his techniques and it took a while for the mathematical world to catch up.}
+ No, it's not an ordinary function.\footnote{Mathematicians have made sense of it.  Now it's known as a distribution or generalized function.}  The delta function was originally introduced by Oliver Heaviside $\sim$1900, Dirac co-invented it and gets credit as it's known as the ``Dirac Delta Function".\footnote{Heaviside was derided by the mathematicians of the day for his methods.  He often got the right answer without being mathematically rigorous, but that's because he was way ahead of everyone in his techniques, and it took a while for the mathematical world to catch up.}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %              SUB-SUBSECTION              %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -597,9 +574,8 @@ What do we get?  Is this thing even a function?  A pictorial representation of t
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tb]
-\begin{center}
+\centering
 \includegraphics[width=.5\columnwidth]{delta_sift}
-\end{center}
 \caption{The "sifting" property of the Delta function yields the function value at any point. }
 \label{fig:delta_sift}
 \end{figure}
@@ -669,9 +645,8 @@ In this equation, $x$ is just a dummy variable.  We can substitute $\tau$ to mak
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tb]
-\begin{center}
+\centering
 \includegraphics[width=\columnwidth]{conv_picture.png} 
-\end{center}
 \caption{The convolution operation visualized.  See \href{https://en.wikipedia.org/wiki/Convolution}{Wikipedia} for full details and an animation. }
 \label{fig:conv_visual}
 \end{figure}
@@ -686,8 +661,8 @@ It's useful to visualize the convolution operation.  Note that the convolution o
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tb]
 \begin{tabular}{cc}
-\includegraphics[width=.5\columnwidth]{impulse1_long.pdf} &
-\includegraphics[width=.5\columnwidth]{impulse2_short.pdf} \\
+\includegraphics[width=.45\columnwidth]{impulse1_long.pdf} &
+\includegraphics[width=.45\columnwidth]{impulse2_short.pdf} \\
 \end{tabular}
 \caption{Two hypothetical impulse response functions are shown.  One is long and oscillates, the second is short and delays exponentially.}
 \label{fig:memory}
@@ -706,9 +681,8 @@ This should help you understand why we needed to flip the impulse response in th
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tb]
-\begin{center}
+\centering
 \includegraphics[width=.5\columnwidth]{hammer_resonance}
-\end{center}
 \caption{A measurement setup to record the impulse response of a mechanical system. }
 \label{fig:hammer_setup}
 \end{figure}
@@ -724,9 +698,8 @@ Another way to look at a delta function is to think of it like hitting your syst
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tb]
-\begin{center}
+\centering
 \includegraphics[width=.6\columnwidth]{impulse_resp}
-\end{center}
 \caption{The impulse response for the low-pass filtered analyzed earlier in the frequency domain. }
 \label{fig:impulse_resp}
 \end{figure}
@@ -740,9 +713,8 @@ Notice that the system has a time constant $\tau = RC$ that corresponds to the a
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tb]
-\begin{center}
+\centering
 \includegraphics[width=.5\columnwidth]{step_resp}
-\end{center}
 \caption{The step response of a low-pass filter. }
 \label{fig:step_resp}
 \end{figure}
@@ -763,12 +735,11 @@ The response is plotted in Fig.~\ref{fig:step_resp}. The step has a very sharp t
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tb]
-\begin{center}
+\centering
 \begin{tabular}{cc}
-\includegraphics[width=.5\columnwidth]{slow_sine.pdf} &
-\includegraphics[width=.5\columnwidth]{fast_sine.pdf} \\
+\includegraphics[width=.45\columnwidth]{slow_sine.pdf} &
+\includegraphics[width=.45\columnwidth]{fast_sine.pdf} \\
 \end{tabular}
-\end{center}
 \caption{The response of a linear system to a "slow" and "fast" sinusoid.  Slow means the period of oscillation is smaller than the filter characteristic time constant $\tau$.  Fast means the opposite.}
 \label{fig:fast_slow_resp}
 \end{figure}
@@ -782,12 +753,11 @@ As shown in Fig.~\ref{fig:fast_slow_resp}, if the input changes slower than the 
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tb]
-\begin{center}
+\centering
 \begin{tabular}{cc}
 \includegraphics[width=.4\columnwidth]{long_pulse.pdf} &
 \includegraphics[width=.4\columnwidth]{fast_pulse.pdf} \\
 \end{tabular}
-\end{center}
 \caption{The pulse response of a low-pass filter.  Note that the shorter pulse has been expanded for clarity (see the time scale). }
 \label{fig:pulse_resp}
 \end{figure}
@@ -799,7 +769,7 @@ Now let's see what happens to a pulse.  By superposition, this is just two unit-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Frequency Domain Characterization of Linear Systems}
-We started this chapter by discussion of the steady-state sinusoidal response of a linear system.  We found that we can use complex exponential inputs to quickly and efficiently calculate the output, and by sweeping the frequency, we obtain the spectral response of the system $H(s)$ (the complex eigenvalues) that completely characterizes the system.   Next we find that in the time domain, the impulse response is a way to "probe" a linear system to determine its behavior.  In other words both $H(s)$ and $h(t)$ are a very special responses that characterizes the system.  One comes from the complex exponential input $e^{st}$ and the other from the the application of a delta function.  How are these functions $H(s)$ and $h(t)$ related ? 
+We started this chapter by discussion of the steady-state sinusoidal response of a linear system.  We found that we can use complex exponential inputs to quickly and efficiently calculate the output, and by sweeping the frequency, we obtain the spectral response of the system $H(s)$ (the complex eigenvalues) that completely characterizes the system.   Next we find that in the time domain, the impulse response is a way to "probe" a linear system to determine its behavior.  In other words both $H(s)$ and $h(t)$ are a very special responses that characterizes the system.  One comes from the complex exponential input $e^{st}$ and the other from the the application of a delta function.  How are these functions $H(s)$ and $h(t)$ related?
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 1.10.1            %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -868,9 +838,8 @@ The properties of the Laplace Transform are summarized in Fig.~\ref{fig:laplace_
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tb]
-\begin{center}
+\centering
 \includegraphics[width=.9\columnwidth]{laplace_table.png}
-\end{center}
 \caption{Table of Laplace Transform properties.  From \href{https://en.Wikipedia.org/wiki/Laplace_transform}{Wikipedia}}
 \label{fig:laplace_table}
 \end{figure}
@@ -883,9 +852,8 @@ The Table in Fig.~\ref{fig:laplace_xform} shows some common Laplace Transform "p
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tb]
-\begin{center}
+\centering
 \includegraphics[width=\columnwidth]{laplace_transform.png}
-\end{center}
 \caption{Table of Laplace Transform pairs.  From \href{https://en.wikipedia.org/wiki/Laplace_transform}{Wikipedia}}
 \label{fig:laplace_xform}
 \end{figure}
@@ -920,9 +888,8 @@ This brings us full circle and shows that the frequency response $H(j\omega)$, t
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tb]
-\begin{center}
+\centering
 \includegraphics[width=\columnwidth]{sig_noise_freq.pdf}
-\end{center}
 \caption{The frequency domain representation of a signal plus noise (left).  The signal consists of tones (delta-functions in frequency domain) and noise (flat spectrum).  The signal is low-pass filtered, which is equivalent to multiplication by the frequency domain transfer function shown in the middle, resulting in the filtered signal and reduction in noise (right).} \label{fig:freq_domain}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -937,12 +904,11 @@ If we low-pass filter the signal and noise, we expect that we will reduce the co
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tb]
-\begin{center}
+\centering
 \begin{tabular}{cc}
 \includegraphics[width=.45\columnwidth]{tonesintime.pdf} &
 \includegraphics[width=.45\columnwidth]{noiseonly.pdf} \\
 \end{tabular}
-\end{center}
 \caption{A audio signal consisting of a tone and the third harmonic (delayed by 1 second).  The signal will be added to the noisy signal shown on the right.}
 \label{fig:tones_time}
 \end{figure}
@@ -983,7 +949,7 @@ Now we apply a bandpass filter with a  wider passband, allowing both tones to pa
 %             SUBSECTION 1.10.5            %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{But Most Systems are Non-Linear ...?}
-As we have demonstrated throughout this chapter, linear system theory is powerful and very useful for design and analysis.  But you may object and say that most real systems are non-linear, so why is this stuff useful ?
+As we have demonstrated throughout this chapter, linear system theory is powerful and very useful for design and analysis.  But you may object and say that most real systems are non-linear, so why is this stuff useful?
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 When systems are non-linear, we often ``linearize" them about an operating point and use linear theory to understand the response to ``small" perturbations.  We'll be doing this extensively in this course. We'll find that the silicon transistor and diodes are non-linear, so we'll build ``small-signal" models that are linear.  This is useful as long as the signals of interest don't deviate too much from the operating point.  If they do, we need non-linear techniques.  Even in these situations,  we can gain useful insights from the small-signal approximation, and it's the starting point for design and analysis.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -997,3 +963,4 @@ This chapter has taken us from the frequency domain AC style analysis to the tim
  Frequency response allows us to completely characterize a system using the sinusoidal response.
  More generally, the frequency response is characterized by the complex exponential response $H(s)$.   The impulse response $h(t)$ completely characterizes a system in the time-domain, and we found a connection between the two approaches.   The transfer function $H(s)$ is the Laplace Transform of the impulse response $h(t)$.  The Fourier Transform is the Laplace transform evaluated on the imaginary axis, and AC circuit theory is how we calculation (or measure) the transfer function in practice.   Convolution in time simplifies to multiplication in the frequency domain (and vice versa).
  Many concepts are calculations are easier to carry out in the frequency domain (filters), and as an engineer your intuition for the frequency domain will increase throughout your career.
+ 

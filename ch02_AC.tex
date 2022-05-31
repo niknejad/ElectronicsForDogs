@@ -10,7 +10,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Chapter Preview}
-This chapter builds on the previous by focusing solely on AC circuits, or the circuit response in sinusoidal steady state.  We will also focus on circuits in particular and derive an even simpler procedure for analysis based on "phasors", which is just a shorthand way to do the complex exponential response that we discussed in the previous chapter.  We formally introduce the concept of the AC transfer functions in circuits as ratios of signals, either voltage or current, in the frequency domain.  We will see that for circuits of interest, we can completely characterize the transfer function in terms of a finite number of "poles" and "zeros".     We will also discuss the Bode Plot technique for estimating the transfer function and touch briefly on AC power.
+This chapter builds on the previous by focusing solely on AC circuits, or the circuit response in sinusoidal steady state.  We will also focus on circuits in particular and derive an even simpler procedure for analysis based on "phasors", which is just a shorthand way to do the complex exponential response that we discussed in the previous chapter.  We formally introduce the concept of the AC transfer functions in circuits as ratios of signals, either voltage or current, in the frequency domain.  We will see that for circuits of interest, we can completely characterize the transfer function in terms of a finite number of "poles" and "zeros".  We will also discuss the Bode Plot technique for estimating the transfer function and touch briefly on AC power.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                   SECTION 2.2                                        %
@@ -25,10 +25,10 @@ This chapter builds on the previous by focusing solely on AC circuits, or the ci
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tb]
-\begin{center}
+\centering
 \includegraphics[scale=1]{transfer_func}
-\end{center}
-\caption{Between two ports in a linear time-invariant (LTI) circuit, we can define four transfer functions.  In this chapter we will focus on the frequency domain transfer functions.} \label{fig:blackboxltiports}
+\caption{Between two ports in a linear time-invariant (LTI) circuit, we can define four transfer functions.  In this chapter we will focus on the frequency domain transfer functions.}
+\label{fig:blackboxltiports}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 In many situations, we are interested in the transfer of voltage or current from one terminal pair, or port, to another port in the circuit.  As shown in the blackbox Fig.~\ref{fig:blackboxltiports}, we can identify these ports by explicitly labeling them and clearly identifying the voltages across and the currents into and out of these ports.  Note that some ports may have terminals in common, such as a common-ground for ground referenced signals.  
@@ -49,9 +49,8 @@ The variation in frequency is due to the frequency content of the heartbeat sign
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tb]
-\begin{center}
+\centering
 \includegraphics[width=.95\columnwidth]{ex_opamp-ia2}
-\end{center}
 \caption{An ECG amplifier is an example of a transfer function from a non-ground referenced port to an output port that is referenced to ground, or a differential to single-ended transfer function.} \label{fig:ecg}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -62,9 +61,8 @@ The variation in frequency is due to the frequency content of the heartbeat sign
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tb]
-\begin{center}
+\centering
 \includegraphics[width=\columnwidth]{ex_microphone}
-\end{center}
 \caption{The transfer function from a microphone to the output of the amplifier is actually a current to voltage transfer function.  Note the voltage to voltage transfer function is undefined for an ideal op-amp since the negative input terminal is a virtual ground.}
 \label{fig:microphone}
 \end{figure}
@@ -86,9 +84,8 @@ In this example, the presence of the source impedance changed everything.  In ge
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tb]
-\begin{center}
+\centering
 \includegraphics[width=.8\columnwidth]{ex_photodetect}
-\end{center}
 \caption{A photo-detector is used to convert photons to current, which are then converted into a voltage through the trans-impedance amplifier (TIA).  The figure on the right is the equivalent circuit model.} \label{fig:pd_detect}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -103,9 +100,8 @@ Shown in Fig.~\ref{fig:pd_detect}, the source is a photodiode, a device that has
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tb]
-\begin{center}
+\centering
 \includegraphics[width=.6\columnwidth]{mod1_3_1_twoport}
-\end{center}
 \caption{An arbitrary two-port consisting of a linear time-invariant circuit.}
 \label{fig:twoportivgain}
 \end{figure}
@@ -137,10 +133,9 @@ Less commonly, we have a voltage to current amplifier:
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
- \begin{figure}[tb]
-\begin{center}
+\begin{figure}[tb]
+\centering
 \includegraphics[width=.5\columnwidth]{mod1_3_2_oneport}
-\end{center}
 \caption{An arbitrary one-port linear time-invariant circuit.}
 \label{fig:oneport}
 \end{figure}
@@ -224,9 +219,8 @@ The roots of the numerator are called the “zeros” since at these frequencies
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tb]
-\begin{center}
+\centering
 \includegraphics[angle=-0.0,width=.8\columnwidth]{image_11.jpg}
-\end{center}
 \caption{A tent has poles and "zeros", or locations of stakes.  At the stakes the elevation is at ground (zero), whereas at the poles the elevation hits a local maximum.}
 \label{fig:tent}
 \end{figure}
@@ -282,13 +276,12 @@ This is "Ohm's Law" in the frequency domain for a capacitor.
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tb]
-\begin{center}
+\centering
 \begin{tabular}{ccc}
 \includegraphics[width=.25\columnwidth]{mod1_3_3_cap} & \hspace{1cm} &
-\includegraphics[width=.25\columnwidth]{mod1_3_4_ind} \\
-(a) & & (b) \\
+\includegraphics[width=.25\columnwidth]{mod1_3_4_ind}\\
+(a) & & (b)\\
 \end{tabular}
-\end{center}
 \caption{(a) Capacitor and (b) inductor  $I$-$V$ relations in the time domain.}
 \label{fig:lcphasor}
 \end{figure}
@@ -336,14 +329,14 @@ In Fig.~\ref{fig:lpfagain}, we show a "real"  time-domain circuit and the corres
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tb]
-\begin{center}
+\centering
 \begin{tabular}{cc}
 \includegraphics[angle=-0.0,scale=1]{mod1_3_5_rc_lpf} &
-\includegraphics[angle=-0.0,scale=1]{mod1_3_6_rc_lpf_Z} \\
-(a) & (b) \\
+\includegraphics[angle=-0.0,scale=1]{mod1_3_6_rc_lpf_Z}\\
+(a) & (b)\\
 \end{tabular}
-\end{center}
-\caption{(a) The low-pass filter in the time domain and (b) an AC equivalent circuit.} \label{fig:lpfagain}
+\caption{(a) The low-pass filter in the time domain and (b) an AC equivalent circuit.}
+\label{fig:lpfagain}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 The fastest way to solve the problem is to say that the LPF is really a voltage divider:
@@ -358,9 +351,8 @@ The fastest way to solve the problem is to say that the LPF is really a voltage 
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tb]
-\begin{center}
+\centering
 \includegraphics[angle=-0.0,scale=1]{mod1_3_7_rc_lpf2}
-\end{center}
 \caption{A circuit with two resistors and two capacitors can be analyzed quickly using nodal analysis or circuit theorems by treating the capacitors as impedances.}
 \label{fig:bigexample}
 \end{figure}
@@ -385,9 +377,8 @@ Therefore we have
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}
-\begin{center}
+\centering
 \includegraphics[scale=1]{rlc}
-\end{center}
 \caption{A series $RLC$ circuit.}
 \label{fig:rlc}
 \end{figure}
@@ -407,9 +398,8 @@ when $\Im(Z) = 0$, which happens at a frequency $\omega = \pm \frac{1}{\sqrt{L C
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}
-\begin{center}
+\centering
 \includegraphics[scale=.8]{rlcphasor}
-\end{center}
 \caption{The phasor diagram shows the relations between the voltages across each component.  Note that the inductor/capacitor voltages are exactly $180^\circ$ degrees out of phase.  Below resonance, the reactance of the capacitor dominates, whereas above resonance, the reactance of the inductor dominates.  At resonance, these reactances are equal and so the voltages across the circuit sum to $v_R$, so the entire source voltage is applied to the resistor $R$. }
 \label{fig:rlcphasor}
 \end{figure}
@@ -468,7 +458,7 @@ Using the definition of $Q$ and $\omega_0$ for the circuit
     \begin{equation}
         H(j\omega) = \frac{j\omega \frac{\omega_0}{Q} }{\omega_0^2 +  (j\omega)^2 + j \frac{\omega\omega_0}{Q}}
     \end{equation}
-Factoring the denominator with the assumption that $Q > \oh$ gives us the complex poles of the circuit
+Factoring the denominator with the assumption that $Q > \omega$ gives us the complex poles of the circuit
     \begin{equation}
         s^\pm = -\frac{\omega_0}{2 Q} \pm j\omega_0 \sqrt{1 - \frac{1}{4Q^2}}
     \end{equation}
@@ -484,9 +474,8 @@ The poles have a constant magnitude equal to the resonant frequency
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}
-\begin{center}
+\centering
 \includegraphics[width=.65\columnwidth]{transferrlc}
-\end{center}
 \caption{The transfer function from source to the resistor voltage as a function of frequency.  Depending on the component values (circuit $Q$), the transfer function exhibits either low or high selectivity.} \label{fig:transferrlc}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -570,9 +559,8 @@ A Bode Plot is simply a ``sketch" of the $\log$-$\log$ plot of the magnitude and
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tb]
-\begin{center}
+\centering
 \includegraphics[angle=-0.0,width=.4\columnwidth]{mod1_3_8_rl_hpf}
-\end{center}
 \caption{A simple $RL$ high-pass filter.}
 \label{fig:hpf}
 \end{figure}
@@ -613,13 +601,12 @@ Let's focus on the numerator first.  For this term, $\left|j\omega \tau  \right|
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tb]
-\begin{center}
+\centering
 \begin{tabular}{cc}
-\includegraphics[width=.6\columnwidth]{mod1_3_9_bode1} &
-\includegraphics[width=.4\columnwidth]{mod1_3_10_bode2} \\
-(a) & (b) \\
+\includegraphics[width=.55\columnwidth]{mod1_3_9_bode1} &
+\includegraphics[width=.35\columnwidth]{mod1_3_10_bode2}\\
+(a) & (b)\\
 \end{tabular}
-\end{center}
 \caption{Sketch of the magnitude response for (a) $j\omega \tau$ and (b) a low pass function with a breakpoint at $1/\tau$.}
 \label{fig:hpfnumden}
 \end{figure}
@@ -658,14 +645,13 @@ and together they form two plots that we join together as shown in Fig.~\ref{fig
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tb]
-\begin{center}
+\centering
 \begin{tabular}{c}
-\includegraphics[width=.75\columnwidth]{mod1_3_11_bode3} \\
-(a) \\
-\includegraphics[angle=-0.0,width=.75\columnwidth]{mag_hpf} \\
-(b) \\
+\includegraphics[width=.75\columnwidth]{mod1_3_11_bode3}\\
+(a)\\
+\includegraphics[angle=-0.0,width=.75\columnwidth]{mag_hpf}\\
+(b)\\
 \end{tabular}
-\end{center}
 \caption{(a) Composite Bode plot for the high-pass filter obtained by summing the shown component parts.  (b) A plot of the exact transfer function for the high-pass filter.}
 \label{fig:bode}
 \end{figure}
@@ -684,9 +670,8 @@ The first term is simply a constant phase of $90^\circ$ while the second term is
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tb]
-\begin{center}
+\centering
 \includegraphics[width=.55\columnwidth]{mod1_3_12_bode4}
-\end{center}
 \caption{The approximate and exact phase response of the high-pass filter.}
 \label{fig:bode_phase}
 \end{figure}
@@ -704,14 +689,12 @@ The first term is simply a constant phase of $90^\circ$ while the second term is
         {P_{av}} = \int\limits_T {i(\tau )v(\tau )d\tau } 
     \end{equation}
 In terms of sinusoids we have
-    { \small
-    $\begin{array}{l}
-        {P_{av}} = \int\limits_T {\left| I \right|\cos (\omega t + {\varphi _i})\left| V \right|\cos (\omega t + {\varphi _v})d\tau } \\
-         = \left| I \right| \cdot \left| V \right|\int\limits_T {(\cos \omega t\cos {\varphi _i} - \sin \omega t\sin {\varphi _i}} ) \cdot (\cos \omega t\cos {\varphi _v} - \sin \omega t\sin {\varphi _v})d\tau \\
-         = \left| I \right| \cdot \left| V \right|\int\limits_T {d\tau {{\cos }^2}\omega t\cos {\varphi _i}\cos {\varphi _v} + {{\sin }^2}\omega t\sin {\varphi _i}\sin {\varphi _v} + c\sin \omega t\cos \omega t} \\
-         = \frac{{\left| I \right| \cdot \left| V \right|}}{2}(\cos {\varphi _i}\cos {\varphi _v} + \sin {\varphi _i}\sin {\varphi _v}) = \frac{{\left| I \right| \cdot \left| V \right|}}{2}\cos ({\varphi _i} - {\varphi _v})
-    \end{array}$
-    }
+    \begin{align*}
+        {P_{av}} &= \int\limits_T {\left| I \right|\cos (\omega t + {\varphi _i})\left| V \right|\cos (\omega t + {\varphi _v})d\tau }\\
+        &= \left| I \right| \cdot \left| V \right|\int\limits_T {(\cos \omega t\cos {\varphi _i} - \sin \omega t\sin {\varphi _i}} ) \cdot (\cos \omega t\cos {\varphi _v} - \sin \omega t\sin {\varphi _v})d\tau\\
+        &= \left| I \right| \cdot \left| V \right|\int\limits_T {d\tau {{\cos }^2}\omega t\cos {\varphi _i}\cos {\varphi _v} + {{\sin }^2}\omega t\sin {\varphi _i}\sin {\varphi _v} + c\sin \omega t\cos \omega t}\\
+        &= \frac{{\left| I \right| \cdot \left| V \right|}}{2}(\cos {\varphi _i}\cos {\varphi _v} + \sin {\varphi _i}\sin {\varphi _v}) = \frac{{\left| I \right| \cdot \left| V \right|}}{2}\cos ({\varphi _i} - {\varphi _v})
+    \end{align*}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 2.7.1             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -757,13 +740,12 @@ Check the result for a real impedance (resistor) to verify we have not made any 
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tb]
-\begin{center}
+\centering
 \begin{tabular}{cc}
-\includegraphics[width=.5\columnwidth]{cap_power} &
-\includegraphics[width=.5\columnwidth]{res_power} \\
-(a) & (b) \\
+\includegraphics[width=.45\columnwidth]{cap_power} &
+\includegraphics[width=.45\columnwidth]{res_power}\\
+(a) & (b)\\
 \end{tabular}
-\end{center}
 \caption{(a) The current and voltage waveforms in a reactive circuit are $90^\circ$ out of phase whereas (b) for a resistive circuit, they are in phase.}
 \label{fig:powerflow}
 \end{figure}

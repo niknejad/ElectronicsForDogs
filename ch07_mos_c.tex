@@ -25,13 +25,13 @@ In this chapter we will be learning about the Metal-Oxide-Silicon (MOS) capacito
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tbh]
-\begin{center}
+\centering
 \includegraphics[width=.65\columnwidth]{mos_cap_structure}
-\end{center}
-\caption{The Metal-Oxide-Semiconductor Capacitor  (MOS-C) structure.  The structure has a ``gate" (G) terminal and a ``body" (B) terminal.  As shown, it's an NMOS-C realized with an n-type polysilicon gate (heavily doped) and a p-type body.  } \label{fig:mos_cap}
+\caption{The Metal-Oxide-Semiconductor Capacitor  (MOS-C) structure.  The structure has a ``gate" (G) terminal and a ``body" (B) terminal.  As shown, it is an NMOS-C realized with an n-type polysilicon gate (heavily doped) and a p-type body.}
+\label{fig:mos_cap}
 \end{figure}
-
-The  Metal Oxide Semiconductor Capacitor (MOS-C) structure shown in Fig.~\ref{fig:mos_cap},  is a sandwich of conductors separated by an insulator.  The device has two terminals, the gate and the body, and a voltage is applied between the gate and body through these terminals.  The  “metal” gate is more commonly a heavily doped polysilicon (poly-Si) layer doped n$^+$ or p$^+$.  The gate was originaly made of metal (e.g. Al) until $\sim$1970 but changed to poly-Si due to high temperature processing. After 2008, metal gates have been reintroduced for various technical reasons that we will not discuss in this book.  Because the body is a semiconductor, there are two possible flavors of MOS-C devices.  The NMOS capacitor uses a  p-type substrate, and the PMOS  $\rightarrow$ device uses n-type substrate.  Note that this is not a typo !  The body doping is opposite to the flavor, something which we will clarify in this chapter.  Finally the insulator can in theory be any non-conductor but in practice for silicon MOS structures SiO$_2$ is the oxide of choice because it is native to silicon (easy to grow, very low surface defects), and it can double as a mask opening during fabrication (blocking implants).  Ideally this layer is very thin, with modern devices using a few layers of atoms to realize the lowest thickness possible.  Because there is a physical limit to how thin we can make this layer\footnote{Due to leakage currents through the gate and the fact that a very thin layer can undergo oxide breakdown since even modest gate-to-body voltages impose large electric fields.}, modern devices may use a stack up of layers including higher dielectric constant (high ``K") insulators.  Native SiO$_2$ has a relative permittivity of 3.9, about 3 times smaller than silicon.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+The  Metal Oxide Semiconductor Capacitor (MOS-C) structure shown in Fig.~\ref{fig:mos_cap},  is a sandwich of conductors separated by an insulator.  The device has two terminals, the gate and the body, and a voltage is applied between the gate and body through these terminals.  The  “metal” gate is more commonly a heavily doped polysilicon (poly-Si) layer doped n$^+$ or p$^+$.  The gate was originally made of metal (e.g. Al) until $\sim$1970 but changed to poly-Si due to high temperature processing. After 2008, metal gates have been reintroduced for various technical reasons that we will not discuss in this book.  Because the body is a semiconductor, there are two possible flavors of MOS-C devices.  The NMOS capacitor uses a  p-type substrate, and the PMOS  $\rightarrow$ device uses n-type substrate.  Note that this is not a typo !  The body doping is opposite to the flavor, something which we will clarify in this chapter.  Finally the insulator can in theory be any non-conductor but in practice for silicon MOS structures $SiO_2$ is the oxide of choice because it is native to silicon (easy to grow, very low surface defects), and it can double as a mask opening during fabrication (blocking implants).  Ideally this layer is very thin, with modern devices using a few layers of atoms to realize the lowest thickness possible.  Because there is a physical limit to how thin we can make this layer\footnote{Due to leakage currents through the gate and the fact that a very thin layer can undergo oxide breakdown since even modest gate-to-body voltages impose large electric fields.}, modern devices may use a stack up of layers including higher dielectric constant (high ``K") insulators.  Native $SiO_2$ has a relative permittivity of 3.9, about 3 times smaller than silicon.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 7.2.2             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -40,26 +40,25 @@ The  Metal Oxide Semiconductor Capacitor (MOS-C) structure shown in Fig.~\ref{fi
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tbh]
-\begin{center}
+\centering
 \includegraphics[width=.75\columnwidth]{mos_cap_wire_short}
-\end{center}
 \caption{The MOS-C with gate/body shorted in equilibrium. }
 \label{fig:mos_cap_gate_body_short}
 \end{figure}
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Consider applying zero volts between the gate and the body, or in other words shorting the gate to the body as shown in Fig.~\ref{fig:mos_cap_gate_body_short}.   With this connection, we are allowing currents to flow between the gate and body.  In particular, due to diffusion currents, we expect many electrons to leave the gate and enter the body. Likewise, holes in the body will naturally diffuse to the gate.  Under thermal equilibrium, current flow will cease and therefore the n-type poly gate will rise to a higher potential than the p-type substrate, just like a pn-junction diode.  Using intrinsic silicon as a reference, the potential of the p-type region is given by
-\begin{equation}
-{\varphi _p} =  - \frac{{kT}}{q}\ln \frac{{{N_a}}}{{{n_i}}}
-\end{equation}
+    \begin{equation}
+        {\varphi _p} =  - \frac{{kT}}{q}\ln \frac{{{N_a}}}{{{n_i}}}
+    \end{equation}
 while the potential of the n-type gate is given by
-\begin{equation}
-{\varphi _{poly,{n^ + }}} = \frac{{kT}}{q}\ln \left( {\frac{{{N_{d,poly}}}}{{{n_i}}}} \right) 
-\approx 550{\rm{mV}}
+    \begin{equation}
+        {\varphi _{poly,{n^ + }}} = \frac{{kT}}{q}\ln \left( {\frac{{{N_{d,poly}}}}{{{n_i}}}} \right) 
+    \approx 550{\rm{mV}}
 \end{equation}
 Note the n-type gate is doped heavily so we can approximate the potential as $550\mathrm{mV}$ if the doping level is not given.  In equilibrium, no current can flow because of the insulator blocks DC currents.  But from our knowledge of pn-junctions, we know the flow of majority carrier diffusion will stop due to the built-in potential difference:
-\begin{equation}
-	\varphi_{bi} = {\varphi _{poly,{n^ + }}}  - {\varphi _p} 
-\end{equation}
+    \begin{equation}
+        \varphi_{bi} = {\varphi _{poly,{n^ + }}}  - {\varphi _p} 
+    \end{equation}
 This potential difference is accompanied by an electric field and fields terminate on charge.  Where are these fields and charges?
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 7.2.3             %
@@ -73,13 +72,12 @@ This potential difference is accompanied by an electric field and fields termina
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tbh]
-\begin{center}
+\centering
 \includegraphics[width=.75\columnwidth]{mos_cap_short_phibi}
-\end{center}
 \caption{The MOS-C structure with gate-to-body shorted using a polysilicon gate material as the routing wire.  The built-in potential $\varphi_{bi}$ that develops across the pn-junction results also in a  potential drop across the oxide.}
 \label{fig:mos_cap_gate_body_short_gate}
 \end{figure}
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Technically, we have been analyzing the structure shown in Fig.~\ref{fig:mos_cap_gate_body_short2_gate}.  In other words, we have been assuming that the wires connecting the gate to the body are made of the same material as the gate.  There are two built-in potentials that cancel out as we go around the loop, one between the pn-junction (just like any pn-junction that we have studied so far), and the other is dropped across the oxide.  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %              SUB-SUBSECTION              %
@@ -89,12 +87,11 @@ Technically, we have been analyzing the structure shown in Fig.~\ref{fig:mos_cap
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tbh]
-\begin{center}
+\centering
 \includegraphics[width=.75\columnwidth]{mos_cap_metal_short}
-\end{center}
 \caption{In practice, the gate to body connection is made partially with aluminium or copper wires.  Special material selection is required (not shown) to avoid making rectifying contacts between the metal layers and the semiconductors.  A p$^+$ heavily doped region acts as a contact point for the body. } \label{fig:mos_cap_gate_body_short_wire}
 \end{figure}
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 In practice, the wire interconnect is not the gate poly,\footnote{Poly gate is often used for some of the routing in integrated circuits, but most routing is with metal layers}  but aluminum or copper.  The complete structure is shown in Fig.~\ref{fig:mos_cap_gate_body_short_wire}, which shows that there's a p$^+$ region in the body that forms a contact to the body.  Heavily doped diffusion regions form “ohmic” contacts, rather than rectifying contacts.   Some contact engineering is also required to make the contact between the metal and the gate (not shown). In essence, suitable materials are used to avoid rectifying contacts.  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -110,91 +107,86 @@ In practice, the wire interconnect is not the gate poly,\footnote{Poly gate is o
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tbh]
-\begin{center}
+\centering
 \includegraphics[width=.75\columnwidth]{mos_cap_equilibrium}
-\end{center}
-\caption{In equiblibrium, there is a potential drop across the oxide and the silicon surface (depletion region) corresponding to the built-in potential between the gate and body. } \label{fig:mos_charge_equil}
+\caption{In equilibrium, there is a potential drop across the oxide and the silicon surface (depletion region) corresponding to the built-in potential between the gate and body.}
+\label{fig:mos_charge_equil}
 \end{figure}
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 As shown in Fig.~\ref{fig:mos_charge_equil}, in equilibrium there is an electric field from the gate to the body due to the difference in the materials that make up the gate and the body.  Based on the sign of the voltages, with the gate at a higher potential, we should find a net positive charge on the gate, and negative charge in substrate.   Since body is p-type, negative charges in the body are very in number, and so the charge comes mostly from forming a depletion region.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 7.3.2             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Flat Band Voltage, $V_{GB} = V_{FB}$}
+\subsection{Flat Band Voltage\texorpdfstring{$,\;V_{GB}=V_{FB}$}{}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tbh]
-\begin{center}
+\centering
 \includegraphics[width=.75\columnwidth]{mos_cap_flatband}
-\end{center}
 \caption{The Flat-Band Voltage is defined as the gate-to-body voltage that results in net zero charge and zero fields in the MOS-C structure.}
 \label{fig:mos_flatband}
 \end{figure}
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 If we apply a bias, we can compensate for this built-in potential to ``reset" the capacitor, as evident in Fig.~\ref{fig:mos_flatband}.  The required voltage is simply opposite to the built-in potential:
-\begin{equation}
-	{V_{FB}} =  - ({\phi _{{n^ + }}} - {\phi _p})
-\end{equation}
-In this scenario the charge on the gate goes to zero and the depletion region disappears.
- In device physics lingo, the energy bands are “flat” under this condition, giving rise to the name ``Flat Band Voltage".
+    \begin{equation}
+        {V_{FB}} =  - ({\phi _{{n^ + }}} - {\phi _p})
+    \end{equation}
+In this scenario the charge on the gate goes to zero and the depletion region disappears.  In device physics lingo, the energy bands are “flat” under this condition, giving rise to the name ``Flat Band Voltage".
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 7.3.3             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Accumulation, $V_{GB} < V_{FB}$}
+\subsection{Accumulation\texorpdfstring{$,\;V_{GB}<V_{FB}$}{}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tbh]
-\begin{center}
+\centering
 \includegraphics[width=.75\columnwidth]{mos_cap_acc}
-\end{center}
 \caption{In accumulation, a gate-to-body ($V_{GB}$) voltage less that the flat-band voltage is applied ($V_{FB}$), resulting in the accumulation of holes at the surface of the semiconductor, which terminate the fields in the oxide that originate from electrons in the gate.}
 \label{fig:mos_accum}
 \end{figure}
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 If we further decrease the potential beyond the “flat-band” condition, we essentially have a parallel plate capacitor, shown in Fig.~\ref{fig:mos_accum}.  Plenty of holes and electrons are available to charge up the plates because we are making the gate more negative than the body.  So negative charges (electrons) flow into the gate, and holes can flow to the surface of the device.  The negative bias (strong fields from the oxide) attracts the holes to reside under gate.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 7.3.4             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Depletion, $V_{GB} > V_{FB}$}
+\subsection{Depletion\texorpdfstring{$,\;V_{GB}>V_{FB}$}{}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tbh]
-\begin{center}
+\centering
 \includegraphics[width=.75\columnwidth]{mos_cap_depletion}
-\end{center}
 \caption{In depletion region, a gate-to-body ($V_{GB}$) voltage greater that the flat-band voltage is applied ($V_{FB}$).  The voltage should not be too large (less than inversion, defined below).  In this region, the oxide fields terminate on ionized dopant atoms.}
 \label{fig:mos_dep}
 \end{figure}
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 In the depletion regime, shown in Fig.~\ref{fig:mos_dep}, the situation is similar to equilibrium.  Since the potential in the gate is higher than the body, the body charge is made up of the depletion region (ionized dopants), and there is a potential drop across the body and depletion region.  One way to understand this equilibrium scenario is to imagine what happens as the source voltage is increased beyond the flat-band conditions.  At flat-band, by definition, there is no net charge in the gate or body.  As we apply a small voltage, positive charges enter the gate (electrons leave the gate), and negative charges (electrons) enter the body. Since the body is p-type most of these electrons will be quickly recombined.  
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Recall that electric fields diverge (terminate) on charges.  Since there is a net positive charge in the gate, we have electric field lines that flow through the oxide and penetrate the silicon.  This non-zero body field will move holes away from the surface through the action of drift current.  This process will continue as long as field lines penetrate the body.   Notice that as holes are repelled from the surface, a net negative charge emerges due to the depletion region.  The action of the depletion region is to reduce the field strength since some of the field lines terminate on the ionized dopants.  Eventually, the surface will be completely depleted of positive charge and all the fields will terminate on ionized dopants.  Since the ionized dopants cannot move, not all the fields will terminate at the surface, but rather throughout the depletion region.  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 7.3.5             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Inversion, $V_{GB} = V_T$}
+\subsection{Inversion\texorpdfstring{,\;$V_{GB}=V_T$}{}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tbh]
-\begin{center}
+\centering
 \includegraphics[width=.75\columnwidth]{mos_cap_inversion}
-\end{center}
 \caption{Inversion is defined as the gate-to-body ($V_{GB}$) voltage sufficient to invert the surface of the semiconductor from p-type to n-type, causing a sheet charge of electrons to accumulate at the surface.}
 \label{fig:mos_inv}
 \end{figure}
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 In the inversion regime, shown in Fig.~\ref{fig:mos_inv}, as we further increase the gate voltage, because not all the charge resides at the surface, there is a larger and larger voltage drop across the depletion region.  In other words, the gate is ``pulling" the surface of the body to a higher potential.  A higher surface potential makes it more favorable for electrons to stick around at the surface.  Recall that thermal generation continually creates electron-hole pairs and the steady-state number of electron/holes is regulated by recombination.  At the surface of the depletion region, electron-hole pair generation creates a situation that favors electrons because the holes are repelled from the surface and the electrons are attracted to the surface.  Eventually the surface potential increases to a point where the electron density at the surface equals the background ion density:
-\begin{equation}
-{n_s} = {n_i}{e^{\frac{{q{\phi _s}}}{{kT}}}} = {N_a}
-\end{equation}
-\begin{equation}
-{\phi _s} =  - {\phi _p}
-\end{equation}
-At this point, the depletion region stops growing (effectively) and the extra charge is provided by the inversion charge at surface.   “Inversion” meaning that the surface is effectively n-type, even though it started as a p-type material.  
+    \begin{equation}
+        {n_s} = {n_i}{e^{\frac{{q{\phi _s}}}{{kT}}}} = {N_a}
+    \end{equation}
+    \begin{equation}
+        {\phi _s} =  - {\phi _p}
+    \end{equation}
+At this point, the depletion region stops growing (effectively) and the extra charge is provided by the inversion charge at surface.  “Inversion” meaning that the surface is effectively n-type, even though it started as a p-type material.  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                   SECTION 7.4                                        %
@@ -206,43 +198,43 @@ At this point, the depletion region stops growing (effectively) and the extra ch
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Threshold Voltage Definition}
 The threshold voltage is defined as the gate-body voltage that causes the surface to change from p-type to n-type.   For this condition, the surface potential has to equal the negative of the p-type potential.  We will show step-by-step that this voltage is equal to:
-\begin{equation}
-	{V_{Tn}} = {V_{FB}} - 2{\phi _p} + \frac{1}{{{C_{ox}}}}\sqrt {2q{\varepsilon _s}{N_a}( - 2{\phi _p})} 
-\end{equation}
+    \begin{equation}
+        {V_{Tn}} = {V_{FB}} - 2{\phi _p} + \frac{1}{{{C_{ox}}}}\sqrt {2q{\varepsilon _s}{N_a}( - 2{\phi _p})} 
+    \end{equation}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 7.4.2             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Derivation of $V_T$}
+\subsection{Derivation of \texorpdfstring{$V_T$}{Threshold Voltage}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tbh]
-\begin{center}
+\centering
 \includegraphics[width=.75\columnwidth]{mos_cap_threshold}
-\end{center}
-\caption{To derive the threshold voltage, it's important to realize that the gate-to-body voltage is dropped across both the oxide and the depletion region.  In absence of significant inversion charge at the surface, the total gate charge is compensated for entirely by depletion charge.} \label{fig:mos_vt_derive}
+\caption{To derive the threshold voltage, it's important to realize that the gate-to-body voltage is dropped across both the oxide and the depletion region.  In absence of significant inversion charge at the surface, the total gate charge is compensated for entirely by depletion charge.}
+\label{fig:mos_vt_derive}
 \end{figure} 
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 As shown in Fig.~\ref{fig:mos_vt_derive}, the gate-to-body voltage is dropped across the oxide and the depletion region:
-\begin{equation}
-   V_{GB} = V_{ox} + V_{dep}
-\end{equation}
+    \begin{equation}
+        V_{GB} = V_{ox} + V_{dep}
+    \end{equation}
 To see this, do a KVL loop around the structure when a voltage source is added.   Notice that the built-in voltage cancels out around the loop since it appears twice with opposite polarity.   To cause inversion, we increase the gate voltage until the surface potential becomes sufficiently positive relative to the bulk such that the electron density is the same as the body hole density.  This means that compared to the bulk, the potential at the surface is at $-2\phi_p$.  This voltage is dropped across the depletion region
-\begin{equation}
-	V_{dep} = -2 \phi_p
-\end{equation}
+    \begin{equation}
+        V_{dep} = -2 \phi_p
+    \end{equation}
 If we apply a gate-to-body voltage of $V_{FB}$, then we know the fields and charge go to zero. This is a good starting point.  Next, the oxide voltage is calculated from the gate/bulk charge.  At the edge of inversion, the total bulk charge for inversion is given by 
-\begin{equation}
-	Q_{dep} = \sqrt{2 q \eps_s N_a (-2 \phi_p) }
-\end{equation}
+    \begin{equation}
+        Q_{dep} = \sqrt{2 q \epsilon_s N_a (-2 \phi_p) }
+    \end{equation}
 This means the voltage drop across the oxide is given by
-\begin{equation}
-	V_{ox} = Q_{dep} / C_{ox} 
-\end{equation}
+    \begin{equation}
+        V_{ox} = Q_{dep} / C_{ox} 
+    \end{equation}
 Putting this all together, we have:
-\begin{equation}
-	V_{GB} = V_T = V_{FB} + Q_{dep}/C_{ox} - 2 \phi_p
-\end{equation}
+    \begin{equation}
+        V_{GB} = V_T = V_{FB} + Q_{dep}/C_{ox} - 2 \phi_p
+    \end{equation}
 Notice that we made some simplifying assumptions to arrive here.  We assumed zero inversion charge to reach this point, which of course is not quite correct, but it's a good approximation because the total inversion charge is still quite low, even if the density is high at the surface.  We also made the standard depletion approximation and assumed that the surface depletion region is fully depleted, which follows from the same arguments that we made when deriving the depletion region for the pn-junction.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -259,13 +251,12 @@ The electric field in the MOS-C structure is shown schematically in Fig.~\ref{fi
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tbh]
-\begin{center}
+\centering
 \begin{tabular}{cc}
-\includegraphics[width=.6\columnwidth]{mos_cap_Efields} &
-\includegraphics[width=.4\columnwidth]{MOS_E_field} \\
-(a) & (b) \\
+\includegraphics[width=.55\columnwidth]{mos_cap_Efields} &
+\includegraphics[width=.35\columnwidth]{MOS_E_field}\\
+(a) & (b)\\
 \end{tabular}
-\end{center}
 \caption{The electric field inside the oxide and transistor body shown (a) schematically and (b) graphed as a function of $x$.  The discontinuity in the electric field arises due to the difference in dielectric permittivity between SiO$_2$ and Si, and the linear variation in the depletion region is due to the uniform doping concentration of acceptor atoms.}
 \label{fig:mos_field_oxide_semi}
 \end{figure}
@@ -277,107 +268,104 @@ The electric field in the MOS-C structure is shown schematically in Fig.~\ref{fi
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tbh]
-\begin{center}
+\centering
 \includegraphics[width=.5\columnwidth]{MOS_potential}
-\end{center}
 \caption{The variation of electric potential through the oxide and depletion region. } \label{fig:MOS_potential}
 \end{figure}
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 The variation of the potential, the integral of the fields in Fig.~\ref{fig:mos_field_oxide_semi}, is shown in Fig.~\ref{fig:MOS_potential}.  The potential transitions smoothly across the oxide into the body.  The potential varies linearly in the oxide and then quadratically in the body.  From this figure it's clear than pulling the gate voltage high pulls the surface potential to a value above the p-type region potential, thereby eventually transforming it from p-type to n-type. 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                   SECTION 7.6                                        %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Charge-Voltage ($Q$-$V$) and Capacitance-Voltage ($C$-$V$) Curves}
+\section{Charge-Voltage (\texorpdfstring{$Q$-$V$}{Q-V}) and Capacitance-Voltage (\texorpdfstring{$C$-$V$}{C-V}) Curves}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tbh]
-\begin{center}
+\centering
 \includegraphics[width=\columnwidth]{mos_qv_cv}
-\end{center}
 \caption{The plot of charge vs. voltage $Q$-$V$ and small-signal capacitance vs. voltage $C$-$V$ for an MOS-C structure.  The breakpoints occur at the flat-band voltage $V_{FB}$ and the threshold voltage $V_T$.  The dashed line in the $C$-$V$ curve represents a more physical change in capacitance due to higher-order effects not discussed in this chapter.}
 \label{fig:mos_qv_cv}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 7.6.1             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{$Q$-$V$ Curve for MOS Capacitor}
+\subsection{\texorpdfstring{$Q$-$V$}{Q-V} Curve for MOS Capacitor}
 A plot of the charge versus voltage ($Q$-$V$) is shown in Fig.~\ref{fig:mos_qv_cv}.  The charge is not a linear function of voltage, and so the capacitance curve ($C$-$V$), shown in the same figure, is really the small-signal capacitance, which is the derivative of the $Q$-$V$ relation.   In accumulation, the charge is simply proportional to the applied gate-body bias since the body acts like a second gate.  In inversion, the same is true since the surface of the structure is a charge sheet that terminates all additional field lines.  Notice that this curve is only valid under quasi-static conditions.  In other words, we have to allow enough time for thermal generation to supply electrons to the surface.  If a rapid voltage (like a step transition) is applied, there's insufficient time for generation and the response would have to come from the depletion region temporarily until sufficient time elapses for surface electron density to build up.  
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 The most complicated part of this curve is the depletion region.  The charge grows slower than linear since the voltage is applied over a depletion region, rather than just through the oxide.  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 7.6.2             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{MOS $C$-$V$ Curve}
+\subsection{MOS \texorpdfstring{$C$-$V$}{C-V} Curve}
 Since the small-signal capacitance is slope of Q-V curve, it is not very difficult to see how the curve shown in the second part of Fig.~\ref{fig:mos_qv_cv} arises.  The capacitance is constant in accumulation and inversion because in these regions the device is acting like a simple parallel plate capacitor.  The capacitance in the depletion region is smallest because the voltage drop occurs both across the oxide and across the depletion region.  The capacitance is non-linear in the depletion region.  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 7.6.3             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{$C$-$V$ Curve Equivalent Circuits}
+\subsection{\texorpdfstring{$C$-$V$}{C-V} Curve Equivalent Circuits}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tbh]
-\begin{center}
+\centering
 \includegraphics[width=.85\columnwidth]{mos_cv_circuits}
-\end{center}
 \caption{The equivalent circuit for a MOS-C capacitor for small-signal perturbations about a fixed operating point in accumulation, depletion, and inversion.}
 \label{fig:mos_cv_circuits}
 \end{figure}
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Equivalent small-signal circuits for the MOS-C are summarized in Fig.~\ref{fig:mos_cv_circuits}.   In accumulation mode, the capacitance is just due to the voltage drop across $t_{ox}$, and we can calculate this capacitance per unit area from the parallel plate formula:
-\begin{equation}
-	C_{acc} = C_{ox} = \frac{\eps_{ox}}{t_{ox}}
-\end{equation}
+    \begin{equation}
+        C_{acc} = C_{ox} = \frac{\epsilon_{ox}}{t_{ox}}
+    \end{equation}
 And the equivalent circuit applies in inversion.  Let's pause and discuss this in a bit more detail.  We are talking about \emph{small-signal} or incremental charges, not total charge.   So if the MOS-C is biased in accumulation, and an incremental voltage is applied to the device, the additional charges flow into the surface of the body and gate and $C_{ox}$ is the relation between incremental charge and voltage.  In inversion, there's already a depletion region but we are assuming that when an incremental voltage is applied, the depletion region does not grow, and all additional charges flow to the surface of the device in the form of the inversion layer. This is why the small-signal equivalent circuit in inversion does not have anything about depletion in it.  Anything that is ``frozen" in place has no impact on the small-signal response.
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 In the depletion region, the voltage drop is across the oxide and the depletion region.  Let's define the depletion region capacitance as follows:
-\begin{equation}
-	{C_{dep}} = \frac{{{\varepsilon _s}}}{{{x_{dep}}}}
-\end{equation}
+    \begin{equation}
+        {C_{dep}} = \frac{{{\varepsilon _s}}}{{{x_{dep}}}}
+    \end{equation}
 Then we can say that in the depletion region, the gate-body incremental voltage ``sees" two capacitors in series, as shown in the equivalent circuit:
-\begin{equation}
-{C_{tot}} = \frac{{{C_{dep}}{C_{ox}}}}{{{C_{dep}} + {C_{ox}}}} = \frac{{{C_{ox}}}}{{1 + \frac{{{C_{dep}}}}{{{C_{ox}}}}}} = \frac{{{C_{ox}}}}{{1 + \frac{{{\varepsilon _s}}}{{{\varepsilon _{ox}}}}\frac{{{t_{ox}}}}{{{x_{dep}}}}}}
-\end{equation}
+    \begin{equation}
+        {C_{tot}} = \frac{{{C_{dep}}{C_{ox}}}}{{{C_{dep}} + {C_{ox}}}} = \frac{{{C_{ox}}}}{{1 + \frac{{{C_{dep}}}}{{{C_{ox}}}}}} = \frac{{{C_{ox}}}}{{1 + \frac{{{\varepsilon _s}}}{{{\varepsilon _{ox}}}}\frac{{{t_{ox}}}}{{{x_{dep}}}}}}
+    \end{equation}
 Since $x_{dep}$ depends on bias, we evaluate $x_{dep}$ at the value of the operating point of the circuit.  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 7.6.4             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Numerical Example}
 Let's work through the numbers to get a feel for the  MOS capacitor.   Assume that it's a  p-type substrate with an oxide thickness of:
-\begin{equation}
-{t_{ox}} = 20{\rm{nm}}
-\end{equation}
+    \begin{equation}
+        {t_{ox}} = 20{\rm{nm}}
+    \end{equation}
 which gives rise to an oxide capacitance of 
-\begin{equation}
-{C_{ox}} = \frac{{{\varepsilon _{ox}}}}{{{t_{ox}}}} = \frac{{3.45 \times {{10}^{ - 13}}{\rm{F/cm}}}}{{{\rm{2}} \times {\rm{1}}{{\rm{0}}^{{\rm{ - 6}}}}{\rm{cm}}}}
-\end{equation}
+    \begin{equation}
+        {C_{ox}} = \frac{{{\varepsilon _{ox}}}}{{{t_{ox}}}} = \frac{{3.45 \times {{10}^{ - 13}}{\rm{F/cm}}}}{{{\rm{2}} \times {\rm{1}}{{\rm{0}}^{{\rm{ - 6}}}}{\rm{cm}}}}
+    \end{equation}
 and the body is doped at:
-\begin{equation}
-{N_a} = 5 \times {10^{16}}{\rm{c}}{{\rm{m}}^{ - 3}}
-\end{equation}
+    \begin{equation}
+        {N_a} = 5 \times {10^{16}}{\rm{c}}{{\rm{m}}^{ - 3}}
+    \end{equation}
 Let's first calculate the Flat-Band voltage.  Since we don't have any information about the gate doping level, let's assume it's degeneratively doped so the potential is $550$mV:
-\begin{equation}
-{V_{FB}} =  - ({\phi _{{n^ + }}} - {\phi _p}) =  - (550 - ( - 402)) =  - 0.95{\rm{V}}
-\end{equation}
+    \begin{equation}
+        {V_{FB}} =  - ({\phi _{{n^ + }}} - {\phi _p}) =  - (550 - ( - 402)) =  - 0.95{\rm{V}}
+    \end{equation}
 Next, let's calculate the threshold voltage:
-\begin{equation}
-{V_{Tn}} = {V_{FB}} - 2{\phi _p} + \frac{1}{{{C_{ox}}}}\sqrt {2q{\varepsilon _s}{N_a}( - 2{\phi _p})} 
-\end{equation}
-\begin{equation}
-{V_{Tn}} =  - .95 - 2( - 0.4) + \frac{{\sqrt {2 \times 1.6 \times {{10}^{ - 19}} \times 1.04 \times {{10}^{ - 12}} \times 5 \times {{10}^{16}} \times 2 \times 0.4} }}{{{C_{ox}}}} = 0.52{\rm{V}}
-\end{equation}
+    \begin{equation}
+        {V_{Tn}} = {V_{FB}} - 2{\phi _p} + \frac{1}{{{C_{ox}}}}\sqrt {2q{\varepsilon _s}{N_a}( - 2{\phi _p})} 
+    \end{equation}
+    \begin{equation}
+        {V_{Tn}} =  - .95 - 2( - 0.4) + \frac{{\sqrt {2 \times 1.6 \times {{10}^{ - 19}} \times 1.04 \times {{10}^{ - 12}} \times 5 \times {{10}^{16}} \times 2 \times 0.4} }}{{{C_{ox}}}} = 0.52{\rm{V}}
+    \end{equation}
 Now let's apply a gate-to-body voltage:
-\begin{equation}
-{V_{GB}} =  - 2.5 < {V_{FB}}
-\end{equation}
+    \begin{equation}
+        {V_{GB}} =  - 2.5 < {V_{FB}}
+    \end{equation}
 Since the device is in accumulation, the entire voltage drop is across the oxide, and the oxide fields are given by:
-\begin{equation}
-{E_{ox}} = \frac{{{V_{ox}}}}{{{t_{ox}}}} = \frac{{{V_{GB}} + {\phi _{{n^ + }}} - {\phi _p}}}{{{t_{ox}}}} = \frac{{ - 2.5 + 0.55 - ( - 0.4)}}{{2 \times {{10}^{ - 6}}}} =  - 8 \times {10^5}\frac{{\rm{V}}}{{{\rm{cm}}}}
-\end{equation}
+    \begin{equation}
+        {E_{ox}} = \frac{{{V_{ox}}}}{{{t_{ox}}}} = \frac{{{V_{GB}} + {\phi _{{n^ + }}} - {\phi _p}}}{{{t_{ox}}}} = \frac{{ - 2.5 + 0.55 - ( - 0.4)}}{{2 \times {{10}^{ - 6}}}} =  - 8 \times {10^5}\frac{{\rm{V}}}{{{\rm{cm}}}}
+    \end{equation}
 The charge in the substrate (body) consist of holes:
-\begin{equation}
-{Q_B} =  - {C_{ox}}({V_{GB}} - {V_{FB}}) = 2.67 \times {10^{ - 7}}{\rm{C/c}}{{\rm{m}}^{\rm{2}}}
-\end{equation}
+    \begin{equation}
+        {Q_B} =  - {C_{ox}}({V_{GB}} - {V_{FB}}) = 2.67 \times {10^{ - 7}}{\rm{C/c}}{{\rm{m}}^{\rm{2}}}
+    \end{equation}
