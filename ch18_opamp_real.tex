@@ -3,6 +3,7 @@
 %  CHAPTER 18  %
 %%%%%%%%%%%%%%%%
 \chapter{Non-Ideal Operational Amplifiers}
+\label{ch:ch18_opamp_real}
 \graphicspath{{./figs_opamp_real/}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -267,7 +268,7 @@ and is usually specified in data sheets in units of $V/\mu$s.  It's very importa
 \label{fig:step_input}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-To understand SR limiting, let's consider a simple unity-gain op-amp amplifier shown in Fig.~\ref{fig:opamp_unitygain_noise}.  If a step voltage is supplied at the input, the output would ideally  follow the exponential settling predicted by simple linear theory:
+To understand SR limiting, let's consider a simple unity-gain op-amp amplifier shown in Fig.~\ref{fig:opamp_unitygain_noise_fig}.  If a step voltage is supplied at the input, the output would ideally  follow the exponential settling predicted by simple linear theory:
     \begin{equation}
         V_o(t) = V_i \left( 1 - e^{-t \omega_u} \right) 
     \end{equation}

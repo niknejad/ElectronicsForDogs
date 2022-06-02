@@ -3,6 +3,7 @@
 %  CHAPTER 12  %
 %%%%%%%%%%%%%%%%
 \chapter{Single-Stage Amplifiers}
+\label{ch:ch12_amps_single_stage}
 \graphicspath{{./figs_amps_single_stage/}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -47,7 +48,7 @@ Why are amplifiers unilateral?  Think about the small-signal model of a FET or B
 \label{fig:2port_ss}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-A linear two-port box, shown in Fig.~\ref{fig:2port_ss}, under the unilateral assumption, can be represented as a generic amplifier in four different ways, as shown in Fig.~\ref{fig:vi_amp} and Fig.~\ref{fig:gmamp}.  Note that signals can be represented as voltage, or as current, or some combination of the two.  Also it's important to note that any real amplifier has input impedance $R_{in}$ and output impedance $R_{out}$ because both voltages and currents (power) are needed for the circuit to work.  
+A linear two-port box, shown in Fig.~\ref{fig:2port_ss}, under the unilateral assumption, can be represented as a generic amplifier in four different ways, as shown in Fig.~\ref{fig:vi_amp} and Fig.~\ref{fig:gm_z_amp}.  Note that signals can be represented as voltage, or as current, or some combination of the two.  Also it's important to note that any real amplifier has input impedance $R_{in}$ and output impedance $R_{out}$ because both voltages and currents (power) are needed for the circuit to work.  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %              SUB-SUBSECTION              %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -161,7 +162,7 @@ Since a transistor is a three-terminal device (ignoring the body terminal of a M
 \begin{figure}[tb]
 \centering
 \includegraphics[scale=.75]{ampchart}
-\caption{Family of NMOS and PMOS single-stage amplifiers.  Listing from the top, the Common Source, Common-Gate, and Common Drain Amplifiers.  As shown, each is biased with an ideal current source while in practice we use transistor based current mirrors (see Ch.~\ref{ch:mirrors}) or resistors to bias the amplifiers.}
+\caption{Family of NMOS and PMOS single-stage amplifiers.  Listing from the top, the Common Source, Common-Gate, and Common Drain Amplifiers.  As shown, each is biased with an ideal current source while in practice we use transistor based current mirrors (see Ch.~\ref{ch:ch13_mirrors_biasing}) or resistors to bias the amplifiers.}
 \label{fig:ampchart}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
