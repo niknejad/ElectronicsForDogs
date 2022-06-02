@@ -251,7 +251,7 @@ and is usually specified in data sheets in units of $V/\mu$s.  It's very importa
 \centering
 \includegraphics[scale=1]{opamp_unitygain_step}
 \caption{An op-amp in unity gain configuration is driven by a step function.}
-\label{fig:opamp_unitygain}
+\label{fig:opamp_unitygain_step_fig}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
@@ -334,10 +334,10 @@ linear settling will resume when the input error voltage reduces (due to feedbac
 \centering
 \includegraphics[scale=1]{opamp_unitygain}
 \caption{When a sinusoidal voltage is applied to a unity-gain amplifier, if the slope of the input waveform is sufficiently large, the output waveform will be distorted.  The full-power bandwidth is the largest frequency that the amplifier can process linearly without SR limiting.}
-\label{fig:opamp_unitygain}
+\label{fig:opamp_unitygain_fig}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Now let's suppose we drive our amplifier with a sinusoidal signal, shown in Fig.~\ref{fig:opamp_unitygain_noise}.   Since the follower is a  unity-gain amplifier, we expect the output to be given by:
+Now let's suppose we drive our amplifier with a sinusoidal signal, shown in Fig.~\ref{fig:opamp_unitygain_fig}.  Since the follower is a  unity-gain amplifier, we expect the output to be given by:
     \begin{equation} 
         V_o = V_i \sin\omega t 
     \end{equation}
@@ -419,10 +419,10 @@ These harmonics lead to waveform distortion shown in Fig.~\ref{fig:vdisto}.  For
 \centering
 \includegraphics[scale=1]{opamp_unitygain_noise}
 \caption{When we short the inputs of an amplifier and examine the output with a sensitive instrument, we find a small random AC signal.  This signal is always present and depends on the temperature of the setup due to the thermodynamic origin.}
-\label{fig:opamp_unitygain_noise}
+\label{fig:opamp_unitygain_noise_fig}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Imagine that you short circuit the input of your op-amp as shown in Fig.~\ref{fig:opamp_unitygain_noise}. In addition to offset voltage, you would also observe a random fluctuation of the output signal.  The signal is very small and it might be below the resolution limits of the oscilloscope, but a more sensitive instrument such as a spectrum analyzer clearly shows this noise.  The noise tends to be flat in spectrum and for this reason it's often called ``white noise".  While we sometimes call interference signals noise, here we are referring to a random signal originating from thermodynamic properties of the transistor, rather than human made noise that couples into the circuit.   Since it's a random signal, it's characterized by its statistical properties, such as the standard deviation of the signal.  
+Imagine that you short circuit the input of your op-amp as shown in Fig.~\ref{fig:opamp_unitygain_noise_fig}. In addition to offset voltage, you would also observe a random fluctuation of the output signal.  The signal is very small and it might be below the resolution limits of the oscilloscope, but a more sensitive instrument such as a spectrum analyzer clearly shows this noise.  The noise tends to be flat in spectrum and for this reason it's often called ``white noise".  While we sometimes call interference signals noise, here we are referring to a random signal originating from thermodynamic properties of the transistor, rather than human made noise that couples into the circuit.   Since it's a random signal, it's characterized by its statistical properties, such as the standard deviation of the signal.  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Op-amps, like all amplifiers, have noise.  We model the noise in the same way that we modeled offset voltages, as input voltages and/or currents as shown in Fig.~\ref{fig:opamp_noise}.  Unlike offset voltages, these are AC signals that are characterized in the frequency domain.  Since the signal is usually flat with frequency, the noise spectral density, or the amount of noise power per unit bandwidth, is stated in datasheets.  To get the voltage or current noise, you must integrate the noise over the bandwidth of interest.  If the noise has a flat spectrum, you multiply the noise power density by the bandwidth of interest (approximately the bandwidth of the amplifier) and take the square root.  This is why you will often see voltage and current noise specified in units of square root of hertz.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

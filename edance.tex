@@ -43,6 +43,7 @@
 %----------------------------------------------------------------------------------------
 \input{structure} % Insert the file which contains the majority of the structure behind the template
 \begin{document}
+\begin{sloppypar}
 %----------------------------------------------------------------------------------------
 %	TITLE PAGE
 %----------------------------------------------------------------------------------------
@@ -74,6 +75,7 @@
 \noindent Licensed under the Creative Commons Attribution-NonCommercial 3.0 Unported License (the ``License''). You may not use this file except in compliance with the License. You may obtain a copy of the License at \url{http://creativecommons.org/licenses/by-nc/3.0}. Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an \textsc{``as is'' basis, without warranties or conditions of any kind}, either express or implied. See the License for the specific language governing permissions and limitations under the License.\\
 % Printing/edition date
 \noindent \textit{First printing, January 17, 2020}
+\noindent \textit{Latest printing, August 17, 2022}
 %----------------------------------------------------------------------------------------
 %	TABLE OF CONTENTS
 %----------------------------------------------------------------------------------------
@@ -104,10 +106,27 @@
 \include{ch16_diffamp}
 \include{ch17_opamps_fb}
 \include{ch18_opamp_real}
+%----------------------------------------------------------------------------------------
+%	BIBLIOGRAPHY
+%----------------------------------------------------------------------------------------
+%\chapter*{Bibliography}
+\chapter{Bibliography}
+\printbibliography[heading=bibempty]
+%\addcontentsline{toc}{chapter}{\textcolor{ocre}{Bibliography}}
+%\section*{Books}
+%\addcontentsline{toc}{section}{Books}
+%\printbibliography[heading=bibempty,type=book]
+%\section*{Articles}
+%\addcontentsline{toc}{section}{Articles}
+%\printbibliography[heading=bibempty,type=article]
+%----------------------------------------------------------------------------------------
+%	APPENDIX
+%----------------------------------------------------------------------------------------
 \appendix
 \include{appendix_a}
 \include{appendix_b}
 \include{appendix_c}
+\include{appendix_d}
 %----------------------------------------------------------------------------------------
 %	INDEX
 %----------------------------------------------------------------------------------------
@@ -116,15 +135,5 @@
 \setlength{\columnsep}{0.75cm}
 \addcontentsline{toc}{chapter}{\textcolor{ocre}{Index}}
 \printindex
-%----------------------------------------------------------------------------------------
-%	BIBLIOGRAPHY
-%----------------------------------------------------------------------------------------
-%\chapter*{Bibliography}
-%\addcontentsline{toc}{chapter}{\textcolor{ocre}{Bibliography}}
-%\section*{Books}
-%\addcontentsline{toc}{section}{Books}
-%\printbibliography[heading=bibempty,type=book]
-%\section*{Articles}
-%\addcontentsline{toc}{section}{Articles}
-%\printbibliography[heading=bibempty,type=article]
+\end{sloppypar}
 \end{document}

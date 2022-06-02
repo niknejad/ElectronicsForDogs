@@ -30,10 +30,10 @@ In this chapter we'll be covering multi-stage amplifiers consisting of a cascade
 \includegraphics[width=\columnwidth]{ampchart_models}
 \end{center}
 \caption{Family of single-stage MOS transistor amplifiers and the two-port models.  This chart is important and should be committed to ``memory".}
-\label{fig:ampchart_models}
+\label{fig:ampchart_models_fig}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-In the past few chapters, we have discussed single stage amplifiers in detail, building models for each as either a voltage/current or hybrid amplifier (transconductance or transresistance), see Fig.~\ref{fig:ampchart_models}.  Why should we need to cascade single-stage amplifier stages?  The simplest reason is to provide more gain.   More is better, right? No, not always, but in the right circumstance, distributing gain over multiple stages has benefits. Such benefits include the ability to realize higher bandwidth, or for driving output loads without compromising the gain.  By separating the task of amplification into multiple steps, such as to drive an external load, we can better optimize each stage.
+In the past few chapters, we have discussed single stage amplifiers in detail, building models for each as either a voltage/current or hybrid amplifier (transconductance or transresistance), see Fig.~\ref{fig:ampchart_models_fig}.  Why should we need to cascade single-stage amplifier stages?  The simplest reason is to provide more gain.   More is better, right? No, not always, but in the right circumstance, distributing gain over multiple stages has benefits. Such benefits include the ability to realize higher bandwidth, or for driving output loads without compromising the gain.  By separating the task of amplification into multiple steps, such as to drive an external load, we can better optimize each stage.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 To begin, let's talk about gain.  In modern technology, the amount of realizable gain per stage is  limited, especially in nanoscale devices.  For example, in a technology with $L = 1\mathrm{\mu m}$, a single device could provide an intrinsic gain $g_m r_o \approx 100$, whereas a short channel transistor in 28nm technology may only provide a gain of 10.  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

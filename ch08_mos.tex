@@ -348,11 +348,12 @@ Let's multiply both sides by $dy$ and integrate above along the channel.  We are
     \end{equation}
 Resulting in the expression:
     \begin{equation} 
-        I_{DS} = \mu_n C_{ox} \frac{W}{L} \left( V_G - V_T - \frac{V_D}{2} \right) V_D 
+        I_{DS} = \mu_n C_{ox} \frac{W}{L} \left( V_G - V_T - \frac{V_D}{2} \right) V_D
+        \label{eq:ids_triode}
     \end{equation}
-Interestingly, this is the same equation we derived earlier.  While the result is that same, we have derived it in a way more consistent with the physics without resorting to hand-waving assumptions.  It should be noted that we have ignored one thing in this derivation, which is the variation of the threshold voltage due to the bulk depletion charges.  In expression \ref{eq:invcharge}, we assume the inversion charge just varies linearly with the channel voltage. In practice, as the channel voltage increases from the source end, the depletion region width also changes, which means the threshold voltage is different. This is a subtle point that would over complicate the equations without providing more circuit insight or intuition, and it's common to make this simplification for hand calculations.
+Interestingly, this is the same equation we derived earlier.  While the result is that same, we have derived it in a way more consistent with the physics without resorting to hand-waving assumptions.  It should be noted that we have ignored one thing in this derivation, which is the variation of the threshold voltage due to the bulk depletion charges.  In \emph{Eq. ~\ref{eq:invcharge}}, we assume the inversion charge just varies linearly with the channel voltage. In practice, as the channel voltage increases from the source end, the depletion region width also changes, which means the threshold voltage is different. This is a subtle point that would over complicate the equations without providing more circuit insight or intuition, and it's common to make this simplification for hand calculations.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-The expression $I_{DS}$ is plotted in Fig.~\ref{fig:ids_triode_only}.  We note that the currents peak when $V_{DS} = V_{GS} - V_T$, and then the equations predict lower and lower currents (inverted parabolas).  In the laboratory, we don't observe the current decreasing, and so there's a fundamental flaw in the derivation that we must address.  
+The triode region current (\emph{Eq.~\ref{eq:ids_triode}}) is plotted in \emph{Fig.~\ref{fig:ids_triode_only}}.  We note that the currents peak when $V_{DS} = V_{GS} - V_T$, and then the equations predict lower and lower currents (inverted parabolas).  In the laboratory, we don't observe the current decreasing, and so there's a fundamental flaw in the derivation that we must address.  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -375,7 +376,7 @@ The expression $I_{DS}$ is plotted in Fig.~\ref{fig:ids_triode_only}.  We note t
 \centering
 \includegraphics[width=.75\columnwidth]{ids_idsat_full} 
 \caption{The piece-wise calculated MOSFET $I$-$V$ curves are derived by assuming the current in the saturation region is essentially constant and given by the maximum value predicted from the square-law relations.}
-\label{fig:ids_triode_only}
+\label{fig:ids_family}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 The observed experimental behavior of devices beyond a drain voltage of $V_{DS} = V_{GS} - V_T$ is a flattening of the current, rather than decreasing current.  Let's look into this a bit more to understand the origin of this saturation region, shown in Fig.~\ref{fig:mos_current_sat}.
@@ -408,7 +409,7 @@ From our equations, we have that when $V_{DS} > V_{GS} - V_T$, there is no inver
 \subsection{Pinch Off}
 When $V_{DS} > V_{GS}-V_T$, we can say that the excess voltage $V_{DS} - (V_{GS}-V_T)$ is dropped across a small region between the drain and the channel, shown in Fig.~\ref{fig:mos_current_sat}.  Let's define $V_{DS,sat} = V_{GS}-V_T$ as the saturation drain voltage.  Any voltage above $V_{DS,sat}$ results in a fixed electric field $E_{d,sat}$ in the channel and an excess electric field $E_{d}$ near the drain end.  Since this is a small region, even a modest drain voltage above $V_{DS,sat}$ results in a potentially very large electric field $E_d$.  This large electric field can propel electrons from the channel into the drain end at high velocity.  In this region, increasing the drain voltage does not increase current (appreciably) because the current flow is limited by the supply of electrons from channel side, which is dictated by $E_{d,sat}$, set by $V_{DS,sat}$.  A good analogy is to imagine a stream of water gently flowing down an incline and then into a waterfall, as shown in Fig.~\ref{fig:waterfall}.  If the slope of the incline is increased, the current flow increases.  But the current flow is independent of the height of the waterfall.  In our system, the waterfall region is the high-field region.  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-In addition, in real transistors, current saturation may happen due to another mechanism, namely velocity saturation. If the field strength in the channel exceeds a threshold, the linear relation between drift velocity and electric field ceases to be valid and the velocity of carriers begins to saturate, as shown in Fig.~\ref{fig:ids_triode_only}.
+In addition, in real transistors, current saturation may happen due to another mechanism, namely velocity saturation. If the field strength in the channel exceeds a threshold, the linear relation between drift velocity and electric field ceases to be valid and the velocity of carriers begins to saturate, as shown in Fig.~\ref{fig:ids_family}.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 8.5.3             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

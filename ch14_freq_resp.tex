@@ -551,8 +551,14 @@ KCL at the output results in:
         {i_{out}} + \frac{{{v_{gs}}}}{{1/s{C_{gd}}}} = {g_m}{v_{gs}} 
     \end{equation}
 This generates an output current:
+    \begin{align*} 
+        {i_{out}} &= {g_m}{v_{gs}} - s{C_{gd}}{v_{gs}}\\
+        &\approx {g_m}{v_{gs}}\\
+        &= {g_m}\frac{{{i_s}}}{{s{C_{gs}} + s{C_{gd}}}}
+    \end{align*}
+Thus, we have the approximation:
     \begin{equation} 
-        {i_{out}} = {g_m}{v_{gs}} - s{C_{gd}}{v_{gs}} \approx {g_m}{v_{gs}} = {g_m}\frac{{{i_s}}}{{s{C_{gs}} + s{C_{gd}}}}
+        i_{out} = {g_m}\frac{i_s}{s{C_{gs}} + s{C_{gd}}}
     \end{equation}
 The approximation is valid since the $g_m$ of a transistor should dominate over the parasitic feedthrough current through $C_{gd}$.  This means the current gain $A_i$ is given by:
     \begin{equation} 

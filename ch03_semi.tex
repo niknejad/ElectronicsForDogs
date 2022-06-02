@@ -21,8 +21,7 @@ In this chapter we'll build models for conductors and semiconductors, starting w
 %             SUBSECTION 3.2.1             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Ohm’s Law}
-One of the first things we learn in electrical engineering and physics is that  $V = I \times R$.
-Is this trivial? Maybe what’s really going on is the following:
+One of the first things we learn in electrical engineering and physics is that  $V = I \times R$.  Is this trivial? Maybe what’s really going on is the following:
     \begin{equation}
         V = f(I) = f(0) + f'(0)I + f''(0){I^2}/2 + ... \approx f'(0)I
     \end{equation}
@@ -31,22 +30,22 @@ In the above Taylor expansion, if the voltage is zero for zero current, and the 
 %             SUBSECTION 3.2.2             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Ohm’s Law Revisited}
- In Physics we learned:  $J = \sigma \,E$  Is this also trivial? Well, it’s the same as Ohm’s law, so the questions are related. For a rectangular solid:
-\begin{equation}
+ In physics we learned:  $J = \sigma \,E$  Is this also trivial? Well, it’s the same as Ohm’s law, so the questions are related. For a rectangular solid:
+    \begin{equation}
         J = \frac{I}{A} = \sigma \,\frac{V}{L} \end{equation}\begin{equation}  V = \frac{L}{{\sigma \,A}}I = R\,I
-\end{equation}
-Isn’t it strange that current (velocity) is proportional to Force?  Where does conductivity come from?
+    \end{equation}
+Is it not strange that current (velocity) is proportional to force?  Where does conductivity come from?
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 3.2.3             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Conductivity of a Gas}
 Electrical conduction is due to the motion of positive and negative charges.   For example, for  water with pH=7, the concentration of hydrogen H+ ions (and OH-) is:
-\begin{equation}
-{10^{ - 7}}{\rm{mole/L}} = {\rm{1}}{{\rm{0}}^{{\rm{ - 10}}}}{\rm{mole/c}}{{\rm{m}}^{\rm{3}}}
-= {\rm{1}}{{\rm{0}}^{{\rm{ - 10}}}} \times 6.02 \times {10^{23}}{\rm{c}}{{\rm{m}}^{ - 3}}
-= 6 \times {10^{13}}{\rm{c}}{{\rm{m}}^{ - 3}}
-\end{equation}
-Typically, the concentration of charged carriers is much smaller than the concentration of neutral molecules.   The motion of the charged carriers (electrons, ions, molecules) gives rise to electrical conduction.
+    \begin{equation}
+        {10^{ - 7}}{\rm{mole/L}} = {\rm{1}}{{\rm{0}}^{{\rm{ - 10}}}}{\rm{mole/c}}{{\rm{m}}^{\rm{3}}}
+        = {\rm{1}}{{\rm{0}}^{{\rm{ - 10}}}} \times 6.02 \times {10^{23}}{\rm{c}}{{\rm{m}}^{ - 3}}
+        = 6 \times {10^{13}}{\rm{c}}{{\rm{m}}^{ - 3}}
+    \end{equation}
+Typically, the concentration of charged carriers is much smaller than the concentration of neutral molecules.  The motion of the charged carriers (electrons, ions, molecules) gives rise to electrical conduction.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %              SUB-SUBSECTION              %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -71,75 +70,77 @@ At a temperate $T$, each charged carrier will move in a random direction and vel
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Application of Field}
 When we apply an electric field, during each “free flight”, the carriers will gain a momentum of $ {\bf{E}}qt $.  Therefore, after $t$ seconds, the momentum is given by:
-\begin{equation}
+    \begin{equation}
         M{\bf{u}} + {\bf{E}}qt
-\end{equation}
+    \end{equation}
 If we take the average momentum of all particles at any given time, we have:
-\begin{equation}
+    \begin{equation}
         M{\bf{\bar u}} = \frac{1}{N}\sum\limits_j {\left( {M{{\bf{u}}_j} + {\bf{E}}q{t_j}} \right)}
-\end{equation}
+    \end{equation}
 In this equation, $ N $ is the number of carriers (of charge), $ M \bf{u}_j $ is the initial momentum before collision, and $\bf{E}q{t_j}$ is the momentum gained from the field in the time $t_j$ from the last collision.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %              SUB-SUBSECTION              %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Random Things Sum to Zero!}
 When we sum over all the random velocities of the particles, we are averaging over a large number of random variables with zero mean, the average is zero:
-\begin{equation}
+    \begin{equation}
         M{\bf{\bar u}} = \frac{1}{N}\sum\limits_j {\left( {M{{\bf{u}}_j} + {\bf{E}}q{t_j}} \right)}
-\end{equation}
+    \end{equation}
 which allows us to ignore the first sum, leading to
-\begin{equation}
+    \begin{equation}
         M{\bf{\bar u}} = \frac{1}{N}\sum\limits_j {{\bf{E}}q{t_j}}  = {\bf{E}}q\tau
-\end{equation}
+    \end{equation}
 So the current is given by
-\begin{equation} {\bf{J}} = Nq{\bf{\bar u}} = Nq\left( {\frac{{{\bf{E}}q\tau }}{M}} \right) = N{q^2}\frac{\tau }{M}{\bf{E}} = \sigma \,{\bf{E}}
-\end{equation}
+    \begin{equation}
+        {\bf{J}} = Nq{\bf{\bar u}} = Nq\left( {\frac{{{\bf{E}}q\tau }}{M}} \right) = N{q^2}\frac{\tau }{M}{\bf{E}} = \sigma \,{\bf{E}}
+    \end{equation}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 3.2.4             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Mobility}
 From the previous derivation, we see that the average momentum gain from the field is given by:
-\begin{equation}
+    \begin{equation}
         {\bf{J}} = {{\bf{J}}^ + } - {{\bf{J}}^ - } = e\left( {\frac{{{N^ + }e{\tau ^ + }}}{{{M^ + }}} - \frac{{ - {N^ - }e{\tau ^ - }}}{{{M^ - }}}} \right){\bf{E}}
-\end{equation}
+    \end{equation}
 In many situations we’d like to find the average speed gained from the field, which is defined as  the mobility ($\mu$):
-\begin{equation}
-        \mu  = {e^2}\left( {\frac{{{N^ + }{\tau ^ + }}}{{{M^ + }}} + \frac{{{N^ - }{\tau ^ - }}}{{{M^ - }}}} \right)  
-\end{equation}
+    \begin{equation}
+        \mu  = {e^2}\left( {\frac{{{N^ + }{\tau ^ + }}}{{{M^ + }}} + \frac{{{N^ - }{\tau ^ - }}}{{{M^ - }}}} \right)
+    \end{equation}
 So we see that even though we apply an electric field, applying a force to electrons, they don't accelerate like free electrons.  Instead they gain only a fixed amount of momentum, not linearly increasing in time as predicted for free electrons.
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 A good analogy is the following.  Imagine driving a car on a busy freeway, a stop-and-go situation.  Every time you have the opportunity to move, you accelerate a certain amount of time but very soon the car in front of you stops, forcing you to hit the breaks.  So even though you're accelerating, or trying to accelerate forward, you're actually just able to gain momentum for brief periods of time in between the stops.  In a similar fashion, when electrons or other charges accelerate under the application of a field, they only do so for a short period of time, in between collisions, and so they can only gain a bit of  momentum on average before they are forced to stop and try again, rather than continuously gaining momentum from the field such as in free space.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %              SUB-SUBSECTION              %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Negative and Positive Carriers}
 Since current is contributed by positive and negative charge carriers:
-\begin{equation}
+    \begin{equation}
         {\bf{J}} = {{\bf{J}}^ + } - {{\bf{J}}^ - } = e\left( {\frac{{{N^ + }e{\tau ^ + }}}{{{M^ + }}} - \frac{{ - {N^ - }e{\tau ^ - }}}{{{M^ - }}}} \right){\bf{E}}
-\end{equation}
+    \end{equation}
 Or in terms of mobility:
-\begin{equation}
+    \begin{equation}
         \sigma  = {e^2}\left( {\frac{{{N^ + }{\tau ^ + }}}{{{M^ + }}} + \frac{{{N^ - }{\tau ^ - }}}{{{M^ - }}}} \right)
-\end{equation}
+    \end{equation}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 3.2.5             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Conduction in Metals}
 Can we apply this simple "gas" model to a conductor?  The  high conductivity of metals is due to large concentration of free electrons.   These electrons are not attached to the solid but are free to move about the solid.  In other words, we have an "electron gas".   In metal sodium, for example,  each atom contributes a free electron: 
-\[
+    \[
         N = 2.5 \times {10^{22}}{\rm{atoms/c}}{{\rm{m}}^{\rm{3}}}
-\]
+    \]
 From the measured value of conductivity (easy to make in the lab), we can back calculate the mean free time:
-\begin{equation}\tau  = \frac{{\sigma \,m}}{{N{e^2}}} = \frac{{\left( {1.9 \times {{10}^{17}}} \right)\,\left( {9 \times {{10}^{ - 28}}} \right)}}{{\left( {2.5 \times {{10}^{22}}} \right)\,\left( {23 \times {{10}^{ - 20}}} \right)}} = 3 \times {10^{ - 14}}\sec
-\end{equation}
+    \begin{equation}
+        \tau  = \frac{{\sigma \,m}}{{N{e^2}}} = \frac{{\left( {1.9 \times {{10}^{17}}} \right)\,\left( {9 \times {{10}^{ - 28}}} \right)}}{{\left( {2.5 \times {{10}^{22}}} \right)\,\left( {23 \times {{10}^{ - 20}}} \right)}} = 3 \times {10^{ - 14}}\sec
+    \end{equation}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %              SUB-SUBSECTION              %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{A Deep Puzzle}
 This value of mean free time is surprisingly long.  The mean velocity for an electron at room temperature is about: 
-\begin{equation}
+    \begin{equation}
         \frac{{m{v^2}}}{2} = \frac{3}{2}kT  v = 3 \times {10^7}{\rm{cm}}/\sec
-\end{equation}
+    \end{equation}
 At this speed, the electron travels a distance of $v\tau  = 3 \times {10^{ - 7}}{\rm{cm}}$.  The molecular spacing between adjacent ions is only $3.8 \times {10^{ - 8}}{\rm{cm}}$.  Why is it that the electron is on average zooming by 10 positively charged ions?
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 3.2.6             %
@@ -154,7 +155,7 @@ At this speed, the electron travels a distance of $v\tau  = 3 \times {10^{ - 7}}
 \caption{Measurements show that the average distance electrons move in a crystal is much larger than the inter-atomic distance, indicating that the electrons somehow move through the nuclei unperturbed.  In fact, a free electron in a periodic arrangement of atoms can move freely around the crystal as a "free particle" with an \emph{effective mass} that takes into account the potential of the nuclei in the crystal.  In other words, the electron does not scatter simply because it encounters an atom.}
 \label{fig:slide15}
 \end{figure}
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
  The free carrier can penetrate right through positively charged host atoms, as shown schematically in Fig.~\ref{fig:slide15}!  Quantum mechanics explains this!  For a periodic arrangement of potential functions, the electron does not scatter. The influence of the crystal is that it will travel freely with an effective mass different from the rest mass or free electron mass.   So why does it scatter at all?
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 3.2.7             %
@@ -182,9 +183,9 @@ Even at extremely low temperatures, the presence of an impurity upsets the perio
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Summary of Conduction}
 Using our ideal gas model for conductors, we have the following result:
-\begin{equation}
-        \sigma  = {e^2}\left( {\frac{{{N^ + }{\tau ^ + }}}{{{M^ + }}} + \frac{{{N^ - }{\tau ^ - }}}{{{M^ - }}}} \right)
-\end{equation}
+    \begin{equation}
+        \sigma = {e^2}\left( {\frac{{{N^ + }{\tau ^ + }}}{{{M^ + }}} + \frac{{{N^ - }{\tau ^ - }}}{{{M^ - }}}} \right)
+    \end{equation}
 The conductivity is determined by the density of free charge carriers (both positive and negative), the charge of carrier (usually just \textit{e}), the effective mass of carrier (different inside solid), and the mean relaxation time (time for memory loss … usually the time between collisions).   This is turn is determined by several mechanisms, e.g. scattering by impurities and scattering due to vibrations in crystal.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -196,11 +197,11 @@ The conductivity is determined by the density of free charge carriers (both posi
 %             SUBSECTION 3.3.1             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Resistivity for a Few Materials}
-Let's take a careful look at the conductivity for a few different materials:
+Let's take a careful look at the conductivity for a few different materials:\\
 \vspace{.5cm}
 \begin{minipage}[c]{.55\textwidth}
 \begin{itemize}
-\item  Pure copper, 273K \hfill 6.4×10$^{7}$ S/m
+\item Pure copper, 273K \hfill 6.4×10$^{7}$ S/m
 \item Pure copper, 373K \hfill 4.46×10$^{6}$ S/m
 \item Pure germanium, 273K \hfill 0.5  S/m
 \item Pure germanium, 500K \hfill 833 S/m
@@ -208,11 +209,11 @@ Let's take a careful look at the conductivity for a few different materials:
 \item Seawater\hfill 4 S/m
 \end{itemize} 
 \end{minipage}
-\vspace{.5cm}
+\vspace{.5cm}\\
 This list is very interesting in several ways.  First of all we see that copper, a good conductor, is in fact a fantastic conductor, with a conductivity several orders of magnitude larger than a material like germanium.  Germanium is a "semi" conductor, or just semiconductor, for obvious reasons.  It conducts, but very poorly.  Also, whereas temperature has a relatively minor impact on the conductivity of copper, decreasing by about 30\% when the temperature is increased by $100^\circ$, germanium seems to be much more sensitive.  The trends are also opposite as germanium is becoming more conductive, by orders of magnitude, with increasing temperature !  Why?
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Finally, we have pure water, which is an insulator, because in pure water there are essentially no free charges.  But sea water (and human tissue) is moderately conductive, but it doesn't have the same sensitivity to temperate as a semiconductor.
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 We have several mysteries on hand !
 What gives rise to this enormous range?
 Why are some materials semi-conductive?
@@ -237,16 +238,16 @@ Have a look at the periodic table reproduced here in Fig.~\ref{fig:periodic_tabl
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Electronic Properties of Silicon}
 We'll focus on silicon, but a lot of what we have to say applies to most semiconductors.  Silicon is the most commonly used semiconductor, so it's the most relevant example.  From chemistry, we know that silicon is in Group IV element, like carbon.  It has a total of 14 electrons, arranged into the following orbital structure shown in Fig.~\ref{fig:slide20}:
-\begin{itemize}
-\item   Atom electronic structure: 1s$^2$2s$^2$2p$^6$3s$^2$3p$^2$
-\item   Crystal electronic structure: 1s$^2$2s$^2$2p$^6$3(sp)$^4$
-\item   Diamond lattice, with 0.235 nm bond length
-\end{itemize}
- 
+    \begin{itemize}
+        \item{Atom electronic structure: 1s$^2$2s$^2$2p$^6$3s$^2$3p$^2$}
+        \item{Crystal electronic structure: 1s$^2$2s$^2$2p$^6$3(sp)$^4$}
+        \item{Diamond lattice, with 0.235 nm bond length}
+    \end{itemize}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Notice that the s and p orbitals combine when the silicon atoms combine into a hybridized state.  This deserves a bit of explanation.  When silicon atoms are far apart, the electrons occupy the usual orbital states you're familiar with from chemistry.  The last two electrons are in the p orbital, which can hold a total of 6.  But when the atoms are brought into close proximity, the outer shell valence electrons feel the influence of two nuclei, and therefore it's logical to assume that the electrons should spend more time in between the nuclei, essentially forming covalent bonds.  If the Pauli exclusion principle didn't apply, then all the electrons would occupy the p orbitals in between the silicon atoms, leaving some empty and some more than full !  But alas only 2 electrons per orbital (with opposite spin).
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 On the other hand, the geometry of the p orbitals shown in Fig.~\ref{fig:slide20} would be ideal if silicon could bond to six neighbors, , but this doesn't happen because there would be too many valence electrons since each atom already has 2 3p electrons, since silicon only needs 4 additional electrons to form a complete shell.  On the other hand, the hybridized 3(sp)$^4$ state (linear combination of s and p orbitals) contains four electrons and can bond with four neighbors as shown.  This scenario is how silicon atoms combine to form a crystal, with the geometry more complicated than a simple cube  arising from these bond angles.
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Also, silicon is a very poor conductor at room temperature. Why?
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
@@ -283,7 +284,7 @@ Notice that each silicon atom bonds to four neighbors using a covalent (shared e
 \begin{figure}
 \centering
 \includegraphics[width=1\columnwidth]{banddiagram_atoms.pdf}
-\caption{On the top left we have the discrete energy levels for isolated atoms.  Electrons are only found to have discrete energy level with forbidden energy levels in between allowed states.    We now imagine bringing two atoms closer and closer together as shown on the top right.  Due to their interaction, the energy levels split into bonding and non-bonding states.  When many atoms are involved (bottom), these splittings become very fine forming an almost continuous band of allowed energy levels.  The top two bands called the conduction and valence band are the most relevant to our discussion.  (Figure adapted from D. Neamen, \emph{Semiconductor Physics And Devices}, 2003.}
+\caption{On the top left we have the discrete energy levels for isolated atoms.  Electrons are only found to have discrete energy level with forbidden energy levels in between allowed states.    We now imagine bringing two atoms closer and closer together as shown on the top right.  Due to their interaction, the energy levels split into bonding and non-bonding states.  When many atoms are involved (bottom), these splittings become very fine forming an almost continuous band of allowed energy levels.  The top two bands called the conduction and valence band are the most relevant to our discussion.  (Figure adapted from D. Neamen, \emph{Semiconductor Physics And Devices}, 2003. \cite{neamen}}
 \label{fig:slide23}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -293,12 +294,12 @@ From quantum mechanics and chemistry,  we know that for an atom the allowed ener
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Energy Band Diagram}
 In the energy diagram discussed, the lines represent allowed energy levels and the gaps represent levels that are simply not supported, they are forbidden.  This arises from the wave properties of the electron.  When an electron "orbits" an atom, we know that its orbit corresponds to the an integer number of de Broglie wavelengths.  In essence, when in such orbits, the electron wave experiences constructive interference whereas in other orbits it experiences destructive interference.  Because the square magnitude of the "wave" is the probability to find the electron, we find it's more probable for electrons to occupy these orbits.  This is a very simple perspective, but it got people like Niels Bohr to plunge ahead and develop a model for an atom.   In a collection of "free" electrons confined to the crystal "box", the spatial confinement results in a discrete energy (and momentum) spectrum.  The allowed energy levels are essentially a result of the boundary condition that requires that electrons are confined to the box with effectively zero probability to appear outside of the box.  When boundary conditions are imposed on the wave function, a discrete spectrum of allowed states results. 
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 In a similar way, for a collection of atoms, the forbidden energy states cannot be occupied by electrons.    Lower energy states correspond to "valence band" electrons, or electrons that are bound to host atoms.  Higher energy states, in the "conduction band" are "free" electrons that take part in conduction, as they are free to move around the crystal.  In essence, the conduction band electrons have sufficient energy to leave the nucleus and roam the crystal.  The host atoms become ionized and charged as a result.   The electrons act like free electrons in a vacuum, albeit with a different mass.\footnote{The electrons are still bound to reside in the crystal, and a significant amount of energy is required to remove these electrons from the crystal due to the fact that the entire crystal is charge neutral and leaving the crystal means charge separation}. 
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 The gap between the conduction and valence band determines the conductive properties of the material, see Fig.~\ref{fig:slide24b}.  In insulators, the gap between the conduction band and  valence band, or the band gap, is quite large,  $\sim 4-8$eV.  Therefore it takes an enormous amount of energy to pull electrons away from host atoms.  At room temperature, electrons only have an energy of about 25meV, so an $4$eV band gap is nearly an infinite one to overcome. 
-
-In a metal, the conduction band is partially filled and therefore many electrons are free to move about, resulting in good conduction properties.  The band gap is either very small, or partially overlapping with the valence band, resulting in no discernible bandgap.  And this leaves semiconductors, which are materials that have a "medium sized" gap, about $\sim 1$eV.  This means that the barrier to become a free electron is high, but not impossible.  In a given solid of semiconductor, there's alawys a few lucky electrons that will be in the conduction band.  In fact, the probability of occupying  a certain energy level is related to the Boltzmann distribution modified to account for the fact that electrons are Fermions and cannot occupy the same energy levels, resulting in Fermi-Dirac statistics.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+In a metal, the conduction band is partially filled and therefore many electrons are free to move about, resulting in good conduction properties.  The band gap is either very small, or partially overlapping with the valence band, resulting in no discernible band gap.  And this leaves semiconductors, which are materials that have a "medium sized" gap, about $\sim 1$eV.  This means that the barrier to become a free electron is high, but not impossible.  In a given solid of semiconductor, there's always a few lucky electrons that will be in the conduction band.  In fact, the probability of occupying  a certain energy level is related to the Boltzmann distribution modified to account for the fact that electrons are Fermions and cannot occupy the same energy levels, resulting in Fermi-Dirac statistics.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -308,13 +309,13 @@ In a metal, the conduction band is partially filled and therefore many electrons
 \caption{(left) The band model approximates the discrete energy states in the valence and conduction band as a continuum.  Electrons in the valence band cannot conduct current as they are in covalent bonds.  Electrons in the conduction band can respond to external fields and result in net current flow.  (right)  Electrons in the valence band can gain energy from photons or phonons (lattice vibrations) and move into the conduction band.  The phonon or photon must have sufficient energy to cross the \emph{band gap}, which is a forbidden state.}
 \label{fig:slide24b}
 \end{figure}
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 As discussed previously, thermal energy is very low on average ($\sim 25$meV), but there are a few (very few) high energy electrons.   So the conductivity of semiconductors is poor, but not zero.  As shown in Fig.~\ref{fig:slide24b}, electrons in the valence band can gain energy from incoming photons or from the vibration in the crystal (phonons) and if the energy is sufficiently large, they can absorb  it and go into the conduction band.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 3.3.5             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Model for Good Conductor}
- Given this background, we can now model a good conductor as a collection of atoms that are all ionized forming a  “sea” of electrons can wander about crystal, shown in Fig.~\ref{fig:slide25}.   The electrons are the “glue” that holds the solid together.  They spend most of their time in between the ionized nuclei, effectively shielding the nuclei from each other, lowering the energy of the system.  But they are not confined to bonds, they are free to move around the crystal and contribute to conduction.  Since they are “free”, they respond to applied fields and give rise to ohmic currents.  They also respond to incoming photons and give rise to the optical properties such as the fact that these materials are opaque and have shiny surfaces.   Electrons at the surface of the structure readily accept optical photons and re-radiate them.
+ Given this background, we can now model a good conductor as a collection of atoms that are all ionized forming a  “sea” of electrons can wander about crystal, shown in Fig.~\ref{fig:slide25}.  The electrons are the “glue” that holds the solid together.  They spend most of their time in between the ionized nuclei, effectively shielding the nuclei from each other, lowering the energy of the system.  But they are not confined to bonds, they are free to move around the crystal and contribute to conduction.  Since they are “free”, they respond to applied fields and give rise to ohmic currents.  They also respond to incoming photons and give rise to the optical properties such as the fact that these materials are opaque and have shiny surfaces.  Electrons at the surface of the structure readily accept optical photons and re-radiate them.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -358,7 +359,7 @@ Each bond holds two electrons with opposite spin.  Each atom contributes 4 valen
 \caption{In the silicon crystal, when a bond is broken, we create both a free electron and and a free hole.  The hole is a fictitious particle that behaves like a real particle in every way. It represents the motion of many electrons in the valence band.}
 \label{fig:silicon_broken_bond}
 \end{figure}
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Now let's suppose we increase the temperature, which means the crystal lattice can absorb energy in the form of vibrations.  \footnote{Quantum mechanically, these vibrations can be treated as particle "phonons" (in analogy with photons) which can exchange energy with the electrons.}  Occasionally enough energy can be absorbed by a valence electron to be broken free from the lattice structure.  In the energy band model, we know the energy absorbed has to be at least as large as the band gap.  Once an electron becomes a conduction band electron, it's free to roam the crystal like a free electron.  The mass of the electron is not the same as the mass of an electron in a pure vacuum.  That's because the electron will still feel the influence of the crystal potential, which varies periodically.  It turns out that we can define an "effective" mass for the electron and treat it as if it were free and in vacuum, free from the influence of the crystal potential. 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 3.3.8             %
@@ -373,24 +374,24 @@ When we formed a free electron, we leave behind a broken bond.  This bond means 
 \includegraphics[width=.5\columnwidth]{silicon_hole}
 \caption{Illustration of how a broken covalent bond moves around the crystal like a free particle.   Each wiggly bond represents a valence band electron moving into the vacancy created by the hole.} \label{fig:silicon_hole}
 \end{figure}
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Notice, as illustrated in Fig.~\ref{fig:silicon_hole},  that the vacancy (hole) left behind can be filled by a neighboring electron.   But if the neighboring electron jumps into this vacancy, it forms its own vacancy while filling the other one.  This chain reaction of vacancies moving around is complex as it corresponds to the motion of many valence band electrons.  An easy way to model it is to great it like there is a positive charge traveling around.  We call this positive (ficticious\footnote{Calling it real or fake is almost a philosophical question.  If it looks like a duck, swims like a duck, and quacks like a duck, then it probably is a duck.} ) particle a "hole".  It turns out that we can treat the holes as legitimate particles with positive mass and of course positive charge (because the broken bond leaves behind a net charge of +1).
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 3.3.9             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Yes, Holes!}
 Using results from solid state theory, it can be shown that the net motion of many electrons in the valence band can be equivalently represented as the motion of a hole.  The picture is more complicated because electrons near the valence band edge have negative effective mass !  This is why the hole model is works as it does, something we’re not going to worry about in this chapter (or book).  Another common analog is to say a hole is like a bubble in a bottle. It can move around as if it were a free particle, but in fact its motion is the result of the motion of a lot of water molecules.  If we completely fill the bottle up, there’s no opportunity for a bubble to float around.  In the same way, a filled valence band does not contribute current.  Even if the electrons are moving (due to motion in the bond), the net current is zero
-\begin{equation}
-	\sum\limits_{Filled\,Band} {( - q){v_i}} = 0
-\end{equation}
+    \begin{equation}
+        \sum\limits_{Filled\,Band} {( - q){v_i}} = 0
+    \end{equation}
 Now let’s take a partially filled band and play a trick.  Let’s say a partially filled band is a full band minus some electrons that we need to take out of the valence band to make it full: 
-\begin{equation}
-{J_{vb}} = \sum\limits_{vb} {( - q){v_i}}  = \sum\limits_{Filled\,Band} {( - q){v_i} - \sum\limits_{Empty\,States} {( - q){v_i}} }
-\end{equation}
+    \begin{equation}
+        {J_{vb}} = \sum\limits_{vb} {( - q){v_i}}  = \sum\limits_{Filled\,Band} {( - q){v_i} - \sum\limits_{Empty\,States} {( - q){v_i}} }
+    \end{equation}
 Since the first term is the full band and it does not contribute any current, the resulting current is due to the electrons we subtracted out to make a partially filled band.  In other words, the current is due to the empty states and even though the charges are negative, they act like positive charges:
-\begin{equation}
-{J_{vb}} =  - \sum\limits_{Empty\,States} {( - q){v_i}}  = \sum\limits_{Empty\,States} {q{v_i}}
-\end{equation}
+    \begin{equation}
+        {J_{vb}} =  - \sum\limits_{Empty\,States} {( - q){v_i}}  = \sum\limits_{Empty\,States} {q{v_i}}
+    \end{equation}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 3.3.10            %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -407,36 +408,47 @@ When a conduction band electron encounters a hole, the process is called \textit
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Thermal Equilibrium (Pure Si)}
 In thermal equilibrium, there must be a balance between generation and recombination, otherwise a material would have more and more carriers spontaneously over time due to generation.  To determine the thermal equilibrium concentration of holes, $p_0$, and electrons $n_0$, first observe that  every time we create a free electron, we also create a free hole.  Likewise, every time a hole and electron recombine,both the free hole and free electron carrier concentration drop together.  So that means that $n_0 =  p_0 $.
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Since the generation process is thermal in nature, we expect that the generation rate to be a strong function of temperature.
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Let’s say $G$ represents the total about of free carrier generation per unit of time, or the rate of carrier generation:
-\begin{equation} G = {G_{th}}(T) + {G_{opt}} \end{equation}
+    \begin{equation}
+        G = {G_{th}}(T) + {G_{opt}}
+    \end{equation}
 Note that in general we include thermal and optical carrier generation.  For the sake of simplicity, we’ll ignore the optical generation.  Now what about the recombination rate ?  You might expect the rate to be proportional to the concentration of electrons and holes as follows:
-\begin{equation} R = k(n \times p) \end{equation}
+    \begin{equation}
+        R = k(n \times p) 
+    \end{equation}
 Simply stated, the chance that an electron and a hole will meet and annihilate should depend on how many free electrons and or holes there are, with some proportionality constant $k$ that might be quite complicated.  In other words, the more carriers we have around, it’s logical to assume the rate will increase. 
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Getting back to thermal equilibrium, if we assume the rate of generation and recombination are balanced, we can say
-\begin{equation} G = R \end{equation}
+    \begin{equation}
+        G = R
+    \end{equation}
 Substituting for the recombination rate
-\begin{equation} k(n \times p) = {G_{th}}(T) \end{equation}
+    \begin{equation}
+        k(n \times p) = {G_{th}}(T)
+    \end{equation}
 The right hand side is a function of temperature.  We are not concerned with the details of how it varies for now, but we can say it’s a constant for a fixed $T$.  We call it $n_i^2$ because it has the units of concentration of carriers squared:
-\begin{equation} n \times p = {G_{th}}(T)/k = {n_i}^2(T) \end{equation}
+    \begin{equation}
+        n \times p = {G_{th}}(T)/k = {n_i}^2(T)
+    \end{equation}
 Since $n=p$ for an intrinsic (undoped) silicon crystal, we call it the \emph{intrinsic carrier concentration} $n_i$.  One can calculate the value of $n_i$ using techniques from solid-state physics and the value is approximately given by 
-\begin{equation} {n_i}(T) \cong {10^{10}}{\rm{c}}{{\rm{m}}^{ - 3}}\,{\rm{at}}\,300\,{\rm{K}}
-\end{equation}
+    \begin{equation}
+        {n_i}(T) \cong {10^{10}}{\rm{c}}{{\rm{m}}^{ - 3}}\,{\rm{at}}\,300\,{\rm{K}}
+    \end{equation}
 We call this the Law of Mass-Action:
-\begin{equation}
+    \begin{equation}
         p \cdot n = n_i^2
-\end{equation}
+    \end{equation}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 3.4.2             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Generation Statistics}
- The rate at which carriers are generated is a strong function of the material bandgap $E_g$ (the distance between the valence band and conduction band), because it takes that much energy to promote an electron (or that much energy to break the bond).  Since the mechanism for is \textit{thermal} (vibrations), the hotter the temperature, the more generation.    It can be shown that the rate of generation is given by the following equation (approximately):
-\begin{equation}
+ The rate at which carriers are generated is a strong function of the material bandgap $E_g$ (the distance between the valence band and conduction band), because it takes that much energy to promote an electron (or that much energy to break the bond).  Since the mechanism for generation is \textit{thermal} (vibrations), the hotter the temperature, the more generation.    It can be shown that the rate of generation is given by the following equation (approximately):
+    \begin{equation}
         n_i \propto e^{-E_g/2kT}
-\end{equation}
+    \end{equation}
 Recall that $kT$ is proportional to the thermal energy and  $E_g$ is the band gap.  The above equation says that the number of carriers at an “excess” energy above the valence band depends strongly on how much thermal energy we have in the system.  The origin of this equation can be explained using a simple analogy.  Instead of a band gap, imagine a wall.  Let’s say that the wall is 6.5 feet tall and anyone with a height over 5.8 feet can hop over the wall.  If we take a classroom full of students and plot the distribution of heights, we get a normal distribution as shown in Fig.~\ref{fig:normal_dist}.  The average height is 5.3 feet and we have marked the local of 5.8, the necessary energy required to get over this wall.  If we integrate under the curve to find the total number of students tall enough, we can see that it’s not unreasonable that the integral over the tail of the distribution is approximately exponential as we have claimed.  If we raise the barrier height, exponentially fewer students can make it over the wall.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -464,35 +476,35 @@ Let’s start with a group V element on the periodic table, for example Phosphor
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Donor Accounting}
 Each ionized donor will contribute an extra “free” electron.  The material is charge neutral, so the total charge concentration must sum to zero:
-\begin{equation}
-        \rho  =  \underbrace{- q{n_0}}_{\text{free electrons}}
-        + \underbrace{q{p_0}}_{\text{free holes}} +
-        \underbrace{q{N_d}}_{\text{ions (immobile)}}  = 0
-\end{equation}
+    \begin{equation}
+        \rho = \underbrace{- q{n_0}}_{\text{free electrons}}
+        + \underbrace{q{p_0}}_{\text{free holes}}
+        + \underbrace{q{N_d}}_{\text{ions (immobile)}} = 0
+    \end{equation}
 By the Mass-Action Law:  $n \times p = {n_i}^2(T)$
-\begin{equation}
-         - q{n_0} + q\frac{{n_i^2}}{{{n_0}}} + q{N_d} = 0
-\end{equation}
+    \begin{equation}
+        - q{n_0} + q\frac{{n_i^2}}{{{n_0}}} + q{N_d} = 0
+    \end{equation}
 This leaves us with an equation involving only the density of free electrons:
-\begin{equation}
-- qn_0^2 + qn_i^2 + q{N_d}{n_0} = 0
-\end{equation}
+    \begin{equation}
+        - qn_0^2 + qn_i^2 + q{N_d}{n_0} = 0
+    \end{equation}
 When we solve the quadratic pretty quickly since it’s quadratic:
-\begin{equation}
-n_0^2 - {N_d}{n_0} - n_i^2 = 0
-\end{equation}
+    \begin{equation}
+        n_0^2 - {N_d}{n_0} - n_i^2 = 0
+    \end{equation}
 The general solution is given by
-\begin{equation}
+    \begin{equation}
         {n_0} = \frac{{{N_d} \pm \sqrt {N_d^2 + 4n_i^2} }}{2}
-\end{equation}
-Only positive root is physically valid because it implies that the number of free electrons is larger than $N_d$.  Recall that we know there were $n_i$ free electrons before the dopants, and then we introduced the dopants and every dopant donates a free electron.  So why isn’t the free electron concentration simply $N_d + n_i$?  Because now the rate of recombination is higher and that’s exactly what the solution to the quadratic is telling us.  So clearly, only the positive root is physically valid and we have
-\begin{equation}
+    \end{equation}
+Only positive root is physically valid because it implies that the number of free electrons is larger than $N_d$.  Recall that we know there were $n_i$ free electrons before the dopants, and then we introduced the dopants and every dopant donates a free electron.  So why is the free electron concentration not simply $N_d + n_i$?  Because, now the rate of recombination is higher, and that is exactly what the solution to the quadratic is telling us.  So clearly, only the positive root is physically valid, and we have:
+    \begin{equation}
         {n_0} = \frac{{{N_d} + \sqrt {N_d^2 + 4n_i^2} }}{2}
-\end{equation}
-For most practical situations:  ${N_d} \gg {n_i}$.  This means that we can simplify the quadratic to 
-\begin{equation}
-{n_0} = \frac{{{N_d} + {N_d}\sqrt {1 + 4{{\left( {\frac{{{n_i}}}{N}} \right)}^2}} }}{2} \approx \frac{{{N_d}}}{2} + \frac{{{N_d}}}{2} = {N_d}
-\end{equation}
+    \end{equation}
+For most practical situations:  ${N_d} \gg {n_i}$.  This means that we can simplify the quadratic to: 
+    \begin{equation}
+        {n_0} = \frac{{{N_d} + {N_d}\sqrt {1 + 4{{\left( {\frac{{{n_i}}}{N}} \right)}^2}} }}{2} \approx \frac{{{N_d}}}{2} + \frac{{{N_d}}}{2} = {N_d}
+    \end{equation}
 The final result is so obvious you might wonder why we bothered with all the questions.  It’s true, if you assume the doping concentration is very high, then the thermally generated electrons don’t matter and we can just assume that the number of free electrons is the same as the number of dopants.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 3.5.3             %
@@ -508,32 +520,33 @@ So we have seen that adding a group 5 element doping element increases the numbe
 \caption{When a group III dopant (\emph{acceptor}) is added to the silicon crystal, it needs an electron to form a covalent bond with its neighbors, which it readily accepts from a nearby bond.  This electron, coming from another bond, creates a free hole.}
 \label{fig:silicon_dopant_III}
 \end{figure}
-
-We don’t need to repeat the math, we can just note the final result of the group 5 case and just note that if the doping concentration is much larger than $n_i$, then the number of free holes will simply equal to the number of ionized dopants, which at normal room temperature is more or less all of them.\footnote{Freeze out is a condition you may encounter if you cool a semiconductor.  In this scenario, there isn’t enough energy to ionize the dopants, and the results of this section are no longer valid.}. We call group III dopants as “acceptors” because they accept an electron to form a covalent bond as opposed to group V dopants, which “donate” an electron and are known as “donors” as we noted above.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+We don’t need to repeat the math, we can just note the final result of the group 5 case and just note that if the doping concentration is much larger than $n_i$, then the number of free holes will simply equal to the number of ionized dopants, which at normal room temperature is more or less all of them.\footnote{Freeze out is a condition you may encounter if you cool a semiconductor.  In this scenario, there is not enough energy to ionize the dopants, and the results of this section are no longer valid.}. We call group III dopants as “acceptors” because they accept an electron to form a covalent bond as opposed to group V dopants, which “donate” an electron and are known as “donors” as we noted above.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 3.5.4             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Mass Action-Law (Again)}
 The balance between generation and recombination means that in any given scenario, the product of the concentration of holes and electrons is constant.  
-\begin{equation}
+    \begin{equation}
         {p_o} \cdot {n_o} = {n_i}^2
-\end{equation} 
+    \end{equation} 
 When a process creates holes and electrons asymmetrically, as we have just seen with dopants, then these extra free carriers will drive down the number of free carriers of opposite type due to recombination.   Recall that at $(T = 300\,{\rm{K}},\,\,{n_i} = {10^{10}}{\rm{c}}{{\rm{m}}^{ - 3}})$.  Now for the N-type doping case, the concentration of electronics is approximately equal to the number of ionized dopants $N_d^+$, or approximately equal to the number of dopants:
-\begin{equation}
-{n_0} = N_d^+  \cong {N_d}
-\end{equation}
+    \begin{equation}
+        {n_0} = N_d^+  \cong {N_d}
+    \end{equation}
 And that means that the number of holes has been reduced due to the increased presence of electrons:
-\begin{equation}
+    \begin{equation}
         p_0 = \frac{n_i^2}{N_d}
-\end{equation}
+    \end{equation}
 The same is true for a P-type scenario:
-\begin{equation}
-{p_0} = N_a^ -  \cong {N_a} 
-\end{equation}
+    \begin{equation}
+        {p_0} = N_a^ -  \cong {N_a} 
+    \end{equation}
 These extra holes drive down the concentration of electrons 
-{ P-type case:} \begin{equation}
+{ P-type case:}
+    \begin{equation}
         n_0 = \frac{n_i^2}{N_a}
-\end{equation}
+    \end{equation}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 3.5.5             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -548,23 +561,23 @@ What happens if we dope with \textit{both} donors and acceptors?  Who wins out ?
 \caption{Silicon crystal doped by both an acceptor and donor dopant results in the creation of both free holes and electrons.}
 \label{fig:silicon_dopant_both}
 \end{figure}
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 If we dope with more donors than acceptors and $N_d > N_a$, then the material is “n-type” because the action of the free electrons is more than the free holes.  In other words, the free electron density is given by
-\begin{equation}
+    \begin{equation}
         {n_o} = {N_d} - {N_a} \gg {n_i}
-\end{equation}
+    \end{equation}
 And the free holes are approximately given by the law of Mass-Action:
-\begin{equation}
+    \begin{equation}
         {p_o} = \frac{{n_{_i}^2}}{{{N_d} - {N_a}}}
-\end{equation}
+    \end{equation}
 On the other hand, if we have more acceptors than donors, or  $N_a > N_d$, then we can approximate the number of free holes by
-\begin{equation}
+    \begin{equation}
         {p_o} = {N_a} - {N_d} \gg {n_i}
-\end{equation}
+    \end{equation}
 And the number of free electrons by
-\begin{equation}
+    \begin{equation}
         {n_o} = \frac{{n_{_i}^2}}{{{N_a} - {N_d}}}
-\end{equation}
+    \end{equation}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                   SECTION 3.6                                        %
@@ -577,15 +590,17 @@ Given what we have learned about a semiconductor, we can see that it has some re
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Thermal Equilibrium}
 The rapid, random motion of holes and electrons is quite fast because these particles are so light.  The “thermal velocity” is approximately $v_{th} = 10^7$ cm/s, and the number of collisions happens on a time scale of approximately $\tau_c = 10^{-13}$s.  The thermal velocity can be approximated by equating the thermal energy with the kinetic energy
-\begin{equation}
-    {\frac{1}{2}}m_n^*v_{th}^2 = {\frac{1}{2}}kT
-\end{equation}
+    \begin{equation}
+        {\frac{1}{2}}m_n^*v_{th}^2 = {\frac{1}{2}}kT
+    \end{equation}
 During this time, the average carrier moves a distance of $\lambda$
-\begin{equation} \lambda  = {v_{th}}{\tau _c}\end{equation}
+    \begin{equation}
+        \lambda = {v_{th}}{\tau _c}
+    \end{equation}
 Which is approximately
-\begin{equation}
-        \lambda  = {10^7}{\rm{cm}}/s \times {10^{ - 13}}s = {10^{ - 6}}{\rm{cm}}
-\end{equation}
+    \begin{equation}
+        \lambda = {10^7}{\rm{cm}}/s \times {10^{ - 13}}s = {10^{ - 6}}{\rm{cm}}
+    \end{equation}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -602,13 +617,13 @@ Which is approximately
 \subsection{Drift Velocity and Mobility}
 Now, as before, we apply an electric field $E$ and charge carriers accelerate, at least for  $\tau_c$ seconds before they collide.
 As shown in Fig.~\ref{fig:drift_field}, during this time they gain momentum from the field
-\begin{equation}
+    \begin{equation}
         v_{dr} = a \tau_c = \frac{q E}{m} \tau_c
-\end{equation}
+    \end{equation}
 Or in other words, the drift velocity is proportional to the field $E$
-\begin{equation}
+    \begin{equation}
         v_{dr} = \frac{q \tau_c}{m} E = \mu_n E
-\end{equation}
+    \end{equation}
 We define a mobility for both the electrons, $\mu_n$ and holes, $\mu_p$ and expect they will be different due to the difference in the effective mass between holes and electrons.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 3.6.3             %
@@ -623,7 +638,7 @@ We define a mobility for both the electrons, $\mu_n$ and holes, $\mu_p$ and expe
 \caption{Mobility of electrons and holes in silicon as a function of \emph{total} doping concentration. }
 \label{fig:mobility}
 \end{figure}
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 As you might expect, the mobility should depend on temperature and also on the total dopant concentration, because the more dopants we introduce, the more scattering sites.  This is born out by measurement and theory, as shown in Fig.~\ref{fig:mobility}, which shows that the mobility is highest for undoped silicon and then begins to drop as we introduce more and more dopants.  A typical values for electrons is about ${\mu _n} = 1000 \mathrm{cm^2}/\mathrm{V s}$ and for holes ${\mu _p} = 400 \mathrm{cm^2}/\mathrm{V s}$.  Electrons go faster as they are “lighter”. 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -659,9 +674,10 @@ Let’s do a simple thought experiment to figure out why diffusion flows from hi
 \caption{Particles in random thermal motion move on average in every direction with equal probability.  If there's a concentration gradient, then regions of high concentration contribute more carriers moving towards regions of low concentration compared to particles from low concentrations, thus leading to diffusion.}
 \label{fig:random_flow}
 \end{figure}
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Let’s zoom in to the motion of the molecules (Fig.~\ref{fig:random_flow}).  The net motion of gas molecules to the right chamber was due to the concentration gradient.
-If each particle moves on average left or right with equal probability, then eventually half will be in the right chamber. If the molecules were charged (or electrons), then there would be a net current flow.  It's clear that the diffusion current flows from high concentration to low concentration, because in areas of higher concentration there are more particles moving both left and right, which is larger than say the particles moving left and righ in the regions of low concentration.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+If each particle moves on average left or right with equal probability, then eventually half will be in the right chamber. If the molecules were charged (or electrons), then there would be a net current flow.  It's clear that the diffusion current flows from high concentration to low concentration, because in areas of higher concentration there are more particles moving both left and right, which is larger than say the particles moving left and right in the regions of low concentration.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -676,22 +692,22 @@ If each particle moves on average left or right with equal probability, then eve
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Diffusion Equations}
 We can find an equation for diffusion currents of electrons if we carefully consider the collective average motion.  With reference to Fig.~\ref{fig:slide48}, assume that the mean free path is $\lambda$.  Let’s find the flux of carriers crossing the $x=0$ plane by imagining how many particles will cross the origin in a time equal to the average inter-collision time.  If we move left and right a distance $\lambda$, then all particles moving in the right direction (towards the origin), will cross the origin as they travel on average a distance $\lambda$.  The flux of electrons is therefore the number of particles multiplied by the distance they move
-\begin{equation}d
-        F = \frac{1}{2}{v_{th}}\left( {n( - \lambda ) - n(\lambda )} \right)
-\end{equation}
+    \begin{equation}
+        dF = \frac{1}{2}{v_{th}}\left( {n( - \lambda) - n(\lambda)} \right)
+    \end{equation}
 In the above equation, the factor $1/2$ arises because only half the particles from the left move right, and likewise half the particles on the right move left.  If the distance $\lambda$ is small, and $n$ is a smooth function, we can estimate the amount of carriers at each location by a simple Taylor series expansion
-\begin{equation}
-        F = \frac{1}{2}{v_{th}}\left( {\left[ {n(0) - \lambda \frac{{dn}}{{dx}}} \right] -
-         \left[ {n(0) + \lambda \frac{{dn}}{{dx}}} \right]} \right)
-\end{equation}
+    \begin{equation}
+        F = \frac{1}{2}{v_{th}}\left( {\left[ {n(0) - \lambda \frac{{dn}}{{dx}}} \right]
+            - \left[ {n(0) + \lambda \frac{{dn}}{{dx}}} \right]} \right)
+    \end{equation}
 Which shows that it’s only the gradient of the concentration that contributes to current:
-\begin{equation}
+    \begin{equation}
         F =  - {v_{th}}\lambda \frac{{dn}}{{dx}}
-\end{equation}
+    \end{equation}
 Now, since electrons carry charge, the current flows in the opposite direction:
-\begin{equation}
-        J =  - qF = q{v_{th}}\lambda \frac{{dn}}{{dx}}
-\end{equation}
+    \begin{equation}
+        J = - qF = q{v_{th}}\lambda \frac{{dn}}{{dx}}
+    \end{equation}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 3.7.3             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -709,13 +725,13 @@ The term we're interested in from the diffusion current equation is the product 
         {v_{th}}\lambda  = v_{th}^2{\tau _c} = kT\frac{{{\tau _c}}}{{m_n^*}} = \frac{{kT}}{q}\frac{{q{\tau _c}}}{{m_n^*}}
     \end{equation}
 which leads to
-\begin{equation}
+    \begin{equation}
         J = q{v_{th}}\lambda \frac{{dn}}{{dx}} = q\left( {\frac{{kT}}{q}{\mu _n}} \right)\frac{{dn}}{{dx}}
-\end{equation}
+    \end{equation}
 The term in the parenthesis is known as the Diffusion Constant, and it's related to the mobility: 
-\begin{equation}
+    \begin{equation}
         {D_n} = \left( {\frac{{kT}}{q}} \right){\mu _n}
-\end{equation}
+    \end{equation}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 3.7.4             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
