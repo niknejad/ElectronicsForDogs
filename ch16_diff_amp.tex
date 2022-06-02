@@ -196,7 +196,7 @@ And the differential DC output is exactly zero:
     \begin{equation}
         {v_{D1}} - {v_{D2}} = 0\mathrm{V}
     \end{equation}
-Consequently, the DC level at the output is independent of DC level at input! In Fig.~\ref{fig:diff_amp_bias_cm.pdf} we illustrate this by varying the DC level at the input and finding the operating point in the circuit.  Clearly the circuit operating point, the region of operation of M1/M2 does not depend on the input DC level.  Note that although $V_{GS}$ and $V_{D}$ are held constant, the source voltage moves, but since the source node is driven by an ideal current source, we can tolerate this variation.  This allows us to cascade differential pairs without worrying about DC level, which obviates the need for bulky AC coupling capacitors, as shown in Fig.~\ref{fig:Diff_Cascade.pdf}! Is this too good to be true?  As long as we ensure that the current source is not squashed, the circuit works as advertised.  A real current source (transistor) has a finite headroom to operate, for example a $V_{od}$ for a single transistor current source.
+Consequently, the DC level at the output is independent of DC level at input! In Fig.~\ref{fig:diff_amp_bias_cm.pdf} we illustrate this by varying the DC level at the input and finding the operating point in the circuit.  Clearly the circuit operating point, the region of operation of M1/M2 does not depend on the input DC level.  Note that although $V_{GS}$ and $V_{D}$ are held constant, the source voltage moves, but since the source node is driven by an ideal current source, we can tolerate this variation.  This allows us to cascade differential pairs without worrying about DC level, which obviates the need for bulky AC coupling capacitors, as shown in Fig.~\ref{fig:diff_amp_cascade}! Is this too good to be true?  As long as we ensure that the current source is not squashed, the circuit works as advertised.  A real current source (transistor) has a finite headroom to operate, for example a $V_{od}$ for a single transistor current source.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -212,7 +212,8 @@ Consequently, the DC level at the output is independent of DC level at input! In
 \begin{figure}[tb]
 \centering
 \includegraphics[scale=.8]{Diff_Cascade.pdf}
-\caption{Cascading differential amplifiers without using AC coupling capacitors is possible because each amplifier bias point is independent of the input DC level, see Fig.~\ref{fig:diff_amp_bias_cm.pdf}.} \label{fig:Diff_Cascade.pdf}
+\caption{Cascading differential amplifiers without using AC coupling capacitors is possible because each amplifier bias point is independent of the input DC level, see Fig.~\ref{fig:diff_amp_bias_cm.pdf}.}
+\label{fig:diff_amp_cascade}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 16.4.2            %
