@@ -20,4 +20,67 @@ null
 \subsection{Feynman's Technique}
 null
 \section{Taylor Series Expansions}
-null
+Recall from calculus the general form of a power series centered about $a$:
+    \begin{equation}
+        f(x) = \sum_{n=0}^{\infty} c_n {\big(x - a\big)}^n = c_0 + c_1{\big(x - a\big)}
+            + c_2{\big(x - a\big)}^2 + c_3{\big(x - a\big)}^3 + ...
+        \label{eq:power_series}
+    \end{equation}
+How do we solve for the coefficients of this infinite series?
+
+\vspace{0.5cm}
+\noindent
+We can begin by setting $x = a$ for every term, which yields:
+    \begin{equation}
+        c_0 = f(a)
+        \label{eq:power_first}
+    \end{equation}
+Now we want to solve for each $n$th consecutive coefficient in the series.  To do this, we take the $n$th derivative of the the series and use the same strategy of setting $x = a$.  This eliminates all terms except for the coefficient of interest we aim to solve for.
+
+\vspace{0.5cm}
+\noindent
+Starting with the first derivative, we have:
+    \begin{equation*}
+        \frac{df(x)}{dx} = c_1 + 2c_2{\big(x - a\big)} + 3c_3{\big(x - a\big)}^2
+        + 4c_3{\big(x - a\big)}^3 + ...
+    \end{equation*}
+This yields:
+    \begin{equation*}
+        c_1 = \frac{1}{1} \cdot \frac{df(a)}{dx}
+    \end{equation*}
+Continuing with the second derivative:
+    \begin{equation*}
+        \frac{{df(x)}^2}{d^2x} = (1 \cdot 2)c_2 + (2 \cdot 3)c_3{\big(x - a\big)} + (3 \cdot 4)c_4{\big(x - a\big)}^2
+        + ...
+    \end{equation*}
+Yielding:
+    \begin{equation*}
+        c_2 = \frac{1}{1 \cdot 2} \cdot \frac{{df(a)}^2}{d^2x}
+    \end{equation*}
+Then the third derivative:
+Continuing with the second derivative:
+    \begin{equation*}
+        \frac{{df(x)}^3}{d^3x} = (1 \cdot 2 \cdot 3)c_3{\big(x - a\big)}
+        + (1 \cdot 2 \cdot 3 \cdot 4)c_4{\big(x - a\big)} + ...
+    \end{equation*}
+Which yields:
+    \begin{equation*}
+        c_3 = \frac{1}{1 \cdot 2 \cdot 3} \cdot \frac{{df(a)}^3}{d^3x}
+    \end{equation*}
+A pattern has presented itself which will continue for all consecutive terms.  From the pattern we can see:
+    \begin{equation}
+        c_n = \frac{1}{n!} \cdot \frac{{df(a)}^n}{d^nx}
+        \label{eq:power_co}
+    \end{equation}
+Plugging \emph{Eq.~\ref{eq:power_first}} and \emph{Eq.~\ref{eq:power_co}} into \emph{Eq.~\ref{eq:power_series}} gives us the general form of a Taylor series:
+    \begin{equation}
+        f(x) = \sum_{n=0}^{\infty}\frac{f^{(n)}(a)}{n!}{\big(x - a\big)}^n = f(a)
+        + \frac{f'(a)}{1!}{\big(x - a\big)} + \frac{f''(a)}{2!}{\big(x - a\big)}^2 + ...
+        \label{eq:taylor_series}
+    \end{equation}
+For the special case where $a = 0$ in \emph{Eq.~\ref{eq:taylor_series}}, we have the general form of a Maclaurin series:
+    \begin{equation}
+        f(x) = \sum_{n=0}^{\infty}\frac{f^{(n)}(0)}{n!}{x}^n = f(0)
+        + \frac{f'(0)}{1!}{x} + \frac{f''(0)}{2!}{x}^2 + ...
+        \label{eq:maclaurin_series}
+    \end{equation}

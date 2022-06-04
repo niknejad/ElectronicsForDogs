@@ -69,18 +69,33 @@
 \newpage
 ~\vfill
 \thispagestyle{empty}
-\noindent Copyright \copyright\ 2022 Ali Niknejad\\ % Copyright notice
-\noindent \textsc{Published by Ali Niknejad}\\ % Publisher
-\noindent \textsc{rfic.eecs.berkeley.edu/edogs.html}\\ % URL
+\noindent Copyright \copyright 2022 Ali Niknejad
+
+\vspace{0.5cm}
+\noindent
+\textsc{Published by Ali Niknejad}
+
+\vspace{0.5cm}
+\noindent
+\textsc{rfic.eecs.berkeley.edu/edogs.html}
+
+\vspace{0.5cm}
+\noindent
 % License information
-\noindent Licensed under the Creative Commons Attribution-NonCommercial 3.0 Unported License (the ``License''). You may not use this file except in compliance with the License. You may obtain a copy of the License at \url{http://creativecommons.org/licenses/by-nc/3.0}. Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an \textsc{``as is'' basis, without warranties or conditions of any kind}, either express or implied. See the License for the specific language governing permissions and limitations under the License.\\
+Licensed under the Creative Commons Attribution-NonCommercial 3.0 Unported License (the ``License''). You may not use this file except in compliance with the License. You may obtain a copy of the License at \url{http://creativecommons.org/licenses/by-nc/3.0}. Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an \textsc{``as is'' basis, without warranties or conditions of any kind}, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+
 % Printing/edition date
-\noindent \textit{First printing, January 17, 2020}\\
-\noindent \textit{Latest printing, August 17, 2022}
+\vspace{0.5cm}
+\noindent
+\textit{First printing, January 17, 2020}
+
+\vspace{0.5cm}
+\noindent
+\textit{Latest printing, August 17, 2022}
 %----------------------------------------------------------------------------------------
 %	TABLE OF CONTENTS
 %----------------------------------------------------------------------------------------
-%\chapterimage{Tesla.png} % Table of contents heading image
+\chapterimage{Pictures/lm358.PNG} % Table of contents heading image
 \pagestyle{empty} % No headers
 \tableofcontents % Print the table of contents itself
 \cleardoublepage % Forces the first chapter to start on an odd page so it's on the right
@@ -89,29 +104,30 @@
 %	CHAPTERS
 %----------------------------------------------------------------------------------------
 \chapterimage{Pictures/logo105.pdf} % Chapter heading image
-\include{ch01_LTI}
-\include{ch02_AC}
-\include{ch03_semi}
-\include{ch04_ic_tech}
-\include{ch05_pn_junc}
-\include{ch06_pn_currents}
-\include{ch07_mos_c}
-\include{ch08_mos}
+%\include{ch01_LTI}
+%\include{ch02_AC}
+%\include{ch03_semi}
+%\include{ch04_ic_tech}
+%\include{ch05_pn_junc}
+%\include{ch06_pn_currents}
+%\include{ch07_mos_c}
+%\include{ch08_mos}
 \include{ch09_mos_ss_dc}
-\include{ch10_mos_ss_ac}
-\include{ch11_bjt}
-\include{ch12_amps_single_stage}
-\include{ch13_mirrors_biasing}
-\include{ch14_freq_resp}
-\include{ch15_multi_stage_amps}
-\include{ch16_diff_amp}
-\include{ch17_opamps_fb}
-\include{ch18_opamp_real}
+%\include{ch10_mos_ss_ac}
+%\include{ch11_bjt}
+%\include{ch12_amps_single_stage}
+%\include{ch13_mirrors_biasing}
+%\include{ch14_freq_resp}
+%\include{ch15_multi_stage_amps}
+%\include{ch16_diff_amp}
+%\include{ch17_opamps_fb}
+%\include{ch18_opamp_real}
 %----------------------------------------------------------------------------------------
 %	BIBLIOGRAPHY
 %----------------------------------------------------------------------------------------
-%\chapter*{Bibliography}
-\chapter{Bibliography}
+\chapter{References}
+\nocite{*}
+\renewcommand*{\bibfont}{\raggedright}
 \printbibliography[heading=bibempty]
 %\addcontentsline{toc}{chapter}{\textcolor{ocre}{Bibliography}}
 %\section*{Books}
@@ -125,9 +141,9 @@
 %----------------------------------------------------------------------------------------
 \appendix
 \include{appendix_a}
-\include{appendix_b}
-\include{appendix_c}
-\include{appendix_d}
+%\include{appendix_b}
+%\include{appendix_c}
+%\include{appendix_d}
 %----------------------------------------------------------------------------------------
 %	INDEX
 %----------------------------------------------------------------------------------------

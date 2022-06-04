@@ -11,7 +11,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Chapter Preview}
-When the inventors of the bipolar transistor at Bell Labs first built a working device (see \emph{Fig.~\ref{fig:bjt_invent}}), the next thing they did was to build an audio amplifier to prove that the transistor was actually working.  In this chapter we're going to introduce you to your first amplifier and discuss how we go about analyzing the amplifier using the $I$-$V$ equations we derived in the previous chapter.  The amplifier will be a \emph{``common source"} amplifier.  We will discuss bias points, also known as the operating point, and what happens when a signal is applied.  Throughout the chapter we will make a very common and important assumption, which leads to the \emph{Small Signal Analysis} technique.  This technique simply states that if the signal amplitudes are small (we'll define what ``small" means), we can analyze the circuit using linear techniques. This leads us to a linearized model of the circuit, which is much easier to analyze.  Finally, we will introduce the equivalent linear circuit model for a MOS transistor, and derive its small-signal parameters, such as transconductance and output resistance.  In the next chapter, we'll cover charge storage effects and modify the model to include capacitors, which are needed to properly account for the frequency response of amplifiers.
+When the inventors of the bipolar transistor at Bell Labs first built a working device (see \emph{Fig.~\ref{fig:bjt_invent}}), the next thing they did was to build an audio amplifier to prove that the transistor was actually working.  In this chapter we are going to introduce you to your first amplifier, and discuss how we go about analyzing the amplifier using the $I$-$V$ equations we derived in the previous chapter.  The amplifier will be a \emph{``common source"} amplifier.  We will discuss bias points, also known as the operating point, and what happens when a signal is applied.  Throughout the chapter we will make a very common and important assumption, which leads to the \emph{Small Signal Analysis} technique.  This technique simply states that if the signal amplitudes are small (we will define what ``small" means), we can analyze the circuit using linear techniques. This leads us to a linearized model of the circuit, which is much easier to analyze.  Finally, we will introduce the equivalent linear circuit model for a MOS transistor, and derive its small-signal parameters, such as transconductance and output resistance.  In the next chapter, we will cover charge storage effects and modify the model to include capacitors, which are needed to properly account for the frequency response of amplifiers.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -41,7 +41,7 @@ When the inventors of the bipolar transistor at Bell Labs first built a working 
 \label{fig:csamp_signals}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-A MOS amplifier is shown in \emph{Fig.~\ref{fig:csamp_signals}}.  Notice that a MOS transistor sits at the core of the amplifier.  The input signal is applied to the gate, and the output is taken at the drain of the transistor.  The source is ground (and so is the body, even though it's not shown explicitly).  MOS devices are biased in the saturation region so that the output current is only a function of the gate-source voltage (approximately), which means the transistor is acting like a voltage-controlled current source (see \emph{Fig.~\ref{fig:mos_building_block}}).  In order to turn the MOS ``on" and bias it in saturation, the drain is pulled up through a resistor $R_D$, which is connected to the supply.  The ``on" current $I_{DS,sat}$ and the resistor $R_D$ are selected together to determine the operating point.  On the gate side the appropriate $V_{GS}$ needs to be supplied to obtain the desired current $I_{DS,sat}$.  The input signal $v_{s}$ is applied in series with this gate bias  voltage $V_{GS}$.  
+A MOS amplifier is shown in \emph{Fig.~\ref{fig:csamp_signals}}.  Notice that a MOS transistor sits at the core of the amplifier.  The input signal is applied to the gate, and the output is taken at the drain of the transistor.  The source is ground (and so is the body, even though it's not shown explicitly).  MOS devices are biased in the saturation region so that the output current is only a function of the gate-source voltage (approximately), which means the transistor is acting like a voltage-controlled current source (see \emph{Fig.~\ref{fig:mos_building_block}}).  In order to turn the MOS ``on" and bias it in saturation, the drain is pulled up\index{Resistors!Pull-up} through a resistor $R_D$, which is connected to the supply.  The ``on" current $I_{DS,sat}$ and the resistor $R_D$ are selected together to determine the operating point.  On the gate side the appropriate $V_{GS}$ needs to be supplied to obtain the desired current $I_{DS,sat}$.  The input signal $v_{s}$ is applied in series with this gate bias voltage $V_{GS}$.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -75,12 +75,7 @@ A plot of input and output signals is shown in \emph{Fig.~\ref{fig:gain}}.  Note
 %             SUBSECTION 9.2.2             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Common-Source Amplifier}
-The amplifier that we have presented is known as a Common Source (CS) amplifier, because the transistor source terminal is in common with both the input signal and the output signal.  Or more simply, the source is grounded to the ``common" node, also known as the reference voltage.  Since a transistor has three terminals (actually 4, but the body is usually tied to the source), and a voltage is defined by 2 terminals, then you can readily count and see that there are three simple configurations for a single transistor amplifier, ``common source", ``common drain", and ``common gate".  In this chapter we'll focus on the common source variety.
-%\begin{figure}[tb]
-%\centering
-%\includegraphics[width=.5\columnwidth]{csamp_plain}
-%\caption{csamp plain } \label{fig:csamp_plain}
-%\end{figure}
+The amplifier that we have presented is known as a \textbf{Common Source}\index{Amplifers!Common source} (CS) amplifier, because the transistor source terminal is in common with both the input signal and the output signal.  Or more simply, the source is grounded to the ``common" node, also known as the reference voltage.  Another way to understand this is that the ``common" node does not carry the signal (both input and output).  Since a transistor has three terminals (actually 4, but the body is usually tied to the source), and a voltage is defined by 2 terminals, then you can readily count and see that there are three simple configurations for a single transistor amplifier, ``common source", ``common drain", and ``common gate".  In this chapter we'll focus on the common source variety.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                   SECTION 9.3                                        %
@@ -97,21 +92,21 @@ The amplifier that we have presented is known as a Common Source (CS) amplifier,
 \caption{MOS amplifier (a) DC setup.  The voltage source $V_{GS}$ determines the quiescent current $I_{DS,Q}$, which in turn determines the output (b) DC operating voltage.  Notice the DC operating point is independent of the AC input signals.} 
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-The bias voltages (DC voltages shown in red in Fig.~\ref{fig:csamp_oppoint}) that you apply to the MOSFET determine its operating point, also known as the quiescent point, or Q-point for simplicity.  How you bias the MOSFET will make a big difference in how it functions.  If we operate with a sufficiently high $V_{GS}$ \emph{and} a sufficiently high $V_{DS}$ to place the device in the saturation region, we can make a very good amplifier.
+The bias voltages (DC voltages shown in red in \emph{Fig.~\ref{fig:csamp_oppoint}}) that you apply to the MOSFET determine its operating point\index{Operating point}, also known as the quiescent point\index{Quiescent point}, or Q-point for simplicity.  How you bias the MOSFET will make a big difference in how it functions.  If we operate with a sufficiently high $V_{GS}$ \emph{and} a sufficiently high $V_{DS}$ to place the device in the saturation region, we can make a very good amplifier.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 9.3.1             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Small Signal vs. Large Signal}
-We derived that $I_{DS}$ vs. $V_{GS}$ is a quadratic function for $V_{GS} > V_T$.  Therefore large changes in $V_{GS}$ result in quadratically larger changes at the output.  However, small changes in $V_{GS}$ (denoted as $v_{gs}$) will produce linear changes at the output.  We can show this using a Taylor series expansion:
+We derived that $I_{DS}$ vs. $V_{GS}$ is a quadratic function for $V_{GS} > V_T$.  Therefore large changes in $V_{GS}$ result in quadratically larger changes at the output.  However, small changes in $V_{GS}$ (denoted as $v_{gs}$) will produce linear changes at the output.  We can show this using a Taylor series\index{Taylor series} expansion:
     \begin{equation}
         {I_{DS}(V_{GS} + v_{gs})} \approx I_{DS} {(V_{GS})} + \frac{dI_{DS}}{dV_{GS}} \cdot v_{gs}  
     \end{equation}
-In many applications of interest, we can make this approximation and assume the signals are small with respect to the bias points, which allows us to convert MOS transistor equations into linear equations, which are much simpler to analyze.
+In many applications of interest, we can make this approximation and assume the signals are small with respect to the bias points\index{Bias point}, which allows us to convert MOS transistor equations into linear equations, which are much simpler to analyze.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 9.3.2             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Selecting the Output Bias Point}
-As shown in Fig.~\ref{fig:csamp_dc}, we must select the CS amplifier Q points to produce the desired response.  A common choice is to bias $V_{GS}$ so that the output is mid-rail (between $V_{DD}$ and ground).  This is a design choice, not a requirement, but doing so results in a large swing at the output.  Notice that the output cannot go larger than $V_{DD}$, and to provide gain (remain in saturation) it should not go lower than $V_{GS}-V_T$, so any drain-source voltage greater than $V_{DS,sat} = V_{GS}-V_T$ and smaller than $V_{DD}$ is possible.  Mid-rail is a good back-of-the-envelope value to maximize the AC sinusoidal swing (this assumes $V_{DS,sat}$ is very small).  This places a constraint on the DC drain current through the resistor:
+As shown in \emph{Fig.~\ref{fig:csamp_dc}}, we must select the CS amplifier Q points to produce the desired response.  A common choice is to bias $V_{GS}$ so that the output is mid-rail (between $V_{DD}$ and ground).  This is a design choice, not a requirement, but doing so results in a large swing at the output.  Notice that the output cannot go larger than $V_{DD}$, and to provide gain (remain in saturation) it should not go lower than $V_{GS}-V_T$, so any drain-source voltage greater than $V_{DS,sat} = V_{GS}-V_T$ and smaller than $V_{DD}$ is possible.  Mid-rail is a good back-of-the-envelope value to maximize the AC sinusoidal swing (this assumes $V_{DS,sat}$ is very small).  This places a constraint on the DC drain current through the resistor:
     \begin{equation}
         {I_R} = \frac{{{V_{DD}} - {V_o}}}{{{R_D}}} = \frac{{{V_{DD}} - {V_{DS}}}}{{{R_D}}}
     \end{equation}
@@ -190,7 +185,7 @@ As written, the first term is just the DC bias point, which we designed for maxi
     \begin{equation}
         v_o \approx  - \frac{2I_{DS,Q} R_{D} v_{gs}}{V_{GS} - V_T} = \underbrace{ - \frac{V_{DD}}{V_{GS} - V_T}}_{\text{voltage gain } A_v}  v_{gs}
     \end{equation}
-Since $V_{DD} > V_{GS} - V_T$, the output voltage is a larger copy of the input, or we have realized voltage gain!  This analysis implies that we should use a high supply $V_{DD}$ and a low over-drive voltage $V_{DS,sat} = V_{GS} - V_T$.  For example, using numbers from our earlier example, let's take $V_{DD} / (V_{GS} - V_T) = 5\mathrm{V}/.32\mathrm{V} = 16$.  The plot of Fig.~\ref{fig:gain} was generated in this case, showing a gain of 16.  Notice that the gain is ``inverting", which is always the case for CS amplifiers.
+Since $V_{DD} > V_{GS} - V_T$, the output voltage is a larger copy of the input, or we have realized voltage gain!  This analysis implies that we should use a high supply $V_{DD}$ and a low over-drive voltage $V_{DS,sat} = V_{GS} - V_T$.  For example, using numbers from our earlier example, let's take $V_{DD} / (V_{GS} - V_T) = 5\mathrm{V}/.32\mathrm{V} = 16$.  The plot of \emph{Fig.~\ref{fig:gain}} was generated in this case, showing a gain of $16$.  Notice that the gain is ``inverting", which is always the case for CS amplifiers.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                   SECTION 9.4                                        %
@@ -226,7 +221,7 @@ and
     \end{equation}
 The first term is known as the \textit{trans}conductance $g_m$.  The second term is known as the output conductance $g_o$, or the inverse of the output resistance $r_o$.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-The meaning of $g_m$ is illustrated graphically in Fig.~\ref{fig:id_vgs_slope}.  First we hold $V_{DS}$ constant at $V_{DS,Q}$ and sweep the gate-to-source voltage $V_{GS}$ and plot the current, as shown.   We are implicitly assuming that  $V_{DS} > V_{DS,sat} = V_{GS} - V_T$ so that the quadratic relation holds.  Then we evaluate the slope of the curve at the operating point of interest, $V_{GS,Q}$.  This slope represents the small-signal current produced by a small voltage excursion of $v_{gs}$ about the operating point.
+The meaning of $g_m$ is illustrated graphically in \emph{Fig.~\ref{fig:id_vgs_slope}}.  First we hold $V_{DS}$ constant at $V_{DS,Q}$ and sweep the gate-to-source voltage $V_{GS}$ and plot the current, as shown.   We are implicitly assuming that  $V_{DS} > V_{DS,sat} = V_{GS} - V_T$ so that the quadratic relation holds.  Then we evaluate the slope of the curve at the operating point of interest, $V_{GS,Q}$.  This slope represents the small-signal current produced by a small voltage excursion of $v_{gs}$ about the operating point.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -309,7 +304,7 @@ If we translate the derived equation for the small-signal linearized current, re
     \begin{equation}
         {i_{ds}} = {g_m}{v_{gs}} + \frac{1}{{{r_o}}}{v_{ds}}
     \end{equation}
-into a circuit diagram, we obtain the simplified  3-terminal small-signal model for a MOSFET shown in Fig.~\ref{fig:mos3term_ac_nocap}.   In the next chapter, we will develop a more complete model.  It's important to note that once you specify the DC operating point of an amplifier, you also fix the small-signal parameters.  Thus to determine the small-signal circuit, you only need to know the DC operating point.
+into a circuit diagram, we obtain the simplified  3-terminal small-signal model for a MOSFET shown in \emph{Fig.~\ref{fig:mos3term_ac_nocap}}.  In the next chapter, we will develop a more complete model.  It's important to note that once you specify the DC operating point of an amplifier, you also fix the small-signal parameters.  Thus to determine the small-signal circuit, you only need to know the DC operating point.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 9.4.5             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -346,7 +341,7 @@ We already found the DC operating point in the earlier part of this chapter.  Fr
 \caption{The AC model of a the amplifier is produced by shorting out all DC voltage sources.} \label{fig:cs_amp_ac}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-In this step we turn off all DC sources, as shown in Fig.~\ref{fig:cs_amp_ac}.  The DC voltage sources become shorts and DC current sources become opens.
+In this step we turn off all DC sources, as shown in \emph{Fig.~\ref{fig:cs_amp_ac}}.  The DC voltage sources become shorts and DC current sources become opens.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %              SUB-SUBSECTION              %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -357,20 +352,20 @@ In this step we turn off all DC sources, as shown in Fig.~\ref{fig:cs_amp_ac}.  
 \begin{figure}[tb]
 \centering
 \includegraphics[scale=1]{cs_amp_ss1}
-\caption{The small-signal AC model of the NMOS CS amplifier. Note that this is derived by replacing the NMOS transistor (Fig.~\ref{fig:cs_amp_ac}) with its small-signal equivalent circuit (Fig.~\ref{fig:mos3term_ac_nocap}).}
+\caption{The small-signal AC model of the NMOS CS amplifier. Note that this is derived by replacing the NMOS transistor (\emph{Fig.~\ref{fig:cs_amp_ac}}) with its small-signal equivalent circuit (\emph{Fig.~\ref{fig:mos3term_ac_nocap}}).}
 \label{fig:cs_amp_ss1}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Now we draw a new schematic, by replacing the transistor with its small-signal model, shown in Fig.~\ref{fig:cs_amp_ss1}.  As you become more proficient at analyzing transistor circuits, you can sometimes avoid this step. But that'll come later, maybe in this class or maybe in your next.  For now it's totally okay to just draw out the circuit to familiarize yourself with it.
+Now we draw a new schematic, by replacing the transistor with its small-signal model, shown in \emph{Fig.~\ref{fig:cs_amp_ss1}}.  As you become more proficient at analyzing transistor circuits, you can sometimes avoid this step. But that'll come later, maybe in this class or maybe in your next.  For now it's totally okay to just draw out the circuit to familiarize yourself with it.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Instead of a "macro" replacement, you should actually redraw the circuit to simplify the connections and make things as obvious as possible. This will facilitate ``inspection" style analysis. For example, you'll be able to identify that $R_D$ and $r_o$ are in parallel, so you can treat them as a single equivalent resistor.  See Fig.~\ref{fig:cs_amp_ss2}.
+Instead of a "macro" replacement, you should actually redraw the circuit to simplify the connections and make things as obvious as possible. This will facilitate ``inspection" style analysis. For example, you'll be able to identify that $R_D$ and $r_o$ are in parallel, so you can treat them as a single equivalent resistor.  See \emph{Fig.~\ref{fig:cs_amp_ss2}}.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tb]
 \centering
 \includegraphics[scale=1]{cs_amp_ss2}
-\caption{A simplified small-signal AC model of the amplifier, derived from Fig.~\ref{fig:cs_amp_ss1}.} \label{fig:cs_amp_ss2}
+\caption{A simplified small-signal AC model of the amplifier, derived from \emph{Fig.~\ref{fig:cs_amp_ss1}}.} \label{fig:cs_amp_ss2}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %              SUB-SUBSECTION              %
@@ -411,11 +406,11 @@ If we assume $r_o \gg R_D$, then we get the same result as before because $I_D R
 \begin{figure}[tb]
 \centering
 \includegraphics[scale=1]{pmos3term_dc}
-\caption{The PMOS small-signal equivalent circuit model.  Compare with Fig.~\ref{fig:mos3term_ac_nocap}}.
+\caption{The PMOS small-signal equivalent circuit model.  Compare with \emph{Fig.~\ref{fig:mos3term_ac_nocap}}.}
 \label{fig:pmos3term_dc}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-So far we have focused on the NMOS device. Let's introduce the PMOS small-signal model shown in Fig.~\ref{fig:pmos3term_dc}.  This model looks like an upside down NMOS model.  Remember that the current flows from the source to the drain of a PMOS (from higher potential to lower potential).  In an NMOS, the drain is at a higher potential, so you must flip the model around.   A good way to sanity check is to ``wiggle" the gate of the transistor and observe what the model predicts and make sure the polarity is correct.  If we increase the gate voltage for a PMOS, we're reducing the inversion layer conductance, so the current should go down. Note that the small-signal model agrees and shows the current going negative.
+So far we have focused on the NMOS device. Let's introduce the PMOS small-signal model shown in \emph{Fig.~\ref{fig:pmos3term_dc}}.  This model looks like an upside down NMOS model.  Remember that the current flows from the source to the drain of a PMOS (from higher potential to lower potential).  In an NMOS, the drain is at a higher potential, so you must flip the model around.   A good way to sanity check is to ``wiggle" the gate of the transistor and observe what the model predicts and make sure the polarity is correct.  If we increase the gate voltage for a PMOS, we're reducing the inversion layer conductance, so the current should go down. Note that the small-signal model agrees and shows the current going negative.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 9.5.2             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -431,7 +426,7 @@ So far we have focused on the NMOS device. Let's introduce the PMOS small-signal
 \label{fig:cs_amp_pmos_ss1}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-We take the same exact steps as in the NMOS amplifier to produce an amplifier with a PMOS device, shown in Fig.~\ref{fig:cs_amp_pmos_ss1}.  Note this is a ``Common Source" Amplifier even though the PMOS source connects to DC supply.  \textbf{DC supplies are AC grounds, so the source is actually AC grounded.}   The small-signal model of the amplifier is drawn in Fig.~\ref{fig:csamp_pmos_ss}, and it's identical to the NMOS case.  So there's no reason to redo the math.
+We take the same exact steps as in the NMOS amplifier to produce an amplifier with a PMOS device, shown in \emph{Fig.~\ref{fig:cs_amp_pmos_ss1}}.  Note this is a ``Common Source" Amplifier even though the PMOS source connects to DC supply.  \textbf{DC supplies are AC grounds, so the source is actually AC grounded.}   The small-signal model of the amplifier is drawn in \emph{Fig.~\ref{fig:csamp_pmos_ss}}, and it is identical to the NMOS case.  So there's no reason to redo the math.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Which is better, the NMOS or PMOS?  Traditionally NMOS amplifiers are preferred because the electron mobility is higher, leading to higher $g_m$ and thus higher gain.  But PMOS amplifiers are also useful and will be used extensively.  Namely when you need to ``flip" the DC bias around, you can use an cascade of an NMOS and PMOS and avoid large coupling capacitors.  That's jumping ahead but you'll see NMOS and PMOS amplifiers used together in cascade often by the end of this book.  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
