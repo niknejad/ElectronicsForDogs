@@ -9,16 +9,6 @@
 %                                   SECTION A.1                                        %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Integration Techniques}
-null
-\subsection{Integration by Substitution}
-null
-\subsection{Integration by Parts}
-null
-\subsection{Integration Using the Method of Partial Fractions}
-null
-\subsection{Feynman's Technique}
-null
 \section{Taylor Series Expansions}
 Recall from calculus the general form of a power series centered about $a$:
     \begin{equation}
@@ -58,7 +48,6 @@ Yielding:
         c_2 = \frac{1}{1 \cdot 2} \cdot \frac{{df(a)}^2}{d^2x}
     \end{equation*}
 Then the third derivative:
-Continuing with the second derivative:
     \begin{equation*}
         \frac{{df(x)}^3}{d^3x} = (1 \cdot 2 \cdot 3)c_3{\big(x - a\big)}
         + (1 \cdot 2 \cdot 3 \cdot 4)c_4{\big(x - a\big)} + ...
@@ -72,7 +61,7 @@ A pattern has presented itself which will continue for all consecutive terms.  F
         c_n = \frac{1}{n!} \cdot \frac{{df(a)}^n}{d^nx}
         \label{eq:power_co}
     \end{equation}
-Plugging \emph{Eq.~\ref{eq:power_first}} and \emph{Eq.~\ref{eq:power_co}} into \emph{Eq.~\ref{eq:power_series}} gives us the general form of a Taylor series:
+Plugging \emph{Eq.~\ref{eq:power_first}} and \emph{Eq.~\ref{eq:power_co}} into \emph{Eq.~\ref{eq:power_series}} gives us the general form of a Taylor series using prime notation:
     \begin{equation}
         f(x) = \sum_{n=0}^{\infty}\frac{f^{(n)}(a)}{n!}{\big(x - a\big)}^n = f(a)
         + \frac{f'(a)}{1!}{\big(x - a\big)} + \frac{f''(a)}{2!}{\big(x - a\big)}^2 + ...

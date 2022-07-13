@@ -12,20 +12,25 @@
 \section{Linear Dependence and Independence}
 null
 \subsection{Proof of Sine and Cosine's Linear Independence}
+\vspace{0.5cm}
 \textbf{Claim. } $a \cdot \sin(x) + b \cdot \cos(x) = 0$ is linearly independent.
     \begin{proof}
-        Using the definition of linear independence, we will show that $a$ and $b$ must be zero for all $x$ in some interval.  Since sine and cosine are periodic, we will show that $a$ and $b$ must be $0$ in the interval $[0, 2\pi]$.  Then it follows that $a$ and $b$ must be $0$ for all $x$ in $[-\infty, \infty]$.
+        Using the definition of linear independence, we will show that $a$ and $b$ must be zero for all $x$ in the interval $[0, 2\pi]$.
         
         \vspace{0.5cm}
         \noindent
         We can find $a$ by setting $x = \frac{\pi}{2}$:
         \begin{align*}
-            a \cdot \cancelto{1}{\sin(\frac{\pi}{2})} + b \cdot \cancelto{0}{\cos(\frac{\pi}{2})} &= 0\\
+            a \cdot \cancelto{1}{\sin \bigg(\frac{\pi}{2} \bigg)}
+            + b \cdot \cancelto{0}{\cos \bigg(\frac{\pi}{2} \bigg)} &= 0\\
             a &= 0
         \end{align*}
         Next, we can find $b$ by setting $x = 0$:
         \begin{align*}
-            a \cdot \cancelto{0}{\sin(0)} + b \cdot \cancelto{1}{\cos(0)} &= 0\\
+            a \cdot \cancelto{0}{\sin \big(0 \big)}
+            + b \cdot \cancelto{1}{\cos \big(0 \big)} &= 0\\
             b &= 0
         \end{align*}
+        \noindent
+        Since sine and cosine are periodic, it follows that $a$ and $b$ must be $0$ for all $x$ in $(-\infty, \infty)$.  Thus, the claim holds.\\
     \end{proof}
