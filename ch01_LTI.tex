@@ -22,7 +22,7 @@ In this chapter we will review linearity in the context of an Linear Time-Invari
 %             SUBSECTION 1.2.1             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Example:  Low Pass Filter (LPF)}
-Let's begin with an example calculation.  Suppose we have a low pass filter as shown in \emph{Fig.~\ref{fig:lpf}}.  If we drive this system with a source $v_s$ and observe the output at $v_o$, we can write the governing equations as follows by using KVL around the loop:
+Let's begin with an example calculation.  Suppose we have a \textbf{low pass filter}\index{Filters!Low pass} as shown in \emph{Fig.~\ref{fig:lpf}}.  If we drive this system with a source $v_s$ and observe the output at $v_o$, we can write the governing equations as follows by using KVL around the loop:
     \begin{align*}
         v_o(t) &= v_s(t) - v_r(t)\\
         &= v_s(t) - i(t) R
@@ -50,7 +50,7 @@ How do we find the change in the amplitude and phase of the signal?
 \begin{figure}[tb]
 \centering
 \includegraphics[scale=1]{lpf}
-\caption{A simple $RC$ low-pass\index{Filters!Low pass} filter.}
+\caption{A simple $RC$ low-pass filter.}
 \label{fig:lpf}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -229,7 +229,7 @@ Complex exponentials actually make things less complex.  To see this, first note
     \begin{equation}
         \int e^{j\omega x} dx = \frac{1}{j \omega} e^{j\omega t}
     \end{equation}
-So now any ordinary differential equation (ODE), a sum of differentiation operators, is reduced now to trivial algebraic manipulations.  In fact, we'll show that you don't even need to directly derive the ODE by using phasors (phasor is essentially a shorthand notation for a complex number).   The key is to observe that the current/voltage relation for any element can be derived for complex exponential\index{Complex exponential} excitation.
+So now any ordinary differential equation (ODE), a sum of differentiation operators, is reduced now to trivial algebraic manipulations.  In fact, we'll show that you don't even need to directly derive the ODE by using phasors (phasor is essentially a shorthand notation for a complex number).   The key is to observe that the current/voltage relation for any element can be derived for \textbf{complex exponential}\index{Complex exponential} excitation.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 1.4.2             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
