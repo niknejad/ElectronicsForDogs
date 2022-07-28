@@ -22,6 +22,9 @@ This chapter builds on the previous by focusing solely on AC circuits, or the ci
 %             SUBSECTION 2.2.1             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Transfer Function Concept}
+In many situations, we are interested in the transfer of voltage or current from one terminal pair, or port, to another port in the circuit.  As shown in the black-box \emph{Fig.~\ref{fig:blackboxltiports}}, we can identify these ports by explicitly labeling them and clearly identifying the voltages across and the currents into and out of these ports.  Note that some ports may have terminals in common, such as a common-ground for ground referenced signals.  
+
+The key is that we drive a pair of nodes with a sinusoidal current or voltage -- \textit{the input}, and observe the output across a load at another pair of terminals -- \textit{the output}.  The ratio is the transfer function\index{Transfer function}.  For a fixed frequency, it’s just a complex number.  From the last chapter, we know it's the  Laplace transform of the impulse response evaluated on the $j\omega$ axis.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -32,16 +35,10 @@ This chapter builds on the previous by focusing solely on AC circuits, or the ci
 \label{fig:blackboxltiports}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-In many situations, we are interested in the transfer of voltage or current from one terminal pair, or port, to another port in the circuit.  As shown in the blackbox Fig.~\ref{fig:blackboxltiports}, we can identify these ports by explicitly labeling them and clearly identifying the voltages across and the currents into and out of these ports.  Note that some ports may have terminals in common, such as a common-ground for ground referenced signals.  
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-The key is that we drive a pair of nodes with a sinusoidal current or voltage -- \textit{the input}, and observe the output across a load at another pair of terminals -- \textit{the output}.  The ratio is the transfer function.  For a fixed frequency, it’s just a complex number.  From the last chapter, we know it's the  Laplace transform of the impulse response evaluated on the $j\omega$ axis.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %              SUB-SUBSECTION              %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Example 1 – ECG Amplifier}
-The electrocardiogram (ECG) is a measurement of the voltage between two points on the body.  For example, as shown in Fig.~\ref{fig:ecg}, the voltage across the chest measured from the "right arm" (RA) to the "left arm" (LA) is what's known as lead I.  The ground reference is often the "right leg" (RL).  This voltage is the "input voltage" and we need to amplify it and reject any common-mode noise (see Section~\ref{sec:cmrr}), especially 60 Hz or 50 Hz AC line voltage, which is often orders of magnitude larger than the desired signal.  The output voltage may be single-ended and referenced to a different ground, as shown in the figure. 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-In this scenario, we define the transfer function as
+The \textbf{electrocardiogram}\index{Amplifiers!electrocardiogram} (ECG) is a measurement of the voltage between two points on the body.  For example, as shown in \emph{Fig.~\ref{fig:ecg}}, the voltage across the chest measured from the "right arm" (RA) to the "left arm" (LA) is what's known as lead I.  The ground reference is often the "right leg" (RL).  This voltage is the "input voltage" and we need to amplify it and reject any \textbf{common-mode}\index{Common-mode} noise (see Section~\ref{sec:cmrr}), especially 60 Hz or 50 Hz AC line voltage, which is often orders of magnitude larger than the desired signal.  The output voltage may be single-ended and referenced to a different ground, as shown in the figure.  In this scenario, we define the transfer function as:
     \begin{equation}
         G_v(f) = \frac{V_{out}}{V_1 - V_2 }
     \end{equation}
@@ -52,7 +49,8 @@ The variation in frequency is due to the frequency content of the heartbeat sign
 \begin{figure}[tb]
 \centering
 \includegraphics[width=.95\columnwidth]{ex_opamp-ia2}
-\caption{An ECG amplifier is an example of a transfer function from a non-ground referenced port to an output port that is referenced to ground, or a differential to single-ended transfer function.} \label{fig:ecg}
+\caption{An ECG amplifier is an example of a transfer function from a non-ground referenced port to an output port that is referenced to ground, or a differential to single-ended transfer function.}
+\label{fig:ecg}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %              SUB-SUBSECTION              %
@@ -63,16 +61,20 @@ The variation in frequency is due to the frequency content of the heartbeat sign
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tb]
 \centering
-\includegraphics[width=\columnwidth]{ex_microphone}
+\includegraphics[width=\columnwidth]{ex_microphone}\\
+(a)\hspace{8cm}(b)
 \caption{The transfer function from a microphone to the output of the amplifier is actually a current to voltage transfer function.  Note the voltage to voltage transfer function is undefined for an ideal op-amp since the negative input terminal is a virtual ground.}
 \label{fig:microphone}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-The next example is deceptively simple because on first inspection of Fig.~\ref{fig:microphone}a, you may conclude that there's an error in the drawing, because the negative input of the inverting amplifier is shorted due to the "virtual ground" connection.  In fact, were it not for the microphone source resistance, as shown in  Fig.~\ref{fig:microphone}b, this would be the case. But the signal is amplified and filtered by the presence of $C$ in the inverting amplifier configuration.  Low frequency signals see a gain 
+The next example is deceptively simple because on first inspection of \emph{Fig.~\ref{fig:microphone}(a)}, you may conclude that there's an error in the drawing, because the negative input of the inverting amplifier is shorted due to the "virtual ground" connection.  In fact, were it not for the microphone source resistance, as shown in  \emph{Fig.~\ref{fig:microphone}(b)}, this would be the case. But the signal is amplified and filtered by the presence of the capacitor in the inverting amplifier configuration.
+\newpage
+\noindent
+Low frequency signals will see a gain of:
     \begin{equation}
-        G_v(f) = \frac{v_{o}}{v_s }
+        G_v(f) = \frac{v_{o}}{v_s } = -\frac{R_2}{R_s}
     \end{equation}
-of $-R_2/R_s$ whereas very high frequency signals see very small gain because as the capacitor becomes more conductive than the resistor $R_2$, or in other words $\omega C \gg R_2$, then the gain is simply
+On the other hand, very high frequency signals will see a very small gain, because as the capacitor becomes more conductive than the resistor $R_2$, or in other words $\omega C \gg R_2$, then the gain is simply:
     \begin{equation}
         G_v(f) \sim \frac{-\frac{1}{\omega C}}{R_2 } = \frac{-1}{\omega C R_2 }
     \end{equation}
@@ -86,13 +88,15 @@ In this example, the presence of the source impedance changed everything.  In ge
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tb]
 \centering
-\includegraphics[width=.8\columnwidth]{ex_photodetect}
-\caption{A photo-detector is used to convert photons to current, which are then converted into a voltage through the trans-impedance amplifier (TIA).  The figure on the right is the equivalent circuit model.} \label{fig:pd_detect}
+\includegraphics[width=.8\columnwidth]{ex_photodetect}\\
+(a)\hspace{6cm}(b)
+\caption{(a) A photodetector is used to convert photons to current, which are then converted into a voltage through the transimpedance amplifier (TIA).  (b) The equivalent circuit model.}
+\label{fig:pd_detect}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-For many applications, we need to process a voltage, so a "transimpednace" amplifier is needed to convert the current to the voltage through $R_F$ as shown.\footnote{Why not simply use a resistor in parallel with the diode to convert the current into a voltage?}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Shown in Fig.~\ref{fig:pd_detect}, the source is a photodiode, a device that has an output current proportional to the number of impinging photons.  Again, upon first inspection it seems that the diode is "shorted" to ground through the virtual ground connection, but the diode is better modeled as a current source.  The input current is therefore the signal of interest, as shown in the same figure.  It's important to include the source capacitance ($C_D$), which limits the high frequency performance.  Once benefit of the amplifier is that the signal across $C_D$ is mostly shorted and therefore the impact is not as severe as it would be otherwise.
+For many applications, we need to process a voltage, so a "transimpedance" amplifier is needed to convert the current to the voltage through $R_F$ as shown.\footnote{Why not simply use a resistor in parallel with the diode to convert the current into a voltage?}
+
+Shown in \emph{Fig.~\ref{fig:pd_detect}(a)}, the source is a \textbf{photodiode}\index{Photodiode}, a device that has an output current proportional to the number of impinging photons.  Again, upon first inspection it seems that the diode is "shorted" to ground through the virtual ground connection, but the diode is better modeled as a current source.  The input current is therefore the signal of interest, as shown in \emph{Fig.~\ref{fig:pd_detect}(b)}.  It is important to include the \textbf{source capacitance}\index{Capacitance!source} ($C_D$), which limits the high frequency performance.  One benefit of the amplifier is that the signal across $C_D$ is mostly shorted, and therefore the impact is not as severe as it would be otherwise.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 2.2.2             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -103,52 +107,52 @@ Shown in Fig.~\ref{fig:pd_detect}, the source is a photodiode, a device that has
 \begin{figure}[tb]
 \centering
 \includegraphics[width=.6\columnwidth]{mod1_3_1_twoport}
-\caption{An arbitrary two-port consisting of a linear time-invariant circuit.}
+\caption{An arbitrary \textbf{two-port}\index{Port models!Two-port} consisting of a linear time-invariant circuit.}
 \label{fig:twoportivgain}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-The voltage (current) gain is just the voltage (current) transfer function from one port to another port (see Fig.~\ref{fig:twoportivgain}:
+The voltage (current) gain is just the voltage (current) transfer function from one port to another port (see \emph{Fig.~\ref{fig:twoportivgain}}):
     \begin{equation}
         {G_v}(\omega ) = \frac{{{V_2}}}{{{V_1}}} = \left| {\frac{{{V_2}}}{{{V_1}}}} \right|{e^{j({\varphi _2} - {\varphi _1})}}
     \end{equation}
     \begin{equation}
         {G_i}(\omega ) = \frac{{{I_2}}}{{{I_1}}} = \left| {\frac{{{I_2}}}{{{I_1}}}} \right|{e^{j({\varphi _2} - {\varphi _1})}}
     \end{equation}
-If \textit{G > }1, the circuit has voltage (current) gain.   If \textit{G} < 1, the circuit has loss or attenuation.   It's a common misconception that only "active" circuits can have gain.  We'll demonstrate in section~\ref{sec:lcr} that $LCR$ circuits in particular are passive and can provide voltage and or current gain.  Another common example is the ubiquitous transformer, which provides gain through mutual coupling.  It may surprise you that even $RC$ circuits can provide gain, although not as easily as with inductors and transformers !
+If \textit{G > }1, the circuit has voltage (current) gain.   If \textit{G} < 1, the circuit has loss or attenuation.   It's a common misconception that only "active" circuits can have gain.  We will demonstrate in \emph{section~\ref{sec:lcr}} that $RCL$ circuits in particular are passive, and can provide voltage and/or current gain.  Another common example is the ubiquitous \textbf{transformer}\index{Transformer}, which provides gain through mutual coupling.  It may surprise you that even $RC$ circuits can provide gain, although not as easily as with inductors and transformers!
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 2.2.3             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Trans-Impedance and Trans-Admittance}
-Current/voltage gain are unitless quantities but we can define a signal as a voltage or a current, or both (or even a power, or the product).   If the transfer involves voltage to current or vice versa, we must be careful to define the units.  We have a trans-impedance (TIA) amplifier gain
+Current/voltage gain are unitless quantities, but we can define a signal as a voltage or a current, or both (or even a power, or the product).   If the transfer involves voltage to current or vice versa, we must be careful to define the units.  We have a \textbf{trans-impedance}\index{Amplifiers!trans-impedance} (TIA) amplifier gain
     \begin{equation}
         J(\omega ) = \frac{{{V_2}}}{{{I_1}}} = \left| {\frac{{{V_2}}}{{{I_1}}}} \right|{e^{j({\varphi _2} - {\varphi _1})}}  [\Omega ]
     \end{equation}
-Less commonly, we have a voltage to current amplifier:
+Less commonly, we have a \textbf{trans-admittance}\index{Amplifiers!trans-admittance} (TAA) amplifier:
     \begin{equation}
         K(\omega ) = \frac{{{I_2}}}{{{V_1}}} = \left| {\frac{{{I_2}}}{{{V_1}}}} \right|{e^{j({\varphi _2} - {\varphi _1})}}  [S]
     \end{equation}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 2.2.4             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Impede the Currents !}
+\subsection{Impede the Currents!}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tb]
 \centering
 \includegraphics[width=.5\columnwidth]{mod1_3_2_oneport}
-\caption{An arbitrary one-port linear time-invariant circuit.}
+\caption{An arbitrary \textbf{one-port}\index{Port models!One-port} linear time-invariant circuit.}
 \label{fig:oneport}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Suppose that the "input" is defined as the voltage of a terminal pair (\textit{port}) and the “output” is defined as the current into the port (see Fig.~\ref{fig:oneport}).  
+Suppose that the "input" is defined as the voltage of a terminal pair (\textit{port}) and the “output” is defined as the current into the port (see \emph{Fig.~\ref{fig:oneport}}).  
     \begin{equation}
         v(t) = V{e^{j\omega t}} = \left| V \right|{e^{j(\omega t + {\varphi _v})}}
     \end{equation}
     \begin{equation}
         i(t) = I{e^{j\omega t}} = \left| I \right|{e^{j(\omega t + {\varphi _i})}}
     \end{equation}
-The \underline{impedance} $Z$  is defined as the ratio of the phasor voltage to phasor current (“self” transfer function):
+The \textbf{impedance}\index{Impedance} $Z$ is defined as the ratio of the phasor voltage to phasor current (“self” transfer function):
     \begin{equation}
         Z(\omega ) = H(\omega ) = \frac{V}{I} = \left| {\frac{V}{I}} \right|{e^{j({\varphi _v} - {\varphi _i})}}
     \end{equation}
@@ -157,7 +161,7 @@ We are of course familiar with the concept of impedance $Z$, but even though we 
 %             SUBSECTION 2.2.5             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Admit the Currents!}
-Similarly, suppose that the "input" is defined as the current of a terminal pair (\textit{port}) and the “output” is defined as the voltage into the port. The \underline{admmittance} $Y$ is defined as the ratio of the current to voltage (“self” transfer function)
+Similarly, suppose that the "input" is defined as the current of a terminal pair (port) and the “output” is defined as the voltage into the port. The \textbf{admmittance}\index{Admittance} $Y$ is defined as the ratio of the current to voltage (“self” transfer function)
     \begin{equation}
         Y(\omega ) = H(\omega ) = \frac{I}{V} = \left| {\frac{I}{V}} \right|{e^{j({\varphi _i} - {\varphi _v})}}
     \end{equation}
@@ -215,7 +219,7 @@ Or in another form (DC gain explicit)
 %              SUB-SUBSECTION              %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Building Tents: Poles and Zeros}
-The roots of the numerator are called the “zeros” since at these frequencies, the transfer function is zero.  These are the "stakes in the ground" of our tent, see Fig.~\ref{fig:tent}.  	The roots of the denominator are called the “poles”, since at these frequencies the transfer function peaks (like a pole in a tent).
+The roots of the numerator are called the “zeros” since at these frequencies, the transfer function is zero.  These are the "stakes in the ground" of our tent, see \emph{Fig.~\ref{fig:tent}}.  	The roots of the denominator are called the “poles”, since at these frequencies the transfer function peaks (like a pole in a tent).
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -244,7 +248,7 @@ We excite system with a phasor: ${\tilde V_1} = {V_1}{e^{j{\varphi _1}}}$ and th
 %             SUBSECTION 2.4.2             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Capacitor I-V Phasor Relation}
-To find the phasor relation for current and voltage for a capacitor, begin with the "$I-V$" relation in the time domain (see Fig.~\ref{fig:lcphasor})
+To find the phasor relation for current and voltage for a capacitor, begin with the "$I-V$" relation in the time domain (see \emph{Fig.~\ref{fig:lcphasor}})
     \begin{equation}
         {i_c}(t) = C\frac{{d{v_C}(t)}}{{dt}}
     \end{equation}
@@ -325,7 +329,7 @@ To directly calculate the transfer function (impedance, trans-impedance, etc) we
 %             SUBSECTION 2.5.1             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{LPF Example: Again!}
-In Fig.~\ref{fig:lpfagain}, we show a "real"  time-domain circuit and the corresponding frequency-domain “phasor” circuit.   Instead of setting up the DE in the time-domain, we prefer to do calculations directly in the frequency domain using phasors, treating the capacitor as an imaginary "resistance" or impedance.  We know the impedances: ${Z_R} = R $ and $ {Z_C} = \frac{1}{{j\omega C}}$.
+In \emph{Fig.~\ref{fig:lpfagain}}, we show a "real"  time-domain circuit and the corresponding frequency-domain “phasor” circuit.   Instead of setting up the DE in the time-domain, we prefer to do calculations directly in the frequency domain using phasors, treating the capacitor as an imaginary "resistance" or impedance.  We know the impedances: ${Z_R} = R $ and $ {Z_C} = \frac{1}{{j\omega C}}$.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -358,7 +362,7 @@ The fastest way to solve the problem is to say that the LPF is really a voltage 
 \label{fig:bigexample}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Consider a more complicated example shown in Fig.~\ref{fig:bigexample}.  To find $v_o$, you can do nodal analysis or use network theorems to simplify the circuit.  Let's find the Thevenin equivalent from $C_2$'s perspective.  The open-circuit voltage is just the first voltage divider:
+Consider a more complicated example shown in \emph{Fig.~\ref{fig:bigexample}}.  To find $v_o$, you can do nodal analysis or use network theorems to simplify the circuit.  Let's find the Thevenin equivalent from $C_2$'s perspective.  The open-circuit voltage is just the first voltage divider:
     \begin{equation}
         v_{th} = \frac{Z_{C_1}}{R_1 + Z_{C_1}} v_s 
     \end{equation}
@@ -384,7 +388,7 @@ Therefore we have
 \label{fig:rlc}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-The $RLC$ circuit shown in Fig.~\ref{fig:rlc} is simple but extremely useful and rich in application.  The impedance seen by the source is simply given by
+The $RLC$ circuit shown in \emph{Fig.~\ref{fig:rlc}} is simple but extremely useful and rich in application.  The impedance seen by the source is simply given by
     \begin{equation}
         Z = j\omega L + \frac{1}{j\omega C} + R 
           = R + j\omega L \left( 1 - \frac{1}{\omega^2 LC}\right) 
@@ -480,7 +484,7 @@ The poles have a constant magnitude equal to the resonant frequency
 \caption{The transfer function from source to the resistor voltage as a function of frequency.  Depending on the component values (circuit $Q$), the transfer function exhibits either low or high selectivity.} \label{fig:transferrlc}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-As we plot the magnitude of the transfer function (Fig.~\ref{fig:transferrlc}), we see that the selectivity of the circuit is also related inversely to the $Q$ factor.  
+As we plot the magnitude of the transfer function (\emph{Fig.~\ref{fig:transferrlc}}), we see that the selectivity of the circuit is also related inversely to the $Q$ factor.  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 In the limit that $Q \rightarrow \infty$, the circuit is infinitely selective and only allows signals at resonance $\omega_0$ to travel to the load.  Note that the peak gain in the circuit is always unity, regardless of $Q$, since at resonance the $L$ and $C$ together disappear and effectively all the source voltage appears across the load.  The selectivity of the circuit lends itself well to filter applications.  To characterize the peakiness, let's compute the frequency when the magnitude squared of the transfer function drops by half
     \begin{equation}
@@ -566,7 +570,7 @@ A Bode Plot is simply a ``sketch" of the $\log$-$\log$ plot of the magnitude and
 \label{fig:hpf}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-The high-pass filter shown in Fig.~\ref{fig:hpf}  is easily analyzed using a voltage divider:
+The high-pass filter shown in \emph{Fig.~\ref{fig:hpf}}  is easily analyzed using a voltage divider:
     \begin{equation}
         H(j\omega ) = \frac{{j\omega L}}{{R + j\omega L}} = \frac{{j\omega \frac{L}{R}}}{{1 + j\omega \frac{L}{R}}}
     \end{equation}
@@ -594,7 +598,7 @@ Recall that $\log$ of a product is the sum of $\log$s.  So we have
     \begin{equation}
         {\left| {H(\omega )} \right|_{dB}} = {\left| {\frac{{j\omega \tau }}{{1 + j\omega \tau }}} \right|_{dB}} = {\left| {j\omega \tau } \right|_{dB}} + {\left| {\frac{1}{{1 + j\omega \tau }}} \right|_{dB}}
     \end{equation}
-Let's focus on the numerator first.  For this term, $\left|j\omega \tau  \right|_{dB} $, is a straight line, and it increases by $20$ $dB$/decade.  This term crosses the $0-dB$ point at the ``breakpoint", or $\omega = 1/\tau$, as shown in Fig.~\ref{fig:hpfnumden}a:
+Let's focus on the numerator first.  For this term, $\left|j\omega \tau  \right|_{dB} $, is a straight line, and it increases by $20$ $dB$/decade.  This term crosses the $0-dB$ point at the ``breakpoint", or $\omega = 1/\tau$, as shown in \emph{Fig.~\ref{fig:hpfnumden}}a:
     \begin{equation}
         \omega \tau  = 1 \Rightarrow {\left| {j\omega \tau } \right|_{dB}} = 0\,{\rm{dB}}
     \end{equation}
@@ -625,7 +629,7 @@ Focus on these three frequency ranges:
         \omega  \gg \frac{1}{\tau }\\
         \omega  = \frac{1}{\tau }
     \end{array}$
-We see that this is just a low-pass filter, and we can approximate the plot using asymptotically as shown in Fig.~\ref{fig:hpfnumden}b. 
+We see that this is just a low-pass filter, and we can approximate the plot using asymptotically as shown in \emph{Fig.~\ref{fig:hpfnumden}}b. 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %              SUB-SUBSECTION              %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -638,7 +642,7 @@ and the denominator term:
     \begin{equation}
         {\left| {\frac{1}{{1 + j\omega \tau }}} \right|_{dB}}
     \end{equation}
-and together they form two plots that we join together as shown in Fig.~\ref{fig:bode}a:
+and together they form two plots that we join together as shown in \emph{Fig.~\ref{fig:bode}}a:
     \begin{equation}
         {\left| {j\omega \tau } \right|_{dB}} + {\left| {\frac{1}{{1 + j\omega \tau }}} \right|_{dB}}
     \end{equation}
@@ -657,7 +661,7 @@ and together they form two plots that we join together as shown in Fig.~\ref{fig
 \label{fig:bode}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-For comparison, we also provide an overlay of the approximate curve and the actual plot (Fig.~\ref{fig:bode}b), and we see that the approximation is very accurate away from breakpoint.   At breakpoint there is a $3\;dB$ error.
+For comparison, we also provide an overlay of the approximate curve and the actual plot (\emph{Fig.~\ref{fig:bode}}b), and we see that the approximation is very accurate away from breakpoint.   At breakpoint there is a $3\;dB$ error.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %              SUB-SUBSECTION              %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -666,7 +670,7 @@ Phase can be naturally decomposed as well:
     \begin{equation}
         \angle H(\omega ) = \angle \frac{{j\omega \tau }}{{1 + j\omega \tau }} = \angle j\omega \tau + \angle \frac{1}{{1 + j\omega \tau }} = \frac{\pi }{2} - {\tan ^{ - 1}}\omega \tau
     \end{equation}
-The first term is simply a constant phase of $90^\circ$ while the second term is the $\arctan$ function.  Estimate $\arctan$ function as shown using straight lines.  The rule of thumb is the line should break at a frequency of one tenth the breakpoint of the circuit, and end moving at a symmetrical point $10\times$ higher than the breakpoint.  See Fig.~\ref{fig:bode_phase}.
+The first term is simply a constant phase of $90^\circ$ while the second term is the $\arctan$ function.  Estimate $\arctan$ function as shown using straight lines.  The rule of thumb is the line should break at a frequency of one tenth the break point of the circuit, and end moving at a symmetrical point $10\times$ higher than the breakpoint.  See \emph{Fig.~\ref{fig:bode_phase}}.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -751,7 +755,7 @@ Check the result for a real impedance (resistor) to verify we have not made any 
 \label{fig:powerflow}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Notice that if the voltage and the current are $90^\circ$ out of phase (inductors and capacitors), then their product is such that during one half the cycle power flows in, and in the other half cycle power flows out, as illustrated in Fig.~\ref{fig:powerflow}.  This means there's no net power flow into these components.  For a resistor, on the other hand, since current and voltage are in phase, it doesn't matter what direction current flows, it's always in phase with the voltage and dissipating power.  Also, power flows twice per cycle!
+Notice that if the voltage and the current are $90^\circ$ out of phase (inductors and capacitors), then their product is such that during one half the cycle power flows in, and in the other half cycle power flows out, as illustrated in \emph{Fig.~\ref{fig:powerflow}}.  This means there's no net power flow into these components.  For a resistor, on the other hand, since current and voltage are in phase, it doesn't matter what direction current flows, it's always in phase with the voltage and dissipating power.  Also, power flows twice per cycle!
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 2.7.4             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
