@@ -11,7 +11,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Chapter Preview}
-In this chapter we'll build models for conductors and semiconductors, starting with the simplest model of all, an ideal metal with a "gas" of electrons swarming about and study conduction in this ideal system.  Surprisingly, we'll find that many properties of real conductors are captured with this model.  Next, we'll delve into semiconductors and learn why the model breaks down.  We'll briefly look a the structure of semiconductors and then develop a simple bond model that can account for free carriers, especially when a material is "doped", or when impurities are added to a solid to modulate its conductivity.  With this model in hand, we'll discuss drift and diffusion currents.  Drift currents are already familiar conduction of electrons in response to a field, or Ohm's Law, whereas diffusion current is due to concentration gradients, which play an important role in devices like diodes. 
+In this chapter we will build models for conductors and semiconductors, starting with the simplest model of all, an ideal metal with a "gas" of electrons swarming about and study conduction in this ideal system.  Surprisingly, many properties of real conductors are captured with this model.  Next, we will delve into semiconductors, and learn why the model breaks down.  Then we will briefly look a the structure of semiconductors, and  develop a simple bond model that can account for free carriers; especially when a material is "doped", or when impurities are added to a solid to modulate its conductivity.  With this model in hand, we'll discuss drift and diffusion currents.  Drift currents are already familiar conduction of electrons in response to a field, or Ohm's Law, whereas diffusion current is due to concentration gradients, which play an important role in devices like diodes. 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                   SECTION 3.2                                        %
@@ -22,19 +22,40 @@ In this chapter we'll build models for conductors and semiconductors, starting w
 %             SUBSECTION 3.2.1             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Ohm’s Law}
-One of the first things we learn in electrical engineering and physics is that  $V = I \times R$.  Is this trivial? Maybe what’s really going on is the following:
+One of the first things we learn in electrical engineering and physics is Ohm's law:
     \begin{equation}
-        V = f(I) = f(0) + f'(0)I + f''(0){I^2}/2 + ... \approx f'(0)I
+        V = I \times R
+        \label{eq:ohms}
     \end{equation}
-In the above Taylor expansion, if the voltage is zero for zero current, and the current is small, then this is generally valid for a reasonably smooth function.   The range of validity (radius of convergence) is the important question. It turns out to be VERY large!
+Is this trivial? Maybe what's really going on is the following:
+    \begin{equation*}
+        V = f(I) = f(0) + f'(0)I + f''(0){I^2}/2 + ... \approx f'(0)I
+    \end{equation*}
+In the above \textbf{Taylor expansion}\index{Taylor expansion}, if the voltage is zero for zero current, and the current is small, then this is generally valid for a reasonably smooth function.   The range of validity (radius of convergence) is the important question. It turns out to be VERY large!
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 3.2.2             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Ohm’s Law Revisited}
- In physics we learned:  $J = \sigma \,E$  Is this also trivial? Well, it’s the same as Ohm’s law, so the questions are related. For a rectangular solid:
+In physics we learned that the current density is proportional to the electric field:
     \begin{equation}
-        J = \frac{I}{A} = \sigma \,\frac{V}{L} \end{equation}\begin{equation}  V = \frac{L}{{\sigma \,A}}I = R\,I
+        J = \sigma \mathcal{E}
+        \label{eq:cd_field}
     \end{equation}
+Is this also trivial? Well, it’s the same as Ohm’s law\index{Ohm's law}, so the questions are related.  In \emph{Eq.~\ref{eq:cd_field}}, $\sigma$ is the \textbf{conductivity}\index{Conductivity}, which is the reciprocal of \textbf{resistivity}\index{Resistivity}, $\rho$.  Recall the definitions of both conductance\index{Conductance} and resistance\index{Resistance}:
+    \begin{align}
+        R &= \frac{V}{I} = \rho \frac{\ell}{A} &\textit{Definition of resistance}
+        \label{eq:resistance}\\[1.5ex]
+        G &= R^{-1} = \frac{I}{V} = {\rho}^{-1} {\bigg( \frac{\ell}{A} \bigg)}^{-1} = \sigma \frac{A}{\ell} &\textit{Definition of conductance}
+        \label{eq:conductance}
+    \end{align}
+Also recall that we can define the electric field as the potential over a certain displacement, and the current density is the current flow through a cross-sectional area.  For a rectangular solid:
+    \begin{equation*}
+        J = \sigma \mathcal{E} = \sigma \frac{V}{\ell} = \frac{I}{A} 
+    \end{equation*}
+Equating the last two terms from the above equation and solving for $V$ gives us Ohm's law:
+    \begin{equation*}
+        V = I \times \frac{\ell}{{\sigma A}} = I \times {\sigma}^{-1}\frac{\ell}{{A}} = I \times \rho \frac{\ell}{{A}} = I \times R
+    \end{equation*}
 Is it not strange that current (velocity) is proportional to force?  Where does conductivity come from?
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 3.2.3             %
@@ -56,7 +77,7 @@ At a temperate $T$, each charged carrier will move in a random direction and vel
 %              SUB-SUBSECTION              %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Memory Loss in Collisions}
- Schematically our model thus far is shown in Fig.~\ref{fig:slide8}.   The key point is the initial velocity and direction is lost (randomized) after a few collisions.
+ Schematically our model thus far is shown in \emph{Fig.~\ref{fig:slide8}}.   The key point is the initial velocity and direction is lost (randomized) after a few collisions.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -157,12 +178,12 @@ At this speed, the electron travels a distance of $v\tau  = 3 \times {10^{ - 7}}
 \label{fig:slide15}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
- The free carrier can penetrate right through positively charged host atoms, as shown schematically in Fig.~\ref{fig:slide15}!  Quantum mechanics explains this!  For a periodic arrangement of potential functions, the electron does not scatter. The influence of the crystal is that it will travel freely with an effective mass different from the rest mass or free electron mass.   So why does it scatter at all?
+ The free carrier can penetrate right through positively charged host atoms, as shown schematically in \emph{Fig.~\ref{fig:slide15}}!  Quantum mechanics explains this!  For a periodic arrangement of potential functions, the electron does not scatter. The influence of the crystal is that it will travel freely with an effective mass different from the rest mass or free electron mass.   So why does it scatter at all?
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 3.2.7             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Scattering in Metals}
-At temperature $T$, the atoms are in random motions in the host atoms (see Fig.~\ref{fig:slide16}a), and so the potential function experienced by charged carriers is not periodic, but quasi-periodic. 
+At temperature $T$, the atoms are in random motions in the host atoms (see \emph{Fig.~\ref{fig:slide16}}a), and so the potential function experienced by charged carriers is not periodic, but quasi-periodic. 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -178,7 +199,7 @@ At temperature $T$, the atoms are in random motions in the host atoms (see Fig.~
 \label{fig:slide16}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Even at extremely low temperatures, the presence of an impurity upsets the periodicity, as shown in Fig.~\ref{fig:slide16}b.  These two mechanisms, vibrations in the crystal (phonons in the parlance of solid-state physics) and impurities are the source of scattering, and thus resistance, in metals.
+Even at extremely low temperatures, the presence of an impurity upsets the periodicity, as shown in \emph{Fig.~\ref{fig:slide16}}b.  These two mechanisms, vibrations in the crystal (phonons in the parlance of solid-state physics) and impurities are the source of scattering, and thus resistance, in metals.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 3.2.8             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -211,7 +232,7 @@ Let's take a careful look at the conductivity for a few different materials:\\
 \end{itemize} 
 \end{minipage}
 \vspace{.5cm}\\
-This list is very interesting in several ways.  First of all we see that copper, a good conductor, is in fact a fantastic conductor, with a conductivity several orders of magnitude larger than a material like germanium.  Germanium is a "semi" conductor, or just semiconductor, for obvious reasons.  It conducts, but very poorly.  Also, whereas temperature has a relatively minor impact on the conductivity of copper, decreasing by about 30\% when the temperature is increased by $100^\circ$, germanium seems to be much more sensitive.  The trends are also opposite as germanium is becoming more conductive, by orders of magnitude, with increasing temperature !  Why?
+This list is very interesting in several ways.  First of all we see that copper, a good conductor, is in fact a fantastic conductor, with a conductivity several orders of magnitude larger than a material like germanium.  Germanium is a "semi" conductor, or just \textbf{semiconductors}\index{Semiconductors}, for obvious reasons.  It conducts, but very poorly.  Also, whereas temperature has a relatively minor impact on the conductivity of copper, decreasing by about 30\% when the temperature is increased by $100^\circ$, germanium seems to be much more sensitive.  The trends are also opposite as germanium is becoming more conductive, by orders of magnitude, with increasing temperature !  Why?
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Finally, we have pure water, which is an insulator, because in pure water there are essentially no free charges.  But sea water (and human tissue) is moderately conductive, but it doesn't have the same sensitivity to temperate as a semiconductor.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -233,12 +254,12 @@ Why the strong temperature dependence for semiconductors?
 \label{fig:periodic_table}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Have a look at the periodic table reproduced here in Fig.~\ref{fig:periodic_table}.  You may recognize that many semiconductors are either Group III, IV, or V elements.  What is special about Group III, IV, and V elements?  Recall that the number of outer shell electrons in atoms is related to its group number.  Noble gases are unique in that they have complete shells and this is in fact why they are so stable.  Group IV elements in particular have four electrons in their outer shell.  This is why when they are grouped together, they bond and share electrons, four electrons on average.
+Have a look at the periodic table reproduced here in \emph{Fig.~\ref{fig:periodic_table}}.  You may recognize that many semiconductors are either Group III, IV, or V elements.  What is special about Group III, IV, and V elements?  Recall that the number of outer shell electrons in atoms is related to its group number.  Noble gases are unique in that they have complete shells and this is in fact why they are so stable.  Group IV elements in particular have four electrons in their outer shell.  This is why when they are grouped together, they bond and share electrons, four electrons on average.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 3.3.2             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Electronic Properties of Silicon}
-We'll focus on silicon, but a lot of what we have to say applies to most semiconductors.  Silicon is the most commonly used semiconductor, so it's the most relevant example.  From chemistry, we know that silicon is in Group IV element, like carbon.  It has a total of 14 electrons, arranged into the following orbital structure shown in Fig.~\ref{fig:slide20}:
+We'll focus on silicon, but a lot of what we have to say applies to most semiconductors.  Silicon is the most commonly used semiconductor, so it's the most relevant example.  From chemistry, we know that silicon is in Group IV element, like carbon.  It has a total of 14 electrons, arranged into the following orbital structure shown in \emph{Fig.~\ref{fig:slide20}}:
     \begin{itemize}
         \item{Atom electronic structure: 1s$^2$2s$^2$2p$^6$3s$^2$3p$^2$}
         \item{Crystal electronic structure: 1s$^2$2s$^2$2p$^6$3(sp)$^4$}
@@ -247,7 +268,7 @@ We'll focus on silicon, but a lot of what we have to say applies to most semicon
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Notice that the s and p orbitals combine when the silicon atoms combine into a hybridized state.  This deserves a bit of explanation.  When silicon atoms are far apart, the electrons occupy the usual orbital states you're familiar with from chemistry.  The last two electrons are in the p orbital, which can hold a total of 6.  But when the atoms are brought into close proximity, the outer shell valence electrons feel the influence of two nuclei, and therefore it's logical to assume that the electrons should spend more time in between the nuclei, essentially forming covalent bonds.  If the Pauli exclusion principle didn't apply, then all the electrons would occupy the p orbitals in between the silicon atoms, leaving some empty and some more than full !  But alas only 2 electrons per orbital (with opposite spin).
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-On the other hand, the geometry of the p orbitals shown in Fig.~\ref{fig:slide20} would be ideal if silicon could bond to six neighbors, , but this doesn't happen because there would be too many valence electrons since each atom already has 2 3p electrons, since silicon only needs 4 additional electrons to form a complete shell.  On the other hand, the hybridized 3(sp)$^4$ state (linear combination of s and p orbitals) contains four electrons and can bond with four neighbors as shown.  This scenario is how silicon atoms combine to form a crystal, with the geometry more complicated than a simple cube  arising from these bond angles.
+On the other hand, the geometry of the p orbitals shown in \emph{Fig.~\ref{fig:slide20}} would be ideal if silicon could bond to six neighbors, , but this doesn't happen because there would be too many valence electrons since each atom already has 2 3p electrons, since silicon only needs 4 additional electrons to form a complete shell.  On the other hand, the hybridized 3(sp)$^4$ state (linear combination of s and p orbitals) contains four electrons and can bond with four neighbors as shown.  This scenario is how silicon atoms combine to form a crystal, with the geometry more complicated than a simple cube  arising from these bond angles.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Also, silicon is a very poor conductor at room temperature. Why?
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -272,7 +293,7 @@ Also, silicon is a very poor conductor at room temperature. Why?
 \caption{The crystal structure of silicon.  All atoms are silicon, and have covalent bonds with their four neighbors.  The colored atoms in this 3D model represent a unit cell that is repeated across the crystal.  The symmetry planes are also highlighted.  A 3D model can be viewed and manipulated online \url{https://sketchfab.com/3d-models/silicon-crystal-lattice-73e292f32ffe4ca490e166faeba317e7}.} \label{fig:silicon_crysal}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Silicon atoms arrange in a nice crystal structure known as the diamond structure shown in Fig.~\ref{fig:silicon_crysal}.  In this figure, spheres represent silicon atoms with one particular unit cell highlighted.  The planes in the figure correspond to the symmetry planes of the crystal.  Usually the crystal is cut along one of these symmetry planes.
+Silicon atoms arrange in a nice crystal structure known as the diamond structure shown in \emph{Fig.~\ref{fig:silicon_crysal}}.  In this figure, spheres represent silicon atoms with one particular unit cell highlighted.  The planes in the figure correspond to the symmetry planes of the crystal.  Usually the crystal is cut along one of these symmetry planes.
 
 Notice that each silicon atom bonds to four neighbors using a covalent (shared electron) bond.  In a covalent bonds, the electrons are shared among a group of host atoms, giving up their identity and loyalty to a fixed atom as they are shared among a group of nuclei, forming a more stable overall structure than if they remained in their lone atomic orbitals.  The inner core electrons, on the other hand, are bound to the host nucleus and don't participate in conduction (the interest of this chapter) unless very energetic particles such as x-rays are incident on the crystal. 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -289,7 +310,7 @@ Notice that each silicon atom bonds to four neighbors using a covalent (shared e
 \label{fig:slide23}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-From quantum mechanics and chemistry,  we know that for an atom the allowed energy levels for an atom are discrete (2 electrons can occupy a state since with opposite spin), as shown in Fig.~\ref{fig:slide23}a.  There is an energy gap between states that electrons cannot occupy.   From solid-state physics, we have an important result that when a collection of atoms are brought together, the energy levels split as shown in Fig.~\ref{fig:slide23}b.   If there are a large number of atoms, the discrete energy levels form a nearly “continuous” band.   The gap between the energy levels may widen or even disappear, giving rise to different material properties.
+From quantum mechanics and chemistry,  we know that for an atom the allowed energy levels for an atom are discrete (2 electrons can occupy a state since with opposite spin), as shown in \emph{Fig.~\ref{fig:slide23}}a.  There is an energy gap between states that electrons cannot occupy.   From solid-state physics, we have an important result that when a collection of atoms are brought together, the energy levels split as shown in \emph{Fig.~\ref{fig:slide23}}b.   If there are a large number of atoms, the discrete energy levels form a nearly “continuous” band.   The gap between the energy levels may widen or even disappear, giving rise to different material properties.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 3.3.4             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -298,7 +319,7 @@ In the energy diagram discussed, the lines represent allowed energy levels and t
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 In a similar way, for a collection of atoms, the forbidden energy states cannot be occupied by electrons.    Lower energy states correspond to "valence band" electrons, or electrons that are bound to host atoms.  Higher energy states, in the "conduction band" are "free" electrons that take part in conduction, as they are free to move around the crystal.  In essence, the conduction band electrons have sufficient energy to leave the nucleus and roam the crystal.  The host atoms become ionized and charged as a result.   The electrons act like free electrons in a vacuum, albeit with a different mass.\footnote{The electrons are still bound to reside in the crystal, and a significant amount of energy is required to remove these electrons from the crystal due to the fact that the entire crystal is charge neutral and leaving the crystal means charge separation}. 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-The gap between the conduction and valence band determines the conductive properties of the material, see Fig.~\ref{fig:slide24b}.  In insulators, the gap between the conduction band and  valence band, or the band gap, is quite large,  $\sim 4-8$eV.  Therefore it takes an enormous amount of energy to pull electrons away from host atoms.  At room temperature, electrons only have an energy of about 25meV, so an $4$eV band gap is nearly an infinite one to overcome. 
+The gap between the conduction and valence band determines the conductive properties of the material, see \emph{Fig.~\ref{fig:slide24b}}.  In insulators, the gap between the conduction band and  valence band, or the band gap, is quite large,  $\sim 4-8$eV.  Therefore it takes an enormous amount of energy to pull electrons away from host atoms.  At room temperature, electrons only have an energy of about 25meV, so an $4$eV band gap is nearly an infinite one to overcome. 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 In a metal, the conduction band is partially filled and therefore many electrons are free to move about, resulting in good conduction properties.  The band gap is either very small, or partially overlapping with the valence band, resulting in no discernible band gap.  And this leaves semiconductors, which are materials that have a "medium sized" gap, about $\sim 1$eV.  This means that the barrier to become a free electron is high, but not impossible.  In a given solid of semiconductor, there's always a few lucky electrons that will be in the conduction band.  In fact, the probability of occupying  a certain energy level is related to the Boltzmann distribution modified to account for the fact that electrons are Fermions and cannot occupy the same energy levels, resulting in Fermi-Dirac statistics.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -311,12 +332,12 @@ In a metal, the conduction band is partially filled and therefore many electrons
 \label{fig:slide24b}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-As discussed previously, thermal energy is very low on average ($\sim 25$meV), but there are a few (very few) high energy electrons.   So the conductivity of semiconductors is poor, but not zero.  As shown in Fig.~\ref{fig:slide24b}, electrons in the valence band can gain energy from incoming photons or from the vibration in the crystal (phonons) and if the energy is sufficiently large, they can absorb  it and go into the conduction band.
+As discussed previously, thermal energy is very low on average ($\sim 25$meV), but there are a few (very few) high energy electrons.   So the conductivity of semiconductors is poor, but not zero.  As shown in \emph{Fig.~\ref{fig:slide24b}}, electrons in the valence band can gain energy from incoming photons or from the vibration in the crystal (phonons) and if the energy is sufficiently large, they can absorb  it and go into the conduction band.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 3.3.5             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Model for Good Conductor}
- Given this background, we can now model a good conductor as a collection of atoms that are all ionized forming a  “sea” of electrons can wander about crystal, shown in Fig.~\ref{fig:slide25}.  The electrons are the “glue” that holds the solid together.  They spend most of their time in between the ionized nuclei, effectively shielding the nuclei from each other, lowering the energy of the system.  But they are not confined to bonds, they are free to move around the crystal and contribute to conduction.  Since they are “free”, they respond to applied fields and give rise to ohmic currents.  They also respond to incoming photons and give rise to the optical properties such as the fact that these materials are opaque and have shiny surfaces.  Electrons at the surface of the structure readily accept optical photons and re-radiate them.
+ Given this background, we can now model a good conductor as a collection of atoms that are all ionized forming a  “sea” of electrons can wander about crystal, shown in \emph{Fig.~\ref{fig:slide25}}.  The electrons are the “glue” that holds the solid together.  They spend most of their time in between the ionized nuclei, effectively shielding the nuclei from each other, lowering the energy of the system.  But they are not confined to bonds, they are free to move around the crystal and contribute to conduction.  Since they are “free”, they respond to applied fields and give rise to ohmic currents.  They also respond to incoming photons and give rise to the optical properties such as the fact that these materials are opaque and have shiny surfaces.  Electrons at the surface of the structure readily accept optical photons and re-radiate them.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -335,7 +356,7 @@ Unlike a conductor, a semiconductor does not have many free electrons.  This is 
 %             SUBSECTION 3.3.6             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Bond Model for Silicon (\texorpdfstring{$T=0\;K$}{T=0K})}
-Let's build a simple 2D model for silicon as shown in Fig.~\ref{fig:silicon_model}.  The circles represent the nuclei and the lines represent electrons that are forming covalent bonds, or residing in the 3(sp)$^4$ orbitals.  For simplicity, we squashed the orbitals to lie on a plane.
+Let's build a simple 2D model for silicon as shown in \emph{Fig.~\ref{fig:silicon_model}}.  The circles represent the nuclei and the lines represent electrons that are forming covalent bonds, or residing in the 3(sp)$^4$ orbitals.  For simplicity, we squashed the orbitals to lie on a plane.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -376,7 +397,7 @@ When we formed a free electron, we leave behind a broken bond.  This bond means 
 \caption{Illustration of how a broken covalent bond moves around the crystal like a free particle.   Each wiggly bond represents a valence band electron moving into the vacancy created by the hole.} \label{fig:silicon_hole}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Notice, as illustrated in Fig.~\ref{fig:silicon_hole},  that the vacancy (hole) left behind can be filled by a neighboring electron.   But if the neighboring electron jumps into this vacancy, it forms its own vacancy while filling the other one.  This chain reaction of vacancies moving around is complex as it corresponds to the motion of many valence band electrons.  An easy way to model it is to great it like there is a positive charge traveling around.  We call this positive (ficticious\footnote{Calling it real or fake is almost a philosophical question.  If it looks like a duck, swims like a duck, and quacks like a duck, then it probably is a duck.} ) particle a "hole".  It turns out that we can treat the holes as legitimate particles with positive mass and of course positive charge (because the broken bond leaves behind a net charge of +1).
+Notice, as illustrated in \emph{Fig.~\ref{fig:silicon_hole}},  that the vacancy (hole) left behind can be filled by a neighboring electron.   But if the neighboring electron jumps into this vacancy, it forms its own vacancy while filling the other one.  This chain reaction of vacancies moving around is complex as it corresponds to the motion of many valence band electrons.  An easy way to model it is to great it like there is a positive charge traveling around.  We call this positive (ficticious\footnote{Calling it real or fake is almost a philosophical question.  If it looks like a duck, swims like a duck, and quacks like a duck, then it probably is a duck.} ) particle a "hole".  It turns out that we can treat the holes as legitimate particles with positive mass and of course positive charge (because the broken bond leaves behind a net charge of +1).
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 3.3.9             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -450,7 +471,7 @@ We call this the Law of Mass-Action:
     \begin{equation}
         n_i \propto e^{-E_g/2kT}
     \end{equation}
-Recall that $kT$ is proportional to the thermal energy and  $E_g$ is the band gap.  The above equation says that the number of carriers at an “excess” energy above the valence band depends strongly on how much thermal energy we have in the system.  The origin of this equation can be explained using a simple analogy.  Instead of a band gap, imagine a wall.  Let’s say that the wall is 6.5 feet tall and anyone with a height over 5.8 feet can hop over the wall.  If we take a classroom full of students and plot the distribution of heights, we get a normal distribution as shown in Fig.~\ref{fig:normal_dist}.  The average height is 5.3 feet and we have marked the local of 5.8, the necessary energy required to get over this wall.  If we integrate under the curve to find the total number of students tall enough, we can see that it’s not unreasonable that the integral over the tail of the distribution is approximately exponential as we have claimed.  If we raise the barrier height, exponentially fewer students can make it over the wall.
+Recall that $kT$ is proportional to the thermal energy and  $E_g$ is the band gap.  The above equation says that the number of carriers at an “excess” energy above the valence band depends strongly on how much thermal energy we have in the system.  The origin of this equation can be explained using a simple analogy.  Instead of a band gap, imagine a wall.  Let’s say that the wall is 6.5 feet tall and anyone with a height over 5.8 feet can hop over the wall.  If we take a classroom full of students and plot the distribution of heights, we get a normal distribution as shown in \emph{Fig.~\ref{fig:normal_dist}}.  The average height is 5.3 feet and we have marked the local of 5.8, the necessary energy required to get over this wall.  If we integrate under the curve to find the total number of students tall enough, we can see that it’s not unreasonable that the integral over the tail of the distribution is approximately exponential as we have claimed.  If we raise the barrier height, exponentially fewer students can make it over the wall.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                   SECTION 3.5                                        %
@@ -462,7 +483,7 @@ The term doping means that we add impurities to the crystal to change its proper
 %             SUBSECTION 3.5.1             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Doping with Group V Elements}
-Let’s start with a group V element on the periodic table, for example Phosphorous (P) or Arsenic (As).  Because these are group 5 elements, they do not fit naturally in the crystal, that is unless they get rid of one of their valence electrons.  Then they can “fit in” and present to be silicon (group 4) atoms and form covalent bonds with their neighbors.  We are assuming that the number of group 5 elements is substantially smaller than the number of group 4 elements, so they would be more or less always surrounded by silicon atoms.  In our bonding model, we can say that the group 5 element fits into the crystal as an ionized atom by \emph{donating} an electron to the crystal, as shown in Fig.~\ref{fig:silicon_dopant_V}.   We call these dopants \emph{donors}.
+Let’s start with a group V element on the periodic table, for example Phosphorous (P) or Arsenic (As).  Because these are group 5 elements, they do not fit naturally in the crystal, that is unless they get rid of one of their valence electrons.  Then they can “fit in” and present to be silicon (group 4) atoms and form covalent bonds with their neighbors.  We are assuming that the number of group 5 elements is substantially smaller than the number of group 4 elements, so they would be more or less always surrounded by silicon atoms.  In our bonding model, we can say that the group 5 element fits into the crystal as an ionized atom by \emph{donating} an electron to the crystal, as shown in \emph{Fig.~\ref{fig:silicon_dopant_V}}.   We call these dopants \emph{donors}.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -511,7 +532,7 @@ The final result is so obvious you might wonder why we bothered with all the que
 %             SUBSECTION 3.5.3             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Doping with Group III Elements}
-So we have seen that adding a group 5 element doping element increases the number of free electrons.  How about if we want to increase the number of holes?  Well, by symmetry, let’s try a group 3 element.  Boron for example has 3 bonding electrons, and so if it were surrounded by group 4 elements like silicon, it would be sorely missing an electron.  What can happen is that another electron can come to the rescue and make Boron a very happy atom. It’ll be a negatively charged ion (because it has an extra electron attached to it), but it can now covalently bond with its neighbors in an orderly fashion.  But where does that electron come from?  A neighboring atom for example can lose its electron, forming a hole, and that hole can now roam about as a free hole.  The model is illustrated in Fig.~\ref{fig:silicon_dopant_III}, and shows that the addition of a group 3 element creates a negatively charged ion and a free hole.
+So we have seen that adding a group 5 element doping element increases the number of free electrons.  How about if we want to increase the number of holes?  Well, by symmetry, let’s try a group 3 element.  Boron for example has 3 bonding electrons, and so if it were surrounded by group 4 elements like silicon, it would be sorely missing an electron.  What can happen is that another electron can come to the rescue and make Boron a very happy atom. It’ll be a negatively charged ion (because it has an extra electron attached to it), but it can now covalently bond with its neighbors in an orderly fashion.  But where does that electron come from?  A neighboring atom for example can lose its electron, forming a hole, and that hole can now roam about as a free hole.  The model is illustrated in \emph{Fig.~\ref{fig:silicon_dopant_III}}, and shows that the addition of a group 3 element creates a negatively charged ion and a free hole.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -552,7 +573,7 @@ These extra holes drive down the concentration of electrons
 %             SUBSECTION 3.5.5             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Compensation}
-What happens if we dope with \textit{both} donors and acceptors?  Who wins out ?  Well, it depends on the doping level.  Essentially we create both free electrons for every donor dopant and free holes for every acceptor dopant.  Take a look at Fig.~\ref{fig:silicon_dopant_both}.
+What happens if we dope with \textit{both} donors and acceptors?  Who wins out ?  Well, it depends on the doping level.  Essentially we create both free electrons for every donor dopant and free holes for every acceptor dopant.  Take a look at \emph{Fig.~\ref{fig:silicon_dopant_both}}.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -617,7 +638,7 @@ Which is approximately
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Drift Velocity and Mobility}
 Now, as before, we apply an electric field $E$ and charge carriers accelerate, at least for  $\tau_c$ seconds before they collide.
-As shown in Fig.~\ref{fig:drift_field}, during this time they gain momentum from the field
+As shown in \emph{Fig.~\ref{fig:drift_field}}, during this time they gain momentum from the field
     \begin{equation}
         v_{dr} = a \tau_c = \frac{q E}{m} \tau_c
     \end{equation}
@@ -640,7 +661,7 @@ We define a mobility for both the electrons, $\mu_n$ and holes, $\mu_p$ and expe
 \label{fig:mobility}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-As you might expect, the mobility should depend on temperature and also on the total dopant concentration, because the more dopants we introduce, the more scattering sites.  This is born out by measurement and theory, as shown in Fig.~\ref{fig:mobility}, which shows that the mobility is highest for undoped silicon and then begins to drop as we introduce more and more dopants.  A typical values for electrons is about ${\mu _n} = 1000 \mathrm{cm^2}/\mathrm{V s}$ and for holes ${\mu _p} = 400 \mathrm{cm^2}/\mathrm{V s}$.  Electrons go faster as they are “lighter”. 
+As you might expect, the mobility should depend on temperature and also on the total dopant concentration, because the more dopants we introduce, the more scattering sites.  This is born out by measurement and theory, as shown in \emph{Fig.~\ref{fig:mobility}}, which shows that the mobility is highest for undoped silicon and then begins to drop as we introduce more and more dopants.  A typical values for electrons is about ${\mu _n} = 1000 \mathrm{cm^2}/\mathrm{V s}$ and for holes ${\mu _p} = 400 \mathrm{cm^2}/\mathrm{V s}$.  Electrons go faster as they are “lighter”. 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                   SECTION 3.7                                        %
@@ -652,7 +673,7 @@ We are all familiar with diffusion currents in everyday life, for example the fr
 %             SUBSECTION 3.7.1             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Diffusion}
-Let’s do a simple thought experiment to figure out why diffusion flows from high to low concentration.  In Fig.~\ref{fig:slide46}, imagine that we fill the left chamber with a gas at temperate $T$. If we suddenly remove the divider, what happens?  The gas will fill the entire volume of the new chamber. How does this occur?
+Let’s do a simple thought experiment to figure out why diffusion flows from high to low concentration.  In \emph{Fig.~\ref{fig:slide46}}, imagine that we fill the left chamber with a gas at temperate $T$. If we suddenly remove the divider, what happens?  The gas will fill the entire volume of the new chamber. How does this occur?
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -676,7 +697,7 @@ Let’s do a simple thought experiment to figure out why diffusion flows from hi
 \label{fig:random_flow}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Let’s zoom in to the motion of the molecules (Fig.~\ref{fig:random_flow}).  The net motion of gas molecules to the right chamber was due to the concentration gradient.
+Let’s zoom in to the motion of the molecules (\emph{Fig.~\ref{fig:random_flow}}).  The net motion of gas molecules to the right chamber was due to the concentration gradient.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 If each particle moves on average left or right with equal probability, then eventually half will be in the right chamber. If the molecules were charged (or electrons), then there would be a net current flow.  It's clear that the diffusion current flows from high concentration to low concentration, because in areas of higher concentration there are more particles moving both left and right, which is larger than say the particles moving left and right in the regions of low concentration.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -692,7 +713,7 @@ If each particle moves on average left or right with equal probability, then eve
 %             SUBSECTION 3.7.2             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Diffusion Equations}
-We can find an equation for diffusion currents of electrons if we carefully consider the collective average motion.  With reference to Fig.~\ref{fig:slide48}, assume that the mean free path is $\lambda$.  Let’s find the flux of carriers crossing the $x=0$ plane by imagining how many particles will cross the origin in a time equal to the average inter-collision time.  If we move left and right a distance $\lambda$, then all particles moving in the right direction (towards the origin), will cross the origin as they travel on average a distance $\lambda$.  The flux of electrons is therefore the number of particles multiplied by the distance they move
+We can find an equation for diffusion currents of electrons if we carefully consider the collective average motion.  With reference to \emph{Fig.~\ref{fig:slide48}}, assume that the mean free path is $\lambda$.  Let’s find the flux of carriers crossing the $x=0$ plane by imagining how many particles will cross the origin in a time equal to the average inter-collision time.  If we move left and right a distance $\lambda$, then all particles moving in the right direction (towards the origin), will cross the origin as they travel on average a distance $\lambda$.  The flux of electrons is therefore the number of particles multiplied by the distance they move
     \begin{equation}
         dF = \frac{1}{2}{v_{th}}\left( {n( - \lambda) - n(\lambda)} \right)
     \end{equation}
@@ -741,7 +762,7 @@ When both drift and diffusion are present, the total current is given by the sum
     \begin{equation}
         J = {J_{drift}} + {J_{diff}} = q{\mu _n}nE + q{D_n}\frac{{dn}}{{dx}}
     \end{equation}
-In resistors, the carrier is approximately uniform and the second term is nearly zero. For currents flowing uniformly through an interface (no charge accumulation), as shown in Fig.~\ref{fig:slide50}, the field is discontinuous.  Nevertheless the current must flow through the interface (unless charge is accumulating):
+In resistors, the carrier is approximately uniform and the second term is nearly zero. For currents flowing uniformly through an interface (no charge accumulation), as shown in \emph{Fig.~\ref{fig:slide50}}, the field is discontinuous.  Nevertheless the current must flow through the interface (unless charge is accumulating):
     \begin{equation}
         {J_1} = {J_2}
     \end{equation}
