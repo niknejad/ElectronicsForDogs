@@ -179,7 +179,7 @@ Following our derivation from the last chapter, we excite a system with an input
     \begin{equation}
         H \equiv \frac{y}{x} = \left( {a + {b_1}j\omega  + {b_2}{{(j\omega )}^2} +  \cdots  + \frac{{{c_1}}}{{j\omega }} + \frac{{{c_2}}}{{{{(j\omega )}^2}}} +  \cdots } \right)
     \end{equation}
- We can write this in canonical form as a rational function:
+ We can write this in \textbf{canonical form}\index{Transfer function!canonical form} as a rational function:
     \begin{equation}
         H(\omega ) = \frac{{{n_1} + {n_2}j\omega  + {n_3}{{(j\omega )}^2} +  \cdots }}{{{d_1} + {d_2}j\omega  + {d_3}{{(j\omega )}^2} +  \cdots }}
     \end{equation}
@@ -192,7 +192,7 @@ You may hear people talking about transfer functions as a function of complex �
 \begin{equation}
 	H(s) = \frac{{({z_1} - s)({z_2} - s) \cdots }}{{({p_1} - s)({p_2} - s) \cdots }}
 \end{equation}
-As we learned, this is a generalization (Laplace Domain) of frequency. When doing AC analysis, we are deriving the function along the imaginary axis (sinusoidal steady-state response)
+As we learned, this is a generalization (Laplace domain\index{Laplace domain}) of frequency. When doing AC analysis, we are deriving the function along the imaginary axis (sinusoidal steady-state response)
 \begin{equation}
 	H(s = j\omega ) = \frac{{({z_1} - j\omega )({z_2} - j\omega ) \cdots }}{{({p_1} - j\omega )({p_2} - j\omega ) \cdots }}
 \end{equation}
@@ -201,15 +201,15 @@ This is why you may see introduce this notation:  $H(j\omega )$
 %             SUBSECTION 2.3.2             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Poles and Zeros}
-For most circuits that we deal with, the transfer function can be shown to be a rational function
+For most circuits that we deal with, the transfer function can be shown to be a \textbf{rational function}\index{Transfer function!rational form}:
 \begin{equation}
 	H(\omega ) = \frac{{{n_1} + {n_2}j\omega  + {n_3}{{(j\omega )}^2} +  \cdots }}{{{d_1} + {d_2}j\omega  + {d_3}{{(j\omega )}^2} +  \cdots }}
 \end{equation}
-The behavior of the circuit can be extracted by finding the roots of the numerator and denominator
+The behavior of the circuit can be extracted by putting the transfer function into \textbf{standard form}\index{Transfer function!standard form}, and finding the roots of the numerator and denominator:
 \begin{equation} 
 	H(\omega ) = \frac{{({z_1} - j\omega )({z_2} - j\omega ) \cdots }}{{({p_1} - j\omega )({p_2} - j\omega ) \cdots }} = \frac{{\prod {({z_i} - j\omega )} }}{{\prod {({p_i} - j\omega )} }}
 \end{equation}
-Or in another form (DC gain explicit)
+Or in another form (\textbf{DC gain explicit}\index{Transfer function!DC gain form}):
 \begin{equation}
 	H(\omega ) = {G_0}{(j\omega )^K}\frac{{(1 - j\omega {\tau _{z1}})(1 - j\omega {\tau _{z2}}) \cdots }}{{(1 - j\omega {\tau _{p2}})(1 - j\omega {\tau _{p2}}) \cdots }}
 \end{equation}	
@@ -219,7 +219,7 @@ Or in another form (DC gain explicit)
 %              SUB-SUBSECTION              %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Building Tents: Poles and Zeros}
-The roots of the numerator are called the “zeros” since at these frequencies, the transfer function is zero.  These are the "stakes in the ground" of our tent, see \emph{Fig.~\ref{fig:tent}}.  	The roots of the denominator are called the “poles”, since at these frequencies the transfer function peaks (like a pole in a tent).
+The roots of the numerator are called the \textbf{“zeros”}\index{Transfer function!zeros} since at these frequencies, the transfer function is zero.  These are the "stakes in the ground" of our tent, see \emph{Fig.~\ref{fig:tent}}.  The roots of the denominator are called the \textbf{“poles”}\index{Transfer function!poles}, since at these frequencies the transfer function peaks (like a pole in a tent).
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -241,46 +241,13 @@ While the frequency response requires us to keep track of the transfer function 
 %             SUBSECTION 2.4.1             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Phasors}
-With our new confidence in complex numbers, we can go full steam ahead and work directly with them … we can even drop the time factor $e^{j\omega t}$ since it will cancel out of the equations.  In other words, the part that matters is the amplitude and phase shift of the resulting complex exponential, not the complex exponential itself.  Let's define this part as the "phasor".
+With our new confidence in complex numbers, we can go full steam ahead and work with them directly.  We can even drop the time factor, $e^{j\omega t}$, since it will cancel out of the equations.  In other words, the part that matters is the amplitude and phase shift of the resulting complex exponential, not the complex exponential itself.  Let's define this part as the \textbf{"phasor"}\index{Phasor}.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 We excite system with a phasor: ${\tilde V_1} = {V_1}{e^{j{\varphi _1}}}$ and the response  will also be phasor: ${\tilde V_2} = {V_2}{e^{j{\varphi _2}}}$.   
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%             SUBSECTION 2.4.2             %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Capacitor I-V Phasor Relation}
-To find the phasor relation for current and voltage for a capacitor, begin with the "$I-V$" relation in the time domain (see \emph{Fig.~\ref{fig:lcphasor}})
-    \begin{equation}
-        {i_c}(t) = C\frac{{d{v_C}(t)}}{{dt}}
-    \end{equation}
-Now for sinusoidal steady state we substitute
-    \begin{equation}
-        {i_c}(t) = {I_c}{e^{j\omega t}}
-    \end{equation}
-and
-    \begin{equation}
-        {v_c}(t) = {V_c}{e^{j\omega t}}
-    \end{equation}
-This leads to
-    \begin{equation}
-        {I_c}{e^{j\omega t}} = C\frac{d}{{dt}}[{V_c}{e^{j\omega t}}]
-    \end{equation}
-or
-    \begin{equation}
-        C{V_c}\frac{d}{{dt}}{e^{j\omega t}} = j\omega \,C{V_c}{e^{j\omega t}}
-    \end{equation}
-Let's eliminate the common $e^{j\omega t}$ factor
-    \begin{equation}
-        {I_c}{e^{j\omega t}} = j\omega \,C{V_c}{e^{j\omega t}}
-    \end{equation}
-Or more simply, the phasor relation.  
-    \begin{equation}
-        {I_c} = j\omega \,C\,{V_c}
-    \end{equation}
-This is "Ohm's Law" in the frequency domain for a capacitor.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[tb]
+\begin{figure}[H]
 \centering
 \begin{tabular}{ccc}
 \includegraphics[width=.25\columnwidth]{mod1_3_3_cap} & \hspace{1cm} &
@@ -291,6 +258,39 @@ This is "Ohm's Law" in the frequency domain for a capacitor.
 \label{fig:lcphasor}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%             SUBSECTION 2.4.2             %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Capacitor I-V Phasor Relation}
+To find the phasor relation for current and voltage for a capacitor, begin with the "$I-V$" relation in the time domain (see \emph{Fig.~\ref{fig:lcphasor}}):
+    \begin{equation}
+        {i_c}(t) = C\frac{{d{v_C}(t)}}{{dt}}
+    \end{equation}
+Now for sinusoidal steady state we substitute:
+    \begin{equation}
+        {i_c}(t) = {I_c}{e^{j\omega t}}
+    \end{equation}
+and,
+    \begin{equation}
+        {v_c}(t) = {V_c}{e^{j\omega t}}
+    \end{equation}
+This leads to:
+    \begin{equation}
+        {I_c}{e^{j\omega t}} = C\frac{d}{{dt}}[{V_c}{e^{j\omega t}}]
+    \end{equation}
+or,
+    \begin{equation}
+        C{V_c}\frac{d}{{dt}}{e^{j\omega t}} = j\omega \,C{V_c}{e^{j\omega t}}
+    \end{equation}
+Let's eliminate the common $e^{j\omega t}$ factor:
+    \begin{equation}
+        {I_c}{e^{j\omega t}} = j\omega \,C{V_c}{e^{j\omega t}}
+    \end{equation}
+Or more simply, the phasor relation:
+    \begin{equation}
+        {I_c} = j\omega \,C\,{V_c}
+    \end{equation}
+This is \textbf{"Ohm's Law"}\index{Ohm's Law} in the frequency domain\index{Frequency domain} for a capacitor.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 2.4.3             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Inductor I-V Phasor Relation}
@@ -298,15 +298,15 @@ Let's now find the phasor relation for current and voltage in an inductor using 
     \begin{equation}
         v(t) = L\frac{{di(t)}}{{dt}}
     \end{equation} 
-For sinusoidal steady-state, this implies
+For sinusoidal steady-state, this implies:
     \begin{equation}
         V{e^{j\omega t}} = L\frac{d}{{dt}}[I{e^{j\omega t}}]
     \end{equation}
-or
+or,
     \begin{equation}
         LI\frac{d}{{dt}}{e^{j\omega t}} = j\omega \,LI{e^{j\omega t}}
     \end{equation}
-Canceling the common factor
+Canceling the common factor:
     \begin{equation}
         V{e^{j\omega t}} = j\omega \,LI{e^{j\omega t}}
     \end{equation}
@@ -318,7 +318,8 @@ This is the phasor relation for an inductor, or "Ohm's Law" in the frequency dom
 %             SUBSECTION 2.4.4             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Direct Calculation of \textit{H} (no DEs)}
-To directly calculate the transfer function (impedance, trans-impedance, etc) we can generalize the circuit analysis concept from the “real” domain to the “phasor” domain.   We drop the time dependence $e^{j\omega t}$ (common factor that cancels out) and just keep track of amplitude and phase (phasor).  With the concept of impedance (admittance), we directly analyze a circuit without explicitly writing down any differential equations.  We are free to use KVL, KCL, mesh analysis, loop analysis, or nodal analysis where inductors and capacitors are treated as complex resistors, or more correctly as an impedance (or admittance).
+To directly calculate the transfer function (impedance, trans-impedance, etc) we can generalize the circuit analysis concept from the “real” domain to the “phasor” domain.   We drop the time dependence $e^{j\omega t}$ (common factor that cancels out) and just keep track of amplitude and phase (phasor).  With the concept of \textbf{impedance}\index{Impedance} (\textbf{admittance}\index{Admittance}), we directly analyze a circuit without explicitly writing down any differential equations.  We are free to use KVL, KCL, mesh analysis, loop analysis, or nodal analysis where inductors and capacitors are treated as complex resistors, or more correctly as an impedance (or admittance).
+\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                   SECTION 2.5                                        %
@@ -344,7 +345,7 @@ In \emph{Fig.~\ref{fig:lpfagain}}, we show a "real"  time-domain circuit and the
 \label{fig:lpfagain}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-The fastest way to solve the problem is to say that the LPF is really a voltage divider:
+The fastest way to solve the problem is to say that the LPF is really a \textbf{voltage divider}\index{Voltage divider}:
     \begin{equation}
         H(\omega ) = \frac{{{V_o}}}{{{V_s}}} = \frac{{{Z_C}}}{{{Z_C} + {Z_R}}} = \frac{{\frac{1}{{j\omega C}}}}{{R + \frac{1}{{j\omega C}}}} = \frac{1}{{1 + j\omega RC}}
     \end{equation}
@@ -362,7 +363,7 @@ The fastest way to solve the problem is to say that the LPF is really a voltage 
 \label{fig:bigexample}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Consider a more complicated example shown in \emph{Fig.~\ref{fig:bigexample}}.  To find $v_o$, you can do nodal analysis or use network theorems to simplify the circuit.  Let's find the Thevenin equivalent from $C_2$'s perspective.  The open-circuit voltage is just the first voltage divider:
+Consider a more complicated example shown in \emph{Fig.~\ref{fig:bigexample}}.  To find $v_o$, you can do \textbf{nodal analysis}\index{Nodal analysis} or use \textbf{network theorems}\index{Network theorems} to simplify the circuit.  Let's find the \textbf{Thevenin equivalent}\index{Network theorems!Thevenin equivalence} from $C_2$'s perspective.  The open-circuit voltage is just the first voltage divider:
     \begin{equation}
         v_{th} = \frac{Z_{C_1}}{R_1 + Z_{C_1}} v_s 
     \end{equation}
@@ -375,51 +376,52 @@ Therefore we have
         v_o = \frac{Z_{C_2}}{Z_{C_2} + Z_{th}} V_{th} 
     \end{equation}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%             SUBSECTION 2.5.3             %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Series RLC Circuits} \label{sec:lcr}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}
+\begin{figure}[tb]
 \centering
 \includegraphics[scale=1]{rlc}
 \caption{A series $RLC$ circuit.}
 \label{fig:rlc}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-The $RLC$ circuit shown in \emph{Fig.~\ref{fig:rlc}} is simple but extremely useful and rich in application.  The impedance seen by the source is simply given by
-    \begin{equation}
-        Z = j\omega L + \frac{1}{j\omega C} + R 
-          = R + j\omega L \left( 1 - \frac{1}{\omega^2 LC}\right) 
-    \end{equation}
-The impedance is purely real at at the \emph{resonant frequency}, or
-when $\Im(Z) = 0$, which happens at a frequency $\omega = \pm \frac{1}{\sqrt{L C}}$.  At resonance the impedance takes on a minimal value.  
+%                 FIGURE                   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\centering
+\includegraphics[scale=.95]{rlcphasor}\\
+(a)\hspace{3.5cm}(b)\hspace{3.3cm}(c)
+\caption{The phasor diagram shows the relations between the voltages across each component.  Note that the inductor/capacitor voltages are exactly $180^\circ$ degrees out of phase.  (a) Below resonance, the reactance of the capacitor dominates.  (b) At resonance, these reactances are equal and so the voltages across the circuit sum to $v_R$, so the entire source voltage is applied to the resistor $R$.  (c) Above resonance, the reactance of the inductor dominates.}
+\label{fig:rlcphasor}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%             SUBSECTION 2.5.3             %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Series RLC Circuits} \label{sec:lcr}
+The $RLC$ circuit shown in \emph{Fig.~\ref{fig:rlc}} is simple but extremely useful and rich in application.  Since the circuit elements are all in series, the \textbf{input impedance}\index{Impedance!Input impedance} seen by the source is simply given by:
+    \begin{align*}
+        Z &= j\omega L + \frac{1}{j\omega C} + R\\
+        &= R + j\omega L + \frac{j\omega L}{j^2{\omega}^2 LC}\\
+        &= R + j\omega L \left( 1 - \frac{1}{\omega^2 LC}\right)
+    \end{align*}
+The impedance is purely real at at the \textbf{resonant frequency}\index{Resonant frequency}, or when $\Im(Z) = 0$, which happens at a frequency $\omega = \pm \frac{1}{\sqrt{L C}}$.  At resonance the impedance takes on a minimal value.  See \emph{Fig.~\ref{fig:rlcphasor}} for phasor diagrams of resonance, including before and after resonance occurs.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %              SUB-SUBSECTION              %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Series Resonance}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                 FIGURE                   %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}
-\centering
-\includegraphics[scale=.8]{rlcphasor}
-\caption{The phasor diagram shows the relations between the voltages across each component.  Note that the inductor/capacitor voltages are exactly $180^\circ$ degrees out of phase.  Below resonance, the reactance of the capacitor dominates, whereas above resonance, the reactance of the inductor dominates.  At resonance, these reactances are equal and so the voltages across the circuit sum to $v_R$, so the entire source voltage is applied to the resistor $R$. }
-\label{fig:rlcphasor}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-It is worthwhile to investigate the cause of resonance, or the cancellation of the reactive components due to the inductor and capacitor.  Since the inductor and capacitor voltages are always $180^\circ$ out of phase, and one reactance is dropping while the other is increasing, there is clearly always a frequency when the magnitudes are equal.  Resonance occurs when $\omega L = \frac{1}{\omega C}$.  
+It is worthwhile to investigate the cause of resonance, or the cancellation of the reactive components due to the inductor and capacitor.  Since the inductor and capacitor voltages are always $180^\circ$ out of phase, and one reactance is dropping while the other is increasing, there is clearly always a frequency when the magnitudes are equal.  Resonance, defined as $\omega_0$, occurs when $\omega L = \frac{1}{\omega C}$.  Now we define the resonant frequency of this circuit as:
+    \begin{equation}
+        \omega_0 = \frac{1}{LC}
+    \end{equation}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %              SUB-SUBSECTION              %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Quality Factor}
-So what's the magic about this circuit?  The first observation is that at resonance, the voltage across the reactances can be larger, in fact much larger, than the voltage across the resistors $R$.  In other words, this circuit has voltage gain.  Of course it does not have power gain, for it is a passive circuit after all.  The voltage across the inductor is given by 
+So what is the magic about this circuit?  The first observation is that at resonance, the voltage across the reactances can be larger, in fact much larger, than the voltage across the resistors $R$ (again, see \emph{Fig.~\ref{fig:rlcphasor}} and observe the length of the vectors).  In other words, this circuit has \textbf{voltage gain}\index{Gain!voltage}.  Of course it does not have \textbf{power gain}\index{Gain!power}, for it is a \textbf{passive circuit}\index{Passive circuit} after all.  The voltage across the inductor is given by:
     \begin{equation}
-        v_L = j\omega_0 L i = j\omega_0 L \frac{v_s}{Z(j\omega_0)} = 
-        j\omega_0 L \frac{v_s}{R} = j Q \times v_s
+        v_L = j\omega_0 L i = j\omega_0 L \frac{v_s}{Z(j\omega_0)} =  j\omega_0 L \frac{v_s}{R} = j Q \times v_s
     \end{equation}
-where we have defined a circuit $Q$ factor at resonance as
+where we have defined a circuit \textbf{Q (quality) factor}\index{Quality/Q factor} at resonance as:
     \begin{equation}
         Q = \frac{\omega_0 L}{R}
     \end{equation}
@@ -433,7 +435,7 @@ It's easy to show that the same voltage multiplication occurs across the capacit
         \frac{v_s}{Z(j\omega_0)} = \frac{1}{j\omega_0 R C} \frac{v_s}{R} = - j Q
         \times v_s
     \end{equation}
-This voltage multiplication property is the key feature of the circuit that allows it to be used as an impedance transformer.\footnote{It's important to distinguish this $Q$ factor from the intrinsic $Q$ of the inductor and capacitor.  For now, we assume the inductor  and capacitor are ideal.}
+This voltage multiplication property is the key feature of the circuit that allows it to be used as an \textbf{impedance transformer}\index{Transformers!impedance}.\footnote{It is important to distinguish this $Q$ factor from the intrinsic $Q$ of the inductor and capacitor.  For now, we assume the inductor and capacitor are ideal.}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %              SUB-SUBSECTION              %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -447,7 +449,7 @@ where we have defined the $Z_0 = \sqrt{\tfrac{L}{C}}$ as the characteristic impe
 %              SUB-SUBSECTION              %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Resonant Circuit Transfer Function}
-Let's now examine the transfer function of the circuit
+Let's now examine the transfer function\index{Transfer function} of the circuit.  Combining $L$ and $C$ as a series impedance, we have a simple voltage divider\index{Voltage divider}:
 \begin{equation}
     H(j\omega) = \frac{v_o}{v_s} = \frac{R}{j\omega L + \frac{1}{j\omega C} +
       R}
@@ -455,19 +457,19 @@ Let's now examine the transfer function of the circuit
 \begin{equation}
     H(j\omega) = \frac{j\omega R C }{1 - \omega^2 LC + j\omega R C}
 \end{equation}
-Obviously, the circuit cannot conduct DC current, so there is a zero in the transfer function.  The denominator is a quadratic polynomial.  It's worthwhile to put it into a standard form that quickly reveals important circuit parameters
+Obviously, the circuit cannot conduct DC current, so there is a zero\index{Transfer function!zeros} in the transfer function.  The denominator is a quadratic polynomial.  It is worthwhile to put it into a standard form\index{Transfer function!standard form} that quickly reveals important circuit parameters:
     \begin{equation}
         H(j\omega) = \frac{j\omega \frac{R}{L} }{\frac{1}{LC} + (j\omega)^2 + j\omega \frac{R}{L}}
     \end{equation}
-Using the definition of $Q$ and $\omega_0$ for the circuit
+Using the definition of $Q$ and $\omega_0$ for the circuit:
     \begin{equation}
         H(j\omega) = \frac{j\omega \frac{\omega_0}{Q} }{\omega_0^2 +  (j\omega)^2 + j \frac{\omega\omega_0}{Q}}
     \end{equation}
-Factoring the denominator with the assumption that $Q > \omega$ gives us the complex poles of the circuit
+Factoring the denominator with the assumption that $Q > \omega$ gives us the complex poles of the circuit:
     \begin{equation}
         s^\pm = -\frac{\omega_0}{2 Q} \pm j\omega_0 \sqrt{1 - \frac{1}{4Q^2}}
     \end{equation}
-The poles have a constant magnitude equal to the resonant frequency
+The poles have a constant magnitude equal to the resonant frequency:
     \begin{equation}
         |s| = \sqrt{\cancel{\frac{\omega_0^2}{4 Q^2}} + \omega_0^2 \left(1 - \cancel{\frac{1}{4Q^2}} \right)} = \omega_0
     \end{equation}
@@ -486,24 +488,23 @@ The poles have a constant magnitude equal to the resonant frequency
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 As we plot the magnitude of the transfer function (\emph{Fig.~\ref{fig:transferrlc}}), we see that the selectivity of the circuit is also related inversely to the $Q$ factor.  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-In the limit that $Q \rightarrow \infty$, the circuit is infinitely selective and only allows signals at resonance $\omega_0$ to travel to the load.  Note that the peak gain in the circuit is always unity, regardless of $Q$, since at resonance the $L$ and $C$ together disappear and effectively all the source voltage appears across the load.  The selectivity of the circuit lends itself well to filter applications.  To characterize the peakiness, let's compute the frequency when the magnitude squared of the transfer function drops by half
+In the limit that $Q \rightarrow \infty$, the circuit is infinitely selective and only allows signals at resonance $\omega_0$ to travel to the load.  Note that the peak gain in the circuit is always unity, regardless of $Q$, since at resonance the $L$ and $C$ together disappear and effectively all the source voltage appears across the load.  The selectivity of the circuit lends itself well to filter applications.  To characterize the peakiness, let's compute the frequency when the magnitude squared of the transfer function drops by half:
     \begin{equation}
         | H(j\omega)|^2 = \frac{ \left(\omega \frac{\omega_0}{Q} \right)^2}{\left( \omega_0^2 - \omega^2\right)^2 + \left( \omega \frac{\omega_0}{Q}\right)^2} = \frac{1}{2}
     \end{equation}
-This happens when
+This happens when:
     \begin{equation}
         \left( \frac{\omega_0^2 - \omega^2}{\omega_0\omega / Q}\right)^2 = 1
     \end{equation}
-Solving the above equation yields four solutions, corresponding to two positive and two negative frequencies.  The peakiness is characterized by the difference between these frequencies, or the
-bandwidth, given by
+Solving the above equation yields four solutions, corresponding to two positive and two negative frequencies.  The peakiness is characterized by the difference between these frequencies, or the bandwidth\index{Bandwidth}, given by:
     \begin{equation} \label{eq:3db}
         \Delta\omega = \omega_+ - \omega_- = \frac{\omega_0}{Q}
     \end{equation}
-The normalized bandwidth is inversely proportional to the circuit $Q$.
+The normalized bandwidth is inversely proportional to the circuit $Q$:
     \begin{equation}
         \frac{\Delta\omega}{\omega_0} =\frac{1}{Q}
     \end{equation}
-You can also show that the resonance frequency is the geometric mean frequency of the $3$~dB frequencies
+You can also show that the resonance frequency is the geometric mean frequency of the $3$~dB frequencies:
     \begin{equation}
         \omega_0 = \sqrt{\omega_+ \omega_-}
     \end{equation}
@@ -522,7 +523,7 @@ The magnitude of the response can be calculated quickly by using the property of
         \left| {H(\omega )} \right| =
             \left| {{G_0}{{(j\omega )}^K} \frac{{(1 - j\omega {\tau _{z1}})(1 - j\omega {\tau _{z2}}) \cdots }}{{(1 - j\omega {\tau _{p2}})(1 - j\omega {\tau _{p2}}) \cdots }}} \right|
     \end{equation}
-Separating out the terms
+Separating out the terms:
     \begin{equation}
         = \left| {{G_0}} \right|{\omega ^K} \frac{{\left| {1 - j\omega {\tau _{z1}}} \right|\left| {1 - j\omega {\tau _{z2}}} \right| \cdots }} {{\left| {1 - j\omega {\tau _{p2}}} \right|\left| {1 - j\omega {\tau _{p2}}} \right| \cdots}}
     \end{equation}
@@ -539,7 +540,7 @@ Note that the second term is simple to calculate for positive frequencies:
     \begin{equation}
         \angle {(j\omega )^K} = K\frac{\pi}{2}
     \end{equation}
-Interpret this as saying that multiplication by \textit{j} is equivalent to rotation by 90 degrees
+Interpret this as saying that multiplication by \textit{j} is equivalent to rotation by 90 degrees.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 2.6.2             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -555,7 +556,7 @@ Interpret this as saying that multiplication by \textit{j} is equivalent to rota
 %\label{fig:x}
 %\end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-A Bode Plot is simply a ``sketch" of the $\log$-$\log$ plot of the magnitude and phase response of a circuit (impedance, transimpedance, gain, ...).  It provides insight into the behavior of a circuit as a function of frequency without detailed calculations.  The$\log$ expands the scale so that breakpoints in the transfer function are clearly delineated.  In feedback circuit design, Bode plots are used to “compensate” circuits for stability.
+A \textbf{Bode Plot}\index{Bode plot} is simply a ``sketch" of the $\log$-$\log$ plot of the magnitude and phase response of a circuit (impedance, transimpedance, gain, ...).  It provides insight into the behavior of a circuit as a function of frequency without detailed calculations.  The $\log$ expands the scale so that breakpoints in the transfer function are clearly delineated.  In feedback circuit design, Bode plots are used to “compensate” circuits for stability.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %              SUB-SUBSECTION              %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -570,7 +571,7 @@ A Bode Plot is simply a ``sketch" of the $\log$-$\log$ plot of the magnitude and
 \label{fig:hpf}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-The high-pass filter shown in \emph{Fig.~\ref{fig:hpf}}  is easily analyzed using a voltage divider:
+The \textbf{high-pass filter}\index{Filters!high-pass} shown in \emph{Fig.~\ref{fig:hpf}}  is easily analyzed using a voltage divider:
     \begin{equation}
         H(j\omega ) = \frac{{j\omega L}}{{R + j\omega L}} = \frac{{j\omega \frac{L}{R}}}{{1 + j\omega \frac{L}{R}}}
     \end{equation}
@@ -590,15 +591,16 @@ At the breakpoint, the inductance provided the same impedance as the resistor, b
     \begin{equation}
         \omega  = \frac{1}{\tau }  \quad\quad  \left| H \right| = \left| {\frac{j}{{1 + j}}} \right| = \frac{1}{{\sqrt 2 }}
     \end{equation}
+\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %              SUB-SUBSECTION              %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{HPF Magnitude Bode Plot: Numerator}
-Recall that $\log$ of a product is the sum of $\log$s.  So we have
+Recall that $\log$ of a product is the sum of $\log$s.  So we have:
     \begin{equation}
         {\left| {H(\omega )} \right|_{dB}} = {\left| {\frac{{j\omega \tau }}{{1 + j\omega \tau }}} \right|_{dB}} = {\left| {j\omega \tau } \right|_{dB}} + {\left| {\frac{1}{{1 + j\omega \tau }}} \right|_{dB}}
     \end{equation}
-Let's focus on the numerator first.  For this term, $\left|j\omega \tau  \right|_{dB} $, is a straight line, and it increases by $20$ $dB$/decade.  This term crosses the $0-dB$ point at the ``breakpoint", or $\omega = 1/\tau$, as shown in \emph{Fig.~\ref{fig:hpfnumden}}a:
+Let's focus on the numerator first.  For this term, $\left|j\omega \tau  \right|_{dB} $, is a straight line, and it increases by $20$ $dB$/decade.  This term crosses the $0-dB$ point at the ``breakpoint", or $\omega = 1/\tau$, as shown in \emph{Fig.~\ref{fig:hpfnumden} (a)}:
     \begin{equation}
         \omega \tau  = 1 \Rightarrow {\left| {j\omega \tau } \right|_{dB}} = 0\,{\rm{dB}}
     \end{equation}
@@ -624,17 +626,26 @@ Likewise, if we focus on the denominator (second term), we have:
         {\left| {\frac{1}{{1 + j\omega \tau }}} \right|_{dB}} = 0\,{\rm{dB}} - \,{\left| {1 + j\omega \tau } \right|_{dB}}
     \end{equation}
 Focus on these three frequency ranges:
-    $\begin{array}{l}
-        \omega  \ll \frac{1}{\tau }\\
-        \omega  \gg \frac{1}{\tau }\\
-        \omega  = \frac{1}{\tau }
-    \end{array}$
-We see that this is just a low-pass filter, and we can approximate the plot using asymptotically as shown in \emph{Fig.~\ref{fig:hpfnumden}}b. 
+    \begingroup
+    \Large
+        \begin{equation*}
+            \begin{array}{l}
+                \vspace{0.35cm}
+                \omega \ll \frac{1}{\tau}\\
+                \vspace{0.35cm}
+                \omega \gg \frac{1}{\tau}\\
+                \vspace{0.35cm}
+                \omega = \frac{1}{\tau}
+            \end{array}
+        \end{equation*}
+    \endgroup
+We see that this is just a low-pass filter, and we can approximate the plot using asymptotically as shown in \emph{Fig.~\ref{fig:hpfnumden} (b)}.
+\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %              SUB-SUBSECTION              %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Composite Bode Plot}
-The composite is simply the sum of each component.  You have the numerator term
+The \textbf{composite}\index{Bode plot!composite} is simply the sum of each component.  You have the numerator term:
     \begin{equation}
         {\left| {j\omega \tau } \right|_{dB}}
     \end{equation}
@@ -642,7 +653,7 @@ and the denominator term:
     \begin{equation}
         {\left| {\frac{1}{{1 + j\omega \tau }}} \right|_{dB}}
     \end{equation}
-and together they form two plots that we join together as shown in \emph{Fig.~\ref{fig:bode}}a:
+and together they form two plots that we join together as shown in \emph{Fig.~\ref{fig:bode} (a)}:
     \begin{equation}
         {\left| {j\omega \tau } \right|_{dB}} + {\left| {\frac{1}{{1 + j\omega \tau }}} \right|_{dB}}
     \end{equation}
@@ -661,7 +672,10 @@ and together they form two plots that we join together as shown in \emph{Fig.~\r
 \label{fig:bode}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-For comparison, we also provide an overlay of the approximate curve and the actual plot (\emph{Fig.~\ref{fig:bode}}b), and we see that the approximation is very accurate away from breakpoint.   At breakpoint there is a $3\;dB$ error.
+
+\noindent
+For comparison, we also provide an overlay of the approximate curve and the actual plot (\emph{Fig.~\ref{fig:bode} (b)}), and we see that the approximation is very accurate away from break point.  At the break point there is a $3\;dB$ error.
+\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %              SUB-SUBSECTION              %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -670,7 +684,7 @@ Phase can be naturally decomposed as well:
     \begin{equation}
         \angle H(\omega ) = \angle \frac{{j\omega \tau }}{{1 + j\omega \tau }} = \angle j\omega \tau + \angle \frac{1}{{1 + j\omega \tau }} = \frac{\pi }{2} - {\tan ^{ - 1}}\omega \tau
     \end{equation}
-The first term is simply a constant phase of $90^\circ$ while the second term is the $\arctan$ function.  Estimate $\arctan$ function as shown using straight lines.  The rule of thumb is the line should break at a frequency of one tenth the break point of the circuit, and end moving at a symmetrical point $10\times$ higher than the breakpoint.  See \emph{Fig.~\ref{fig:bode_phase}}.
+The first term is simply a constant phase of $90^\circ$ while the second term is the $\arctan$ function.  Estimate the $\arctan$ function as shown using straight lines.  The rule of thumb is that the line should break at a frequency of one tenth the break point of the circuit, and end moving at a symmetrical point $10\times$ higher than the break point.  See \emph{Fig.~\ref{fig:bode_phase}}.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -689,17 +703,22 @@ The first term is simply a constant phase of $90^\circ$ while the second term is
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Power Flow in AC Circuits}
- The instantaneous power flow into any element is the product of the voltage and current: $P(t) = i(t)v(t)$.  For a periodic excitation, the average power is:
+ The \textbf{instantaneous power}\index{Power!instantaneous} flow into any element is the product of the voltage and current:
     \begin{equation} 
-        {P_{av}} = \int\limits_T {i(\tau )v(\tau )d\tau } 
+        P(t) = i(t)v(t)
     \end{equation}
-In terms of sinusoids we have
+For a periodic excitation, the \textbf{average power}\index{Power!average} is:
+    \begin{equation} 
+        {P_{av}} = \int\limits_T {i(\tau)v(\tau)d\tau} 
+    \end{equation}
+In terms of sinusoids we have:
     \begin{align*}
         {P_{av}} &= \int\limits_T {\left| I \right|\cos (\omega t + {\varphi _i})\left| V \right|\cos (\omega t + {\varphi _v})d\tau }\\
         &= \left| I \right| \cdot \left| V \right|\int\limits_T {(\cos \omega t\cos {\varphi _i} - \sin \omega t\sin {\varphi _i}} ) \cdot (\cos \omega t\cos {\varphi _v} - \sin \omega t\sin {\varphi _v})d\tau\\
         &= \left| I \right| \cdot \left| V \right|\int\limits_T {d\tau {{\cos }^2}\omega t\cos {\varphi _i}\cos {\varphi _v} + {{\sin }^2}\omega t\sin {\varphi _i}\sin {\varphi _v} + c\sin \omega t\cos \omega t}\\
         &= \frac{{\left| I \right| \cdot \left| V \right|}}{2}(\cos {\varphi _i}\cos {\varphi _v} + \sin {\varphi _i}\sin {\varphi _v}) = \frac{{\left| I \right| \cdot \left| V \right|}}{2}\cos ({\varphi _i} - {\varphi _v})
     \end{align*}
+\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 2.7.1             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -708,35 +727,44 @@ The result of our calculation shows that the average power is simply given by
     \begin{equation}
         {P_{av}} = \frac{{\left| I \right| \cdot \left| V \right|}}{2}\cos ({\varphi _i} - {\varphi _v})
     \end{equation}
-The phase term is sometimes denoted as the "power factor" and written as $PF$:
+The phase term is sometimes denoted as the \textbf{"power factor"}\index{Power!factor} and written as $PF$:
     \begin{equation} 
         {P_{av}} = \frac{{\left| I \right| \cdot \left| V \right|}}{2} \cdot PF
     \end{equation}
 Note that if $({\varphi _i} - {\varphi _v}) = \frac{\pi }{2}$, then ${P_{av}} = \frac{{\left| I \right| \cdot \left| V \right|}}{2}\cos (\pi /2) = 0$.  This means that inductors and capacitors don't dissipate any energy.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-An important lesson from this calculation is that since power is a non-linear function, we cannot simply take the real part of the product of the phasors:
+
+\vspace{0.25cm}
+\noindent
+An important lesson from this calculation is that since power is a non-linear function, we cannot simply take the real part of the product of the phasors\index{Phasor}:
     \begin{equation}
         P \ne {\mathop{\rm Re}\nolimits} [I \cdot V]
     \end{equation}
 In fact, the correct answer can be deduced from our previous calculation:
-    \begin{equation}
-        P = \frac{{\left| I \right| \cdot \left| V \right|}}{2}\cos ({\varphi _i} - {\varphi _v}) = \frac{1}{2}{\mathop{\rm Re}\nolimits} [I \cdot {V^*}] = \frac{1}{2}{\mathop{\rm Re}\nolimits} [{I^*} \cdot V]
-    \end{equation}
+    \begin{align*}
+        P &= \frac{{\left| I \right| \cdot \left| V \right|}}{2}\cos ({\varphi _i} - {\varphi _v})\\
+        &= \frac{1}{2}{\mathop{\rm Re}\nolimits} [I \cdot {V^*}]\\
+        &= \frac{1}{2}{\mathop{\rm Re}\nolimits} [{I^*} \cdot V]
+    \end{align*}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 2.7.2             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{More Power to You!}
 In terms of the circuit impedance we have:
-    \begin{equation}
-        \begin{array}{l}
-            P = \frac{1}{2}{\mathop{\rm Re}\nolimits} [I \cdot {V^*}] = \frac{1}{2}{\mathop{\rm Re}\nolimits} [\frac{V}{Z} \cdot {V^*}] = \frac{{{{\left| V \right|}^2}}}{2}{\mathop{\rm Re}\nolimits} [{Z^{ - 1}}]\\
-            = \frac{{{{\left| V \right|}^2}}}{2}{\mathop{\rm Re}\nolimits} [\frac{{{Z^*}}}{{{{\left| Z \right|}^2}}}] = \frac{{{{\left| V \right|}^2}}}{{2{{\left| Z \right|}^2}}}{\mathop{\rm Re}\nolimits} [{Z^*}] = \frac{{{{\left| V \right|}^2}}}{{2{{\left| Z \right|}^2}}}{\mathop{\rm Re}\nolimits} [Z]
-        \end{array}
-    \end{equation}
+    \begin{align*}
+        P &= \frac{1}{2}{\mathop{\rm Re}\nolimits} [I \cdot {V^*}]\\
+        &= \frac{1}{2}{\mathop{\rm Re}\nolimits} [\frac{V}{Z} \cdot {V^*}]\\
+        &= \frac{{{{\left| V \right|}^2}}}{2}{\mathop{\rm Re}\nolimits} [{Z^{ - 1}}]\\
+        &= \frac{{{{\left| V \right|}^2}}}{2}{\mathop{\rm Re}\nolimits} [\frac{{{Z^*}}}{{{{\left| Z \right|}^2}}}]\\
+        &= \frac{{{{\left| V \right|}^2}}}{{2{{\left| Z \right|}^2}}}{\mathop{\rm Re}\nolimits} [{Z^*}]\\
+        &= \frac{{{{\left| V \right|}^2}}}{{2{{\left| Z \right|}^2}}}{\mathop{\rm Re}\nolimits} [Z]
+    \end{align*}
 Check the result for a real impedance (resistor) to verify we have not made any errors.   Also, in terms of current:
-    \begin{equation}
-        P = \frac{1}{2}{\mathop{\rm Re}\nolimits} [{I^*} \cdot V] = \frac{1}{2}{\mathop{\rm Re}\nolimits} [{I^*} \cdot I \cdot Z] = \frac{{{{\left| I \right|}^2}}}{2}{\mathop{\rm Re}\nolimits} [Z]
-    \end{equation}
+    \begin{align*}
+        P &= \frac{1}{2}{\mathop{\rm Re}\nolimits} [{I^*} \cdot V]\\
+        &= \frac{1}{2}{\mathop{\rm Re}\nolimits} [{I^*} \cdot I \cdot Z]\\
+        &= \frac{{{{\left| I \right|}^2}}}{2}{\mathop{\rm Re}\nolimits} [Z]
+    \end{align*}
+\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 2.7.3             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -751,13 +779,17 @@ Check the result for a real impedance (resistor) to verify we have not made any 
 \includegraphics[width=.45\columnwidth]{res_power}\\
 (a) & (b)\\
 \end{tabular}
-\caption{(a) The current and voltage waveforms in a reactive circuit are $90^\circ$ out of phase whereas (b) for a resistive circuit, they are in phase.}
+\caption{(a) The current and voltage wave forms in a reactive circuit are $90^\circ$ out of phase whereas (b) for a resistive circuit, they are in phase.}
 \label{fig:powerflow}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Notice that if the voltage and the current are $90^\circ$ out of phase (inductors and capacitors), then their product is such that during one half the cycle power flows in, and in the other half cycle power flows out, as illustrated in \emph{Fig.~\ref{fig:powerflow}}.  This means there's no net power flow into these components.  For a resistor, on the other hand, since current and voltage are in phase, it doesn't matter what direction current flows, it's always in phase with the voltage and dissipating power.  Also, power flows twice per cycle!
+Notice that if the voltage and the current are $90^\circ$ out of phase (inductors and capacitors), then their product is such that during one half the cycle power flows in, and in the other half cycle power flows out, as illustrated in \emph{Fig.~\ref{fig:powerflow}}.  This means there is no net power flow into these components.
+
+For a resistor, on the other hand, since current and voltage are in phase, it doesn't matter what direction current flows, it is always in phase with the voltage and dissipating power.  Also, power flows twice per cycle!
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 2.7.4             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Chapter Summary}
-In this chapter we demonstrated that phasor analysis allows us to treat all $LCR$ circuits as simple “resistive” circuits by using the concept of impedance (admittance).  While the frequency response allows us to completely characterize a system, we also showed that we can also characterize the system by the locations of its poles and zeros.  The Bode plot is a very useful tool for sketching the transfer function in the $\log$-$\log$ domain once we know the location of the poles and zeros.  Ultimately, we'll learn that the location of poles/zeros is the key to understanding how a linear system will respond to inputs or even initial conditions (charges on capacitors, currents in inductors).
+In this chapter we demonstrated that phasor analysis allows us to treat all $LCR$ circuits as simple “resistive” circuits by using the concept of impedance (admittance).  While the frequency response allows us to completely characterize a system, we also showed that we can also characterize the system by the locations of its poles and zeros.
+
+The Bode plot is a very useful tool for sketching the transfer function in the $\log$-$\log$ domain once we know the location of the poles and zeros.  Ultimately, we will learn that the location of poles and zeros is the key to understanding how a linear system will respond to inputs, or even initial conditions (charges on capacitors, currents in inductors).
