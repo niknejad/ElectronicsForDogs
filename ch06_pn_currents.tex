@@ -11,7 +11,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Chapter Preview}
-This chapter is a continuation of the previous chapter and builds on the knowledge that you've gained with regards to pn junctions.  The main focus is to derive the current-voltage ($I-V$) relations  for a diode.  We will demonstrate that diodes are ``one way streets" allowing current to flow in one direction (from p to n), but essentially shut off and behave as open circuits when current flows in the other direction.  To derive the $I-V$ curve, we need to cover a lot of preliminary material, such as the carrier concentration in non-equilibrium, in other words when $n p \neq n_i^2$.  We will use the current continuity equation to investigate how minority carriers diffuse across a region of majority carriers, and find that the diode $I-V$ curve is essentially determined by how minority carriers behave as they are injected into the p and n regions.  Finally, in the last part of this chapter, we'll investigate photovoltaic cells, or simply solar cells, and light-emitting diodes (LEDs), two important applications of pn-junctions.
+This chapter is a continuation of the previous chapter and builds on the knowledge that you've gained with regards to pn junctions.  The main focus is to derive the current-voltage ($I-V$) relations  for a diode.  We will demonstrate that diodes are ``one way streets" allowing current to flow in one direction (from p to n), but essentially shut off and behave as open circuits when current flows in the other direction.  To derive the $I-V$ curve, we need to cover a lot of preliminary material, such as the carrier concentration in non-equilibrium, in other words when $n p \neq n_i^2$.  We will use the current continuity equation to investigate how minority carriers diffuse across a region of majority carriers, and find that the diode $I-V$ curve is essentially determined by how minority carriers behave as they are injected into the p and n regions.  Finally, in the last part of this chapter, we'll investigate photovoltaic cells, or simply solar cells, and light-emitting diodes (LEDs), two important applications of $PN$-junctions.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                   SECTION 6.2                                        %
@@ -28,7 +28,7 @@ This chapter is a continuation of the previous chapter and builds on the knowled
 \begin{figure}[tb]
 \centering
 \includegraphics[width=.75\columnwidth]{slide35}
-\caption{In equilibrium, with no applied fields, the current in a pn-junction is zero because drift and diffusion current cancel.  The built-in potential only allows a small diffusion current to flow, and drift currents due to minority carriers flow in the opposite direction.}
+\caption{In equilibrium, with no applied fields, the current in a $PN$-junction is zero because drift and diffusion current cancel.  The built-in potential only allows a small diffusion current to flow, and drift currents due to minority carriers flow in the opposite direction.}
 \label{fig:slide35}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -44,7 +44,7 @@ There are two important points to keep in mind.  First, minority drift current i
 \begin{figure}[tb]
 \centering
 \includegraphics[width=.75\columnwidth]{slide36}
-\caption{When a reverse bias is applied across a pn-junction, the diffusion current reduces (exponentially), and so drift currents overcome diffusion currents.  The drift currents are usually very small since they are a result of minority carriers that are generated near the junction.}
+\caption{When a reverse bias is applied across a $PN$-junction, the diffusion current reduces (exponentially), and so drift currents overcome diffusion currents.  The drift currents are usually very small since they are a result of minority carriers that are generated near the junction.}
 \label{fig:slide36}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -58,7 +58,7 @@ With reference to Fig.~\ref{fig:slide36b}, a forward bias causes an exponential 
 \begin{figure}[tb]
 \centering
 \includegraphics[width=.75\columnwidth]{slide36b}
-\caption{In forward bias, the diffusion current increases (exponentially) and dominates over the drift current from minority carriers.  Majority carriers from the p-region are injected into the n-type region and become minority carriers. The same happens to electrons injected from the n-side.}
+\caption{In forward bias, the diffusion current increases (exponentially) and dominates over the drift current from minority carriers.  Majority carriers from the $P$-region are injected into the $N$-type region and become minority carriers. The same happens to electrons injected from the $N$-side.}
 \label{fig:slide36b}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -90,7 +90,7 @@ As shown in Fig.~\ref{fig:slide38}, the diode $I-V$ relation is an exponential f
 \label{fig:slide44}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Our drawings of pn-junctions so far has been very idealized.  The actual structure of a pn-junction is slightly more complex, as shown in Fig.~\ref{fig:slide44}.  To fabricate a diode, we first start with p-type substrate (typically).  We create an ``n-well" diffusion region  to house the diode.  Within the well, we counter dope to create p and n$^+$ diffusion regions to form  the cathode and anode terminals of the diode.  The n$^+$ region may seem puzzling at first, but it's needed to create an ohmic contact with the metal region at the anode.  Note that we actually end up with two diodes, one between the cathode and anode, as desired, and one from the substrate to the n-well region, which is a parasitic diode.  Why not use this diode?  The reason is that in an integrated circuit, we have many components and we want them to be isolated from each other.  Since all circuits fabricated share the silicon substrate, the substrate node is usually not used.  But a diode is a diode, and to isolate the devices from one another, we must reverse bias the unwanted diodes.  In this case, the n-well must be reverse biased with respect to the substrate.  Typically the substrate is tied to the lowest potential (ground for example) using substrate ``taps" or body contacts, which are p$^+$ regions as shown.  One final word about a practical diode.  We have drawn in resistors to remind ourselves that p-type and n-type regions are resistive and if we are not careful, resistive parasitics will add up and dominate the device behavior.  
+Our drawings of $PN$-junctions so far has been very idealized.  The actual structure of a $PN$-junction is slightly more complex, as shown in Fig.~\ref{fig:slide44}.  To fabricate a diode, we first start with $P$-type substrate (typically).  We create an ``n-well" diffusion region  to house the diode.  Within the well, we counter dope to create p and n$^+$ diffusion regions to form  the cathode and anode terminals of the diode.  The n$^+$ region may seem puzzling at first, but it's needed to create an ohmic contact with the metal region at the anode.  Note that we actually end up with two diodes, one between the cathode and anode, as desired, and one from the substrate to the n-well region, which is a parasitic diode.  Why not use this diode?  The reason is that in an integrated circuit, we have many components and we want them to be isolated from each other.  Since all circuits fabricated share the silicon substrate, the substrate node is usually not used.  But a diode is a diode, and to isolate the devices from one another, we must reverse bias the unwanted diodes.  In this case, the n-well must be reverse biased with respect to the substrate.  Typically the substrate is tied to the lowest potential (ground for example) using substrate ``taps" or body contacts, which are p$^+$ regions as shown.  One final word about a practical diode.  We have drawn in resistors to remind ourselves that $P$-type and $N$-type regions are resistive and if we are not careful, resistive parasitics will add up and dominate the device behavior.  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                   SECTION 6.3                                        %
@@ -148,7 +148,7 @@ Up to now we have assumed that all generation and recombination occurs through a
 %             SUBSECTION 6.3.3             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Thermal Generation/Recombination Rate}
-For a hole in an n-type material, we find the rate of generation is given by
+For a hole in an $N$-type material, we find the rate of generation is given by
     \begin{equation}
         \left. \frac{\partial \Delta p}{\partial t} \right|_{\text{thermal R-G}} = - c_p N_T \Delta p
     \end{equation}
@@ -171,7 +171,7 @@ The minority carrier lifetime depends very strongly on the quality of the materi
 %              SUB-SUBSECTION              %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection*{Majority Carriers versus Minority Carriers}
-Equation~\ref{eq:lifetime} can be interpreted as the ``lifetime" of a minority carrier.  We know minority carriers ``live" in a pool of majority carriers and they annihilate upon meeting majority carriers.  When you're a minority carrier, there's a good chance that you're going to recombine with a majority carrier, especially when there are more traps $N_T$.  The more minority carriers there are, the faster the rate of recombination.  Note the rate of generation is fixed (towards equilibrium) whereas the recombination rate is higher due to the excess carriers.  The same equation is of course valid for electrons in a p-type region
+Equation~\ref{eq:lifetime} can be interpreted as the ``lifetime" of a minority carrier.  We know minority carriers ``live" in a pool of majority carriers and they annihilate upon meeting majority carriers.  When you're a minority carrier, there's a good chance that you're going to recombine with a majority carrier, especially when there are more traps $N_T$.  The more minority carriers there are, the faster the rate of recombination.  Note the rate of generation is fixed (towards equilibrium) whereas the recombination rate is higher due to the excess carriers.  The same equation is of course valid for electrons in a $P$-type region
     \begin{equation}
         \left. \frac{\partial \Delta n}{\partial t} \right|_{\text{thermal R-G}} = - \frac{\Delta n}{\tau_n}
     \end{equation}
@@ -233,10 +233,10 @@ The constant $L_p = \sqrt{D_p \tau_p}$ is known as the diffusion length for reas
 \begin{figure}[tb]
 \centering
 \includegraphics[width=.75\columnwidth]{excess_charge_inject}
-\caption{Excess minority carrier charge is continuously injected at the origin into an n-type region.  Far away from the injection, we expect carriers to return to equilibrium values.  Using these boundary points, we would like to solve for the minority carrier distribution in the n-type region.} \label{fig:excess_charge_inject}
+\caption{Excess minority carrier charge is continuously injected at the origin into an $N$-type region.  Far away from the injection, we expect carriers to return to equilibrium values.  Using these boundary points, we would like to solve for the minority carrier distribution in the $N$-type region.} \label{fig:excess_charge_inject}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Let's suppose that some process, yet to be determined, continually creates an excess of minority carriers at the origin of an n-type semiconductor (shown in Fig.~\ref{fig:excess_charge_inject}).  In other words, the boundary conditions are
+Let's suppose that some process, yet to be determined, continually creates an excess of minority carriers at the origin of an $N$-type semiconductor (shown in Fig.~\ref{fig:excess_charge_inject}).  In other words, the boundary conditions are
     \begin{equation}
         \Delta p(0) = p_{n}
     \end{equation}	
@@ -276,7 +276,7 @@ We can find the current flow due to this excess minority concentration by calcul
     \begin{equation}
         J_p(x) = -q D_p \frac{d \Delta p}{dx} = \frac{p_n}{L_p} e^{-x/L_p} 
     \end{equation}	
-Which shows that the excess minority carriers diffuse into the n-type region a distance of a few $L_p$.  Note that the current density varies with $x$.  Yet the current must be continuous because charge is not piling up as a function of time.  Recall this is a steady-state distribution.  This means that if we evaluate the current at $x = 0$, that's the same current found throughout the n-type region. 
+Which shows that the excess minority carriers diffuse into the $N$-type region a distance of a few $L_p$.  Note that the current density varies with $x$.  Yet the current must be continuous because charge is not piling up as a function of time.  Recall this is a steady-state distribution.  This means that if we evaluate the current at $x = 0$, that's the same current found throughout the $N$-type region. 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Where is the additional current coming from?  It's coming from majority carriers who are ``coming in" to annihilate the minority carriers.  They contribute a current which is exactly $1- J_p(x)$.  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -284,7 +284,7 @@ Where is the additional current coming from?  It's coming from majority carriers
 %                                   SECTION 6.5                                        %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Forward Biased pn-Junctions}
+\section{Forward Biased $PN$-junctions}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 6.5.1             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -322,7 +322,7 @@ Here are some important things to remember about these equations.  In particular
 \begin{figure}[tb]
 \centering
 \includegraphics[width=.75\columnwidth]{slide41}
-\caption{Distribution of minority carriers in a pn-junction under forward bias.  Forward bias increases the diffusion current and causes excess minority carriers (above thermal equilibrium values) to be injected into the p and n type regions.  The minority carriers diffuse and recombine and exhibit an exponentially decaying profile.}
+\caption{Distribution of minority carriers in a $PN$-junction under forward bias.  Forward bias increases the diffusion current and causes excess minority carriers (above thermal equilibrium values) to be injected into the p and n type regions.  The minority carriers diffuse and recombine and exhibit an exponentially decaying profile.}
 \label{fig:slide41}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -333,7 +333,7 @@ With an excess of minority currents injected into the n and p regions, we can us
 \begin{figure}[tb]
 \centering
 \includegraphics[width=.75\columnwidth]{slide42}
-\caption{Distribution of minority carriers in a pn-junction under forward bias for the case of very long minority carrier lifetime.  The minority carriers diffuse but do not recombine with majority carriers, leading to linear gradients in the profile.}
+\caption{Distribution of minority carriers in a $PN$-junction under forward bias for the case of very long minority carrier lifetime.  The minority carriers diffuse but do not recombine with majority carriers, leading to linear gradients in the profile.}
 \label{fig:slide42}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -350,7 +350,7 @@ Given the profile of minority carrier currents in each region, it's rather strai
     \end{equation}
 Note that the electron minority carrier concentration at equilibrium is given by
     \begin{equation}
-        {n_{p0}} = \frac{{n_i^2}}{{{N_a}}}
+        {n_{p0}} = \frac{{n_i^2}}{{{N_A}}}
     \end{equation}
 This leads to electron diffusion current
     \begin{equation}
@@ -362,7 +362,7 @@ and hole diffusion current
     \end{equation}
 Also, since electrons have negative charge, both electron and hole currents add in phase despite going in different directions to give a total current of
     \begin{equation}
-        J_{}^{diff} = qn_i^2\left( {\frac{{{D_p}}}{{{N_d}{W_n}}} + \frac{{{D_n}}}{{{N_a}{W_p}}}} \right)\left( {{e^{\frac{{q{V_A}}}{{kT}}}} - 1} \right)
+        J_{}^{diff} = qn_i^2\left( {\frac{{{D_p}}}{{{N_D}{W_n}}} + \frac{{{D_n}}}{{{N_A}{W_p}}}} \right)\left( {{e^{\frac{{q{V_A}}}{{kT}}}} - 1} \right)
     \end{equation}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 6.5.4             %
@@ -473,11 +473,11 @@ In Fig.~\ref{fig:diode_ss_model}, we summarize everything about the diode small-
 \label{fig:solar_cell}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-A solar cell is a pn-junction designed for converting light energy (photons) into electric energy (energized electrons).  It's also known as a photovoltaic cell (PV cell).  It's a common sight these days on rooftops and in solar farms (Fig.~\ref{fig:solar_cell}).   Typically efficiency numbers range from 10\% to 30\% and 1m$^2$ of area can generate at 25W of power on average (150W peak).  Also, the energy cost to fabricate a solar cell is steadily improving, and most solar panels will be energy neutral after a few years of operation.
+A solar cell is a $PN$-junction designed for converting light energy (photons) into electric energy (energized electrons).  It's also known as a photovoltaic cell (PV cell).  It's a common sight these days on rooftops and in solar farms (Fig.~\ref{fig:solar_cell}).   Typically efficiency numbers range from 10\% to 30\% and 1m$^2$ of area can generate at 25W of power on average (150W peak).  Also, the energy cost to fabricate a solar cell is steadily improving, and most solar panels will be energy neutral after a few years of operation.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 6.7.2             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{pn-Junction Solar Cells}
+\subsection{$PN$-junction Solar Cells}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -498,16 +498,16 @@ The $I-V$ curve of a solar cell is basically the same as a diode with an extra `
     \end{equation}
 Up to now, we have been ignoring this photocurrent and so it's worthwhile to examine how to make this term significant.  Useful energy is only extracted when the $I\cdot V$ product is negative (here in the fourth quadrant), because in this region the solar cell is generating a voltage and current in opposite phase, and it's thereby a generator.\footnote{This is due to the passive sign convention that we adopt in electrical engineering and physics.}  If we zoom into the fourth quadrant (Fig.~\ref{fig:solarcell_zoom}b) and examine the product of $I\cdot V$, we can identify three important points.  The $I_{sc}$ is the current that flows when the voltage $V = 0$V, or for a short circuited solar cell.  Likewise, the voltage $V_{oc}$ is the open circuit voltage, or the voltage we observe when there is no load on the solar panel.  Finally, we have also denoted the point $P_{max}$ as the portion of the solar panel that delivers optimal power.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-To characterize a solar cell's performance, we need to calculate $I_{sc}$ and $V_{oc}$ using our knowledge of pn-junction diode physics.
+To characterize a solar cell's performance, we need to calculate $I_{sc}$ and $V_{oc}$ using our knowledge of $PN$-junction diode physics.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 6.7.3             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Equations for Optical Generation}
-Suppose for simplicity we have an n-type semiconductor and light shines with a uniform intensity, generating electron-hole pairs at a certain rate.   From current continuity, we can say that the hole and electron are generated and must satisfy the continuity equation:
+Suppose for simplicity we have an $N$-type semiconductor and light shines with a uniform intensity, generating electron-hole pairs at a certain rate.   From current continuity, we can say that the hole and electron are generated and must satisfy the continuity equation:
     \begin{equation} 
         \frac{d^2 \Delta p}{dx^2}   = \frac{\Delta p}{L_p^2} - \frac{G_L}{D_p}
     \end{equation}
-This is the same as the equation we derived earlier (see Eq.~\ref{eq:continuity}) for the pn-junction, with the extra term $G_L$ added to account for optical generation.   For a uniform layer and constant illumination, there is no $x$ variation, 
+This is the same as the equation we derived earlier (see Eq.~\ref{eq:continuity}) for the $PN$-junction, with the extra term $G_L$ added to account for optical generation.   For a uniform layer and constant illumination, there is no $x$ variation, 
     \begin{equation} 
         0  = \frac{\Delta p}{L_p^2} - \frac{G_L}{D_p}
     \end{equation}
@@ -526,15 +526,15 @@ This is generation of holes above the thermal generation rate and is due to the 
 \begin{figure}[tb]
 \centering
 \includegraphics[width=.5\columnwidth]{pn_solar_cell}
-\caption{A simple model for a solar cell (pn-junction) under equilibrium.  We assume the n-region is illuminated uniformly and calculate the minority carrier profile in the region to calculate the short circuit current.}
+\caption{A simple model for a solar cell ($PN$-junction) under equilibrium.  We assume the $N$-region is illuminated uniformly and calculate the minority carrier profile in the region to calculate the short circuit current.}
 \label{fig:pn_solar_cell}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-We are now in a position to derive the necessary parameters for a solar cell.   For simplicity, assume a very thin p$^+$ layer (no light illumination on the p$^+$ side) and optical carrier generation in the n-region.  Since there is no applied bias voltage on the pn junction, the boundary conditions at the edge of the depletion region is given by
+We are now in a position to derive the necessary parameters for a solar cell.   For simplicity, assume a very thin p$^+$ layer (no light illumination on the p$^+$ side) and optical carrier generation in the $N$-region.  Since there is no applied bias voltage on the pn junction, the boundary conditions at the edge of the depletion region is given by
     \begin{equation} 
         \Delta p(0) = 0  
     \end{equation}
-On the other hand, if we travel far enough into the n-type region, we expect spatial variations to vanish and the number of excess holes should be directly proportional to the incoming light:
+On the other hand, if we travel far enough into the $N$-type region, we expect spatial variations to vanish and the number of excess holes should be directly proportional to the incoming light:
     \begin{equation} 
         \Delta p(\infty) = G_L \tau_p  
     \end{equation}
@@ -566,15 +566,15 @@ Since in practice $G_L$ is not uniform, this result is only approximately true b
 \subsection{Open Circuit Voltage}
 Now we have an expression for the optically generated current and we can substitute it into the total diode current:
     \begin{equation} 
-        I_D = \frac{A q n_i^2}{N_d} \frac{D_p}{L_p}  (e^{qV/kT} - 1) - A q L_p G_L 
+        I_D = \frac{A q n_i^2}{N_D} \frac{D_p}{L_p}  (e^{qV/kT} - 1) - A q L_p G_L 
     \end{equation}
 Solving for the open-circuit voltage ($I_D = 0A$) and assuming the exponential dominates
     \begin{equation} 
-        \frac{  n_i^2}{N_d} \frac{D_p}{L_p}  e^{qV_{oc} /kT}  =  L_p G_L 
+        \frac{  n_i^2}{N_D} \frac{D_p}{L_p}  e^{qV_{oc} /kT}  =  L_p G_L 
     \end{equation}
 which can be simplified to:
     \begin{equation} 
-        V_{oc} = \frac{kT}{q} \ln \left( \frac{\tau_p G_L N_d}{n_i^2} \right) 
+        V_{oc} = \frac{kT}{q} \ln \left( \frac{\tau_p G_L N_D}{n_i^2} \right) 
     \end{equation}
 To generate a high open-circuit voltage, we need a large $\tau_p$, or very high quality semiconductors (low defect density).
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -646,7 +646,7 @@ For the generation of photon, a direct band gap material is preferred.  Direct r
 \label{fig:led_struct}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-The structure of an LED pn-junction diode is shown in Fig.~\ref{fig:led_struct}.  A lens is used to capture photons traveling in different directions and to collimate the beam of light for higher intensity.    The direct band gap material is forward biased and the current flow results in minority carrier injection, which results in (mostly) radiative recombination.  To avoid re-absorbing the photons, the materials and structure are carefully designed to emit light. 
+The structure of an LED $PN$-junction diode is shown in Fig.~\ref{fig:led_struct}.  A lens is used to capture photons traveling in different directions and to collimate the beam of light for higher intensity.    The direct band gap material is forward biased and the current flow results in minority carrier injection, which results in (mostly) radiative recombination.  To avoid re-absorbing the photons, the materials and structure are carefully designed to emit light. 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Each radiative recombination event generates a photon with energy of the band gap, which allows us to find the wavelength of the photon by equating the energy of a photon $h \nu$ (frequency $\nu$) with the band gap energy:
     \begin{equation} 

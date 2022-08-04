@@ -61,7 +61,7 @@ The steps involved in ion implantation are shown in \emph{Fig.~\ref{fig:mod2-2_I
 \label{fig:mod2-2_ICtech_sld_5}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Using ion implantation and diffusion, we can create a so-called \textbf{``diffusion resistor"}\index{Diffusion resistor}, shown in \emph{Fig.~\ref{fig:mod2-2_ICtech_sld_5}}.  The thickness and dopant concentration of resistor is set by process steps, whereas the shape of the resistor is set by design (layout).   Metal contacts are connected to ends of the resistor.  You may be wondering why current would flow through a thin diffusion layer rather than through the silicon substrate, which is comparatively much larger (wider and thicker).  The reason is that the resistor is DC isolated from the substrate, and only high frequency AC currents can flow from the diffusion region into the substrate.  In other words, there is a distributed capacitor from the resistor to the substrate, which is usually connected to ground potential.  This happens because the diffusion region is \emph{N}-type and the substrate is \emph{P}-type.  This \textbf{PN-junction}\index{PN-junction} should be \textbf{reverse biased}\index{PN-junction!Reverse biased} at all times (meaning the diffusion resistor should never be biased at a negative potential with respect to the substrate).  We will learn the details of \emph{PN}-junctions in the next chapter.
+Using ion implantation and diffusion, we can create a so-called \textbf{``diffusion resistor"}\index{Diffusion resistor}, shown in \emph{Fig.~\ref{fig:mod2-2_ICtech_sld_5}}.  The thickness and dopant concentration of resistor is set by process steps, whereas the shape of the resistor is set by design (layout).   Metal contacts are connected to ends of the resistor.  You may be wondering why current would flow through a thin diffusion layer rather than through the silicon substrate, which is comparatively much larger (wider and thicker).  The reason is that the resistor is DC isolated from the substrate, and only high frequency AC currents can flow from the diffusion region into the substrate.  In other words, there is a distributed capacitor from the resistor to the substrate, which is usually connected to ground potential.  This happens because the diffusion region is \emph{N}-type and the substrate is \emph{P}-type.  This \textbf{$PN$-junction}\index{PN-junction} should be \textbf{reverse biased}\index{PN-junction!Reverse biased} at all times (meaning the diffusion resistor should never be biased at a negative potential with respect to the substrate).  We will learn the details of \emph{PN}-junctions in the next chapter.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 4.3.2             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -414,9 +414,9 @@ To find the \textbf{``small-signal capacitance"}\index{Small-signal capacitance}
 \subsection{Example of Non-Linear Capacitor}
 We will see that for a \emph{PN}-junction, the charge is a function of the reverse bias\index{Reverse bias}:
     \begin{equation} 
-        {Q_j}(V) =  - q{N_a}{x_p}\sqrt {1 - \frac{V}{{{\varphi _b}}}} 
+        {Q_j}(V) =  - q{N_A}{x_p}\sqrt {1 - \frac{V}{{{\varphi _b}}}} 
     \end{equation}
 The small signal capacitance is therefore given by:
     \begin{equation} 
-        {C_j}(V) = \frac{{dQ_j^{}}}{{dV}} = \frac{{q{N_a}{x_p}}}{{2{\varphi _b}}}\frac{1}{{\sqrt {1 - \frac{V}{{{\varphi _b}}}}}} = \frac{{C_{j0}^{}}}{{\sqrt {1 - \frac{V}{{{\varphi _b}}}}}} 
+        {C_j}(V) = \frac{{dQ_j^{}}}{{dV}} = \frac{{q{N_A}{x_p}}}{{2{\varphi _b}}}\frac{1}{{\sqrt {1 - \frac{V}{{{\varphi _b}}}}}} = \frac{{C_{j0}^{}}}{{\sqrt {1 - \frac{V}{{{\varphi _b}}}}}} 
     \end{equation}

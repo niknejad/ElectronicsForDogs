@@ -837,10 +837,15 @@
 %                                   SECTION T                                        %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{T}
+    \textbf{Thermal Equilibrium} - See equilibrium.
+%%%%%%%%%%%%%%%%%
+\vspace{0.15cm}
+%%%%%%%%%%%%%%%%%
+
     \textbf{Thermal Motion} - The random motions of molecules, atoms, electrons or other subatomic particles.
-    %%%%%%%%%%%%%%%%%
-    \vspace{0.15cm}
-    %%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%
+\vspace{0.15cm}
+%%%%%%%%%%%%%%%%%
     \begin{itemize}
         \setlength\itemsep{0.5em}
         \item{Thermal motion in a doped semiconductor averages out to zero on a macroscopic scale, and does not contribute to current transport.}
@@ -857,6 +862,11 @@
         \item{Thermal runaway occurs in situations where an increase in temperature changes the conditions in a way that causes a further increase in temperature, often leading to a destructive result.}
         \item{It is a kind of uncontrolled positive feedback.}
     \end{itemize}
+%%%%%%%%%%%%%%%%%
+\vspace{0.15cm}
+%%%%%%%%%%%%%%%%%
+    \textbf{Thermal Voltage} - The voltage produced within a $PN$-junction due to temperature.
+
 %%%%%%%%%%%%%%%%%
 \vspace{0.5cm}
 %%%%%%%%%%%%%%%%%
@@ -929,6 +939,11 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{V}
     \textbf{Vacuum Level} - The minimum energy (typically denoted as $E_0$) and electron must possess to completely free itself from a material.
+
+%%%%%%%%%%%%%%%%%
+\vspace{0.5cm}
+%%%%%%%%%%%%%%%%%
+    \textbf{Varactor} - Also known as a varicap diode, a varactor is a type of diode designed to exploit the voltage-dependent capacitance of a reverse-biased $PN$-junction.  Varactors are used as voltage-controlled capacitors. They are commonly used in voltage-controlled oscillators, parametric amplifiers, and frequency multipliers.
 
 %%%%%%%%%%%%%%%%%
 \vspace{0.5cm}
@@ -1034,12 +1049,13 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                      PIECEWISE FUNCTION                                                 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\[ \boxed{\mathcal{E}(x) = \begin{cases} 
-%      -\frac{q\;N_A}{\epsilon_{si}}\;\big( x_p + x \big) &,\; -x_p \leq x \leq 0 \\ \\
-%      -\frac{q}{\epsilon_{si}}\;\bigg(N_A \cdot x_p - \frac{N_D \cdot x}{2}\bigg) &,\; 0 \leq x \leq x_0 \\ \\
-%      -\frac{q\;N_D}{\epsilon_{si}}\;\big(x_n - x \big) &,\; x_0 \leq x \leq x_n
-%  \end{cases}}
-%\]
+%    \begin{equation}
+%        \rho _0(x) \cong
+%            \begin{cases} 
+%                q(n_i{e^{-\varphi_0(x)/V_{th}}} - {N_A}) &,\; -x_{p_o} < x < 0 \\ \\
+%                q(N_D - n_i\,{e^{\varphi_0(x)/V_{th}}}) &,\; 0 < x < x_{n_0} \\ \\
+%            \end{cases}
+%    \end{equation}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                           INDUCTION SHELL                                               %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

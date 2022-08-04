@@ -24,7 +24,7 @@ A more subtle effect comes from the so-called ``Back-Gate Effect", or how the th
 %\end{figure}
 %
 % The fourth terminal of the MOSFET is the body of the transistor
-% The junctions of the transistor form pn-junction diodes,and naturally this introduces parasitic capacitance from source and drain to the body or bulk.
+% The junctions of the transistor form $PN$-junction diodes,and naturally this introduces parasitic capacitance from source and drain to the body or bulk.
 % Notice that while the source/drain form reverse-biased (nominally) junctions with the body, the body contact is "ohmic" meaning that the body is controlled direction by the voltage on the body terminal.
 % The inversion charge is therefore modulated by the body terminal, which acts like a "back gate".
 % 
@@ -44,7 +44,7 @@ A more subtle effect comes from the so-called ``Back-Gate Effect", or how the th
 \begin{figure}[tb]
 \centering
 \includegraphics[width=.75\columnwidth]{mos_caps_xsect}
-\caption{Cross section of an MOS transistor highlighting the internal capacitance arising from $q_{ch}$ and the parasitic capacitors due to pn-junctions, overlap and fringing capacitance.}
+\caption{Cross section of an MOS transistor highlighting the internal capacitance arising from $q_{ch}$ and the parasitic capacitors due to $PN$-junctions, overlap and fringing capacitance.}
 \label{fig:moscapsxsect}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -108,7 +108,7 @@ Although we have used a grading coefficient of $1/2$ for junctions (leading to s
 \centering
 \subcaptionbox{\label{fig:cap_junc_3d}}{\includegraphics[width=.5\columnwidth]{cap_junc_3d}}
 \subcaptionbox{\label{fig:mos_layout_top}}{\includegraphics[width=.3\columnwidth]{mos_layout_top}}
-\caption{(a) The drain/source junctions form pn-junctions with the body.  Under normal operating conditions, these capacitors are reverse biased.  There are ``sidewall" contributions $C_{j,sw}$ shown and a bottom plate term $C_{j,A}$.  (b)  The junction perimeter and area is calculated from the MOS layout and depends on the width $W$ of the device in addition to the length of the junctions $L_j$.} 
+\caption{(a) The drain/source junctions form $PN$-junctions with the body.  Under normal operating conditions, these capacitors are reverse biased.  There are ``sidewall" contributions $C_{j,sw}$ shown and a bottom plate term $C_{j,A}$.  (b)  The junction perimeter and area is calculated from the MOS layout and depends on the width $W$ of the device in addition to the length of the junctions $L_j$.} 
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 It's important to realize that the source/drain are symmetric.  The source / drain is defined by potentials / biasing and the schematic rather than the process. For this reason, the doping parameters for the source and drain are symmetric and so the calculations for the source and drain to bulk are very much the same.  Of course, the area of the junctions may differ based on the device layout.	Some special technologies (high breakdown devices) have an asymmetric source/drain, but this is rare.	 If the source and body are both AC grounded, then the source-to-bulk capacitance does not play a role in AC response and it's excluded from the model.
@@ -126,7 +126,7 @@ It's important to realize that the source/drain are symmetric.  The source / dra
 \label{fig:mos3term_ac}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-We can now update our three-terminal small-signal model to include three capacitors, as shown in Fig.~\ref{fig:mos3term_ac}.  The capacitance $C_{gs}$ is a combination of the gate-oxide capacitance (recall the factor of $2/3$ arising from the uneven charge distribution in the saturation region), and any overlap and fringing capacitance between the gate and the source.  The capacitance $C_{gd}$, on the other hand, is all due to overlap since in the saturation region the drain is isolated from the channel due to pinch-off.  The capacitance $C_{db}$ simply accounts for the reverse-biased pn-junction capacitance from the drain diffusion region to the body of the transistor.  The capacitor $C_{sb}$ is missing from the model because it's shorted out in the three terminal model if we assume the source/bulk are tied together.  In practice, this may not be true and we should include this capacitor as well, as we'll discuss in the full four-terminal model.  
+We can now update our three-terminal small-signal model to include three capacitors, as shown in Fig.~\ref{fig:mos3term_ac}.  The capacitance $C_{gs}$ is a combination of the gate-oxide capacitance (recall the factor of $2/3$ arising from the uneven charge distribution in the saturation region), and any overlap and fringing capacitance between the gate and the source.  The capacitance $C_{gd}$, on the other hand, is all due to overlap since in the saturation region the drain is isolated from the channel due to pinch-off.  The capacitance $C_{db}$ simply accounts for the reverse-biased $PN$-junction capacitance from the drain diffusion region to the body of the transistor.  The capacitor $C_{sb}$ is missing from the model because it's shorted out in the three terminal model if we assume the source/bulk are tied together.  In practice, this may not be true and we should include this capacitor as well, as we'll discuss in the full four-terminal model.  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                   SECTION 10.3                                       %
@@ -174,11 +174,11 @@ Written in this form, we can lump the back-gate effect into a change in the thre
     \end{equation}
 where $V_{T0}$ is the zero $V_{SB}$ threshold voltage:
     \begin{equation}
-        {V_{T0}} = {V_T}(0) = {V_{FB}} - 2{\phi _p} + \frac{1}{{{C_{ox}}}}\sqrt {2q{\varepsilon _s}{N_a}( - 2{\phi _p})} 
+        {V_{T0}} = {V_T}(0) = {V_{FB}} - 2{\phi _p} + \frac{1}{{{C_{ox}}}}\sqrt {2q{\varepsilon _s}{N_A}( - 2{\phi _p})} 
     \end{equation}
 and the change in threshold due to body bias is given by
     \begin{equation}
-        \Delta {V_T} = \frac{1}{{{C_{ox}}}}\sqrt {2q{\varepsilon _s}{N_a}} \left(\sqrt { - 2{\phi _p} + {V_{SB}}}  - \sqrt { - 2{\phi _p}} \right) = \gamma \left( {\sqrt {{V_{SB}} - 2{\phi _p}}  - \sqrt { - 2{\phi _p}}}\right)
+        \Delta {V_T} = \frac{1}{{{C_{ox}}}}\sqrt {2q{\varepsilon _s}{N_A}} \left(\sqrt { - 2{\phi _p} + {V_{SB}}}  - \sqrt { - 2{\phi _p}} \right) = \gamma \left( {\sqrt {{V_{SB}} - 2{\phi _p}}  - \sqrt { - 2{\phi _p}}}\right)
     \end{equation}
 This is written more compactly in the following form:
     \begin{equation}
@@ -187,7 +187,7 @@ This is written more compactly in the following form:
     \end{equation}
 where $\gamma$ is a device parameter
     \begin{equation}
-        \gamma = \frac{\sqrt{2q\varepsilon_s N_a}}{C_{ox}}
+        \gamma = \frac{\sqrt{2q\varepsilon_s N_A}}{C_{ox}}
     \end{equation}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 10.3.3            %
@@ -229,7 +229,7 @@ In most transistors $C_{ox} > C_{dep}$, so the back-gate transconductance is sma
 \includegraphics[scale=.9]{mos4term_dc_gmb}}
 \subcaptionbox{\label{fig:mos4term_ac_gmb}}{
 \includegraphics[scale=.9]{mos4term_ac_gmb}}
-\caption{The complete small-signal models for an n-type MOSFET with (a) no capacitors and with (b) capacitors.  The model without capacitors is useful for low frequency calculations.} 
+\caption{The complete small-signal models for an $N$-type MOSFET with (a) no capacitors and with (b) capacitors.  The model without capacitors is useful for low frequency calculations.} 
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 We now complete the small-signal model by noting that the drain-source current depends on $v_{gs}$ (transconductance), on $v_{ds}$ (output resistance of device), and also on $v_{bs}$ (back-gate):
@@ -248,6 +248,6 @@ Using the same arguments, we can also conclude that a PMOS device is also descri
 \begin{figure}[h]
 \centering
 \includegraphics[scale=1]{pmos4term_ac}
-\caption{The complete small-signal models for an p-type MOSFET.}
+\caption{The complete small-signal models for an $P$-type MOSFET.}
 \label{fig:pmos4term_ac}
 \end{figure}

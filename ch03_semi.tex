@@ -499,15 +499,15 @@ The term \textbf{doping}\index{Doping} means that we add impurities to the cryst
 %             SUBSECTION 3.5.1             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Doping with Group V Elements}
-Let’s start with a group V element on the periodic table, for example Phosphorous (P) or Arsenic (As).  Because these are group V elements, they do not fit naturally in the crystal.  That is, unless they get rid of one of their valence electrons.  Then they can “fit in” and present to be silicon (group IV) atoms, and form covalent bonds with their neighbors.  We are assuming that the number of group V elements is substantially smaller than the number of group IV elements, so they would be more or less always surrounded by silicon atoms.  In our bonding model, we can say that the group V element fits into the crystal as an ionized atom by donating an electron to the crystal, as shown in \emph{Fig.~\ref{fig:silicon_dopant_V}}.   We call these dopants \textbf{donors}\index{Doping!donors}.
+Let’s start with a group V element on the periodic table, for example Phosphorous (P) or Arsenic (As).  Because these are group V elements, they do not fit naturally in the crystal.  That is, unless they get rid of one of their valence electrons.  Then they can “fit in” and present to be silicon (group IV) atoms, and form covalent bonds with their neighbors.  We are assuming that the number of group V elements is substantially smaller than the number of group IV elements, so they would be more or less always surrounded by silicon atoms.  In our bonding model, we can say that the group V element fits into the crystal as an ionized atom by donating an electron to the crystal, as shown in \emph{Fig.~\ref{fig:silicoN_Dopant_V}}.   We call these dopants \textbf{donors}\index{Doping!donors}.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tb]
 \centering
-\includegraphics[width=.5\columnwidth]{silicon_dopant_V}
+\includegraphics[width=.5\columnwidth]{silicoN_Dopant_V}
 \caption{When a group V dopant (\emph{donor}) is added to the silicon crystal, it readily gives up one electron in order to form a covalent bond with its neighbors.  The extra electron is released and becomes a free carrier.}
-\label{fig:silicon_dopant_V}
+\label{fig:silicoN_Dopant_V}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 3.5.2             %
@@ -517,31 +517,31 @@ Each ionized donor will contribute an extra “free” electron.  The material i
     \begin{align}
         \rho &= \underbrace{- q{n_0}}_{\text{free electrons}}
         + \underbrace{q{p_0}}_{\text{free holes}}
-        + \underbrace{q{N_d}}_{\text{ions (immobile)}} = 0 &\textit{Charge neutrality}
+        + \underbrace{q{N_D}}_{\text{ions (immobile)}} = 0 &\textit{Charge neutrality}
     \end{align}
 By the Law of Mass-Action\index{Law of Mass-Action} \big( $n \times p = {n_i}^2(T)$ \big):
     \begin{equation*}
-        - q{n_0} + q\frac{{n_i^2}}{{{n_0}}} + q{N_d} = 0
+        - q{n_0} + q\frac{{n_i^2}}{{{n_0}}} + q{N_D} = 0
     \end{equation*}
 This leaves us with an equation involving only the density of free electrons:
     \begin{equation*}
-        - qn_0^2 + qn_i^2 + q{N_d}{n_0} = 0
+        - qn_0^2 + qn_i^2 + q{N_D}{n_0} = 0
     \end{equation*}
 When we solve the quadratic pretty quickly since it’s quadratic:
     \begin{equation*}
-        n_0^2 - {N_d}{n_0} - n_i^2 = 0
+        n_0^2 - {N_D}{n_0} - n_i^2 = 0
     \end{equation*}
 The general solution is given by:
     \begin{align}
-        {n_0} = \frac{{{N_d} \pm \sqrt {N_d^2 + 4n_i^2} }}{2} &\textit{Free electrons in doping Si}
+        {n_0} = \frac{{{N_D} \pm \sqrt {N_D^2 + 4n_i^2} }}{2} &\textit{Free electrons in doping Si}
     \end{align}
-Only the positive root is physically valid, because it implies that the number of free electrons is larger than $N_d$.  Recall that we know there were $n_i$ free electrons before the dopants, and then we introduced the dopants and every dopant donates a free electron.  So why is the free electron concentration not simply $N_d + n_i$?  Because, now the rate of recombination is higher, and that is exactly what the solution to the quadratic is telling us.  So clearly, only the positive root is physically valid, and we have:
+Only the positive root is physically valid, because it implies that the number of free electrons is larger than $N_D$.  Recall that we know there were $n_i$ free electrons before the dopants, and then we introduced the dopants and every dopant donates a free electron.  So why is the free electron concentration not simply $N_D + n_i$?  Because, now the rate of recombination is higher, and that is exactly what the solution to the quadratic is telling us.  So clearly, only the positive root is physically valid, and we have:
     \begin{equation}
-        {n_0} = \frac{{{N_d} + \sqrt {N_d^2 + 4n_i^2} }}{2}
+        {n_0} = \frac{{{N_D} + \sqrt {N_D^2 + 4n_i^2} }}{2}
     \end{equation}
-For most practical situations:  ${N_d} \gg {n_i}$.  This means that we can simplify the quadratic to: 
+For most practical situations:  ${N_D} \gg {n_i}$.  This means that we can simplify the quadratic to: 
     \begin{equation}
-        {n_0} = \frac{{{N_d} + {N_d}\sqrt {1 + 4{{\left( {\frac{{{n_i}}}{N}} \right)}^2}} }}{2} \approx \frac{{{N_d}}}{2} + \frac{{{N_d}}}{2} = {N_d}
+        {n_0} = \frac{{{N_D} + {N_D}\sqrt {1 + 4{{\left( {\frac{{{n_i}}}{N}} \right)}^2}} }}{2} \approx \frac{{{N_D}}}{2} + \frac{{{N_D}}}{2} = {N_D}
     \end{equation}
 The final result is so obvious you might wonder why we bothered with all the questions.  It’s true, if you assume the doping concentration is very high, then the thermally generated electrons don’t matter and we can just assume that the number of free electrons is the same as the number of dopants.
 \newpage
@@ -549,15 +549,15 @@ The final result is so obvious you might wonder why we bothered with all the que
 %             SUBSECTION 3.5.3             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Doping with Group III Elements}
-So we have seen that adding a group V element doping element increases the number of free electrons.  How about if we want to increase the number of holes?  Well, by symmetry, let’s try a group III element.  Boron, for example, has three bonding electrons. So if it were surrounded by group IV elements like silicon, it would be sorely missing an electron.  What can happen is that another electron can come to the rescue and make Boron a very happy atom. It will be a negatively charged ion (because it has an extra electron attached to it), but it can now form covalent bonds with its neighbors in an orderly fashion.  But where does that electron come from?  A neighboring atom, for example, can lose its electron, forming a hole, and that hole can now roam about as a free hole.  The model is illustrated in \emph{Fig.~\ref{fig:silicon_dopant_III}}, and shows that the addition of a group III element creates a negatively charged ion and a free hole.
+So we have seen that adding a group V element doping element increases the number of free electrons.  How about if we want to increase the number of holes?  Well, by symmetry, let’s try a group III element.  Boron, for example, has three bonding electrons. So if it were surrounded by group IV elements like silicon, it would be sorely missing an electron.  What can happen is that another electron can come to the rescue and make Boron a very happy atom. It will be a negatively charged ion (because it has an extra electron attached to it), but it can now form covalent bonds with its neighbors in an orderly fashion.  But where does that electron come from?  A neighboring atom, for example, can lose its electron, forming a hole, and that hole can now roam about as a free hole.  The model is illustrated in \emph{Fig.~\ref{fig:silicoN_Dopant_III}}, and shows that the addition of a group III element creates a negatively charged ion and a free hole.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tb]
 \centering
-\includegraphics[width=.5\columnwidth]{silicon_dopant_III}
+\includegraphics[width=.5\columnwidth]{silicoN_Dopant_III}
 \caption{When a group III dopant (\emph{acceptor}) is added to the silicon crystal, it needs an electron to form a covalent bond with its neighbors, which it readily accepts from a nearby bond.  This electron, coming from another bond, creates a free hole.}
-\label{fig:silicon_dopant_III}
+\label{fig:silicoN_Dopant_III}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -570,54 +570,54 @@ The balance between generation and recombination means that in any given scenari
     \begin{equation}
         {p_o} \cdot {n_o} = {n_i}^2
     \end{equation} 
-When a process creates holes and electrons asymmetrically, as we have just seen with dopants, then these extra free carriers will drive down the number of free carriers of opposite type due to recombination.   Recall that at $(T = 300\,{\rm{K}},\,\,{n_i} = {10^{10}}{\rm{c}}{{\rm{m}}^{ - 3}})$.  Now for the N-type doping case, the concentration of electronics is approximately equal to the number of ionized dopants $N_d^+$, or approximately equal to the number of dopants:
+When a process creates holes and electrons asymmetrically, as we have just seen with dopants, then these extra free carriers will drive down the number of free carriers of opposite type due to recombination.   Recall that at $(T = 300\,{\rm{K}},\,\,{n_i} = {10^{10}}{\rm{c}}{{\rm{m}}^{ - 3}})$.  Now for the N-type doping case, the concentration of electronics is approximately equal to the number of ionized dopants $N_D^+$, or approximately equal to the number of dopants:
     \begin{equation}
-        {n_0} = N_d^+  \cong {N_d}
+        {n_0} = N_D^+  \cong {N_D}
     \end{equation}
 And that means that the number of holes has been reduced due to the increased presence of electrons:
     \begin{equation}
-        p_0 = \frac{n_i^2}{N_d}
+        p_0 = \frac{n_i^2}{N_D}
     \end{equation}
 The same is true for a P-type scenario:
     \begin{equation}
-        {p_0} = N_a^ -  \cong {N_a} 
+        {p_0} = N_A^ -  \cong {N_A} 
     \end{equation}
 These extra holes drive down the concentration of electrons 
 { P-type case:}
     \begin{equation}
-        n_0 = \frac{n_i^2}{N_a}
+        n_0 = \frac{n_i^2}{N_A}
     \end{equation}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 3.5.5             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Compensation}
-What happens if we dope with \textit{both} donors and acceptors?  Who wins out?  Well, it depends on the doping level.  Essentially we create both free electrons for every donor dopant and free holes for every acceptor dopant.  Take a look at \emph{Fig.~\ref{fig:silicon_dopant_both}}.
+What happens if we dope with \textit{both} donors and acceptors?  Who wins out?  Well, it depends on the doping level.  Essentially we create both free electrons for every donor dopant and free holes for every acceptor dopant.  Take a look at \emph{Fig.~\ref{fig:silicoN_Dopant_both}}.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tb]
 \centering
-\includegraphics[width=.5\columnwidth]{silicon_dopant_both}
+\includegraphics[width=.5\columnwidth]{silicoN_Dopant_both}
 \caption{Silicon crystal doped by both an acceptor and donor dopant results in the creation of both free holes and electrons.}
-\label{fig:silicon_dopant_both}
+\label{fig:silicoN_Dopant_both}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-If we dope with more donors than acceptors, and $N_d > N_a$, then the material is “N-type”, because the action of the free electrons is more than the free holes.  In other words, the free electron density is given by:
+If we dope with more donors than acceptors, and $N_D > N_A$, then the material is “N-type”, because the action of the free electrons is more than the free holes.  In other words, the free electron density is given by:
     \begin{equation}
-        {n_o} = {N_d} - {N_a} \gg {n_i}
+        {n_o} = {N_D} - {N_A} \gg {n_i}
     \end{equation}
 And the free holes are approximately given by the law of Mass-Action:
     \begin{equation}
-        {p_o} = \frac{{n_{_i}^2}}{{{N_d} - {N_a}}}
+        {p_o} = \frac{{n_{_i}^2}}{{{N_D} - {N_A}}}
     \end{equation}
-On the other hand, if we have more acceptors than donors, or  $N_a > N_d$, then we can approximate the number of free holes by:
+On the other hand, if we have more acceptors than donors, or  $N_A > N_D$, then we can approximate the number of free holes by:
     \begin{equation}
-        {p_o} = {N_a} - {N_d} \gg {n_i}
+        {p_o} = {N_A} - {N_D} \gg {n_i}
     \end{equation}
 And the number of free electrons by:
     \begin{equation}
-        {n_o} = \frac{{n_{_i}^2}}{{{N_a} - {N_d}}}
+        {n_o} = \frac{{n_{_i}^2}}{{{N_A} - {N_D}}}
     \end{equation}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
