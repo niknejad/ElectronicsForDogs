@@ -41,7 +41,7 @@ In the last chapter we introduced a model for an operation amplifier (op-amp) th
 \label{fig:opamp_offset_plot}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-If you short the inputs of an op-amp, you would expect that the output would be at zero voltages.  Unfortunately, due to imbalances in the construction of the amplifier, the output may not be at zero at all, and in many cases it might even ``rail out" and sit at either $V_{sup}$ or $-V_{sup}$, where $\pm V_{sup}$ are the supply rails.  From our study of the differential pair, we know the origin of this offset voltage as arising from mismatches between the input differential pair transistors or load resistors.  
+If you short the inputs of an op-amp, you would expect that the output would be at zero voltages.  Unfortunately, due to imbalances in the construction of the amplifier, the output may not be at zero at all, and in many cases it might even "rail out" and sit at either $V_{sup}$ or $-V_{sup}$, where $\pm V_{sup}$ are the supply rails.  From our study of the differential pair, we know the origin of this offset voltage as arising from mismatches between the input differential pair transistors or load resistors.  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 We model an op-amp with an offset voltage as an ideal op-amp inside another amplifier with a simple DC offset voltage, shown in Fig.~\ref{fig:opamp_offset}.  Even though the DC offset voltage is shown with a certain polarity, in reality it can be positive or negative, as it's a random variable.  From part to part you'll see variation and the stated offset voltage $V_{os}$ is usually the standard deviation of the offset voltage.  Therefore it's clear that we can place the DC voltage on either terminal.  The impact is to shift the transfer curve left or right (shown in Fig.~\ref{fig:opamp_offset_plot}), depending on the sign and magnitude of the offset.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -65,7 +65,7 @@ We model an op-amp with an offset voltage as an ideal op-amp inside another ampl
 \caption{The pinouts of many op-amps include offset null pins that should be connected as directed in the datasheet.  For example, in this amplifier a potentiometer is used to tune out the offset.} \label{fig:opamp_pinout_offset}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-The pinouts of a typical op-amp are shown in Fig.~\ref{fig:lm741_pinout}.  In addition to the obvious pins (input, output, supplies), there are extra pins labeled ``offset null".   The output DC offset voltage of an op-amp can be trimmed to zero by connecting a potentiometer to the two offset-nulling terminals, as shown in Fig.~\ref{fig:opamp_pinout_offset}. In this example, the wiper of the potentiometer should be connected to the negative supply of the op-amp.  In fully integrated circuits, the offset null circuitry is internal (for example with electronically steerable resistors or current sources) and the offset is nulled out using a calibration step or feedback.  
+The pinouts of a typical op-amp are shown in Fig.~\ref{fig:lm741_pinout}.  In addition to the obvious pins (input, output, supplies), there are extra pins labeled "offset null".   The output DC offset voltage of an op-amp can be trimmed to zero by connecting a potentiometer to the two offset-nulling terminals, as shown in Fig.~\ref{fig:opamp_pinout_offset}. In this example, the wiper of the potentiometer should be connected to the negative supply of the op-amp.  In fully integrated circuits, the offset null circuitry is internal (for example with electronically steerable resistors or current sources) and the offset is nulled out using a calibration step or feedback.  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 18.2.3            %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -80,7 +80,7 @@ The pinouts of a typical op-amp are shown in Fig.~\ref{fig:lm741_pinout}.  In ad
 \includegraphics[scale=1]{bjt_input_darlington}\\
 (a) & (b)\\
 \end{tabular}
-\caption{(a) Many op-amps require input bias currents to flow into the amplifier.  These bias currents are never perfectly matched, resulting in an input offset current. (b) The physical implementation of the input of an op-amp with bipolar transistors may incorporate a ``Darlington Pair" to reduce the input current. The pair of transistors acts like a macro transistor with reduced base current. The first (input) BJT's are followers and the differential pair is formed as usual using the Darlingtons.}
+\caption{(a) Many op-amps require input bias currents to flow into the amplifier.  These bias currents are never perfectly matched, resulting in an input offset current. (b) The physical implementation of the input of an op-amp with bipolar transistors may incorporate a "Darlington Pair" to reduce the input current. The pair of transistors acts like a macro transistor with reduced base current. The first (input) BJT's are followers and the differential pair is formed as usual using the Darlingtons.}
 \label{fig:opamp_offset_I}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -217,7 +217,7 @@ The closed loop transfer function in relation to the open-loop transfer function
 %             SUBSECTION 18.4.1            %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Output Saturation}
-The output voltage swing is limited by the voltage supplies, usually omitted from the schematic, but shown explicitly in Fig.~\ref{fig:opamp_invert_gain_supplies}.  If the input voltage times the gain of the amplifier is larger than the supplies, the output will clip, as shown in Fig.~\ref{fig:sin_clip}.  Here we are optimistically assuming the op-amp can swing all the way to the rails.  In reality, the output swing may be lower than the rails due to the various implementation details.  Most op-amps also have a maximum output current limit, activated to prevent the op-amp from damage in the case of a short circuit or connection of a very small load resistor.  In either case, the output waveform will appear ``clipped", leading to distortion.  In most linear amplifier applications, clipping is unwanted and avoided by careful design.
+The output voltage swing is limited by the voltage supplies, usually omitted from the schematic, but shown explicitly in Fig.~\ref{fig:opamp_invert_gain_supplies}.  If the input voltage times the gain of the amplifier is larger than the supplies, the output will clip, as shown in Fig.~\ref{fig:sin_clip}.  Here we are optimistically assuming the op-amp can swing all the way to the rails.  In reality, the output swing may be lower than the rails due to the various implementation details.  Most op-amps also have a maximum output current limit, activated to prevent the op-amp from damage in the case of a short circuit or connection of a very small load resistor.  In either case, the output waveform will appear "clipped", leading to distortion.  In most linear amplifier applications, clipping is unwanted and avoided by careful design.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -240,7 +240,7 @@ The output voltage swing is limited by the voltage supplies, usually omitted fro
 %             SUBSECTION 18.4.2            %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Slew Rate}
-The ``slew rate'', or the maximum possible change at the output, is defined by:
+The "slew rate'', or the maximum possible change at the output, is defined by:
     \begin{equation}
         SR = \left. \frac{dV_o}{dt} \right|_{maximum}
     \end{equation}
@@ -272,7 +272,7 @@ To understand SR limiting, let's consider a simple unity-gain op-amp amplifier s
     \begin{equation}
         V_o(t) = V_i \left( 1 - e^{-t \omega_u} \right) 
     \end{equation}
-In this case the time constant $\tau = 1/\omega_u$ as the amplifier bandwidth is the full $GBW$ product, since it's a unity gain configuration feedback amplifier.  This settling behavior is shown in the dashed line of Fig.~\ref{fig:step_input}.  What is surprising is that a real op-amp will not follow this linear step response, but rather a curve that is a linear ramp for a duration, labeled as the SR limited region, and then only after the slope of the waveform is small enough does the circuit behave similar the bandwidth limited case.  Essentially, the SR limit prevents the amplifier from changing faster than the slew rate.  For the linear response, the  slope of the output signal (``slew rate") is given by
+In this case the time constant $\tau = 1/\omega_u$ as the amplifier bandwidth is the full $GBW$ product, since it's a unity gain configuration feedback amplifier.  This settling behavior is shown in the dashed line of Fig.~\ref{fig:step_input}.  What is surprising is that a real op-amp will not follow this linear step response, but rather a curve that is a linear ramp for a duration, labeled as the SR limited region, and then only after the slope of the waveform is small enough does the circuit behave similar the bandwidth limited case.  Essentially, the SR limit prevents the amplifier from changing faster than the slew rate.  For the linear response, the  slope of the output signal ("slew rate") is given by
     \begin{equation}
         \frac{dV_{o}}{dt} = V_i \omega_u e^{-t \omega_u}
     \end{equation}
@@ -375,7 +375,7 @@ Notice again that the frequency $f_{max}$ is a function of the output amplitude.
 \begin{figure}[tb]
 \centering
 \includegraphics[width=.75\columnwidth]{vtanh}
-\caption{The typical input-output relationship is ``S" shaped because of various limits that eventually clip the waveform.}
+\caption{The typical input-output relationship is "S" shaped because of various limits that eventually clip the waveform.}
 \label{fig:vtanh}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -388,7 +388,7 @@ Notice again that the frequency $f_{max}$ is a function of the output amplitude.
 \label{fig:vdisto}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-As we have seen, the op-amp output signal has several sources of distortion arising from clipping, slewing, and even bandwidth limits if the phase of the signal introduces a non-constant group delay in the frequency response.  Another source of distortion is that the gain is signal dependent.  In other words, the input-output curve is not a perfect straight line but has curvature (``S" shaped for example), as shown in Fig.~\ref{fig:vtanh}.  We already encountered this when we derived the large signal transfer function of the MOS differential pair (see Fig.~\ref{fig:Diff_amp_large.pdf}), and of course all the transistors we have studied have a non-linear $I$-$V$ and $C$-$V$ curve.  This leads to harmonic and intermodulation distortion, a topic we will cover in detail in other courses, such as a communication circuits or advanced analog circuits course.  As a simple example, in Fig.~\ref{fig:vdisto}, the ideal sinusoidal output is distorted due to harmonics of the waveform.  Harmonics are generated due to non-linearity.  For example, if we model a small portion of the $I$-$V$ curve with a Taylor series expansion, we have
+As we have seen, the op-amp output signal has several sources of distortion arising from clipping, slewing, and even bandwidth limits if the phase of the signal introduces a non-constant group delay in the frequency response.  Another source of distortion is that the gain is signal dependent.  In other words, the input-output curve is not a perfect straight line but has curvature ("S" shaped for example), as shown in Fig.~\ref{fig:vtanh}.  We already encountered this when we derived the large signal transfer function of the MOS differential pair (see Fig.~\ref{fig:Diff_amp_large.pdf}), and of course all the transistors we have studied have a non-linear $I$-$V$ and $C$-$V$ curve.  This leads to harmonic and intermodulation distortion, a topic we will cover in detail in other courses, such as a communication circuits or advanced analog circuits course.  As a simple example, in Fig.~\ref{fig:vdisto}, the ideal sinusoidal output is distorted due to harmonics of the waveform.  Harmonics are generated due to non-linearity.  For example, if we model a small portion of the $I$-$V$ curve with a Taylor series expansion, we have
     \begin{equation}
         I = a_1 V_i + a_2 V_i^2 + a_3 V_i^3 + \cdots
     \end{equation}
@@ -423,11 +423,11 @@ These harmonics lead to waveform distortion shown in Fig.~\ref{fig:vdisto}.  For
 \label{fig:opamp_unitygain_noise_fig}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Imagine that you short circuit the input of your op-amp as shown in Fig.~\ref{fig:opamp_unitygain_noise_fig}. In addition to offset voltage, you would also observe a random fluctuation of the output signal.  The signal is very small and it might be below the resolution limits of the oscilloscope, but a more sensitive instrument such as a spectrum analyzer clearly shows this noise.  The noise tends to be flat in spectrum and for this reason it's often called ``white noise".  While we sometimes call interference signals noise, here we are referring to a random signal originating from thermodynamic properties of the transistor, rather than human made noise that couples into the circuit.   Since it's a random signal, it's characterized by its statistical properties, such as the standard deviation of the signal.  
+Imagine that you short circuit the input of your op-amp as shown in Fig.~\ref{fig:opamp_unitygain_noise_fig}. In addition to offset voltage, you would also observe a random fluctuation of the output signal.  The signal is very small and it might be below the resolution limits of the oscilloscope, but a more sensitive instrument such as a spectrum analyzer clearly shows this noise.  The noise tends to be flat in spectrum and for this reason it's often called "white noise".  While we sometimes call interference signals noise, here we are referring to a random signal originating from thermodynamic properties of the transistor, rather than human made noise that couples into the circuit.   Since it's a random signal, it's characterized by its statistical properties, such as the standard deviation of the signal.  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Op-amps, like all amplifiers, have noise.  We model the noise in the same way that we modeled offset voltages, as input voltages and/or currents as shown in Fig.~\ref{fig:opamp_noise}.  Unlike offset voltages, these are AC signals that are characterized in the frequency domain.  Since the signal is usually flat with frequency, the noise spectral density, or the amount of noise power per unit bandwidth, is stated in datasheets.  To get the voltage or current noise, you must integrate the noise over the bandwidth of interest.  If the noise has a flat spectrum, you multiply the noise power density by the bandwidth of interest (approximately the bandwidth of the amplifier) and take the square root.  This is why you will often see voltage and current noise specified in units of square root of hertz.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-In addition to active devices like transistors, resistors also generate noise due to the random motion of carriers (electrons) in the solid.  At any given time instant, the number of carriers moving ``left" versus ``right" is not equal, and so the device is conducting current. This is why the current is very small, because it's the imbalance of carrier motion, and why the signal is an AC signal with current going positive and then almost immediately going negative with very high rate (frequency).  The noise current is proportional to the temperature $T$ because it's due to the random thermal motion of carriers.  In a resistor, it can be shown that the current takes on a value of
+In addition to active devices like transistors, resistors also generate noise due to the random motion of carriers (electrons) in the solid.  At any given time instant, the number of carriers moving "left" versus "right" is not equal, and so the device is conducting current. This is why the current is very small, because it's the imbalance of carrier motion, and why the signal is an AC signal with current going positive and then almost immediately going negative with very high rate (frequency).  The noise current is proportional to the temperature $T$ because it's due to the random thermal motion of carriers.  In a resistor, it can be shown that the current takes on a value of
     \begin{equation}
         i_R = \sqrt{4 k T \frac{1}{R} \Delta f} 
     \end{equation}

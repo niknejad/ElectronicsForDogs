@@ -58,7 +58,7 @@ How do we find the change in the amplitude and phase of the signal?
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 1.2.2             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{LPF the ``hard way"}
+\subsection{LPF the "hard way"}
 The following is the wrong way to solve the problem.  It's important to review it to see how painful it can be even for a simple example.  We start by plugging the known form of the output(\emph{Eq.~\ref{eq:kvl1}}) into the LHS of the governing equation(\emph{Eq.~\ref{eq:lpf_diff}}), and verify that it satisfies the equation:
     \begin{align*}
         V_o \cos(\omega t + \phi) &= v_s(t) - \tau \frac{d}{dt}\bigg( v_o(t) \bigg)\\
@@ -190,7 +190,7 @@ Now, a system is \textbf{time invariant}\index{Linear systems!Time invariant} if
     \begin{equation}
         \mathbf{L} [x(t-\tau)] = y(t-\tau)
     \end{equation}
-Notice that \textbf{time shifting}\index{Linear systems!Time shifting} the input just corresponds to applying the same time shift to the output.  Another way to think of time-invariance is to say that the system has no  ``clock" or time reference, or that the transfer function is not a function of time.  It does not matter when you apply the input.  The transfer function is going to be the same. 
+Notice that \textbf{time shifting}\index{Linear systems!Time shifting} the input just corresponds to applying the same time shift to the output.  Another way to think of time-invariance is to say that the system has no  "clock" or time reference, or that the transfer function is not a function of time.  It does not matter when you apply the input.  The transfer function is going to be the same. 
 
  If you are familiar with discrete linear system, you know that linearity and superposition are fundamental properties. 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -312,7 +312,7 @@ which shows that two counter rotating complex exponentials sum to $\sin$ and $\c
 \label{fig:lti_sine}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-What were going to show is that when a linear, time invariant (LTI) circuit is excited by a sinusoid (see \emph{Fig.~\ref{fig:lti_sine}}), it's output is a sinusoid at the same frequency.  Only the magnitude and phase of the output differ from the input.  Sinusoids are very special functions for LTI systems, in other words they are eigenfunctions.  The \textbf{``Frequency Response''}\index{Linear systems!frequency response} is a characterization of the input-output response for sinusoidal inputs at all frequencies.
+What were going to show is that when a linear, time invariant (LTI) circuit is excited by a sinusoid (see \emph{Fig.~\ref{fig:lti_sine}}), it's output is a sinusoid at the same frequency.  Only the magnitude and phase of the output differ from the input.  Sinusoids are very special functions for LTI systems, in other words they are eigenfunctions.  The \textbf{"Frequency Response''}\index{Linear systems!frequency response} is a characterization of the input-output response for sinusoidal inputs at all frequencies.
 
 Since most periodic (non-periodic) signals can be decomposed into a summation (integration) of sinusoids via Fourier Series (Transform), the response of a LTI system to virtually any input is characterized by the frequency response of the system.  We'll return to this point later.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -320,7 +320,7 @@ Since most periodic (non-periodic) signals can be decomposed into a summation (i
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Complex Exponential is Powerful}
 To find steady state response we can excite the system with a complex exponential.   Here our system is any general LTI system. In terms of circuits, it is any linear circuit consisting of resistors, capacitors, inductors, mutual inductors, transformers, and linear dependent sources.  At any frequency, the system response is characterized by a single complex number $H$, as shown in \emph{Fig.~\ref{fig:lti_resp}}.   The magnitude response is given by $|H(\omega)|$ and
-the phase response is given by $\angle H$.   We see that the complex exponential is an ``eigenfunction" of the system.  It is used to probe the system.  If we characterize the response to all eigenfunctions, we can completely characterize the system.   Because a sinusoid is a sum of complex exponentials (and because of linearity!), we can also probe a system by applying a real sinusoidal input.  This is what we do in the lab.
+the phase response is given by $\angle H$.   We see that the complex exponential is an "eigenfunction" of the system.  It is used to probe the system.  If we characterize the response to all eigenfunctions, we can completely characterize the system.   Because a sinusoid is a sum of complex exponentials (and because of linearity!), we can also probe a system by applying a real sinusoidal input.  This is what we do in the lab.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -347,7 +347,7 @@ In summary, $e^{j\omega}$ is an eigenfunction for any linear system (circuit), a
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 1.5.1             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{LPF Example:  The ``soft way''}
+\subsection{LPF Example:  The "soft way''}
 Remember that earlier we tried to analyze the low-pass filter using sinusoids.  Now let's excite the system with a complex exponential.  Recall that the sinusoidal response is related to the exponential response so we can always recover the sinusoidal response from the complex exponential\index{Complex exponential} response
     \begin{equation}
         v_s(t) = v_o(t) + \tau \frac{dv_o}{dt}
@@ -388,7 +388,7 @@ Clearly, using the complex exponential is much faster and easier than the earlie
 %              SUB-SUBSECTION              %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Why did it work?}
-If we push the complex exponential through the system and take the real part of the output, then why is that the same as the ``real'' sinusoidal response?  One argument to explain why the complex exponential works in place of a sinusoid is to observe that sine and cosine are simply imaginary and real parts of the complex exponential.  So any signal (current or voltage) can be written in the following equivalent forms
+If we push the complex exponential through the system and take the real part of the output, then why is that the same as the "real'' sinusoidal response?  One argument to explain why the complex exponential works in place of a sinusoid is to observe that sine and cosine are simply imaginary and real parts of the complex exponential.  So any signal (current or voltage) can be written in the following equivalent forms
     \begin{equation}
         s(t) = S_o \cos(\omega t + \phi) = S_o \Re[e^{j(\omega t + \phi)}]
     \end{equation}
@@ -447,7 +447,7 @@ or more simply
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 1.6.1             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{``Proof'' for Linear Systems}
+\subsection{"Proof'' for Linear Systems}
 For an arbitrary linear circuit, in other words a black box containing an arbitrary number of inductors, capacitors, resistors, mutual inductors, or linear dependent sources, we can  decompose the system into linear sub-operators, like multiplication by constants, time derivatives, or integrals:
     \begin{equation}
         y = \mathbf{L}(x) = a x + b_1 \frac{d}{dt} x + b_2\frac{d^2}{dt^2} x + \cdots + c_1 \int x + c_2 \iint x + \cdots
@@ -491,7 +491,7 @@ Later we'll see that $H(s)$ can be used to solve a problem involving the \textbf
 %              SUB-SUBSECTION              %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Complex Plane}
-In \emph{Fig.~\ref{fig:splane}} we show the ``s-plane", and the "x" marks on the diagram indicate particular complex values of $s$, and the effect these values have on the shape of the response.  Notice that the real axis corresponds to the exponential envelope growth or decay.  The imaginary axis corresponds to the rate of oscillation.  On the real axis, there's no oscillation at all. On the imaginary axis, there's no decay.  This plot shows that the general exponential $e^{st}$ can represent different kinds of functional behavior including steady-state oscillation (sinusoidal response) and other decaying and growing oscillation amplitudes.
+In \emph{Fig.~\ref{fig:splane}} we show the "s-plane", and the "x" marks on the diagram indicate particular complex values of $s$, and the effect these values have on the shape of the response.  Notice that the real axis corresponds to the exponential envelope growth or decay.  The imaginary axis corresponds to the rate of oscillation.  On the real axis, there's no oscillation at all. On the imaginary axis, there's no decay.  This plot shows that the general exponential $e^{st}$ can represent different kinds of functional behavior including steady-state oscillation (sinusoidal response) and other decaying and growing oscillation amplitudes.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -572,7 +572,7 @@ Now imagine taking the limit as $\Delta\rightarrow 0$
     \end{equation}
 What do we get?  Is this thing even a function?  A pictorial representation of the limiting process is shown in \emph{Fig.~\ref{fig:rect_func_delta}}.  We see that the function becomes more and more narrow and taller and taller.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
- No, it's not an ordinary function.\footnote{Mathematicians have made sense of it.  Now it's known as a distribution or generalized function.}  The \textbf{delta function}\index{Dirac Delta Function} was originally introduced by Oliver Heaviside $\sim$1900, Dirac co-invented it and gets credit as it's known as the ``Dirac Delta Function".\footnote{Heaviside was derided by the mathematicians of the day for his methods.  He often got the right answer without being mathematically rigorous, but that's because he was way ahead of everyone in his techniques, and it took a while for the mathematical world to catch up.}
+ No, it's not an ordinary function.\footnote{Mathematicians have made sense of it.  Now it's known as a distribution or generalized function.}  The \textbf{delta function}\index{Dirac Delta Function} was originally introduced by Oliver Heaviside $\sim$1900, Dirac co-invented it and gets credit as it's known as the "Dirac Delta Function".\footnote{Heaviside was derided by the mathematicians of the day for his methods.  He often got the right answer without being mathematically rigorous, but that's because he was way ahead of everyone in his techniques, and it took a while for the mathematical world to catch up.}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %              SUB-SUBSECTION              %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -623,7 +623,7 @@ Notice that in a time-invariant system, it should not matter when we apply the D
     \begin{equation}
         h(t) \equiv  \mathbf{L}[\delta(t)]
     \end{equation}
-This means that $h(t)$ contains all the information about the linear system. If we call the Dirac Delta function an "impulse", then for obvious reasons, we call $h(t)$ the \textbf{``impulse response function"}\index{Impulse response function}. 
+This means that $h(t)$ contains all the information about the linear system. If we call the Dirac Delta function an "impulse", then for obvious reasons, we call $h(t)$ the \textbf{"impulse response function"}\index{Impulse response function}. 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 1.8.1             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -677,13 +677,13 @@ It's useful to visualize the convolution operation.  Note that the convolution o
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 For example, if $h(t)$ is mostly zero except over a small interval, 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-The fact that the impulse response function has time duration is an indication that the system has memory.  The current output depends not only on the current input, but also past values of the input.  The longer the duration of the impulse response function, the more ``memory" the system has.  Capacitors and inductors store energy and act as memory in circuits.  They store energy in the magnetic and electric fields, and resonance can occur because these forms of energy can be exchanged.  The impulse response function for a system with no memory is just another delta function!  Two examples are shown in \emph{Fig.~\ref{fig:memory}} to illustrate a system with a longer vacillating impulse response versus a system that has a short and exponentially decaying impulse response.  
+The fact that the impulse response function has time duration is an indication that the system has memory.  The current output depends not only on the current input, but also past values of the input.  The longer the duration of the impulse response function, the more "memory" the system has.  Capacitors and inductors store energy and act as memory in circuits.  They store energy in the magnetic and electric fields, and resonance can occur because these forms of energy can be exchanged.  The impulse response function for a system with no memory is just another delta function!  Two examples are shown in \emph{Fig.~\ref{fig:memory}} to illustrate a system with a longer vacillating impulse response versus a system that has a short and exponentially decaying impulse response.  
 
 This should help you understand why we needed to flip the impulse response in the convolution operation (or equivalently the input function).  Notice first that the impulse function is necessarily zero until time zero. This is because the system is causal and there can be no output if there's no input.  Next, notice that by flipping the impulse response and taking a sliding weighted sum with the input, we're including the contribution of past inputs on the current input.  If the impulse response is short and decaying exponentially, then only a small amount of past inputs influence the current input.  On the other hand, if the impulse response is longer, then the system remembers the history of the input for a longer duration and we must include those terms to figure out the current output.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %              SUB-SUBSECTION              %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsubsection{The Delta Function ``Hammer":  Mechanical Analogy}
+\subsubsection{The Delta Function "Hammer":  Mechanical Analogy}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -694,7 +694,7 @@ This should help you understand why we needed to flip the impulse response in th
 \label{fig:hammer_setup}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Another way to look at a delta function is to think of it like hitting your system with a hammer (see \emph{Fig.~\ref{fig:hammer_setup}}).  It is an impulsive input that excites the system.  After such an excitation, the system will ``vibrate" in its natural modes and these vibrations will eventually die out.  The time that the vibrations last is related to the depth of the system's memory.  The vibrations are related to the fact that the system can store kinetic and potential energy and these modes complement each other.  Loss in the system causes this stored energy to eventually dissipate.  In fact, one way to measure the impulse response is exactly with the setup shown.  The hammer is implemented an electromechanical solenoid, and the actuation signal is fed to the trigger of the oscilloscope (or other recording device).  The vibrations are picked up by a force transducer and carefully recorded, yielding the impulse response.     
+Another way to look at a delta function is to think of it like hitting your system with a hammer (see \emph{Fig.~\ref{fig:hammer_setup}}).  It is an impulsive input that excites the system.  After such an excitation, the system will "vibrate" in its natural modes and these vibrations will eventually die out.  The time that the vibrations last is related to the depth of the system's memory.  The vibrations are related to the fact that the system can store kinetic and potential energy and these modes complement each other.  Loss in the system causes this stored energy to eventually dissipate.  In fact, one way to measure the impulse response is exactly with the setup shown.  The hammer is implemented an electromechanical solenoid, and the actuation signal is fed to the trigger of the oscilloscope (or other recording device).  The vibrations are picked up by a force transducer and carefully recorded, yielding the impulse response.     
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                   SECTION 1.9                                        %
@@ -715,7 +715,7 @@ Consider a system with an impulse response shown in \emph{Fig.~\ref{fig:impulse_
     \begin{equation}
         h(t) = u(t) \frac{1}{\tau} e^{-t/\tau}
     \end{equation}
-Notice that the system has a time constant $\tau = RC$ that corresponds to the amount of time the system responds to an impulse input ($\tau = 1/3$).  Here $u(t)$ is the step function (zero until time zero, and then unity thereafter).  As discussed earlier, the impulse response is necessarily zero until time zero, and the $u(t)$ enforces this condition.  If you now imagine an arbitrary input, each time point is a weighted sum of the current input and past inputs, with an exponentially decaying amplitude for past inputs.  Only the recent $\sim \tau$ inputs really make an impact, and earlier inputs are ``forgotten".  
+Notice that the system has a time constant $\tau = RC$ that corresponds to the amount of time the system responds to an impulse input ($\tau = 1/3$).  Here $u(t)$ is the step function (zero until time zero, and then unity thereafter).  As discussed earlier, the impulse response is necessarily zero until time zero, and the $u(t)$ enforces this condition.  If you now imagine an arbitrary input, each time point is a weighted sum of the current input and past inputs, with an exponentially decaying amplitude for past inputs.  Only the recent $\sim \tau$ inputs really make an impact, and earlier inputs are "forgotten".  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -809,7 +809,7 @@ This equation shows us that $H(s)$ and $h(t)$ are indeed related in a very speci
     \begin{equation}
         H(s) = \int_{-\infty}^{\infty} h(t) e^{-st} dt = \mathcal{L} \left\{ h(t) \right\}
     \end{equation}
-This can be interpreted as transforming a \textbf{time-domain}\index{Time-domain} function to the \textbf{``s-domain"}\index{S-domain}, which is the general complex \textbf{frequency-domain}\index{Frequency-domain}.  In this book we will not use Laplace Transforms explicitly, instead we will mostly use the transfer function in the frequency domain:  $H(j\omega)$, which is nothing but evaluating the transfer function $H(s)$ for $s=j\omega$.  
+This can be interpreted as transforming a \textbf{time-domain}\index{Time-domain} function to the \textbf{"s-domain"}\index{S-domain}, which is the general complex \textbf{frequency-domain}\index{Frequency-domain}.  In this book we will not use Laplace Transforms explicitly, instead we will mostly use the transfer function in the frequency domain:  $H(j\omega)$, which is nothing but evaluating the transfer function $H(s)$ for $s=j\omega$.  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Even though we won't make extensive use of the Laplace Transform, we nevertheless spent some time to highlight these important concepts and relations because they show a deep connection between the frequency domain response $H(j\omega)$ and the time domain response.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -969,7 +969,7 @@ Now we apply a bandpass filter with a  wider passband, allowing both tones to pa
 \subsection{But Most Systems are Non-Linear ...?}
 As we have demonstrated throughout this chapter, linear system theory is powerful and very useful for design and analysis.  But you may object and say that most real systems are non-linear, so why is this stuff useful?
 
-When systems are non-linear, we often ``linearize" them about an operating point, and use linear theory to understand the response to ``small" perturbations.  We will be doing this extensively in this course.  Soon you will find that the silicon transistor and diodes are non-linear, so we will build ``small-signal" models that are linear.  This is useful as long as the signals of interest don't deviate too much from the operating point.  If they do, we need non-linear techniques.  Even in these situations,  we can gain useful insights from the small-signal approximation, and it is the starting point for design and analysis.
+When systems are non-linear, we often "linearize" them about an operating point, and use linear theory to understand the response to "small" perturbations.  We will be doing this extensively in this course.  Soon you will find that the silicon transistor and diodes are non-linear, so we will build "small-signal" models that are linear.  This is useful as long as the signals of interest don't deviate too much from the operating point.  If they do, we need non-linear techniques.  Even in these situations,  we can gain useful insights from the small-signal approximation, and it is the starting point for design and analysis.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                   SECTION 1.11                                       %

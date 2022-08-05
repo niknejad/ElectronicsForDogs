@@ -11,7 +11,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Chapter Preview}
-In this chapter we will explore operational amplifiers (op-amps) and feedback, and in particular how feedback impacts the frequency response of operational amplifiers.  We assume some familiarity with ideal op-amps, and the ``Golden Rules" for analyzing op-amp circuits, but our goal is to learn to analyze actual op-amps, not ideal ones.  We will set the context of the chapter by reviewing feedback theory in general, and motivate why feedback is important and useful.  To analyze op-amps, we need an equivalent circuit model, something more sophisticated than the ``Golden Rules" (infinite gain, infinite input impedance), but not too complicated.   We will be inspired by a physical model based on the real inner workings of an op-amp, and armed with this model we will discuss important concepts such as the gain-bandwidth product, the unity gain frequency, and the gain-bandwidth trade offs.  We end the chapter by introducing some more advanced topics, such as feedback and stability.  We don't do justice to this topic, our goal for now is to make the reader aware of the issues without understanding the details of how the issue is addressed.  This topic should be pursued in a more advanced course on analog circuit design. 
+In this chapter we will explore operational amplifiers (op-amps) and feedback, and in particular how feedback impacts the frequency response of operational amplifiers.  We assume some familiarity with ideal op-amps, and the "Golden Rules" for analyzing op-amp circuits, but our goal is to learn to analyze actual op-amps, not ideal ones.  We will set the context of the chapter by reviewing feedback theory in general, and motivate why feedback is important and useful.  To analyze op-amps, we need an equivalent circuit model, something more sophisticated than the "Golden Rules" (infinite gain, infinite input impedance), but not too complicated.   We will be inspired by a physical model based on the real inner workings of an op-amp, and armed with this model we will discuss important concepts such as the gain-bandwidth product, the unity gain frequency, and the gain-bandwidth trade offs.  We end the chapter by introducing some more advanced topics, such as feedback and stability.  We don't do justice to this topic, our goal for now is to make the reader aware of the issues without understanding the details of how the issue is addressed.  This topic should be pursued in a more advanced course on analog circuit design. 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                   SECTION 17.2                                       %
@@ -40,7 +40,7 @@ Let's focus on the speed control or cruise control system in particular (see \em
         \item The control system generates an error signal, which is the difference between the current speed and the desired speed ($v_{err} = v_{des} - v_{car}$).
     \end{itemize}
 
-Based on $v_{err}$, the system takes action.  For example, adjusting the car speed (accelerate or decelerate) based on the signal $K_p v_{err}$ where $K_p$ is a proportionality constant.\footnote{More complicated control schemes can also take action based on not only the error signal, but also based on the integral or derivative of the error signal, altering the dynamics of the system.  These controllers are called ``PID" controllers because they respond to changes \emph{P}roportional to the \emph{I}ntegral or \emph{D}erivative of the error system.}
+Based on $v_{err}$, the system takes action.  For example, adjusting the car speed (accelerate or decelerate) based on the signal $K_p v_{err}$ where $K_p$ is a proportionality constant.\footnote{More complicated control schemes can also take action based on not only the error signal, but also based on the integral or derivative of the error signal, altering the dynamics of the system.  These controllers are called "PID" controllers because they respond to changes \emph{P}roportional to the \emph{I}ntegral or \emph{D}erivative of the error system.}
 
 What is important to take away from the above example is that the control system is somewhat blind to the details of how the car or engine works, it just tries to set the speed by adjusting the current speed.  This is a powerful model for designing systems, because it allows us to abstract away all the details and focus on the problem at hand.  Your thermostat in your house is a perfect example of this as it has no knowledge about the size of your house, the number of windows, the presence of insulation in the walls, etc.  It simply turns on the heater when the temperature is lower than desired, and keeps the heat on until the desired temperature has been obtained.  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -59,7 +59,7 @@ What is important to take away from the above example is that the control system
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Let's analyze a feedback system using equations.  The model for a general feedback system is shown in \emph{Fig.~\ref{fig:fbblock2}}.  This is a negative feedback system because we subtract the feedback signal from the input in order to generate the error signal.  This subtraction is represented by the (+) with the circle around it, and the (-) underneath it in the figure.
 
-To find the transfer function, note that the error signal is a function of the input, and output after it has been fed back through the \emph{``f''} box.:
+To find the transfer function, note that the error signal is a function of the input, and output after it has been fed back through the \emph{"f''} box.:
     \begin{equation}
         {s_{err}} = {s_{in}} - f \cdot {s_{out}}
     \end{equation}
@@ -122,7 +122,7 @@ Notice that the gain of the op-amp is immaterial as long as it's large enough.  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{History}
 Feedback in electronic systems was invented by Harold Black.  He was on a ferry ride to Bell Labs (1927) thinking about how to increase the gain and improve linearity of vacuum tube amplifiers, when in a flash of genius he realized that \textit{positive} feedback can be used to boost the gain, and \textit{negative} feedback could improve the linearity (see \emph{Fig.~\ref{fig:image_1.jpg}}).
-This is a good example of a ``back of the envelope" calculation (in this case a newspaper) that changed the world.  This idea came to him after tirelessly working on the problem over the course of years, trying to improve the linearity of amplifiers.  All the open-loop vacuum tube\footnote{A vacuum tube is similar to a transistor.} amplifier topologies that he tried were plagued by problems.  But the feedback amplifier proved to be a great success.
+This is a good example of a "back of the envelope" calculation (in this case a newspaper) that changed the world.  This idea came to him after tirelessly working on the problem over the course of years, trying to improve the linearity of amplifiers.  All the open-loop vacuum tube\footnote{A vacuum tube is similar to a transistor.} amplifier topologies that he tried were plagued by problems.  But the feedback amplifier proved to be a great success.
 \newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
@@ -134,7 +134,7 @@ This is a good example of a ``back of the envelope" calculation (in this case a 
 \includegraphics[width=.4\columnwidth]{image_2.png}\\
 (a) & (b)\\
 \end{tabular}
-\caption{Harold Black's original ``back of the envelope" calculations that led to the invention of electronic feedback amplifiers.}
+\caption{Harold Black's original "back of the envelope" calculations that led to the invention of electronic feedback amplifiers.}
 \label{fig:image_1.jpg}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -147,7 +147,7 @@ This is a good example of a ``back of the envelope" calculation (in this case a 
 %             SUBSECTION 17.3.1            %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Precision Analog}
-As already noted, feedback allows us to use a really ``crappy" open-loop amplifier and still get good performance in a closed-loop feedback system, as long as the crappy amplifier has high gain.  When the gain is sufficiently high, the gain is determined by the feedback network, not the open-loop gain.  So the open loop gain can vary over temperature, process, it can age, and it can be highly non-linear.  In the end, if the gain is high enough, it does not play a role!
+As already noted, feedback allows us to use a really "crappy" open-loop amplifier and still get good performance in a closed-loop feedback system, as long as the crappy amplifier has high gain.  When the gain is sufficiently high, the gain is determined by the feedback network, not the open-loop gain.  So the open loop gain can vary over temperature, process, it can age, and it can be highly non-linear.  In the end, if the gain is high enough, it does not play a role!
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 17.3.2            %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -245,7 +245,7 @@ The benefit over negative feedback is that positive feedback can boost the gain,
 %             SUBSECTION 17.4.1            %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Practical Op-Amps}
-Let's now delve into the details of building feedback systems based on op-amps.  We need a way to model real op-amps, and we can categorize the op-amp's imperfections into two categories.  First, let's consider ``linear" imperfections. In other words, things that we can include into a linear model.  These include:
+Let's now delve into the details of building feedback systems based on op-amps.  We need a way to model real op-amps, and we can categorize the op-amp's imperfections into two categories.  First, let's consider "linear" imperfections. In other words, things that we can include into a linear model.  These include:
     \begin{itemize}
         \item  Finite open-loop gain ($A_0 < \infty$)
         \item  Finite input resistance ($R_i < \infty\Omega$)
@@ -275,7 +275,7 @@ Even though noise can be treated as a linear phenomena, for convenience we'll di
 \label{fig:opamp_model}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-The world's simplest op-amp model is shown in \emph{Fig.~\ref{fig:opamp_model}}. This is the ``VCVS'' model, or the \textbf{Voltage-Controlled Voltage Source}\index{Voltage source!Voltage-controlled} model.  While it captures finite gain and output resistance, it fails to capture frequency dependence.
+The world's simplest op-amp model is shown in \emph{Fig.~\ref{fig:opamp_model}}. This is the "VCVS'' model, or the \textbf{Voltage-Controlled Voltage Source}\index{Voltage source!Voltage-controlled} model.  While it captures finite gain and output resistance, it fails to capture frequency dependence.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 17.4.3            %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -290,11 +290,11 @@ The world's simplest op-amp model is shown in \emph{Fig.~\ref{fig:opamp_model}}.
 \label{fig:vampmodelz}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-While it's easy to build a model that can take into account input impedance $Z_{in}(j\omega)$, output impedance $Z_{out}(j\omega)$, and frequency dependent finite gain $G_v(j\omega)$, using such a general model shown in \emph{Fig.~\ref{fig:vampmodelz}} is too complicated, as all the parameters vary with frequency.  This model also fails to provide any insights and is too general for our purposes.  Let's build a ``single-pole" (dominant pole) model by taking the frequency dependence away from $G_v$.
+While it's easy to build a model that can take into account input impedance $Z_{in}(j\omega)$, output impedance $Z_{out}(j\omega)$, and frequency dependent finite gain $G_v(j\omega)$, using such a general model shown in \emph{Fig.~\ref{fig:vampmodelz}} is too complicated, as all the parameters vary with frequency.  This model also fails to provide any insights and is too general for our purposes.  Let's build a "single-pole" (dominant pole) model by taking the frequency dependence away from $G_v$.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 17.4.4            %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{``Physical" Op-Amp Model}
+\subsection{"Physical" Op-Amp Model}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -325,7 +325,7 @@ The model shown in \emph{Fig.~\ref{fig:opamp_model_pole}}, uses a $G_m$ cell, or
 \label{fig:OTA}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Notice that if you ``slice off" the triangular head of an op-amp, the result is the transconductance stage (see dashed lines in \emph{Fig.~\ref{fig:opamp_model_pole}}), and has a special symbol shown in \emph{Fig.~\ref{fig:OTA}}a.  It is known as an \textbf{Operational Transconductance Amplifier}\index{Amplifier!Operational transconductance}, also known as an ``OTA".  An OTA is essentially a differential transistor pair with a high output impedance node, for example using a mirror as shown in \emph{Fig.~\ref{fig:OTA}}b.
+Notice that if you "slice off" the triangular head of an op-amp, the result is the transconductance stage (see dashed lines in \emph{Fig.~\ref{fig:opamp_model_pole}}), and has a special symbol shown in \emph{Fig.~\ref{fig:OTA}}a.  It is known as an \textbf{Operational Transconductance Amplifier}\index{Amplifier!Operational transconductance}, also known as an "OTA".  An OTA is essentially a differential transistor pair with a high output impedance node, for example using a mirror as shown in \emph{Fig.~\ref{fig:OTA}}b.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Since an OTA is essentially a $G_m$ amplifier, it converts a differential voltage into an output current.  So if we want to drive a load resistor, we need an output stage (buffer).  As such, many real op-amps are internally constructed from an OTA + buffer as shown.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -675,7 +675,7 @@ The condition $T(j\omega_x) = -1$ is in fact how we build \textbf{oscillators}\i
 \begin{figure}[tb]
 \centering
 \includegraphics[scale=.7]{fbblock_phase}
-\caption{A ``negative" feedback system turns into a positive feedback system at a frequency that causes phase inversion through $G$.}
+\caption{A "negative" feedback system turns into a positive feedback system at a frequency that causes phase inversion through $G$.}
 \label{fig:fbblock_phase}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

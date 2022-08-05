@@ -37,11 +37,11 @@ This chapter introduces a very important building block known as the differentia
 \label{fig:noisereject}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-First of all, what's a differential circuit?  In Fig.~\ref{fig:diffckt} we highlight the difference between a ``single-ended" circuit and a differential circuit. In a single-ended circuit, all signals are referenced to a common ground, and signals are routed using a single wire.  In a differential circuit, each signal is represented with two wires, and optimally each wire carries half the signal such that each signal is equal and opposite in phase to the other.  In this form the signals are self-referenced without needing a ground connection.   The potential difference between the wires is known an the \emph{differential-mode} signal, and the signal in common with both is known as the \emph{common-mode} signal.  Ideally the common-mode signal is just a DC reference or bias voltage, but in practice the common-mode signal may varying due to interference or imbalances.  A good example of interference is ground or supply noise, that ideally couples to the differential wires in the same manner, producing a common-mode signal.  In a single-ended system, any common-mode noise is indistinguishable from the desired signal, and often it can swamp the desired signal.  A good example is the large AC voltages/currents flowing in power lines -- even a small fraction picked up by a sensor due to capacitive coupling can easily swamp out a micro-volt signal.  
+First of all, what's a differential circuit?  In Fig.~\ref{fig:diffckt} we highlight the difference between a "single-ended" circuit and a differential circuit. In a single-ended circuit, all signals are referenced to a common ground, and signals are routed using a single wire.  In a differential circuit, each signal is represented with two wires, and optimally each wire carries half the signal such that each signal is equal and opposite in phase to the other.  In this form the signals are self-referenced without needing a ground connection.   The potential difference between the wires is known an the \emph{differential-mode} signal, and the signal in common with both is known as the \emph{common-mode} signal.  Ideally the common-mode signal is just a DC reference or bias voltage, but in practice the common-mode signal may varying due to interference or imbalances.  A good example of interference is ground or supply noise, that ideally couples to the differential wires in the same manner, producing a common-mode signal.  In a single-ended system, any common-mode noise is indistinguishable from the desired signal, and often it can swamp the desired signal.  A good example is the large AC voltages/currents flowing in power lines -- even a small fraction picked up by a sensor due to capacitive coupling can easily swamp out a micro-volt signal.  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Differential circuits are much less sensitive to common-mode noise and interference and are preferred to the greatest extent possible.  As shown in Fig.~\ref{fig:noisereject}, common-mode noise is rejected in a differential circuit as long as the circuits are balanced (noise is picked up as a pure common mode signal).  Other benefits of the differential configuration is that it enables us to bias amplifiers and connect multiple stages without using coupling or bypass capacitors, see Fig.~\ref{fig:diff_amp_cascade}.  We'll cover this in detail.  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Correct differential operation requires excellent matching of transistors and other components, which favors implementation in integrated circuti (IC) form where matched transistors can be fabricated side-by-side or even inter-digitated together (see Fig.~\ref{fig:mirror_layout}).  Differential amplifiers require twice as many transistors, but again in an IC this is not an issue at all because transistors are essentially ``free" compared to other larger components (such as resistors and capacitors).
+Correct differential operation requires excellent matching of transistors and other components, which favors implementation in integrated circuti (IC) form where matched transistors can be fabricated side-by-side or even inter-digitated together (see Fig.~\ref{fig:mirror_layout}).  Differential amplifiers require twice as many transistors, but again in an IC this is not an issue at all because transistors are essentially "free" compared to other larger components (such as resistors and capacitors).
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                   SECTION 16.3                                       %
@@ -88,7 +88,7 @@ This looks pretty promising, so what's missing?
 %              SUB-SUBSECTION              %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Problem:  Asymmetric (Low) Input Impedance}
-Notice that the gain is symmetric from the ``plus" and ``minus" side for an ideal voltage drive, but not for any drive with finite non-zero source resistance.  Because of the low input impedance of the common-gate stage, there's going to be a gain mismatch due to the voltage division between the source $R_s$ and the input impedance of the common gate stage, which is roughly $1/g_m$:
+Notice that the gain is symmetric from the "plus" and "minus" side for an ideal voltage drive, but not for any drive with finite non-zero source resistance.  Because of the low input impedance of the common-gate stage, there's going to be a gain mismatch due to the voltage division between the source $R_s$ and the input impedance of the common gate stage, which is roughly $1/g_m$:
     \begin{equation}
         v_{o,cg} = \frac{1/g_m}{1/g_m + R_s} g_m R_D  v^+ = \frac{g_m}{1 + g_m R_s}  R_D  v^+
     \end{equation} 
@@ -301,7 +301,7 @@ Since each transistor is biased at $I_Q/2$, the expression can be interpreted as
     \begin{equation} 
         {i_{D1,2}} = \frac{I_Q}{2} \pm g_{m1,2} \frac{{{v_{id}}}}{2}
     \end{equation}
-In other words, each transistor is excited in the small-signal with a voltage of $v_{id}/2$.  This is expected since the voltage $v_{id}$ is dropped across two series connected transistors (back-to-back), and the voltage splits in two.  What's surprising is that the $g_m$ looks like it's the transconductance of a common source stage, even though the source coupled node is ``floating".  This requires some further explanation, provided next.
+In other words, each transistor is excited in the small-signal with a voltage of $v_{id}/2$.  This is expected since the voltage $v_{id}$ is dropped across two series connected transistors (back-to-back), and the voltage splits in two.  What's surprising is that the $g_m$ looks like it's the transconductance of a common source stage, even though the source coupled node is "floating".  This requires some further explanation, provided next.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                   SECTION 16.5                                       %
@@ -321,7 +321,7 @@ In other words, each transistor is excited in the small-signal with a voltage of
 \caption{The differential pair driven with both a common-mode and differential mode signal.} \label{fig:Diff_Pair_Diff_CM.pdf}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-The key to analyzing differential circuits is to take a general input to the amplifier with voltages $v_1$ and $v_2$ and expressing it as a combination of a ``common-mode" signal $v_{cm}$ and a ``differential-mode" signal $v_{dm}$
+The key to analyzing differential circuits is to take a general input to the amplifier with voltages $v_1$ and $v_2$ and expressing it as a combination of a "common-mode" signal $v_{cm}$ and a "differential-mode" signal $v_{dm}$
     \begin{equation}
         v_1 = v_{cm} + \frac{v_{dm}}{2}
         \label{eq:v1}
@@ -372,7 +372,7 @@ These set of transformations are invertible and one can go back and forth betwee
     		v_{dm}\\
     	\end{pmatrix} 
     \end{equation}  
-The reason we prefer to represent our signal in terms of a ``common-mode" and ``differential-mode" is due to the symmetry of the waveforms $v_{cm}$ and $v_{dm}$.  Since the differential pair is fully symmetric, applying a ``common-mode" signal has ``even" symmetry, the left and right side of the circuit are excited with the same signal, so we expect the circuit to respond in the same way on the left and right hand sides.  On the other hand, exciting a circuit with $v_{dm}$ has ``odd" symmetry, because every signal on the left should be the polar opposite of what's on the right.	Finally, as discussed earlier, the differential signal is usually of interest and we usually want to amplify this component of the signal. The AC portion of the common-mode signal is interference or noise, and it should be rejected.  
+The reason we prefer to represent our signal in terms of a "common-mode" and "differential-mode" is due to the symmetry of the waveforms $v_{cm}$ and $v_{dm}$.  Since the differential pair is fully symmetric, applying a "common-mode" signal has "even" symmetry, the left and right side of the circuit are excited with the same signal, so we expect the circuit to respond in the same way on the left and right hand sides.  On the other hand, exciting a circuit with $v_{dm}$ has "odd" symmetry, because every signal on the left should be the polar opposite of what's on the right.	Finally, as discussed earlier, the differential signal is usually of interest and we usually want to amplify this component of the signal. The AC portion of the common-mode signal is interference or noise, and it should be rejected.  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 16.5.2            %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -386,7 +386,7 @@ The reason we prefer to represent our signal in terms of a ``common-mode" and ``
 \caption{AC circuit schematic of a symmetric circuit driven by a pure differential signal.  Since the common-source node does not move, it can be grounded without changing the behavior of the circuit.} \label{fig:DM_model.pdf}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-To take a concrete example, consider the circuit shown in Fig.~\ref{fig:DM_model.pdf}. When the inputs are purely differential-mode, the middle ``source" node does not experience any voltage fluctuation.  This is true even if the source node has a finite impedance to ground.  Due to superposition, we can say that any fluctuation induced from one side of the differential pair is canceled by the other side due to the symmetry. We are therefore free to place a ``virtual" ground at this node and split the circuit in two, with a grounded source connection.  Note that we have created a virtual ground without using a large bypass capacitor!  Now you may appreciate why the large-signal analysis of the previous section resulted in a small-signal $g_m$ that corresponded to a common source amplifier without degeneration. 
+To take a concrete example, consider the circuit shown in Fig.~\ref{fig:DM_model.pdf}. When the inputs are purely differential-mode, the middle "source" node does not experience any voltage fluctuation.  This is true even if the source node has a finite impedance to ground.  Due to superposition, we can say that any fluctuation induced from one side of the differential pair is canceled by the other side due to the symmetry. We are therefore free to place a "virtual" ground at this node and split the circuit in two, with a grounded source connection.  Note that we have created a virtual ground without using a large bypass capacitor!  Now you may appreciate why the large-signal analysis of the previous section resulted in a small-signal $g_m$ that corresponded to a common source amplifier without degeneration. 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 16.5.3            %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -401,11 +401,11 @@ To take a concrete example, consider the circuit shown in Fig.~\ref{fig:DM_model
 \label{fig:CM_model.pdf}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Now consider the circuit shown in Fig.~\ref{fig:CM_model.pdf}.  When the inputs are purely common-mode, then by symmetry no current can flow from the ``left" to ``right" since all signals are in phase.  We are therefore free to cut this node and split the circuit into two identical circuits.  Note that the common-mode half circuit differs from the differential-mode half circuit, as one is grounded while the other one is ``floating", which leads to different values of common-mode and differential-mode gain.
+Now consider the circuit shown in Fig.~\ref{fig:CM_model.pdf}.  When the inputs are purely common-mode, then by symmetry no current can flow from the "left" to "right" since all signals are in phase.  We are therefore free to cut this node and split the circuit into two identical circuits.  Note that the common-mode half circuit differs from the differential-mode half circuit, as one is grounded while the other one is "floating", which leads to different values of common-mode and differential-mode gain.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 16.5.4            %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Differential-Mode ``Half Circuit"}
+\subsection{Differential-Mode "Half Circuit"}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -471,7 +471,7 @@ The differential output is the voltage $v_o = v_o^+ - v_o^-$, which leads to a d
 \caption{Small-signal AC schematic of a differential pair excited with a common-mode signal.} \label{fig:CM_symmetry_small_signal.pdf}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-The complete small-signal models for differential-mode and common-mode operation are shown in Fig.~\ref{fig:DM_symmetry_small_signal.pdf} and Fig.~\ref{fig:CM_symmetry_small_signal.pdf}.  For the differential-mode circuit, since the schematic is split in the middle, we just have a common source amplifier, so everything we've learned about common source amplifiers can be transferred to the differential pair.  We've been implicitly using these small-signal models in our analysis thus far.  For the common-mode equivalent half circuit, it's noteworthy that the circuit is ``floating" and thus it cannot process any signals.  To see this, note that when a voltage is applied to the gate of one side, the source node will simply follow to ensure $v_{gs} = 0$V and so the output current of the transistor is zero, effectively rejecting the common-mode signal.  As far as the source node is considered, the circuit is a source follower after all.  Without modeling the impedance of a current source, the common-mode rejection is infinite.
+The complete small-signal models for differential-mode and common-mode operation are shown in Fig.~\ref{fig:DM_symmetry_small_signal.pdf} and Fig.~\ref{fig:CM_symmetry_small_signal.pdf}.  For the differential-mode circuit, since the schematic is split in the middle, we just have a common source amplifier, so everything we've learned about common source amplifiers can be transferred to the differential pair.  We've been implicitly using these small-signal models in our analysis thus far.  For the common-mode equivalent half circuit, it's noteworthy that the circuit is "floating" and thus it cannot process any signals.  To see this, note that when a voltage is applied to the gate of one side, the source node will simply follow to ensure $v_{gs} = 0$V and so the output current of the transistor is zero, effectively rejecting the common-mode signal.  As far as the source node is considered, the circuit is a source follower after all.  Without modeling the impedance of a current source, the common-mode rejection is infinite.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 16.5.6            %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -498,7 +498,7 @@ Obviously the most important gain is the differential-mode gain:
     \begin{equation}
         A_{dm} = \frac{v_{odm}}{v_{idm}}
     \end{equation}
-Also of concern, is the common-mode gain, since a common-mode signal could potentially ``jam" the amplifier by causing it to rail:
+Also of concern, is the common-mode gain, since a common-mode signal could potentially "jam" the amplifier by causing it to rail:
     \begin{equation}
         A_{cm} = \frac{v_{ocm}}{v_{icm}}
     \end{equation}
@@ -623,7 +623,7 @@ Again, we desire high current source output resistance and good matching precisi
 %             SUBSECTION 16.6.4            %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{DC Offset}
-Suppose we tie both inputs of a differential pair to the same DC voltage $V_{cm}$, as shown in Fig.~\ref{fig:Diffamp_offset.pdf}a.  We expect, due to symmetry, for the outputs to be at precisely the same voltage, producing a zero output differential voltage.  In practice, due to mismatches in the device $g_m$'s and load resistors $R_D$, the differential output will be non-zero.  Now suppose we connect a voltage source at the input to ``zero out" the offset, as shown in Fig.~\ref{fig:Diffamp_offset.pdf}b.  This voltage is known as the offset voltage $V_{OS}$.  The value of $V_{OS}$ is simply the output DC offset divided by the gain of the amplifier.  This voltage is known as the input-referred offset voltage.
+Suppose we tie both inputs of a differential pair to the same DC voltage $V_{cm}$, as shown in Fig.~\ref{fig:Diffamp_offset.pdf}a.  We expect, due to symmetry, for the outputs to be at precisely the same voltage, producing a zero output differential voltage.  In practice, due to mismatches in the device $g_m$'s and load resistors $R_D$, the differential output will be non-zero.  Now suppose we connect a voltage source at the input to "zero out" the offset, as shown in Fig.~\ref{fig:Diffamp_offset.pdf}b.  This voltage is known as the offset voltage $V_{OS}$.  The value of $V_{OS}$ is simply the output DC offset divided by the gain of the amplifier.  This voltage is known as the input-referred offset voltage.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

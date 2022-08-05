@@ -61,7 +61,7 @@ The steps involved in ion implantation are shown in \emph{Fig.~\ref{fig:mod2-2_I
 \label{fig:mod2-2_ICtech_sld_5}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Using ion implantation and diffusion, we can create a so-called \textbf{``diffusion resistor"}\index{Diffusion resistor}, shown in \emph{Fig.~\ref{fig:mod2-2_ICtech_sld_5}}.  The thickness and dopant concentration of resistor is set by process steps, whereas the shape of the resistor is set by design (layout).   Metal contacts are connected to ends of the resistor.  You may be wondering why current would flow through a thin diffusion layer rather than through the silicon substrate, which is comparatively much larger (wider and thicker).  The reason is that the resistor is DC isolated from the substrate, and only high frequency AC currents can flow from the diffusion region into the substrate.  In other words, there is a distributed capacitor from the resistor to the substrate, which is usually connected to ground potential.  This happens because the diffusion region is \emph{N}-type and the substrate is \emph{P}-type.  This \textbf{$PN$-junction}\index{PN-junction} should be \textbf{reverse biased}\index{PN-junction!Reverse biased} at all times (meaning the diffusion resistor should never be biased at a negative potential with respect to the substrate).  We will learn the details of \emph{PN}-junctions in the next chapter.
+Using ion implantation and diffusion, we can create a so-called \textbf{"diffusion resistor"}\index{Diffusion resistor}, shown in \emph{Fig.~\ref{fig:mod2-2_ICtech_sld_5}}.  The thickness and dopant concentration of resistor is set by process steps, whereas the shape of the resistor is set by design (layout).   Metal contacts are connected to ends of the resistor.  You may be wondering why current would flow through a thin diffusion layer rather than through the silicon substrate, which is comparatively much larger (wider and thicker).  The reason is that the resistor is DC isolated from the substrate, and only high frequency AC currents can flow from the diffusion region into the substrate.  In other words, there is a distributed capacitor from the resistor to the substrate, which is usually connected to ground potential.  This happens because the diffusion region is \emph{N}-type and the substrate is \emph{P}-type.  This \textbf{$PN$-junction}\index{PN-junction} should be \textbf{reverse biased}\index{PN-junction!Reverse biased} at all times (meaning the diffusion resistor should never be biased at a negative potential with respect to the substrate).  We will learn the details of \emph{PN}-junctions in the next chapter.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 4.3.2             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -119,14 +119,14 @@ Notice that $R_{\Box}$ is a convenient way to capture the process specific param
 %             SUBSECTION 4.3.5             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Using Sheet Resistance (\texorpdfstring{$R_\Box$}{})}
-Consider the ion-implanted (or “diffused”) IC resistor shown in \emph{Fig.~\ref{fig:diff_resistor_top}}.  We show both the cross-section and the top view.  To figure out the resistance, we just count the number of ``squares" from end to end and multiply by $R_\Box$.  On the other hand, we know that there are regions where the current density $J$ ``turns” or spreads, and so not all of square contains equal current.   Contact regions also have non-uniform current distribution as the current spreads out from a small via opening to the entire width of the resistor at one end, and then the inverse process occurs at the other end.  To account for the non-uniform current flow, we find that some simple rules of thumb can be applied.  As shown in \emph{Fig.~\ref{fig:dog_bone_squares}}, when turning corners, only about half (0.56 squares) of the metal contributes resistance, since some of the current will flow on the ``inner track" and little current flows on the ``outer track".  Likewise, when current spreads out from a via, only about 65\% of the region contributes resistance, and a good rule of thumb for ``dog bone" layout resistors is to count the contact region as 0.65 squares.
+Consider the ion-implanted (or “diffused”) IC resistor shown in \emph{Fig.~\ref{fig:diff_resistor_top}}.  We show both the cross-section and the top view.  To figure out the resistance, we just count the number of "squares" from end to end and multiply by $R_\Box$.  On the other hand, we know that there are regions where the current density $J$ "turns” or spreads, and so not all of square contains equal current.   Contact regions also have non-uniform current distribution as the current spreads out from a small via opening to the entire width of the resistor at one end, and then the inverse process occurs at the other end.  To account for the non-uniform current flow, we find that some simple rules of thumb can be applied.  As shown in \emph{Fig.~\ref{fig:dog_bone_squares}}, when turning corners, only about half (0.56 squares) of the metal contributes resistance, since some of the current will flow on the "inner track" and little current flows on the "outer track".  Likewise, when current spreads out from a via, only about 65\% of the region contributes resistance, and a good rule of thumb for "dog bone" layout resistors is to count the contact region as 0.65 squares.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tb]
 \centering
 \includegraphics[width=.7\columnwidth]{diff_resistor_top}
-\caption{Layout and cross section of a resistor using a ``dog bone" layout to introduce contacts on either side which define the terminals of the resistor.}
+\caption{Layout and cross section of a resistor using a "dog bone" layout to introduce contacts on either side which define the terminals of the resistor.}
 \label{fig:diff_resistor_top}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -276,7 +276,7 @@ Potential must be a continuous function. If not, the fields (forces) would be in
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \noindent
-We have assumed that the field is uniform across the interface.  As the ``pillbox" around the interface becomes smaller and smaller, the charge inside must be zero:
+We have assumed that the field is uniform across the interface.  As the "pillbox" around the interface becomes smaller and smaller, the charge inside must be zero:
     \begin{equation} 
         Q_{inside} \xrightarrow[]{\Delta x \rightarrow 0} 0 
     \end{equation}
@@ -398,7 +398,7 @@ $f(V_s)$ is a constant amount of charge.  The incremental charge is therefore:
 %             SUBSECTION 4.5.4             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Small Signal Capacitance}
-To find the \textbf{``small-signal capacitance"}\index{Small-signal capacitance}, break the equation for total charge into two terms:
+To find the \textbf{"small-signal capacitance"}\index{Small-signal capacitance}, break the equation for total charge into two terms:
     \begin{equation} 
         Q = {Q_0} + q \approx f({V_s}) + {\left. {\frac{{df(V)}}{{dV}}} \right|_{V = {V_s}}}{v_s} 
     \end{equation}

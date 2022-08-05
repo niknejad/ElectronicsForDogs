@@ -13,7 +13,7 @@
 \section{Chapter Preview}
 In this chapter we make amends for ignoring charge storage effects in the MOS transistor.  In particular, we focus on the MOSFET capacitance in the saturation regime, including the Gate-Source $C_{gs}$, Gate-drain $C_{gd}$, and drain/source to bulk $C_{db}$ and $C_{sb}$.  This will result in a complete \emph{four terminal} MOS small-signal model.  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-A more subtle effect comes from the so-called ``Back-Gate Effect", or how the threshold voltage can be modulated by a source-body bias.  We will model this in the small-signal AC circuit by introducing a back-gate transconductance.  This will result in the complete \emph{four terminal} MOS small-signal model.  This model will be used extensively throughout the rest of this book.
+A more subtle effect comes from the so-called "Back-Gate Effect", or how the threshold voltage can be modulated by a source-body bias.  We will model this in the small-signal AC circuit by introducing a back-gate transconductance.  This will result in the complete \emph{four terminal} MOS small-signal model.  This model will be used extensively throughout the rest of this book.
 %
 %\subsection{What we’ve ignored…until now!}
 %
@@ -70,7 +70,7 @@ We include a parasitic overlap capacitance $C_{ov}$ along source edge of gate
     \begin{equation}
         C_{ov} = L_{ov} W C_{ox}
     \end{equation}
-The physical origin of the overlap capacitance is the overlap between the gate and the source, resulting from imperfect alignment between the gate and the source, and a diffusion region that grows under the gate.   In a ``good" transistor, $L_{ov} \ll L$, so $C_{gd} \ll C_{gs}$.  The actual value is higher due to fringing fields that leak from the gate to the top of the source and drain junctions.
+The physical origin of the overlap capacitance is the overlap between the gate and the source, resulting from imperfect alignment between the gate and the source, and a diffusion region that grows under the gate.   In a "good" transistor, $L_{ov} \ll L$, so $C_{gd} \ll C_{gs}$.  The actual value is higher due to fringing fields that leak from the gate to the top of the source and drain junctions.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 10.2.3            %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -93,7 +93,7 @@ Focusing now on the drain side, Fig.~\ref{fig:mos_caps_Cgd}, we see that the sam
 %             SUBSECTION 10.2.4            %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Drain/Source-Bulk Capacitances \texorpdfstring{$C_{DB}\text{ and }C_{SB}$}{}}
-The Drain-Bulk and Source-Bulk capacitance is caused by p-n junction depletion regions that isolate the drain/source from the body. The junction forms a ``box" inside the body, and so there are five junctions to consider. Four side-wall junctions and a bottom wall junction, shown in Fig.~\ref{fig:cap_junc_3d}.  The capacitance is defined in terms of the junction areas $A_{s,j}$ and $A_{d,j}$ and the junction perimeters, $P_{s,j}$ and $P_{d,j}$.  As shown in  Fig.~\ref{fig:mos_layout_top}, besides the transistor $L$ and $W$ parameters, we need to know the length of the source and drain diffusion regions, $L_j$, to calculate the area and perimeter.  The junction area is simply $L_j \cdot W$ whereas the perimeter is $(2\cdot L_j + W)$, because the inner junction facing the channel is isolated from the bulk.
+The Drain-Bulk and Source-Bulk capacitance is caused by p-n junction depletion regions that isolate the drain/source from the body. The junction forms a "box" inside the body, and so there are five junctions to consider. Four side-wall junctions and a bottom wall junction, shown in Fig.~\ref{fig:cap_junc_3d}.  The capacitance is defined in terms of the junction areas $A_{s,j}$ and $A_{d,j}$ and the junction perimeters, $P_{s,j}$ and $P_{d,j}$.  As shown in  Fig.~\ref{fig:mos_layout_top}, besides the transistor $L$ and $W$ parameters, we need to know the length of the source and drain diffusion regions, $L_j$, to calculate the area and perimeter.  The junction area is simply $L_j \cdot W$ whereas the perimeter is $(2\cdot L_j + W)$, because the inner junction facing the channel is isolated from the bulk.
     \begin{equation}
         C_{sb} = \frac{C_{j0}}{\sqrt{ 1 + V_{SB}/|\phi_{p}}}  A_{s,j} + \frac{C_{j,sw0}}{\sqrt{ 1 + V_{SB}/|\phi_p|}} P_{s,j}
     \end{equation}
@@ -108,7 +108,7 @@ Although we have used a grading coefficient of $1/2$ for junctions (leading to s
 \centering
 \subcaptionbox{\label{fig:cap_junc_3d}}{\includegraphics[width=.5\columnwidth]{cap_junc_3d}}
 \subcaptionbox{\label{fig:mos_layout_top}}{\includegraphics[width=.3\columnwidth]{mos_layout_top}}
-\caption{(a) The drain/source junctions form $PN$-junctions with the body.  Under normal operating conditions, these capacitors are reverse biased.  There are ``sidewall" contributions $C_{j,sw}$ shown and a bottom plate term $C_{j,A}$.  (b)  The junction perimeter and area is calculated from the MOS layout and depends on the width $W$ of the device in addition to the length of the junctions $L_j$.} 
+\caption{(a) The drain/source junctions form $PN$-junctions with the body.  Under normal operating conditions, these capacitors are reverse biased.  There are "sidewall" contributions $C_{j,sw}$ shown and a bottom plate term $C_{j,A}$.  (b)  The junction perimeter and area is calculated from the MOS layout and depends on the width $W$ of the device in addition to the length of the junctions $L_j$.} 
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 It's important to realize that the source/drain are symmetric.  The source / drain is defined by potentials / biasing and the schematic rather than the process. For this reason, the doping parameters for the source and drain are symmetric and so the calculations for the source and drain to bulk are very much the same.  Of course, the area of the junctions may differ based on the device layout.	Some special technologies (high breakdown devices) have an asymmetric source/drain, but this is rare.	 If the source and body are both AC grounded, then the source-to-bulk capacitance does not play a role in AC response and it's excluded from the model.
@@ -136,7 +136,7 @@ We can now update our three-terminal small-signal model to include three capacit
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 10.3.1            %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{All MOSFETS have a ``Back Door"}
+\subsection{All MOSFETS have a "Back Door"}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -149,7 +149,7 @@ We can now update our three-terminal small-signal model to include three capacit
 \caption{The body terminal of a MOSFET is an independent fourth terminal of the device.  Variations in the body voltage couple into the channel charge through $C_{dep}$, in a similar manner as gate voltage variations couple into the channel charge through $C_{gs}$.} 
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-So far we have been ignoring the body terminal of the device, shown explicitly in Fig.~\ref{fig:mos4term}.  The MOS transistor has some symmetry that you should appreciate between the source and drain.  It's less obvious, but there is a symmetry between the gate and the body if you think about how the inversion charge depends on both voltages. We will show that the body can act like a ``back gate" and control the inversion and thus the current in the device, as shown in Fig.~\ref{fig:mos_backgate}.  It's something we've ignored because in many instances the body terminal is simply tied to the source, and the source is sometimes at ground or $V_{SS}$ for NMOS, or supply or $V_{DD}$ for PMOS.  What we'd like to understand is what happens if there is a DC voltage or an AC voltage swing on the body terminal.
+So far we have been ignoring the body terminal of the device, shown explicitly in Fig.~\ref{fig:mos4term}.  The MOS transistor has some symmetry that you should appreciate between the source and drain.  It's less obvious, but there is a symmetry between the gate and the body if you think about how the inversion charge depends on both voltages. We will show that the body can act like a "back gate" and control the inversion and thus the current in the device, as shown in Fig.~\ref{fig:mos_backgate}.  It's something we've ignored because in many instances the body terminal is simply tied to the source, and the source is sometimes at ground or $V_{SS}$ for NMOS, or supply or $V_{DD}$ for PMOS.  What we'd like to understand is what happens if there is a DC voltage or an AC voltage swing on the body terminal.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 10.3.2            %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -193,7 +193,7 @@ where $\gamma$ is a device parameter
 %             SUBSECTION 10.3.3            %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Role of the Substrate Potential - AC Signals}
-Since $V_{SB}$ changes the threshold voltage, which in turn changes the drain current, the body acts like a ``back-gate” and it should cause an AC current to flow in response to an AC signal between the body and source.  The back-gate transconductance is defined as:
+Since $V_{SB}$ changes the threshold voltage, which in turn changes the drain current, the body acts like a "back-gate” and it should cause an AC current to flow in response to an AC signal between the body and source.  The back-gate transconductance is defined as:
     \begin{equation} 
         {g_{mb}} = {\left. {\frac{{\Delta {i_D}}}{{\Delta {v_{BS}}}}} \right|_Q} = {\left. {\frac{{\partial {i_D}}}{{\partial {v_{BS}}}}} \right|_Q} 
     \end{equation}

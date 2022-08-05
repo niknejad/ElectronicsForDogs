@@ -11,7 +11,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Chapter Preview}
-We will see in this chapter and the following that the simple $PN$-junction structure provides a rich variety of functionality.  It can be used as a function of bias, acting as a ``one way" gate for current, rectifying AC signals and allowing AC-to-DC conversion, converting light photons into electrical energy (solar cell), and performing the opposite functionality of creating light from electricity in a very efficient manner in light-emitting diodes (LEDs).  This simple structure is also the foundation of lasers and photo-detectors, used to transport energy around the globe using thin fibers of glass, imaging inside of the body, detecting x-rays and other high energy particles, among many other functions.  Diodes are also used to detect extremely high frequency signals, demodulating information in communication receivers, or used as switches to allow a transmitter and receiver to share the same antenna.  It is no exaggeration that the diode is one of the most versatile circuit elements.  To understand these myriad of applications, we must first discover the properties of the junction under a forward and reverse bias.  In this chapter we focus on the reverse bias, which is simpler to analyze.
+We will see in this chapter and the following that the simple $PN$-junction structure provides a rich variety of functionality.  It can be used as a function of bias, acting as a "one way" gate for current, rectifying AC signals and allowing AC-to-DC conversion, converting light photons into electrical energy (solar cell), and performing the opposite functionality of creating light from electricity in a very efficient manner in light-emitting diodes (LEDs).  This simple structure is also the foundation of lasers and photo-detectors, used to transport energy around the globe using thin fibers of glass, imaging inside of the body, detecting x-rays and other high energy particles, among many other functions.  Diodes are also used to detect extremely high frequency signals, demodulating information in communication receivers, or used as switches to allow a transmitter and receiver to share the same antenna.  It is no exaggeration that the diode is one of the most versatile circuit elements.  To understand these myriad of applications, we must first discover the properties of the junction under a forward and reverse bias.  In this chapter we focus on the reverse bias, which is simpler to analyze.
 
 We begin by considering that a concentration variation in carriers across a junction (such as a massive amount of electrons in an $N$-region compared to a dearth of electrons in a $P$-region) leads to a built-in potential difference between these regions.  We apply this to a $PN$-junction at thermal equilibrium to find its properties, including its ability to store charge as a non-linear capacitor.  In the next chapter, we will see how the diode conducts current.
 \newpage
@@ -28,7 +28,7 @@ As shown in \emph{Fig.~\ref{fig:slide2}}, a $PN$-junction is simply the junction
 \begin{figure}[tb]
 \centering
 \includegraphics[width=.5\columnwidth]{slide2}
-\caption{A $PN$-junction is the interface between a $P$-type and $N$-type doped semiconductor.  There are large concentration gradients between the two sides, with orders of magnitude more holes on the $P$-side compared to the $N$-side.  The same is true of electrons on the $N$-side.  Even though the junction is abrupt, we shall see that the concentration must change smoothly over a ``transition region" from one region to the other.}
+\caption{A $PN$-junction is the interface between a $P$-type and $N$-type doped semiconductor.  There are large concentration gradients between the two sides, with orders of magnitude more holes on the $P$-side compared to the $N$-side.  The same is true of electrons on the $N$-side.  Even though the junction is abrupt, we shall see that the concentration must change smoothly over a "transition region" from one region to the other.}
 \label{fig:slide2}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -121,9 +121,9 @@ For example, to quickly calculate the potential of a $P$-type region with a conc
 %             SUBSECTION 5.4.1             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{\emph{PN}-Junction: Overview}
-As illustrated in \emph{Fig.~\ref{fig:slide9}}, it is useful to do a thought experiment and consider what happens before we reach \textbf{equilibrium}\index{PN-junctions!equilibrium}. Consider when the junction shown in \emph{Fig.~\ref{fig:slide2}} is first formed.  Due to the abrupt nature of the junction, we expect very large diffusion currents to flow.  Mobile charges transfer near the junction, especially majority carriers diffuse in large numbers.  The currents are large due to the large concentration gradients.  There are orders of magnitude more electrons in the $N$-type region, and orders of magnitude more holes in the $P$-type region.  So it is natural to assume that these carriers will diffuse to the other side, becoming minority carriers.  However, since these mobile carriers become minority carriers in the new region, they will not penetrate far due to recombination.
+As illustrated in \emph{Fig.~\ref{fig:slide9}}, it is useful to do a thought experiment and consider what happens before we reach \textbf{equilibrium}\index{PN-junction!equilibrium}. Consider when the junction shown in \emph{Fig.~\ref{fig:slide2}} is first formed.  Due to the abrupt nature of the junction, we expect very large diffusion currents to flow.  Mobile charges transfer near the junction, especially majority carriers diffuse in large numbers.  The currents are large due to the large concentration gradients.  There are orders of magnitude more electrons in the $N$-type region, and orders of magnitude more holes in the $P$-type region.  So it is natural to assume that these carriers will diffuse to the other side, becoming minority carriers.  However, since these mobile carriers become minority carriers in the new region, they will not penetrate far due to recombination.
 
-The key observation is that initially the two regions are charge neutral.  But as holes and electrons are charge carriers, as they cross the junction, they disturb the delicate charge balance and introduce net charge into each region.  As a result, a voltage difference builds up between regions.  This voltage gets larger and larger as more mobile carriers diffuse across the barrier.   This creates a field at the junction that causes drift currents to oppose the diffusion current.  This will ensue until the field is sufficiently large to produce a drift current that can counter the diffusion current.  In thermal equilibrium, drift current and diffusion must balance each other on average.  We will also show that near the junction a ``transition region" develops so that the density of holes $p(x)$ and electrons $n(x)$ change smoothly from one side to the other.
+The key observation is that initially the two regions are charge neutral.  But as holes and electrons are charge carriers, as they cross the junction, they disturb the delicate charge balance and introduce net charge into each region.  As a result, a voltage difference builds up between regions.  This voltage gets larger and larger as more mobile carriers diffuse across the barrier.   This creates a field at the junction that causes drift currents to oppose the diffusion current.  This will ensue until the field is sufficiently large to produce a drift current that can counter the diffusion current.  In thermal equilibrium, drift current and diffusion must balance each other on average.  We will also show that near the junction a "transition region" develops so that the density of holes $p(x)$ and electrons $n(x)$ change smoothly from one side to the other.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 5.4.2             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -143,7 +143,7 @@ We can also state the same applies for the holes:
     \begin{equation} 
         \mathcal{E}_0 = \frac{D_p\frac{dp_o}{dx}} {p_0\,\mu_p} = \frac{kT}{q}\frac{1}{p_0}\frac{dp_0}{dx} 
     \end{equation}
-Since the fields must be finite, the concentration of electrons and holes cannot change abruptly. Therefore, a smooth variation is expected in the ``transition region".  This is shown schematically in \emph{Fig.~\ref{fig:slide11}}.
+Since the fields must be finite, the concentration of electrons and holes cannot change abruptly. Therefore, a smooth variation is expected in the "transition region".  This is shown schematically in \emph{Fig.~\ref{fig:slide11}}.
 \newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 5.4.3             %
@@ -155,11 +155,11 @@ Since the fields must be finite, the concentration of electrons and holes cannot
 \begin{figure}[tb]
 \centering
 \includegraphics[width=.5\columnwidth]{slide11}
-\caption{The concentration of electrons and holes changes smoothly from one region to the other.  The net charge at the boundary ``space charge" region leads to an internal electric field which produces a drift current that balances the equilibrium diffusion current.}
+\caption{The concentration of electrons and holes changes smoothly from one region to the other.  The net charge at the boundary "space charge" region leads to an internal electric field which produces a drift current that balances the equilibrium diffusion current.}
 \label{fig:slide11}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-With reference to \emph{Fig.~\ref{fig:slide11}}, let's define the transition region width as $x_{p_0}$ and $x_{n_0}$, where the first subscript denotes the region type, and the second subscript emphasizes thermal equilibrium\index{Thermal equilibrium}.  The \textbf{transition regions}\index{PN-junctions!transition region} are defined as the region near the junction where the majority carrier concentrations deviate from the equilibrium values for an isolated doped semiconductor.  To solve for the electric fields, we need to write down the charge density in each region:
+With reference to \emph{Fig.~\ref{fig:slide11}}, let's define the transition region width as $x_{p_0}$ and $x_{n_0}$, where the first subscript denotes the region type, and the second subscript emphasizes thermal equilibrium\index{Thermal equilibrium}.  The \textbf{transition regions}\index{PN-junction!transition region} are defined as the region near the junction where the majority carrier concentrations deviate from the equilibrium values for an isolated doped semiconductor.  To solve for the electric fields, we need to write down the charge density in each region:
     \begin{equation} 
         \rho _0(x) = q(p_0 - n_0 + N_D - N_A) 
     \end{equation}
@@ -187,7 +187,7 @@ So we have:
     \begin{equation} 
         \rho _0(x) > 0 
     \end{equation}
-These facts are summarized in \emph{Fig.~\ref{fig:slide11}}.  We see a field arising that begins with the positive charges ($N$-side), and ends on the negative charges ($P$-side) inside the transition region\index{PN-junctions!transition region}.  By definition, the transition region is therefore the region where the charge density is non-zero.  Note that normal $N$-type and $P$-type materials are charge neutral, because ionized dopant charges are neutralized by an equal number of free carriers.  In the transition region, the free carriers are depleted (due to diffusion) and so there is net charge.   
+These facts are summarized in \emph{Fig.~\ref{fig:slide11}}.  We see a field arising that begins with the positive charges ($N$-side), and ends on the negative charges ($P$-side) inside the transition region\index{PN-junction!transition region}.  By definition, the transition region is therefore the region where the charge density is non-zero.  Note that normal $N$-type and $P$-type materials are charge neutral, because ionized dopant charges are neutralized by an equal number of free carriers.  In the transition region, the free carriers are depleted (due to diffusion) and so there is net charge.   
 %\begin{figure}[tb]
 %\centering
 %\includegraphics[width=.5\columnwidth]{slide13}
@@ -197,7 +197,7 @@ These facts are summarized in \emph{Fig.~\ref{fig:slide11}}.  We see a field ari
 %             SUBSECTION 5.4.4             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{“Exact” Equation for Fields}
-Given the above approximations, we now have an expression for the \textbf{charge density}\index{PN-junctions!charge density} in each region of the semi-conductor:
+Given the above approximations, we now have an expression for the \textbf{charge density}\index{PN-junction!charge density} in each region of the semi-conductor:
     \begin{equation}
         \rho _0(x) \cong
             \begin{cases} 
@@ -214,7 +214,7 @@ Notice that the potential $\varphi$ appears on both sides of the equation, makin
 %             SUBSECTION 5.4.5             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Depletion Approximation}
-The \textbf{depletion approximation}\index{PN-junctions!depletion approximation} is simply that all free carriers are ``depleted" in the transition region, making the entire region consist of ionized dopants.  Under this assumption, the charge density expressions are independent of the potential, and are constant:
+The \textbf{depletion approximation}\index{PN-junction!depletion approximation} is simply that all free carriers are "depleted" in the transition region, making the entire region consist of ionized dopants.  Under this assumption, the charge density expressions are independent of the potential, and are constant:
     \begin{equation}
         \rho _0(x) \cong
             \begin{cases} 
@@ -324,7 +324,7 @@ and:
     \begin{equation}
         x_{p_0} = \sqrt{\frac{2\,\varepsilon_s\varphi_{bi}}{q\,N_A} \left( {\frac{N_D}{N_A + N_D}}\right)} 
     \end{equation}
-Where the total potential difference between the $N$-type and $P$-type side is \textbf{built-in potential}\index{PN-junctions!built-in potential}:
+Where the total potential difference between the $N$-type and $P$-type side is \textbf{built-in potential}\index{PN-junction!built-in potential}:
     \begin{equation}
         \varphi_{bi} \equiv \varphi_n - \varphi_p > 0 
     \end{equation}
@@ -395,7 +395,7 @@ Plugging in some typical numerical values for doping, we arrive at:
 \subsubsection{Have we invented a battery?}
 Can we harness the $PN$-junction and turn it into a battery \big(see \emph{Fig.~\ref{fig:slide25_26}(a)}\big).  It seems that we have a perpetual motion machine because our solution to the problem so far does not require any input energy (light for example), and yet we have a potential barrier that maybe can be harnessed to do work.  Why is it that the built-in potential is not a battery?
 
-Unfortunately this cannot be the case.  When we attach a wire to the $PN$-junction, we actually are replaying the same physics that we just described.  For example, a metal is kind of like an $N$-type region, but with very heavy doping.  So it will form a built-in potential, called the \textbf{contact potential}\index{PN-junctions!contact potential}, between the $P$-type and $N$-type regions.  Let's call the contact potential with the $N$-type region as $\varphi_{mn}$ and the contact potential with the $P$-type region as $\varphi_{mp}$.  
+Unfortunately this cannot be the case.  When we attach a wire to the $PN$-junction, we actually are replaying the same physics that we just described.  For example, a metal is kind of like an $N$-type region, but with very heavy doping.  So it will form a built-in potential, called the \textbf{contact potential}\index{PN-junction!contact potential}, between the $P$-type and $N$-type regions.  Let's call the contact potential with the $N$-type region as $\varphi_{mn}$ and the contact potential with the $P$-type region as $\varphi_{mp}$.  
 
 If we short circuit the $PN$-junction \big(\emph{Fig.~\ref{fig:slide25_26}(b)}\big), then going around the loop we have a KVL loop:
     \begin{equation}
@@ -412,7 +412,7 @@ Stated another way, a certain amount of energy is required to take an electron f
 %              SUB-SUBSECTION              %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Contact Potential Between Materials}
-In summary, the contact between a $PN$-junction creates a potential difference.    Likewise, the contact between two dissimilar metals creates a potential difference.\footnote{Proportional to the difference between the \textbf{work functions}\index{Work function}.}   When a metal semiconductor junction is formed, a contact potential forms as well.  In fact, forming a good ``ohmic" contact\index{Ohmic contact} between a semiconductor and a metal requires special engineering that we usually ignore in an elementary coverage of $PN$-junctions.   
+In summary, the contact between a $PN$-junction creates a potential difference.    Likewise, the contact between two dissimilar metals creates a potential difference.\footnote{Proportional to the difference between the \textbf{work functions}\index{Work function}.}   When a metal semiconductor junction is formed, a contact potential forms as well.  In fact, forming a good "ohmic" contact\index{Ohmic contact} between a semiconductor and a metal requires special engineering that we usually ignore in an elementary coverage of $PN$-junctions.   
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 5.4.8             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -427,7 +427,7 @@ Under thermal equilibrium, the $PN$-junction does not draw any current.   But no
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Reverse Biased PN Junction}
-What happens if we \textbf{“reverse-bias”}\index{PN-junctions!reverse-bias} the $PN$-junction, as shown in \emph{Fig.~\ref{fig:slide28}}?  Since no current is flowing, the entire reverse biased potential is dropped across the transition region.\footnote{As we will see in the next chapter, a very small amount of current will flow under reverse-bias conditions.}  To accommodate the extra potential, the charge in these regions must increase.  If no current is flowing, the only way for the charge to increase (decrease) is to grow (shrink) the depletion regions.
+What happens if we \textbf{“reverse-bias”}\index{PN-junction!reverse-bias} the $PN$-junction, as shown in \emph{Fig.~\ref{fig:slide28}}?  Since no current is flowing, the entire reverse biased potential is dropped across the transition region.\footnote{As we will see in the next chapter, a very small amount of current will flow under reverse-bias conditions.}  To accommodate the extra potential, the charge in these regions must increase.  If no current is flowing, the only way for the charge to increase (decrease) is to grow (shrink) the depletion regions.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -468,7 +468,7 @@ As we increase the reverse bias, the depletion region grows to accommodate more 
     \begin{equation} 
         Q_j(V_D) =  -q\,N_A\,x_p(V_D) = -q\,N_A\,x_{p_0}\sqrt{ 1 - \frac{V_D}{\varphi_{bi}} }
     \end{equation}
-More charge is stored as we increase the applied voltage, but charge is \textit{not} a linear function of voltage.  This is a non-linear capacitor that we alluded to in the previous chapter.  We can define an incremental \textbf{``small signal" capacitance}\index{Small-signal capacitance} for small signals by breaking up the charge into two terms:
+More charge is stored as we increase the applied voltage, but charge is \textit{not} a linear function of voltage.  This is a non-linear capacitor that we alluded to in the previous chapter.  We can define an incremental \textbf{"small signal" capacitance}\index{Small-signal capacitance} for small signals by breaking up the charge into two terms:
     \begin{equation} 
         Q_j(V_D + v_D) = Q_j(V_D) + q(v_D) 
     \end{equation}

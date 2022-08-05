@@ -31,9 +31,9 @@ This chapter reviews the three important single-stage amplifier topologies.  Und
 \caption{A blackbox one-port linear circuit can be represented as a Thevenin or Norton equivalent.} \label{fig:oneports}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Consider any linear circuit as a blackbox with a pair of exposed terminals.  We know from basic circuit theory that we can represent this blackbox as an equivalent Thevenin or Norton model (Fig.~\ref{fig:oneports}).  This is also true of amplifiers, but amplifiers have two important differences.  First, most amplifiers have an input and an output port, where a ``port" is a  pair of terminals.  Often one terminal is shared, or ``common", between the ports, such as the ground connection.   The other important difference is that two-port amplifiers do not have any sources (of the independent variety) in them.  Finally, we assume that an amplifier is a \textit{unilateral} block, meaning the output depends on input but input is independent of output.  In other words, signals travel in one direction, but not the other.  This is why the schematic symbol for an amplifier is often drawn as a triangle (think of an arrow).  In general, though, the output port depends linearly on the current and voltage at the input and output ports, because there's output impedance.  
+Consider any linear circuit as a blackbox with a pair of exposed terminals.  We know from basic circuit theory that we can represent this blackbox as an equivalent Thevenin or Norton model (Fig.~\ref{fig:oneports}).  This is also true of amplifiers, but amplifiers have two important differences.  First, most amplifiers have an input and an output port, where a "port" is a  pair of terminals.  Often one terminal is shared, or "common", between the ports, such as the ground connection.   The other important difference is that two-port amplifiers do not have any sources (of the independent variety) in them.  Finally, we assume that an amplifier is a \textit{unilateral} block, meaning the output depends on input but input is independent of output.  In other words, signals travel in one direction, but not the other.  This is why the schematic symbol for an amplifier is often drawn as a triangle (think of an arrow).  In general, though, the output port depends linearly on the current and voltage at the input and output ports, because there's output impedance.  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Why are amplifiers unilateral?  Think about the small-signal model of a FET or BJT.  The output depends on the input $v_{\pi}$ or $v_{gs}$ through $g_m$ but the input is more or less independent of the output, except for the effects of the small ``overlap" or junction capacitance $C_{gd}$/$C_\mu$.  As long as the ``forward" gain $g_m$ is much larger than the reverse, $j\omega C_{gd}$, then the amplifier is unilateral.  At low frequencies, this is certainly true and a useful simplifying approximation.
+Why are amplifiers unilateral?  Think about the small-signal model of a FET or BJT.  The output depends on the input $v_{\pi}$ or $v_{gs}$ through $g_m$ but the input is more or less independent of the output, except for the effects of the small "overlap" or junction capacitance $C_{gd}$/$C_\mu$.  As long as the "forward" gain $g_m$ is much larger than the reverse, $j\omega C_{gd}$, then the amplifier is unilateral.  At low frequencies, this is certainly true and a useful simplifying approximation.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 12.2.2            %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -53,7 +53,7 @@ A linear two-port box, shown in Fig.~\ref{fig:2port_ss}, under the unilateral as
 %              SUB-SUBSECTION              %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Two-Port Small-Signal Voltage Amplifier}
-Let's begin with Fig.~\ref{fig:vi_amp}a, or a Voltage Amplifier.  This is perhaps the most straightforward amplifier to understand, as both input/output signals are voltages.  Recall that an ideal voltage amplifier has a very large input impedance $R_{in}$ so that it does not ``load" the driver circuitry, and so most of the applied voltage appears across $R_{in}$ rather than the source impedance.  Likewise, for similar reasons, the voltage amplifier should have a very small output impedance $R_{out}$.
+Let's begin with Fig.~\ref{fig:vi_amp}a, or a Voltage Amplifier.  This is perhaps the most straightforward amplifier to understand, as both input/output signals are voltages.  Recall that an ideal voltage amplifier has a very large input impedance $R_{in}$ so that it does not "load" the driver circuitry, and so most of the applied voltage appears across $R_{in}$ rather than the source impedance.  Likewise, for similar reasons, the voltage amplifier should have a very small output impedance $R_{out}$.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -72,7 +72,7 @@ Let's begin with Fig.~\ref{fig:vi_amp}a, or a Voltage Amplifier.  This is perhap
 %              SUB-SUBSECTION              %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Two-Port Small-Signal Current Amplifier}
-The dual of a Voltage Amplifier is the Current Amplifier, shown in Fig.~\ref{fig:vi_amp}.  The role of voltage and current are interchanged, and an input current into the amplifier is amplified and divided between the load and the internal output impedance $R_{out}$.  For this reason, we would like a current amplifier to have as large of an output impedance $R_{out}$ as possible, to maximize the current gain.  Also, a current amplifier with a low input impedance can ``steal" all the current from a source since a current divider favors the path of highest conductance.
+The dual of a Voltage Amplifier is the Current Amplifier, shown in Fig.~\ref{fig:vi_amp}.  The role of voltage and current are interchanged, and an input current into the amplifier is amplified and divided between the load and the internal output impedance $R_{out}$.  For this reason, we would like a current amplifier to have as large of an output impedance $R_{out}$ as possible, to maximize the current gain.  Also, a current amplifier with a low input impedance can "steal" all the current from a source since a current divider favors the path of highest conductance.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %              SUB-SUBSECTION              %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -92,7 +92,7 @@ The dual of a Voltage Amplifier is the Current Amplifier, shown in Fig.~\ref{fig
 \label{fig:gm_z_amp}
 \end{figure}
 
-The Transconductance Amplifier shown in Fig.~\ref{fig:gm_z_amp}a takes an input voltage and generates an output current, just like a conductor, but the signals are at different ports, making it a ``trans" conductor, effectively \emph{transporting} the signal from the voltage domain to the current domain.  Take a moment to consider that the concept of voltage and current domain only make sense with respect to the source and load impedance.  A good voltage source has low impedance with respect to the load, and a good current source has a high output impedance with respect to the load.  So a transconductance amplifier is effective if it presents a input high impedance, ideally infinite, and generates an output current with high output impedance.  A MOS transistor biased in saturation (and a BJT biased in the forward-active region) is almost an ideal transconductor, because its input is a high impedance at low frequencies, and its output is nearly open, due to the large output impedance of a transistor in saturation.  
+The Transconductance Amplifier shown in Fig.~\ref{fig:gm_z_amp}a takes an input voltage and generates an output current, just like a conductor, but the signals are at different ports, making it a "trans" conductor, effectively \emph{transporting} the signal from the voltage domain to the current domain.  Take a moment to consider that the concept of voltage and current domain only make sense with respect to the source and load impedance.  A good voltage source has low impedance with respect to the load, and a good current source has a high output impedance with respect to the load.  So a transconductance amplifier is effective if it presents a input high impedance, ideally infinite, and generates an output current with high output impedance.  A MOS transistor biased in saturation (and a BJT biased in the forward-active region) is almost an ideal transconductor, because its input is a high impedance at low frequencies, and its output is nearly open, due to the large output impedance of a transistor in saturation.  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Notice that the most general transconductance model has 4 separate terminals, but we've drawn a version with a common node, similar to the transistor hybrid-pi model. 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -155,7 +155,7 @@ For example, we can excite with a test voltage (current) source, and then measur
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Single-Stage MOS Amplifier Family}
-Since a transistor is a three-terminal device (ignoring the body terminal of a MOSFET), and an amplifier is a four terminal two-port, constructing an amplifier out of a transistor requires one terminal to be in ``common" with both ports.  This leads to the family of amplifiers shown in Fig.~\ref{fig:ampchart}, the Common Source (CS) amplifier already studied extensively in the previous chapters on small-signal modeling, the common-gate (CG) amplifier, and the Common Drain (CD) amplifier.  The BJT equivalents are the Common Emitter (CE), Common Base (CB), and the Common Collector (CC).  In this chapter we will focus on the MOS amplifiers and with relatively small changes we can apply our knowledge to BJT amplifiers as well.  While this is true of the small-signal models, the large-signal behavior, such as the operating point, requires a very different approach.
+Since a transistor is a three-terminal device (ignoring the body terminal of a MOSFET), and an amplifier is a four terminal two-port, constructing an amplifier out of a transistor requires one terminal to be in "common" with both ports.  This leads to the family of amplifiers shown in Fig.~\ref{fig:ampchart}, the Common Source (CS) amplifier already studied extensively in the previous chapters on small-signal modeling, the common-gate (CG) amplifier, and the Common Drain (CD) amplifier.  The BJT equivalents are the Common Emitter (CE), Common Base (CB), and the Common Collector (CC).  In this chapter we will focus on the MOS amplifiers and with relatively small changes we can apply our knowledge to BJT amplifiers as well.  While this is true of the small-signal models, the large-signal behavior, such as the operating point, requires a very different approach.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -179,16 +179,16 @@ Since a transistor is a three-terminal device (ignoring the body terminal of a M
 \includegraphics[width=.4\columnwidth]{csamp_biasT}\\
 (a) & (b)\\
 \end{tabular}
-\caption{(a) AC coupling capacitors are large (ideally infinite) and act like batteries, allowing different points in a circuit to be biased to different DC values, effectively blocking DC but allowing AC signals to flow.  A large resistor is used to ``block" the AC signals without loading the circuit.  (b) Large biasing inductors, sometimes called ``chokes" are used to apply a DC voltage to a node while acting like an open-circuit at AC frequencies.  A combination of an inductor and capacitor forms a bias-T.}
+\caption{(a) AC coupling capacitors are large (ideally infinite) and act like batteries, allowing different points in a circuit to be biased to different DC values, effectively blocking DC but allowing AC signals to flow.  A large resistor is used to "block" the AC signals without loading the circuit.  (b) Large biasing inductors, sometimes called "chokes" are used to apply a DC voltage to a node while acting like an open-circuit at AC frequencies.  A combination of an inductor and capacitor forms a bias-T.}
 \label{fig:ac_couple}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-When hooking up a source or load to an amplifier, it's easy to change the DC operating point.  One solution, adopted with discrete amplifiers, is to use a large ``AC coupling" capacitors at the input and/or output to isolate the load, as shown in Fig.~\ref{fig:ac_couple}a. Think of a very large capacitors as a battery. At AC frequencies, it acts like a short circuit.  One way to emphasize these capacitors as very large is to label them with $C_\infty$. This indicates that they are ideally infinitely large capacitors so that they act as short circuits for any non-zero frequency.  Often we also need to block AC signals from getting shorted out by bias voltages.  One solution adopted (shown in the figure) is a large resistor.  The resistors are made large enough to avoid loading the amplifier.
+When hooking up a source or load to an amplifier, it's easy to change the DC operating point.  One solution, adopted with discrete amplifiers, is to use a large "AC coupling" capacitors at the input and/or output to isolate the load, as shown in Fig.~\ref{fig:ac_couple}a. Think of a very large capacitors as a battery. At AC frequencies, it acts like a short circuit.  One way to emphasize these capacitors as very large is to label them with $C_\infty$. This indicates that they are ideally infinitely large capacitors so that they act as short circuits for any non-zero frequency.  Often we also need to block AC signals from getting shorted out by bias voltages.  One solution adopted (shown in the figure) is a large resistor.  The resistors are made large enough to avoid loading the amplifier.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %              SUB-SUBSECTION              %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsubsection{``Chokes"}
-In place of large resistors, infinitely large inductors, or ``chokes" as they are sometimes called, are also convenient, as they work at DC but at any non-zero frequency they are essentially open circuits.  Chokes are also used to isolate the DC supply or reference voltages of sensitive circuits from the rest of the (noisy) system, as shown in Fig.~\ref{fig:ac_couple}b.
+\subsubsection{"Chokes"}
+In place of large resistors, infinitely large inductors, or "chokes" as they are sometimes called, are also convenient, as they work at DC but at any non-zero frequency they are essentially open circuits.  Chokes are also used to isolate the DC supply or reference voltages of sensitive circuits from the rest of the (noisy) system, as shown in Fig.~\ref{fig:ac_couple}b.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 12.3.2            %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -199,11 +199,11 @@ In place of large resistors, infinitely large inductors, or ``chokes" as they ar
 \begin{figure}[tb]
 \centering
 \includegraphics[width=.6\columnwidth]{amp_bandpass}
-\caption{Definition of the ``mid-band" or ``pass-band" of an amplifier occurs at AC frequencies where large capacitors act like shorts (and large inductors are open).}
+\caption{Definition of the "mid-band" or "pass-band" of an amplifier occurs at AC frequencies where large capacitors act like shorts (and large inductors are open).}
 \label{fig:midband}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-AC coupled amplifiers have no gain at DC because the capacitors are ``open" at very low frequencies, or alternatively the chokes short out the signal at DC.  With reference to Fig.~\ref{fig:midband}, the midband is defined as the region where the gain is approximately flat, before rolling off due to high frequency effects, and after recovering from the effect of large capacitors. The general rule is to replace large capacitors with shorts, and small capacitors (transistor parasitics for example) as opens when finding the \emph{midband gain}. 
+AC coupled amplifiers have no gain at DC because the capacitors are "open" at very low frequencies, or alternatively the chokes short out the signal at DC.  With reference to Fig.~\ref{fig:midband}, the midband is defined as the region where the gain is approximately flat, before rolling off due to high frequency effects, and after recovering from the effect of large capacitors. The general rule is to replace large capacitors with shorts, and small capacitors (transistor parasitics for example) as opens when finding the \emph{midband gain}. 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 12.3.3            %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -222,7 +222,7 @@ The common-gate amplifier is shown in Fig.~\ref{fig:cgamp_is}.  The current sour
 \begin{equation}
 	{I_Q} = {I_{DS}}
 \end{equation}
-Since $V_{bias,Q}$ does not appear in the equation, you may be wondering why we don't simply ground the gate, as the circuit functionality is unaffected.  For an ideal current source, operating the gate at ground would bring the source node to a negative voltage.  We will learn in the next chapter that real current sources will cease to function under such conditions, and the gate bias voltage is there to provide some ``headroom" to the current source $I_Q$.
+Since $V_{bias,Q}$ does not appear in the equation, you may be wondering why we don't simply ground the gate, as the circuit functionality is unaffected.  For an ideal current source, operating the gate at ground would bring the source node to a negative voltage.  We will learn in the next chapter that real current sources will cease to function under such conditions, and the gate bias voltage is there to provide some "headroom" to the current source $I_Q$.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 12.3.4            %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -361,11 +361,11 @@ And even simpler version can be obtained by assuming the source resistance is le
 \label{fig:cg_model}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-We can summarize everything we've learned about the CG amplifier thus far by building an equivalent model of the CG amplifier, shown in Fig.~\ref{fig:cg_model}.  This is a current amplifier model with a current gain of unity, which means it's a ``Current Buffer".  A current buffer needs to meet three requirements:  (1) It must have a current gain of unity; (2) it should present a low input impedance;  (3) it should present a high output impedance.  Under these three conditions, the output current into a load is a faithful reproduction of the input.  It is extremely important to understand the role of low input impedance and high output impedance in this functionality.  A CS amplifier is not a good current buffer because it fails the first two criteria.  It's not even a good current amplifier because it does not satisfy the second criteria at low frequencies.  At sufficiently high frequencies, though, we can think of it as a current amplifier.   If this idea of a ``Current Buffer" is not making sense, take some time and calculate the current gain of a two-port Current Amplifier under arbitrary load and source impedance.  Then find the conditions for the externally observed current gain to match the internal current gain of the amplifier.
+We can summarize everything we've learned about the CG amplifier thus far by building an equivalent model of the CG amplifier, shown in Fig.~\ref{fig:cg_model}.  This is a current amplifier model with a current gain of unity, which means it's a "Current Buffer".  A current buffer needs to meet three requirements:  (1) It must have a current gain of unity; (2) it should present a low input impedance;  (3) it should present a high output impedance.  Under these three conditions, the output current into a load is a faithful reproduction of the input.  It is extremely important to understand the role of low input impedance and high output impedance in this functionality.  A CS amplifier is not a good current buffer because it fails the first two criteria.  It's not even a good current amplifier because it does not satisfy the second criteria at low frequencies.  At sufficiently high frequencies, though, we can think of it as a current amplifier.   If this idea of a "Current Buffer" is not making sense, take some time and calculate the current gain of a two-port Current Amplifier under arbitrary load and source impedance.  Then find the conditions for the externally observed current gain to match the internal current gain of the amplifier.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 12.3.9            %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Common-Gate as a ``Voltage Amplifier"}
+\subsection{Common-Gate as a "Voltage Amplifier"}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -418,7 +418,7 @@ This analysis is important because it shows that a CG amplifier can be interpret
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Common Drain Amplifier}
-The full schematic of the Common Drain amplifier is shown in Fig.~\ref{fig:cd_amp_dc_ac}a.  The ``common" terminal is obviously the drain, but unlike the CG and CS amplifiers, it's not grounded, but connected to a DC supply.  This is because we need to connect the drain to a higher potential than the gate/source in order to bias the transistor in saturation.  As far as AC signals are concerned, though, the drain voltage is DC and therefore AC grounded, as shown in Fig.~\ref{fig:cd_amp_dc_ac}b.
+The full schematic of the Common Drain amplifier is shown in Fig.~\ref{fig:cd_amp_dc_ac}a.  The "common" terminal is obviously the drain, but unlike the CG and CS amplifiers, it's not grounded, but connected to a DC supply.  This is because we need to connect the drain to a higher potential than the gate/source in order to bias the transistor in saturation.  As far as AC signals are concerned, though, the drain voltage is DC and therefore AC grounded, as shown in Fig.~\ref{fig:cd_amp_dc_ac}b.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 12.4.1            %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -470,7 +470,7 @@ Assuming that $r_o \gg R_L$, we have
     \begin{equation}
         \frac{{{v_{out}}}}{{{v_{s}}}} \approx \frac{{{g_m}}}{{1/{R_L} + {g_m}}} \approx 1
     \end{equation}
-This final result leads to another name for this amplifier, namely the ``Source Follower," since the source voltage closely tracks the gate voltage.  In other words, this is a voltage amplifier with unity gain, or a voltage buffer.
+This final result leads to another name for this amplifier, namely the "Source Follower," since the source voltage closely tracks the gate voltage.  In other words, this is a voltage amplifier with unity gain, or a voltage buffer.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 To be a voltage buffer, though, also requires high input impedance and low output impedance.  Obviously the input impedance is large, especially at low frequencies, because of the insulating nature of the gate.  Let's examine the output impedance.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -520,7 +520,7 @@ Finally, if we put everything together, we can see that a CD amplifier, or a Sou
 \label{fig:cd_amp_ac_body}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-As we noted earlier, if the source and body are not tied together, there's a back-gate effect that we need to consider.  Recall that if an NMOS transistor is fabricated in a $P$-type substrate, then its body connection is the substrate, which must be grounded in an IC (or tied to the lowest potential), as shown in Fig.~\ref{fig:cd_amp_ac_body}a.  It's possible to create a ``triple well" process (or a ``deep nwell" process) to accommodate placing NMOS devices in their own body wells to prevent the back-gate effect, but these process options are more expensive and increase the size of the device.  Often many NMOS devices will reside in the same substrate or pwell and so all the bodies are tied to a common (ground) node.
+As we noted earlier, if the source and body are not tied together, there's a back-gate effect that we need to consider.  Recall that if an NMOS transistor is fabricated in a $P$-type substrate, then its body connection is the substrate, which must be grounded in an IC (or tied to the lowest potential), as shown in Fig.~\ref{fig:cd_amp_ac_body}a.  It's possible to create a "triple well" process (or a "deep nwell" process) to accommodate placing NMOS devices in their own body wells to prevent the back-gate effect, but these process options are more expensive and increase the size of the device.  Often many NMOS devices will reside in the same substrate or pwell and so all the bodies are tied to a common (ground) node.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 To calculate the gain with the back-gate effect, we return to the full four terminal small-signal schematic, redrawn in Fig.~\ref{fig:cd_amp_ac_body}b.  To find the voltage gain, we write KCL at the output node: 
     \begin{equation}

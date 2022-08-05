@@ -29,7 +29,7 @@ For any circuit transfer function, the number of poles is a property of the circ
 \label{fig:amp_two_poles_indep}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-In many cases, the poles are actually easy to find and can be done by ``inspection".  Consider the example shown in Fig.~\ref{fig:amp_two_poles_indep}, consisting of an input capacitance $C_{in}$ and an output capacitance $C_{out}$.  We expect the circuit to have two poles, and we can almost read-off the poles by noting the input capacitance forms a low-pass filter.  The input pole is given by the $1/R_{eq}C_{in}$, where $R_{eq}$ is the equivalent resistance seen by the input capacitance.  To see this, note that
+In many cases, the poles are actually easy to find and can be done by "inspection".  Consider the example shown in Fig.~\ref{fig:amp_two_poles_indep}, consisting of an input capacitance $C_{in}$ and an output capacitance $C_{out}$.  We expect the circuit to have two poles, and we can almost read-off the poles by noting the input capacitance forms a low-pass filter.  The input pole is given by the $1/R_{eq}C_{in}$, where $R_{eq}$ is the equivalent resistance seen by the input capacitance.  To see this, note that
     \begin{equation}
         v_{in} = \frac{Z_{in}}{Z_{in} + R_s} v_s \label{eq:vin}
     \end{equation} 
@@ -57,7 +57,7 @@ Putting these results together, we have two independent poles, one from the inpu
     \begin{equation}
         \frac{v_o}{v_s} = -g_m v_{in} Z_{out} = \frac{R_{in}}{R_{in} + R_s} \frac{-g_m r_o || R_L}{(1 + j\omega C_{out} r_o || R_L)(1 + j\omega R_s || R_{in} C_{in})}
     \end{equation}
-You should learn to identify these independent poles in the transfer function of amplifiers.  This will save you a lot of time and give you a first order solution to many problems.  What we cover for the rest of the chapter are poles that arise from ``coupling" capacitors, which couple charge from one node to another. These capacitors are ``pesky" and require special attention.
+You should learn to identify these independent poles in the transfer function of amplifiers.  This will save you a lot of time and give you a first order solution to many problems.  What we cover for the rest of the chapter are poles that arise from "coupling" capacitors, which couple charge from one node to another. These capacitors are "pesky" and require special attention.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                   SECTION 14.3                                       %
@@ -114,7 +114,7 @@ Recall that a MOS device has many internal capacitors that we've been ignoring u
 \label{fig:cs_amp_acdc_RC_degen_capsshorted}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Let's revisit the common-source amplifier, shown in Fig.~\ref{fig:cs_amp_acdc_RC_degen_capsshorted}a.  Since the load is referenced to ground, we cannot connect it directly to the transistor (without adversely affecting the operating point) so a large coupling capacitor is used.  Also, $R_{deg}$ is used for biasing the transistor but it impairs the gain, so it is ``bypassed" as well.  Note that the large coupling capacitors (degeneration and coupling) are shorts at AC frequencies, and can be neglected when calculating the passband and high-frequency response, as shown in Fig.~\ref{fig:cs_amp_acdc_RC_degen_capsshorted}b.
+Let's revisit the common-source amplifier, shown in Fig.~\ref{fig:cs_amp_acdc_RC_degen_capsshorted}a.  Since the load is referenced to ground, we cannot connect it directly to the transistor (without adversely affecting the operating point) so a large coupling capacitor is used.  Also, $R_{deg}$ is used for biasing the transistor but it impairs the gain, so it is "bypassed" as well.  Note that the large coupling capacitors (degeneration and coupling) are shorts at AC frequencies, and can be neglected when calculating the passband and high-frequency response, as shown in Fig.~\ref{fig:cs_amp_acdc_RC_degen_capsshorted}b.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 14.4.2            %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -155,7 +155,7 @@ In a DC coupled amplifier response shown in Fig.~\ref{fig:amp_dccoup}, the gain 
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 The AC model of the common-source amplifier, shown in Fig.~\ref{fig:cs_amp_caps}, has many capacitors.  
- $C_{sb}$ is connected to ground on both sides, therefore it can be ignored.  The small-signal model, shown in Fig.~\ref{fig:cs_amp_ac_caps}, has two nodes.  Note that we cannot solve this problem by inspection, as we did for the circuit of Fig.~\ref{fig:amp_two_poles_indep}, because of the presence of the capacitance $C_{gd}$. We can solve problem directly by nodal analysis, and this is a good approach if the circuit is ``small".  This will lead to the complete transfer function of the circuit.
+ $C_{sb}$ is connected to ground on both sides, therefore it can be ignored.  The small-signal model, shown in Fig.~\ref{fig:cs_amp_ac_caps}, has two nodes.  Note that we cannot solve this problem by inspection, as we did for the circuit of Fig.~\ref{fig:amp_two_poles_indep}, because of the presence of the capacitance $C_{gd}$. We can solve problem directly by nodal analysis, and this is a good approach if the circuit is "small".  This will lead to the complete transfer function of the circuit.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                   SECTION 14.5                                       %
@@ -171,7 +171,7 @@ The AC model of the common-source amplifier, shown in Fig.~\ref{fig:cs_amp_caps}
 \caption{Small-signal model of a common source amplifier with device capacitors and load capacitance.} \label{fig:cs_amp_ac_caps}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-So let's try to analyze the transfer function, as it only has two nodes.  This looks ``easy", but don't forget that every capacitor leads to a pole.  With three capacitors present, we're dealing with a cubic transfer function! For now we will ignore $C_{db}+C_L$ to simplify the math to a second order transfer function.  
+So let's try to analyze the transfer function, as it only has two nodes.  This looks "easy", but don't forget that every capacitor leads to a pole.  With three capacitors present, we're dealing with a cubic transfer function! For now we will ignore $C_{db}+C_L$ to simplify the math to a second order transfer function.  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Let $R'_L = r_o || R_L$ and write KCL at each node of the circuit:
     \begin{equation}
@@ -225,7 +225,7 @@ Since the denominator of transfer function is second order, we can solve it exac
         \frac{ - g_m \left( r_o||R_L \right) \left( 1 - j\omega /\omega_z \right)}
         { 1 + j\omega \left( 1/\omega_{p1}  \right) + (j\omega)^2 / (\omega_{p1}\omega_{p2})   }
     \end{equation}
-This approximation allows us to quickly estimate the ``dominant" pole by equating the above equation with \ref{eq:exact_transfer}:
+This approximation allows us to quickly estimate the "dominant" pole by equating the above equation with \ref{eq:exact_transfer}:
     \begin{equation} 
         {\omega _{p1}} \approx \frac{1}{{{R_s}\left\{ {{C_{gs}} + \left( {1 + {g_m}{{R}_{o}}} \right){C_{gd}}} \right\} + {{R}_{o}}{C_{gd}}}}  \label{eq:pole_almost_exact}
     \end{equation}
@@ -270,7 +270,7 @@ In other words, we can replace the feedback $Z_F$ with a (smaller) impedance to 
     \begin{equation}
         Z_M = \frac{Z_F}{1 - A}
     \end{equation}
-If this seems like a ``sleight of hand", keep in mind that in practice $Z_F$ will also affect the gain $A$, so technically we don't really know $A$. The trick is to estimate $A$, especially when the gain is not a strong function of $Z_F$.
+If this seems like a "sleight of hand", keep in mind that in practice $Z_F$ will also affect the gain $A$, so technically we don't really know $A$. The trick is to estimate $A$, especially when the gain is not a strong function of $Z_F$.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 14.6.2            %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -399,7 +399,7 @@ Notice that the second term is small if $g_m r_o || r_{oc}$ is large:
     \begin{equation} 
         {C_{in}} \approx {C_{gd}} 
     \end{equation}
-What just happened?  The Miller capacitor nearly vanishes in this case, because it's ``bootstrapped", meaning the gain across the capacitor is nearly unity, and it has a positive sign, so very little current flows through it.
+What just happened?  The Miller capacitor nearly vanishes in this case, because it's "bootstrapped", meaning the gain across the capacitor is nearly unity, and it has a positive sign, so very little current flows through it.
 %\begin{figure}[tb]
 %\centering
 %\includegraphics[scale=1]{cd_amp_ss_cap_miller}
@@ -442,7 +442,7 @@ Let's summarize how the Miller effect played out in these two very different sce
         \[	
         	{C_{Miller}} = (1 - {A_{V,{C_{gd}}}}){C_{gd}} \approx 100{C_{gd}}
         \]
-    \item Common drain amplifier:  ``Bootstrapped" capacitor has negligible impact on bandwidth.
+    \item Common drain amplifier:  "Bootstrapped" capacitor has negligible impact on bandwidth.
         \[
         	A_v = \text{slightly less than unity and positive} 
         \]
@@ -667,7 +667,7 @@ The key to OCTC is to find the equivalent resistance seen by each capacitor.  To
 \caption{The complete schematic of a common source amplifier including $C_L$ and $C_{db}$.} \label{fig:cs_amp_ac_caps2}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Let's revisit the common-source amplifier.  As before, we drive it with a source of impedance $R_s$ and load it with $R_L$, as shown in Fig.~\ref{fig:cs_amp_ac_caps}.  We can conveniently add a load capacitance as it appears in parallel with $C_{db}$ and does not complicate the circuit. Since it's not obvious if there's a ``dominant node" in the circuit, we must step through each capacitor and find the equivalent resistance seen by each one. 
+Let's revisit the common-source amplifier.  As before, we drive it with a source of impedance $R_s$ and load it with $R_L$, as shown in Fig.~\ref{fig:cs_amp_ac_caps}.  We can conveniently add a load capacitance as it appears in parallel with $C_{db}$ and does not complicate the circuit. Since it's not obvious if there's a "dominant node" in the circuit, we must step through each capacitor and find the equivalent resistance seen by each one. 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 14.12.2           %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -748,11 +748,11 @@ Note that the first term is the same as the time constant from input port result
 %             SUBSECTION 14.12.6           %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Practical Approach}
-While the method of OCTC works very well for circuits with a dominant pole, it's cumbersome to use if there are many capacitors.  In practice, we can estimate the value of the dominant pole by finding the dominant $RC$ time constants and neglecting others.  If this $RC$ time constant is larger than all others ($100\times$ for example), it's a good approximation to neglect the others and only use one time constant. Many amplifiers are \textit{designed} to have a dominant ``high Z" node for stability reasons, and so we can quickly estimate the bandwidth in these cases.  As you will learn, even if such a ``high Z" node does not exist, we create it by adding capacitance intentionally to \textit{compensate} the frequency response.  This concept will be introduced when we talk about feedback and stability in operational amplifiers, see Section~\ref{sec:opamp_stability}.
+While the method of OCTC works very well for circuits with a dominant pole, it's cumbersome to use if there are many capacitors.  In practice, we can estimate the value of the dominant pole by finding the dominant $RC$ time constants and neglecting others.  If this $RC$ time constant is larger than all others ($100\times$ for example), it's a good approximation to neglect the others and only use one time constant. Many amplifiers are \textit{designed} to have a dominant "high Z" node for stability reasons, and so we can quickly estimate the bandwidth in these cases.  As you will learn, even if such a "high Z" node does not exist, we create it by adding capacitance intentionally to \textit{compensate} the frequency response.  This concept will be introduced when we talk about feedback and stability in operational amplifiers, see Section~\ref{sec:opamp_stability}.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                   SECTION 14.13                                      %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Chapter Summary}
-This chapter introduced several techniques to estimate the frequency response of an amplifier, from ``inspection" style analysis when nodes are independent, to the Miller Theorem and approximation and finally the method of the OCTC, including the simpler version of just estimating the dominant time constants and ignoring others.  Many approximations were made because in doing hand analysis (and design) we are interested in gaining insight into circuit behavior, rather than getting precise answers.  We have full blown circuit simulation tools when we desire accuracy, but often numerical techniques don't lead to insights for design.  This is why we need both hand analysis and computer simulation to design circuits.
+This chapter introduced several techniques to estimate the frequency response of an amplifier, from "inspection" style analysis when nodes are independent, to the Miller Theorem and approximation and finally the method of the OCTC, including the simpler version of just estimating the dominant time constants and ignoring others.  Many approximations were made because in doing hand analysis (and design) we are interested in gaining insight into circuit behavior, rather than getting precise answers.  We have full blown circuit simulation tools when we desire accuracy, but often numerical techniques don't lead to insights for design.  This is why we need both hand analysis and computer simulation to design circuits.
