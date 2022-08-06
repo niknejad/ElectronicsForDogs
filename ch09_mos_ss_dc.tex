@@ -247,11 +247,11 @@ By using the definition of transconductance, the change in drain current due to 
     \begin{equation}
         {g_m} = \mu {C_{ox}}\frac{W}{L}({V_{GS,Q}} - {V_T}) = \mu {C_{ox}}\frac{W}{L}(V_{DS,sat})
     \end{equation}
-This equation shows that $g_m$ is a strong function of the gate-overdrive voltage, defined as the gate bias beyond threshold, $V_{GS} - V_T$, and the device mobility $\mu$ and gate-oxide capacitance $C_{ox}$.  We can write $g_m$ in other equivalent forms, for instance by substitution of $V_{GS}-V_T$ from Eq.~\ref{eq:ids} (with $\lambda = 0$):
+This equation shows that $g_m$ is a strong function of the gate-overdrive voltage, defined as the gate bias beyond threshold, $V_{GS} - V_T$, and the device mobility $\mu$ and gate-oxide capacitance $C_{ox}$.  We can write $g_m$ in other equivalent forms, for instance by substitution of $V_{GS}-V_T$ from \emph{Eq.~\ref{eq:ids}} (with $\lambda = 0$):
     \begin{equation}
         {g_m} = \mu {C_{ox}}\frac{W}{L}\sqrt {\frac{{2{I_{DS}}}}{{\frac{W}{L}\mu {C_{ox}}}}}  = \sqrt {2\mu{C_{ox}}\frac{W}{L}{I_{DS}}}
     \end{equation}
-which shows the $g_m$ increases like $\sqrt{I_{DS}}$ with increasing bias.  Finally, we can express $g_m$ in a third way by dividing Eq.~\ref{eq:ids} by $V_{GS}-V_T$:
+which shows the $g_m$ increases like $\sqrt{I_{DS}}$ with increasing bias.  Finally, we can express $g_m$ in a third way by dividing \emph{Eq.~\ref{eq:ids}} by $V_{GS}-V_T$:
     \begin{equation}
         {g_m} = \frac{{2{I_{DS}}}}{{({V_{GS}} - {V_T})}} \label{eq:gm_vstar}
     \end{equation} 
@@ -270,7 +270,7 @@ This form may seem the most ambiguous, because it depends on both the bias curre
 \label{fig:ids_idsat_ro}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-We again start with Eq.~\ref{eq:ids}, but now to find $g_o$ ($1/r_o$), defined as the change in drain current due to a change in the \textit{drain-source} voltage, with \textit{everything else constant}.  In other words:
+We again start with \emph{Eq.~\ref{eq:ids}}, but now to find $g_o$ ($1/r_o$), defined as the change in drain current due to a change in the \textit{drain-source} voltage, with \textit{everything else constant}.  In other words:
     \begin{equation}
         {g_o} = \,{ {{{\left. {\frac{{\partial {i_D}}}{{\partial {v_{DS}}}}} \right|}_{{V_{GS}},{V_{DS}}}}} }
     \end{equation}
@@ -278,7 +278,7 @@ or
     \begin{equation}
         {r_o} = \,{\left( {{{\left. {\frac{{\partial {i_D}}}{{\partial {v_{DS}}}}} \right|}_{{V_{GS}},{V_{DS}}}}} \right)^{ - 1}}
     \end{equation}
-Since the current in Eq.~\ref{eq:ids} is only a linear function of $V_{DS}$, the derivative is easy to evaluate:
+Since the current in \emph{Eq.~\ref{eq:ids}} is only a linear function of $V_{DS}$, the derivative is easy to evaluate:
     \begin{equation}
         {r_o} = \frac{1}{{\frac{W}{L}\frac{{\mu {C_{ox}}}}{2}{{({V_{GS}} - {V_T})}^2}\lambda }}
     \end{equation}

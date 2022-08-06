@@ -29,7 +29,7 @@ For any circuit transfer function, the number of poles is a property of the circ
 \label{fig:amp_two_poles_indep}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-In many cases, the poles are actually easy to find and can be done by "inspection".  Consider the example shown in Fig.~\ref{fig:amp_two_poles_indep}, consisting of an input capacitance $C_{in}$ and an output capacitance $C_{out}$.  We expect the circuit to have two poles, and we can almost read-off the poles by noting the input capacitance forms a low-pass filter.  The input pole is given by the $1/R_{eq}C_{in}$, where $R_{eq}$ is the equivalent resistance seen by the input capacitance.  To see this, note that
+In many cases, the poles are actually easy to find and can be done by "inspection".  Consider the example shown in \emph{Fig.~\ref{fig:amp_two_poles_indep}}, consisting of an input capacitance $C_{in}$ and an output capacitance $C_{out}$.  We expect the circuit to have two poles, and we can almost read-off the poles by noting the input capacitance forms a low-pass filter.  The input pole is given by the $1/R_{eq}C_{in}$, where $R_{eq}$ is the equivalent resistance seen by the input capacitance.  To see this, note that
     \begin{equation}
         v_{in} = \frac{Z_{in}}{Z_{in} + R_s} v_s \label{eq:vin}
     \end{equation} 
@@ -37,7 +37,7 @@ where $Z_{in}$ is given by
     \begin{equation}
         Z_{in} = \frac{R_{in}}{1 + j\omega R_{in} C_{in}}
     \end{equation}
-Substitution of this transfer function into Eq.~\ref{eq:vin} results in
+Substitution of this transfer function into \emph{Eq.~\ref{eq:vin}} results in
     \begin{equation}
         v_{in} = \frac{R_{in}}{R_{in} + R_s(1 + j\omega R_{in} C_{in})} v_s 
     \end{equation}
@@ -64,7 +64,7 @@ You should learn to identify these independent poles in the transfer function of
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Review MOS Parasitic Capacitors}
-Recall that a MOS device has many internal capacitors that we've been ignoring up to now when calculating the low-frequency or pass-band response.  As shown in Fig.~\ref{fig:mos_caps_xsect}a, these capacitors are both intrinsic to the operation of the device, such as $C_{ox}$, or are present due to parasitic junctions and overlap/fringing between metals and contacts and the source/drain.  In the saturation region, we calculate the value of each capacitor and use the AC small-signal model, such as the three-terminal version shown in Fig.~\ref{fig:mos_caps_xsect}b.
+Recall that a MOS device has many internal capacitors that we've been ignoring up to now when calculating the low-frequency or pass-band response.  As shown in \emph{Fig.~\ref{fig:mos_caps_xsect}(a)}, these capacitors are both intrinsic to the operation of the device, such as $C_{ox}$, or are present due to parasitic junctions and overlap/fringing between metals and contacts and the source/drain.  In the saturation region, we calculate the value of each capacitor and use the AC small-signal model, such as the three-terminal version shown in \emph{Fig.~\ref{fig:mos_caps_xsect}(b)}.
 %\begin{equation}
 %	C_{gs} = \frac{2}{3} W L C_{ox} + L_{ov} W C_{ox}  
 %\end{equation} 
@@ -114,7 +114,7 @@ Recall that a MOS device has many internal capacitors that we've been ignoring u
 \label{fig:cs_amp_acdc_RC_degen_capsshorted}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Let's revisit the common-source amplifier, shown in Fig.~\ref{fig:cs_amp_acdc_RC_degen_capsshorted}a.  Since the load is referenced to ground, we cannot connect it directly to the transistor (without adversely affecting the operating point) so a large coupling capacitor is used.  Also, $R_{deg}$ is used for biasing the transistor but it impairs the gain, so it is "bypassed" as well.  Note that the large coupling capacitors (degeneration and coupling) are shorts at AC frequencies, and can be neglected when calculating the passband and high-frequency response, as shown in Fig.~\ref{fig:cs_amp_acdc_RC_degen_capsshorted}b.
+Let's revisit the common-source amplifier, shown in \emph{Fig.~\ref{fig:cs_amp_acdc_RC_degen_capsshorted}(a)}.  Since the load is referenced to ground, we cannot connect it directly to the transistor (without adversely affecting the operating point) so a large coupling capacitor is used.  Also, $R_{deg}$ is used for biasing the transistor but it impairs the gain, so it is "bypassed" as well.  Note that the large coupling capacitors (degeneration and coupling) are shorts at AC frequencies, and can be neglected when calculating the passband and high-frequency response, as shown in \emph{Fig.~\ref{fig:cs_amp_acdc_RC_degen_capsshorted}(b)}.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 14.4.2            %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -129,7 +129,7 @@ Let's revisit the common-source amplifier, shown in Fig.~\ref{fig:cs_amp_acdc_RC
 \label{fig:amp_bandpass}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-In Fig.~\ref{fig:amp_bandpass}, we see a plot of a typical amplifier transfer functions, such as the common source discussed earlier.  We have a bandpass response, with a relatively flat region over a range of AC frequencies, and gain drop-off at both low and high frequencies.  Large coupling capacitors kill the gain at low frequencies and then high frequency poles reduce the gain at higher frequencies. Our goal for this chapter is to find the high frequency poles.  Mostly we will use techniques that give us the \emph{dominant} pole for multi-stage amplifiers, or the lowest frequency pole that gives rise to the high frequency roll-off.
+In \emph{Fig.~\ref{fig:amp_bandpass}}, we see a plot of a typical amplifier transfer functions, such as the common source discussed earlier.  We have a bandpass response, with a relatively flat region over a range of AC frequencies, and gain drop-off at both low and high frequencies.  Large coupling capacitors kill the gain at low frequencies and then high frequency poles reduce the gain at higher frequencies. Our goal for this chapter is to find the high frequency poles.  Mostly we will use techniques that give us the \emph{dominant} pole for multi-stage amplifiers, or the lowest frequency pole that gives rise to the high frequency roll-off.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -140,7 +140,7 @@ In Fig.~\ref{fig:amp_bandpass}, we see a plot of a typical amplifier transfer fu
 \label{fig:amp_dccoup}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-In a DC coupled amplifier response shown in Fig.~\ref{fig:amp_dccoup}, the gain does \textit{not} fall off at low frequencies, and the midband gain extends down to zero frequency. This is very desirable and we prefer DC coupled amplifiers over AC coupled ones.  The issue is that we have to ensure that the DC bias points of cascaded amplifiers are well matched.  In Chapter~\ref{ch:ch16_diff_amp} we will study differential amplifiers that function over a wide range of DC voltages, allowing us to cascade the amplifiers without using large AC coupling capacitors.
+In a DC coupled amplifier response shown in \emph{Fig.~\ref{fig:amp_dccoup}}, the gain does \textit{not} fall off at low frequencies, and the midband gain extends down to zero frequency. This is very desirable and we prefer DC coupled amplifiers over AC coupled ones.  The issue is that we have to ensure that the DC bias points of cascaded amplifiers are well matched.  In Chapter~\ref{ch:ch16_diff_amp} we will study differential amplifiers that function over a wide range of DC voltages, allowing us to cascade the amplifiers without using large AC coupling capacitors.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 14.4.3            %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -154,8 +154,8 @@ In a DC coupled amplifier response shown in Fig.~\ref{fig:amp_dccoup}, the gain 
 \caption{The AC schematic of a common source amplifier with device capacitors.} \label{fig:cs_amp_caps}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-The AC model of the common-source amplifier, shown in Fig.~\ref{fig:cs_amp_caps}, has many capacitors.  
- $C_{sb}$ is connected to ground on both sides, therefore it can be ignored.  The small-signal model, shown in Fig.~\ref{fig:cs_amp_ac_caps}, has two nodes.  Note that we cannot solve this problem by inspection, as we did for the circuit of Fig.~\ref{fig:amp_two_poles_indep}, because of the presence of the capacitance $C_{gd}$. We can solve problem directly by nodal analysis, and this is a good approach if the circuit is "small".  This will lead to the complete transfer function of the circuit.
+The AC model of the common-source amplifier, shown in \emph{Fig.~\ref{fig:cs_amp_caps}}, has many capacitors.  
+ $C_{sb}$ is connected to ground on both sides, therefore it can be ignored.  The small-signal model, shown in \emph{Fig.~\ref{fig:cs_amp_ac_caps}}, has two nodes.  Note that we cannot solve this problem by inspection, as we did for the circuit of \emph{Fig.~\ref{fig:amp_two_poles_indep}}, because of the presence of the capacitance $C_{gd}$. We can solve problem directly by nodal analysis, and this is a good approach if the circuit is "small".  This will lead to the complete transfer function of the circuit.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                   SECTION 14.5                                       %
@@ -254,7 +254,7 @@ The result is not exact, since we neglected $C_L$ and $C_{db}$, and provides lit
 \label{fig:miller1}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Consider an ideal amplifier with gain $A$ and a feedback impedance $Z_F$ from input to output shown in Fig.~\ref{fig:miller1}a.  Let's calculate the input impedance of this circuit assuming the amplifier has infinite input impedance.  In that case, the only current flow is due to $Z_F$:
+Consider an ideal amplifier with gain $A$ and a feedback impedance $Z_F$ from input to output shown in \emph{Fig.~\ref{fig:miller1}(a)}.  Let's calculate the input impedance of this circuit assuming the amplifier has infinite input impedance.  In that case, the only current flow is due to $Z_F$:
     \begin{equation}
         i_{in} = \frac{v_{in} - v_{out}}{Z_F}
     \end{equation}
@@ -262,7 +262,7 @@ Since the output is a scaled copy of the input:
     \begin{equation}
         i_{in} = \frac{ v_{in} - A\cdot v_{in} }{Z_F}
     \end{equation}
-Notice that the above equation only involves the input node.  We can therefore pretend the current flows to ground as shown in Fig.~\ref{fig:miller1}a:
+Notice that the above equation only involves the input node.  We can therefore pretend the current flows to ground as shown in \emph{Fig.~\ref{fig:miller1}(a)}:
     \begin{equation}
         i_{in} = \frac{v_{in}}{\frac{Z_F}{1 - A}}
     \end{equation}
@@ -275,7 +275,7 @@ If this seems like a "sleight of hand", keep in mind that in practice $Z_F$ will
 %             SUBSECTION 14.6.2            %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{The Miller Effect of a Capacitor}
-Applying the Miller Theorem to a capacitor, shown in Fig.~\ref{fig:miller1}b, we have a capacitor that couples two notes.  In this case, it's across an inverting amplifier, and so the effective capacitance is boosted:
+Applying the Miller Theorem to a capacitor, shown in \emph{Fig.~\ref{fig:miller1}(b)}, we have a capacitor that couples two notes.  In this case, it's across an inverting amplifier, and so the effective capacitance is boosted:
     \begin{equation}
         Z_M = \frac{1}{j\omega C_M} = \frac{\frac{1}{j\omega C_{gd}}}{ 1 - A}
     \end{equation}
@@ -308,11 +308,11 @@ Note that for a common-source amplifier $A$ is negative, so the overall capacita
 \label{fig:cs_amp_cgd}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Now we apply the Miller Theorem to the $C_{gd}$ feedback capacitor in the MOS amplifier, shown in Fig.~\ref{fig:cs_amp_cgd}:  
+Now we apply the Miller Theorem to the $C_{gd}$ feedback capacitor in the MOS amplifier, shown in \emph{Fig.~\ref{fig:cs_amp_cgd}}:  
     \begin{equation}
         {C_{in}} = \frac{1}{{j\omega {C_{M}}}} = \left( {\frac{1}{{1 - {A_{v,Cgd}}}}} \right)\left( {\frac{1}{{j\omega {C_{gd}}}}} \right) = \frac{1}{{j\omega \left[ {\left( {1 - {A_{vCgd}}} \right){C_{gd}}} \right]}}
     \end{equation}
-Using this input capacitance, we modify the small-signal model as shown in Fig.~\ref{fig:cs_amp_ac_caps_miller}.  This circuit is much simpler than the original amplifier since the coupling capacitor is removed and the two nodes are seemingly independent.   The only trouble is that $A_{vCgd}$ is not known exactly but we take the low-frequency value as an approximation:
+Using this input capacitance, we modify the small-signal model as shown in \emph{Fig.~\ref{fig:cs_amp_ac_caps_miller}}.  This circuit is much simpler than the original amplifier since the coupling capacitor is removed and the two nodes are seemingly independent.   The only trouble is that $A_{vCgd}$ is not known exactly but we take the low-frequency value as an approximation:
     \begin{equation}
         A_{vCgd} \approx -g_m R_{o}
     \end{equation}
@@ -354,7 +354,7 @@ The results are very close except for the last term, which usually does not domi
 \label{fig:cd_amp_load}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Let's now compute the bandwidth of a common drain amplifier, also known as the source follower, shown in Fig.~\ref{fig:cd_amp_load}.  We can replace the current source with MOSFET-based current mirror, and we simply model it by $r_{oc}$.  In the small-signal model with capacitors shown in Fig.~\ref{fig:cd_amp_load}b, we use the DC small-signal gain and the Miller effect to calculate the input capacitance.  This will allow us to estimate the dominant pole.
+Let's now compute the bandwidth of a common drain amplifier, also known as the source follower, shown in \emph{Fig.~\ref{fig:cd_amp_load}}.  We can replace the current source with MOSFET-based current mirror, and we simply model it by $r_{oc}$.  In the small-signal model with capacitors shown in \emph{Fig.~\ref{fig:cd_amp_load}(b)}, we use the DC small-signal gain and the Miller effect to calculate the input capacitance.  This will allow us to estimate the dominant pole.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 14.8.1            %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -456,7 +456,7 @@ Let's summarize how the Miller effect played out in these two very different sce
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Common Gate Amplifier Bandwidth}
-The small-signal schematic of the common gate amplifier is shown in Fig.~\ref{fig:cg_amp_caps}. While there are four capacitors in the model, three are in parallel, so we only expect two poles.  Also notice that both $C_{gd}$ and $C_{gs}$ are grounded at one node, and so there are no input-to-output coupling capacitors, and hence no Miller effect for the capacitors.  This makes the common gate amplifier in general a broadband amplifier stage.  To see this, we'll analyze the circuit, first using an approximation, and then using the complete equations.  
+The small-signal schematic of the common gate amplifier is shown in \emph{Fig.~\ref{fig:cg_amp_caps}}. While there are four capacitors in the model, three are in parallel, so we only expect two poles.  Also notice that both $C_{gd}$ and $C_{gs}$ are grounded at one node, and so there are no input-to-output coupling capacitors, and hence no Miller effect for the capacitors.  This makes the common gate amplifier in general a broadband amplifier stage.  To see this, we'll analyze the circuit, first using an approximation, and then using the complete equations.  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -543,7 +543,7 @@ We claimed that this is a very high frequency.  To show this, we're going to def
 \label{fig:hybrid_pi_ft}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Let's calculate the current gain of a MOS transistor by shorting the output, as shown in the setup in Fig.~\ref{fig:hybrid_pi_ft}.  Note that the input $v_{gs}$ is given by:
+Let's calculate the current gain of a MOS transistor by shorting the output, as shown in the setup in \emph{Fig.~\ref{fig:hybrid_pi_ft}}.  Note that the input $v_{gs}$ is given by:
     \begin{equation}
         {v_{gs}} = \frac{{{i_s}}}{{s{C_{gs}} + s{C_{gd}}}}
     \end{equation}
@@ -583,7 +583,7 @@ Substituting the small-signal parameters:
     \begin{equation}
         g_m = \mu C_{ox} \frac{W}{L} (V_{gs} - V_T)
     \end{equation}
-Substituting in Eq.~\ref{eq:ft1}, we have:
+Substituting in \emph{Eq.~\ref{eq:ft1}}, we have:
     \begin{equation} 
         {\omega _T} = \frac{\mu \cancel{C_{ox}} \frac{\cancel{W}}{L} (V_{gs} - V_T)}{\frac{2}{3} \cancel{W} (L + \delta L) \cancel{C_{ox}}} = \frac{3}{2} \frac{\mu (V_{gs} - V_T)}{L(L+\delta L)}  \label{eq:ft2}
     \end{equation}
@@ -667,7 +667,7 @@ The key to OCTC is to find the equivalent resistance seen by each capacitor.  To
 \caption{The complete schematic of a common source amplifier including $C_L$ and $C_{db}$.} \label{fig:cs_amp_ac_caps2}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Let's revisit the common-source amplifier.  As before, we drive it with a source of impedance $R_s$ and load it with $R_L$, as shown in Fig.~\ref{fig:cs_amp_ac_caps}.  We can conveniently add a load capacitance as it appears in parallel with $C_{db}$ and does not complicate the circuit. Since it's not obvious if there's a "dominant node" in the circuit, we must step through each capacitor and find the equivalent resistance seen by each one. 
+Let's revisit the common-source amplifier.  As before, we drive it with a source of impedance $R_s$ and load it with $R_L$, as shown in \emph{Fig.~\ref{fig:cs_amp_ac_caps}}.  We can conveniently add a load capacitance as it appears in parallel with $C_{db}$ and does not complicate the circuit. Since it's not obvious if there's a "dominant node" in the circuit, we must step through each capacitor and find the equivalent resistance seen by each one. 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 14.12.2           %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -681,7 +681,7 @@ Let's revisit the common-source amplifier.  As before, we drive it with a source
 \caption{Equivalent circuit for calculation of $R_{C_{gs}}$ for OCTC analysis.} \label{fig:cs_amp_ac_caps_Cgs}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Let's focus on $C_{gs}$, as shown in Fig.~\ref{fig:cs_amp_ac_caps_Cgs}. Note that we open-circuit all the capacitors and replace $C_{gs}$ with a current source to find the equivalent resistance seen by $C_{gs}$.
+Let's focus on $C_{gs}$, as shown in \emph{Fig.~\ref{fig:cs_amp_ac_caps_Cgs}}. Note that we open-circuit all the capacitors and replace $C_{gs}$ with a current source to find the equivalent resistance seen by $C_{gs}$.
  Since $C_{gd}$ is open, there's no path from the input to output, and the resistance seen by $C_{gs}$ is simply $R_s$:
     \begin{equation}
         {R_{C_{gs}}} = R_{s}
@@ -698,7 +698,7 @@ v\includegraphics[scale=1]{cs_amp_ac_caps_Cgd}
 \caption{Equivalent circuit for calculation of $R_{C_{gd}}$ for OCTC analysis.} \label{fig:cs_amp_ac_caps_Cgd}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Next we focus on $C_{gd}$ as shown in Fig.~\ref{fig:cs_amp_ac_caps_Cgd}.  We open-circuit all the capacitors and replace $C_{gd}$ with a current source to find the equivalent resistance seen by $C_{gd}$.  Let $R_L' = R_L || r_o$.  Since the current $i_x$ flows into the input, we have to be a bit more careful in finding the equivalent resistance seen by $C_{gd}$:
+Next we focus on $C_{gd}$ as shown in \emph{Fig.~\ref{fig:cs_amp_ac_caps_Cgd}}.  We open-circuit all the capacitors and replace $C_{gd}$ with a current source to find the equivalent resistance seen by $C_{gd}$.  Let $R_L' = R_L || r_o$.  Since the current $i_x$ flows into the input, we have to be a bit more careful in finding the equivalent resistance seen by $C_{gd}$:
     \begin{equation} 
         {i_x} = -{g_m}{v_{gs}} - \frac{{{v_d}}}{{R_L'}} = -{g_m}{v_{gs}} - \frac{{{v_{gs}}-{v_x} }}{{R_L'}} 
     \end{equation}
@@ -723,7 +723,7 @@ We find:
 \caption{Equivalent circuit for calculation of $R_{C_{db}}$ for OCTC analysis.} \label{fig:cs_amp_ac_caps_Cdb}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Finally we have $C_{db}$ (and $C_L$), shown in Fig.~\ref{fig:cs_amp_ac_caps_Cdb}. To calculate the resistance seen by $C_{db} + C_L$, note that with $C_{gd}$/$C_L$ eliminated (open), there's no voltage at the input, so $v_{gs} = 0$V and so $g_m V_{gs} = 0$A and the current generator is also an open.  So by inspection:
+Finally we have $C_{db}$ (and $C_L$), shown in \emph{Fig.~\ref{fig:cs_amp_ac_caps_Cdb}}. To calculate the resistance seen by $C_{db} + C_L$, note that with $C_{gd}$/$C_L$ eliminated (open), there's no voltage at the input, so $v_{gs} = 0$V and so $g_m V_{gs} = 0$A and the current generator is also an open.  So by inspection:
     \begin{equation}
         {R_{{C_{db}}+C_L}} = R_L'
     \end{equation}
@@ -743,7 +743,7 @@ or approximately:
     \begin{equation} 
         \approx R_s\left( {{C_{gs}} + (1 + {g_m}R_L'){C_{gd}}} \right) + R_L'\left( {{C_{gd}} + {C_L}} \right)
     \end{equation}
-Note that the first term is the same as the time constant from input port resulting from the Miller equivalent circuit.  The second term is the time constant contribution from the output port of the Miller equivalent circuit.  This result matches Eq.~\ref{eq:pole_almost_exact} when we account for $C_L$ and $C_{db}$, which we neglected earlier.
+Note that the first term is the same as the time constant from input port resulting from the Miller equivalent circuit.  The second term is the time constant contribution from the output port of the Miller equivalent circuit.  This result matches \emph{Eq.~\ref{eq:pole_almost_exact}} when we account for $C_L$ and $C_{db}$, which we neglected earlier.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 14.12.6           %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

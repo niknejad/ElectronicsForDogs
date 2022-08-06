@@ -34,7 +34,7 @@ In this chapter we'll be covering multi-stage amplifiers consisting of a cascade
 \label{fig:ampchart_models_fig}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-In the past few chapters, we have discussed single stage amplifiers in detail, building models for each as either a voltage/current or hybrid amplifier (transconductance or transresistance), see Fig.~\ref{fig:ampchart_models_fig}.  Why should we need to cascade single-stage amplifier stages?  The simplest reason is to provide more gain.   More is better, right? No, not always, but in the right circumstance, distributing gain over multiple stages has benefits. Such benefits include the ability to realize higher bandwidth, or for driving output loads without compromising the gain.  By separating the task of amplification into multiple steps, such as to drive an external load, we can better optimize each stage.
+In the past few chapters, we have discussed single stage amplifiers in detail, building models for each as either a voltage/current or hybrid amplifier (transconductance or transresistance), see \emph{Fig.~\ref{fig:ampchart_models_fig}}.  Why should we need to cascade single-stage amplifier stages?  The simplest reason is to provide more gain.   More is better, right? No, not always, but in the right circumstance, distributing gain over multiple stages has benefits. Such benefits include the ability to realize higher bandwidth, or for driving output loads without compromising the gain.  By separating the task of amplification into multiple steps, such as to drive an external load, we can better optimize each stage.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 To begin, let's talk about gain.  In modern technology, the amount of realizable gain per stage is  limited, especially in nanoscale devices.  For example, in a technology with $L = 1\mathrm{\mu m}$, a single device could provide an intrinsic gain $g_m r_o \approx 100$, whereas a short channel transistor in 28nm technology may only provide a gain of 10.  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -100,7 +100,7 @@ Table~\ref{tab:imp} level is a quick summary of the impedance levels of various 
 \label{fig:1cascade}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-As shown in Fig.~\ref{fig:1cascade}, simply cascading two amplifier stages is possible if the DC voltage levels are compatible. In other words, the desired operating point of each individual amplifier should not change when we connect them, because otherwise, we need AC coupling capacitors.  It's best to avoid AC coupling capacitors as they take up a lot of room on the chip or PCB and they limit the range of operation (since they kill the low frequency gain).  For this reason, it's good to think of cascading amplifiers while designing them.  If we are careful to not disturb the operating points, the cascade will result in higher gain.  We can think of the overall cascade as a single two-port model.  If the amplifiers are unilateral, then the input impedance of the cascade is simply  $R_{in} = R_{in,1}$, and the output impedance of the cascade is $R_{out} = R_{out,2}$.
+As shown in \emph{Fig.~\ref{fig:1cascade}}, simply cascading two amplifier stages is possible if the DC voltage levels are compatible. In other words, the desired operating point of each individual amplifier should not change when we connect them, because otherwise, we need AC coupling capacitors.  It's best to avoid AC coupling capacitors as they take up a lot of room on the chip or PCB and they limit the range of operation (since they kill the low frequency gain).  For this reason, it's good to think of cascading amplifiers while designing them.  If we are careful to not disturb the operating points, the cascade will result in higher gain.  We can think of the overall cascade as a single two-port model.  If the amplifiers are unilateral, then the input impedance of the cascade is simply  $R_{in} = R_{in,1}$, and the output impedance of the cascade is $R_{out} = R_{out,2}$.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 15.4.2            %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -115,7 +115,7 @@ As shown in Fig.~\ref{fig:1cascade}, simply cascading two amplifier stages is po
 \label{fig:2cs_casc_ss}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-As an example of a cascade, let's take two common-source stages in cascade.  We'd need to ensure that the drain voltage of the first stage is the right bias point for the second stage gate, but considering only the AC schematic shown in Fig.~\ref{fig:2cs_casc_ss}, the resulting new two-port DC gain can be analyzed by inspection:
+As an example of a cascade, let's take two common-source stages in cascade.  We'd need to ensure that the drain voltage of the first stage is the right bias point for the second stage gate, but considering only the AC schematic shown in \emph{Fig.~\ref{fig:2cs_casc_ss}}, the resulting new two-port DC gain can be analyzed by inspection:
     \begin{equation}
         A_v = \frac{v_{out}}{v_{in}} = -g_{m1} (r_{01}||r_{oc1}) \times  -g_{m2} (r_{02}||r_{oc2}) = g_{m1} (r_{01}||r_{oc1}) g_{m2} (r_{02}||r_{oc2})
     \end{equation}
@@ -141,7 +141,7 @@ And the output impedance is given by the second stage:
 \label{fig:3cs_casc_ss_cap}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-The AC schematic shown in Fig.~\ref{fig:3cs_casc_ss_cap} looks complicated, with 6 capacitors shown.  But if we combine parallel components and also apply the Miller Theorem, we can identify three independent nodes.  At the input, applying Miller's theorem:
+The AC schematic shown in \emph{Fig.~\ref{fig:3cs_casc_ss_cap}} looks complicated, with 6 capacitors shown.  But if we combine parallel components and also apply the Miller Theorem, we can identify three independent nodes.  At the input, applying Miller's theorem:
     \begin{equation} 
         C_{M1} = C_{gs1} + C_{gd1} (1 - A_{v1}) 
     \end{equation}
@@ -165,7 +165,7 @@ Results in a second Miller composite capacitance:
     \begin{equation} 
         C_{M2} = C_{gs2} + C_{db1} + C_{gd2} (1 + g_{m2} r_{02}||r_{oc2}) 
     \end{equation}
-The simplified schematic is shown in Fig.~\ref{fig:4cs_casc_ss_cap_miller}.  The time constant of the input node is given by:
+The simplified schematic is shown in \emph{Fig.~\ref{fig:4cs_casc_ss_cap_miller}}.  The time constant of the input node is given by:
     \begin{equation}
         \tau_1 = C_{M1} R_s 
     \end{equation}
@@ -196,7 +196,7 @@ Notice that $\tau_1$ depends on the source resistance $R_s$, which can be lowere
 \caption{Common-source cascade with an internal source follower buffer to improve the bandwidth.} \label{fig:55cs_cd_cs_casc}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Since the common-source stage has high gain but suffers from a low bandwidth, a follower stage can buffer the Miller cap from the high output impedance of a second transistor since it has low output impedance ($1/g_m$), as shown in Fig.~\ref{fig:55cs_cd_cs_casc}.  We still need to keep $R_s$ under control.  Recall that the $C_{gs}$ of the follower stage is "bootstrapped", and it does not load the common-source stage:
+Since the common-source stage has high gain but suffers from a low bandwidth, a follower stage can buffer the Miller cap from the high output impedance of a second transistor since it has low output impedance ($1/g_m$), as shown in \emph{Fig.~\ref{fig:55cs_cd_cs_casc}}.  We still need to keep $R_s$ under control.  Recall that the $C_{gs}$ of the follower stage is "bootstrapped", and it does not load the common-source stage:
 \begin{equation}
 	C_M = C_{gs} (1 - A_v) \approx 0 \mathrm{F}
 \end{equation}
@@ -210,7 +210,7 @@ Since the common-source stage has high gain but suffers from a low bandwidth, a 
 \label{fig:5cs_cd_cs_casc_ss_miller}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\noindent As shown in Fig.~\ref{fig:5cs_cd_cs_casc_ss_miller}, for the input time constant, we have (as before):   
+\noindent As shown in \emph{Fig.~\ref{fig:5cs_cd_cs_casc_ss_miller}}, for the input time constant, we have (as before):   
     \begin{equation} 
         \tau_1 = (C_{gs1} + C_{gd1} (1 + g_{m1} r_{01}||r_{oc1})) R_s 
     \end{equation}
@@ -246,7 +246,7 @@ At the load, if there's no load capacitance, we have another relatively high fre
 \label{fig:6cs_dc}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-A schematic of a common-source amplifier with biasing elements is shown in Fig.~\ref{fig:6cs_dc}. Recall that $C_{\text{Large}}$ is a very large bypass capacitor.  Usually the larger these capacitors, the better, as they define the low frequency cutoff limit.  These capacitors look like short circuits to the AC signal.  On the other hand, if the load capacitance $C_L$ is large, its pole dominates. Let's analyze this scenario.
+A schematic of a common-source amplifier with biasing elements is shown in \emph{Fig.~\ref{fig:6cs_dc}}. Recall that $C_{\text{Large}}$ is a very large bypass capacitor.  Usually the larger these capacitors, the better, as they define the low frequency cutoff limit.  These capacitors look like short circuits to the AC signal.  On the other hand, if the load capacitance $C_L$ is large, its pole dominates. Let's analyze this scenario.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -257,7 +257,7 @@ A schematic of a common-source amplifier with biasing elements is shown in Fig.~
 \label{fig:7cs_cL_ss}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-In Fig.~\ref{fig:7cs_cL_ss}, note that $R_{in}$ represents the parallel combination of the biasing resistors, $R_{in} = R_{B1} || R_{B2}$.  If we make a Miller approximation, the input time constant is given by:
+In \emph{Fig.~\ref{fig:7cs_cL_ss}}, note that $R_{in}$ represents the parallel combination of the biasing resistors, $R_{in} = R_{B1} || R_{B2}$.  If we make a Miller approximation, the input time constant is given by:
     \begin{equation}
         \tau_1 = R_s || R_{in} (C_{gs} + g_m (r_o||R_D) C_{gd} )
     \end{equation}
@@ -265,7 +265,7 @@ At the output, we have a large capacitor $C_L \gg C_{gs,gd,db}$, so it dominates
     \begin{equation}
         \tau_2 \approx (R_D|| r_o) C_L 
     \end{equation}
-What can we do if we have to drive a large $C_L$?  How can we reduce the impact of $C_L$? One way is to reduce the resistance $R_D$, but this reduces our pass-band gain.   To recover the gain we can increase $g_{m1}$, at the cost of increased power consumption.   A better way to extend the bandwidth is to add a source-follower stage, shown Fig.~\ref{fig:8_cs_cd_casc_dc}, to buffer the output load capacitor from the gain stage.  The analysis is similar to previous example.  As shown in the AC schematic in Fig.~\ref{fig:9cs_cd_casc_ss}, by adding a common-drain stage (Source Follower), we can increase the bandwidth. Even though it costs us power for the follower stage, increasing the bandwidth by increasing $g_{m1}$ costs us much more.
+What can we do if we have to drive a large $C_L$?  How can we reduce the impact of $C_L$? One way is to reduce the resistance $R_D$, but this reduces our pass-band gain.   To recover the gain we can increase $g_{m1}$, at the cost of increased power consumption.   A better way to extend the bandwidth is to add a source-follower stage, shown \emph{Fig.~\ref{fig:8_cs_cd_casc_dc}}, to buffer the output load capacitor from the gain stage.  The analysis is similar to previous example.  As shown in the AC schematic in \emph{Fig.~\ref{fig:9cs_cd_casc_ss}}, by adding a common-drain stage (Source Follower), we can increase the bandwidth. Even though it costs us power for the follower stage, increasing the bandwidth by increasing $g_{m1}$ costs us much more.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -304,7 +304,7 @@ What can we do if we have to drive a large $C_L$?  How can we reduce the impact 
 \label{fig:10cs_cg_cascade}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Consider the cascade shown in Fig.~\ref{fig:10cs_cg_cascade}.  The common-source stage provides gain, and the common-gate acts as a current buffer, passing the current to the load.  Since the current buffer stage has a gain of one, is it even helping?  On first pass, it seems like M2 is not doing anything because it just buffers the current of M1 and does not provide gain.  But understanding this topology is more subtle as it provides potential gain and bandwidth benefits.
+Consider the cascade shown in \emph{Fig.~\ref{fig:10cs_cg_cascade}}.  The common-source stage provides gain, and the common-gate acts as a current buffer, passing the current to the load.  Since the current buffer stage has a gain of one, is it even helping?  On first pass, it seems like M2 is not doing anything because it just buffers the current of M1 and does not provide gain.  But understanding this topology is more subtle as it provides potential gain and bandwidth benefits.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 15.6.2            %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -319,7 +319,7 @@ Consider the cascade shown in Fig.~\ref{fig:10cs_cg_cascade}.  The common-source
 \label{fig:10cascode_dc}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-As seen in Fig.~\ref{fig:10cascode_dc}, we can share the bias currents between the two amplifier stages by stacking them into a common structure, commonly known as a cascode.  While this circuit has reduced headroom, it can be seen as a "supercharged" common-source stage.  We know the $g_m$ of the combined M1/M2 amplifier is the same as a single transistor, but the output impedance is boosted by the $g_m r_o$ of the transistor.
+As seen in \emph{Fig.~\ref{fig:10cascode_dc}}, we can share the bias currents between the two amplifier stages by stacking them into a common structure, commonly known as a cascode.  While this circuit has reduced headroom, it can be seen as a "supercharged" common-source stage.  We know the $g_m$ of the combined M1/M2 amplifier is the same as a single transistor, but the output impedance is boosted by the $g_m r_o$ of the transistor.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 15.6.3            %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -334,7 +334,7 @@ As seen in Fig.~\ref{fig:10cascode_dc}, we can share the bias currents between t
 \label{fig:11cascode_ss}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Let's apply two-port small-signal analysis, shown in Fig.~\ref{fig:11cascode_ss}.  Note the common-gate stage is degenerated by M1, so $R_{s2} = r_{o1}$. In this case, we care about the \textit{input current }to the second stage. Since the input resistance of the CG is low, the majority of the CS current is fed to the CG stage.  This means the DC gain of the amplifier is given by:
+Let's apply two-port small-signal analysis, shown in \emph{Fig.~\ref{fig:11cascode_ss}}.  Note the common-gate stage is degenerated by M1, so $R_{s2} = r_{o1}$. In this case, we care about the \textit{input current }to the second stage. Since the input resistance of the CG is low, the majority of the CS current is fed to the CG stage.  This means the DC gain of the amplifier is given by:
     \begin{equation}
         A_v = -g_{m1} \left(R_D || (r_{02} + g_{m2}r_{o2} r_{o1}) \right) \approx -g_{m1} R_D
     \end{equation}
@@ -361,7 +361,7 @@ This is substantially higher than the maximum gain of a single transistor, givin
 \label{fig:12cascode_caps}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-To analyze the bandwidth of the cascade, let's add all the transistor parasitic capacitors, as shown in Fig.~\ref{fig:12cascode_caps}a.  Notice that with all the parasitic capacitors in this circuit, our first step is try to combine as many as possible.   Let's identify three key nodes in the circuit, the gate \emph{g}, the internal node at the drain of M1 labeled \emph{i}, and the output labeled \emph{o}, shown in Fig.~\ref{fig:12cascode_caps}b.  Next we can apply Miller to get a sense for the bandwidth limiting stages.  We immediately notice a difference in the Miller capacitance.  For M2, its $C_{gd}$ is simply grounded, and it's not Miller multiplied.  On the other hand, for M1, the Miller capacitance is "shielded" from the high voltage gain at the output node.  We will also show that the voltage gain experienced at the intermediate node is much lower.  
+To analyze the bandwidth of the cascade, let's add all the transistor parasitic capacitors, as shown in \emph{Fig.~\ref{fig:12cascode_caps}(a)}.  Notice that with all the parasitic capacitors in this circuit, our first step is try to combine as many as possible.   Let's identify three key nodes in the circuit, the gate \emph{g}, the internal node at the drain of M1 labeled \emph{i}, and the output labeled \emph{o}, shown in \emph{Fig.~\ref{fig:12cascode_caps}(b)}.  Next we can apply Miller to get a sense for the bandwidth limiting stages.  We immediately notice a difference in the Miller capacitance.  For M2, its $C_{gd}$ is simply grounded, and it's not Miller multiplied.  On the other hand, for M1, the Miller capacitance is "shielded" from the high voltage gain at the output node.  We will also show that the voltage gain experienced at the intermediate node is much lower.  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 15.6.5            %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -375,7 +375,7 @@ To analyze the bandwidth of the cascade, let's add all the transistor parasitic 
 \caption{Small-signal model of a cascode amplifier using the two-port common-gate model.} \label{fig:14cascode_ac_ss}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-For a complete analysis of the bandwidth of the cascode amplifier, let's examine the small-signal model, shown in Fig.~\ref{fig:14cascode_ac_ss}.  Notice that we take advantage of the equivalent two-port circuit model of the common-gate stage.   At the input node, $C_{gd1}$ is Miller multiplied like a common-source but we need to find the voltage gain from the gate to the drain of M1, which is given by
+For a complete analysis of the bandwidth of the cascode amplifier, let's examine the small-signal model, shown in \emph{Fig.~\ref{fig:14cascode_ac_ss}}.  Notice that we take advantage of the equivalent two-port circuit model of the common-gate stage.   At the input node, $C_{gd1}$ is Miller multiplied like a common-source but we need to find the voltage gain from the gate to the drain of M1, which is given by
     \begin{equation}
         A_{vi} = \frac{v_i}{v_g} = -g_{m1} \left( r_{o1} || \frac{1}{g_{m2}} \right) \approx \frac{-g_{m1}}{g_{m2}}
     \end{equation}
@@ -409,7 +409,7 @@ We now can appreciate the benefits of the cascode amplifier.  It's essentially a
 \caption{(a) A high gain cascode amplifier biased with an ideal current source $I_{bias}$.  (b) The ideal current source load is replaced with a cascode load to maximize the gain.}  \label{fig:15cascode_current_source_dc}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-As discussed previously, the output impedance of the cascode is very high, and loading it with $R_D$ is likely to reduce the voltage gain.  The best we can do is to use a current source load, shown in Fig.~\ref{fig:15cascode_current_source_dc}, but $r_{oc}$ needs to be very large. Thus we should use a cascode current mirror load.
+As discussed previously, the output impedance of the cascode is very high, and loading it with $R_D$ is likely to reduce the voltage gain.  The best we can do is to use a current source load, shown in \emph{Fig.~\ref{fig:15cascode_current_source_dc}}, but $r_{oc}$ needs to be very large. Thus we should use a cascode current mirror load.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 15.6.7            %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -472,7 +472,7 @@ and
     \end{equation} 
 That means that the minimum supply voltage is $V_{swing} + 0.2\mathrm{V} \cdot 4 = 0.8\mathrm{V} + V_{swing}$.  For example, for a 0.4V swing, we need at least 1.2V.  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-One issue we have been avoiding is how we would actually deliver all the bias voltages shown in Fig.~\ref{fig:15cascode_current_source_dc}b.  The input transistor needs a bias to establish the current, but we need to ensure this current matches the top PMOS transistor.  This is in fact the major problem with this circuit because the cascode M1 will "fight" the cascode current mirror load M4 to establish the current, resulting in an undetermined DC output level.  In practice we need a feedback circuit to establish a well defined output voltage that does not vary with temperature, process, and supply voltage; in other words we need to program the gate voltage of M4 (labeled bias$_1$) to achieve the desired output DC level (say mid-rail).
+One issue we have been avoiding is how we would actually deliver all the bias voltages shown in \emph{Fig.~\ref{fig:15cascode_current_source_dc}(b)}.  The input transistor needs a bias to establish the current, but we need to ensure this current matches the top PMOS transistor.  This is in fact the major problem with this circuit because the cascode M1 will "fight" the cascode current mirror load M4 to establish the current, resulting in an undetermined DC output level.  In practice we need a feedback circuit to establish a well defined output voltage that does not vary with temperature, process, and supply voltage; in other words we need to program the gate voltage of M4 (labeled bias$_1$) to achieve the desired output DC level (say mid-rail).
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                   SECTION 15.7                                       %
@@ -489,7 +489,7 @@ One issue we have been avoiding is how we would actually deliver all the bias vo
 \label{fig:16cascode_folded}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Let's end this chapter by bringing together all the various concepts to analyze a "big" circuit, shown in Fig.~\ref{fig:16cascode_folded}.  At first it looks intimidating, but we'll solve this problem one step at a time.
+Let's end this chapter by bringing together all the various concepts to analyze a "big" circuit, shown in \emph{Fig.~\ref{fig:16cascode_folded}}.  At first it looks intimidating, but we'll solve this problem one step at a time.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 15.7.1            %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -503,7 +503,7 @@ Let's end this chapter by bringing together all the various concepts to analyze 
 \caption{Schematic of an amplifier highlighting the signal path and ignoring biasing elements.} \label{fig:17cascode_folded_declutter}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-The key to analyzing a big circuit is to cut out all the clutter.  To do this, identify the "signal path" between the input and output and aggressively eliminate "background" transistors to reduce the clutter, as shown in Fig.~\ref{fig:17cascode_folded_declutter}.  Transistors M5-M8 are all diode connected and essentially provide DC levels to bias up the other transistors.  So we simply ignore them for the AC analysis.  For these "background" transistors, we need to understand their role (e.g. DC biasing) and model them appropriately.  If they are just providing DC voltages, we can assume that these connections are AC grounds.  Later, for estimating the frequency response, we need identify "high-Z" (high impedance) nodes, so keep these in mind as we traverse the circuit.
+The key to analyzing a big circuit is to cut out all the clutter.  To do this, identify the "signal path" between the input and output and aggressively eliminate "background" transistors to reduce the clutter, as shown in \emph{Fig.~\ref{fig:17cascode_folded_declutter}}.  Transistors M5-M8 are all diode connected and essentially provide DC levels to bias up the other transistors.  So we simply ignore them for the AC analysis.  For these "background" transistors, we need to understand their role (e.g. DC biasing) and model them appropriately.  If they are just providing DC voltages, we can assume that these connections are AC grounds.  Later, for estimating the frequency response, we need identify "high-Z" (high impedance) nodes, so keep these in mind as we traverse the circuit.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 15.7.2            %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -518,7 +518,7 @@ The key to analyzing a big circuit is to cut out all the clutter.  To do this, i
 \label{fig:18cascode_folded_dc}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-In the schematic of Fig.~\ref{fig:17cascode_folded_declutter}, notice that M1 and M4 are biased with constant gate-source voltage and only play an indirect role as far as the signal is concerned.  We can in fact model them as current sources and simplify the schematic further, shown in Fig.~\ref{fig:18cascode_folded_dc}.
+In the schematic of \emph{Fig.~\ref{fig:17cascode_folded_declutter}}, notice that M1 and M4 are biased with constant gate-source voltage and only play an indirect role as far as the signal is concerned.  We can in fact model them as current sources and simplify the schematic further, shown in \emph{Fig.~\ref{fig:18cascode_folded_dc}}.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -529,11 +529,11 @@ In the schematic of Fig.~\ref{fig:17cascode_folded_declutter}, notice that M1 an
 \label{fig:19cascode_folded_ac}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Since M1 and M4 are providing DC currents, as far as the AC circuit is concerned they are open-circuits, as shown in Fig.~\ref{fig:19cascode_folded_ac}.  With all these simplifications we finally can see the essence of the circuit. It's simply an NMOS common-source stage followed by a PMOS common-gate stage.  It's like a cascode, except it's "folded down", and aptly named the "folded cascode".  M1 provides the required DC bias for both M2 and M3.  Since M4 establishes the current in M3, the difference between the current of M1 and M4 flows into M2.
+Since M1 and M4 are providing DC currents, as far as the AC circuit is concerned they are open-circuits, as shown in \emph{Fig.~\ref{fig:19cascode_folded_ac}}.  With all these simplifications we finally can see the essence of the circuit. It's simply an NMOS common-source stage followed by a PMOS common-gate stage.  It's like a cascode, except it's "folded down", and aptly named the "folded cascode".  M1 provides the required DC bias for both M2 and M3.  Since M4 establishes the current in M3, the difference between the current of M1 and M4 flows into M2.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Why is the cascode folded?  Compared with a regular cascode, the second stage moves the DC bias voltage down, which may be required to drive another stage.  Furthermore, by folding the cascode, the voltage headroom requirements are reduced.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Now let's put the circuit under the microscope to see if we missed anything.  Notice that in Fig.~\ref{fig:16cascode_folded}, there's actually a current divider that we neglected.  The AC current generated by M2 is divided between M3, M2 ($r_o$) and M1.  We tacitly assumed that M3 has a much higher input conductance (approximately $g_m$) compared to the output conductance of M1, which is $1/r_{o1}$, and so we pretty much neglected the AC current flow into M1.  Similarly, we lose a small amount of current into the output resistance of M2, which we ignored.  The only time we need to be careful about this approximation is when the load $R_L$ becomes very large, invalidating our assumption that the input impedance of M3 is $1/g_m$.  Also, if you were wondering, since M1 is not diode connected, its current is not mirrored to M5, even though they have the same $v_{gs}$.  Taking this all into consideration, the gain of the amplifier is given by
+Now let's put the circuit under the microscope to see if we missed anything.  Notice that in \emph{Fig.~\ref{fig:16cascode_folded}}, there's actually a current divider that we neglected.  The AC current generated by M2 is divided between M3, M2 ($r_o$) and M1.  We tacitly assumed that M3 has a much higher input conductance (approximately $g_m$) compared to the output conductance of M1, which is $1/r_{o1}$, and so we pretty much neglected the AC current flow into M1.  Similarly, we lose a small amount of current into the output resistance of M2, which we ignored.  The only time we need to be careful about this approximation is when the load $R_L$ becomes very large, invalidating our assumption that the input impedance of M3 is $1/g_m$.  Also, if you were wondering, since M1 is not diode connected, its current is not mirrored to M5, even though they have the same $v_{gs}$.  Taking this all into consideration, the gain of the amplifier is given by
     \begin{equation}
         A_v = - g_{m2} \frac{g_{m3}}{g_{m3} + 1/r_{o1} + 1/r_{o2}} R_L || r_{o4} || (1 + g_{m3} r_{o1}||r_{o2}) r_{o3} \approx -g_{m2} R_L
     \end{equation} 
