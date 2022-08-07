@@ -12,6 +12,15 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Chapter Preview}
 In this short chapter we discuss integrated circuit device fabrication, in particular fabrication of resistors.  The fabrication steps also apply to capacitors, diodes and transistors, devices which we will cover in the following chapters.  Next, we will review electrostatics, a topic of integral importance in the next chapter.  Readers familiar with electrostatics can skip or skim these sections.  Finally, we discuss capacitors and in particular non-linear capacitors, or devices that have a non-linear charge-voltage characteristic.  We shall see in the next two chapters that reverse-biased diodes are essentially non-linear capacitors.
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                 FIGURE                   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{process_steps}
+\caption{The fabrication steps in a typical photolithography process to create a diffusion region in the silicon substrate.  The steps include (a) oxide growth and (b) deposition of a photoresist over the surface; (c) selective exposure to UV using a mask; (d) chemical etching to wash away regions exposed to UV; (e) ion-implantation; (f) diffusion to allow implants to diffuse into the structure.} \label{fig:mod2-2_ICtech_sld_4}
+\end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                   SECTION 4.2                                        %
@@ -30,17 +39,7 @@ $Si$ has a native oxide, $SiO_2$.  $SiO_2$ (Quartz) is extremely stable and very
 %             SUBSECTION 4.2.2             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{IC Fabrication: Ion Implantation}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                 FIGURE                   %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[tb]
-\centering
-\includegraphics[width=\columnwidth]{process_steps}
-\caption{The fabrication steps in a typical photolithography process to create a diffusion region in the silicon substrate.  The steps include (a) oxide growth and (b) deposition of a photoresist over the surface; (c) selective exposure to UV using a mask; (d) chemical etching to wash away regions exposed to UV; (e) ion-implantation; (f) diffusion to allow implants to diffuse into the structure.} \label{fig:mod2-2_ICtech_sld_4}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 The steps involved in ion implantation are shown in \emph{Fig.~\ref{fig:mod2-2_ICtech_sld_4}}.  We start with a Si substrate.  It is usually pre-doped to be \emph{P}-type, but this depends on the details of the process.  We grow a layer of oxide (thermally) by heating the substrate and flowing oxygen onto the surface.  Next, we cover the surface with \textbf{photoresist}\index{Photoresist}, a material that changes its chemical properties based on exposure to light.  We use photolithography to selectively expose regions of the photoresist using a UV source and a lithography mask.  Next, we chemically etch (using an acid such as $HF$)  the surface, removing areas exposed to UV light.\footnote{This kind of photoresist is "positive" because exposure to light chemically alters the material so that it reacts with an acid. There's also  "negative" photoresist materials too that don't react with the acid when exposed.}  Finally, we introduce ion implantation (\emph{N}-type), whereby we inject dopants onto the entire surface of the wafer.  Regions with the $SiO_2$ are protected and block the ions, whereas the window openings allow the ions to be implanted into the silicon substrate.  Next, a higher temperature is used to allow the dopants to diffuse into the substrate and to form bonds with the silicon crystal.
-\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                   SECTION 4.3                                        %
@@ -78,7 +77,6 @@ Using ion implantation and diffusion, we can create a so-called \textbf{"diffusi
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 To lower any \textbf{parasitic capacitance}\index{Parasitic capacitance}, we should build the resistor further away from substrate, as shown in \emph{Fig.~\ref{fig:mod2-2_ICtech_sld_6}}. This is done by depositing a thin film of “poly” $Si$ (heavily doped) material on top of the oxide, rather than directly on the substrate.  This thin film resistor is not made of the crystalline form of silicon, but rather it is a \textbf{polycrystalline}\index{Polycrystalline} form, which is a material made with many fragments of crystals, of varying sizes and arranged in different orientations.   For our purposes, the material behaves similar to a crystal and we can model it as a doped semiconductor.  The process technology details set the thickness and resistance of this layer ( say $10\Omega/\Box$, see Section~\ref{sec:sheetR})
-\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 4.3.3             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -110,11 +108,14 @@ This is nothing but Ohm's Law\index{Ohm's Law}, with the material resistance giv
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Sheet Resistance (\texorpdfstring{$R_{\Box}$}{})} \label{sec:sheetR}
 The resistance of a rectangular slab of material can be written in a way as to distinguish process specific parameters (such as doping levels and material thickness) from layout (geometry) parameters, such as length and width: 
+    \begin{equation*} 
+        R = \frac{resistivity}{thickness} = \frac{{\rho L}}{{Wt}} = \left( {\frac{\rho}{t}} \right)\left( {\frac{L}{W}} \right)
+    \end{equation*}
+Since IC resistors have a specified fixed thickness and resistivity – something not under the control of the circuit designer – we lump these parameters into a constant $R_{\Box}$:
     \begin{align} 
-        R &= \frac{resistivity}{thickness} = \frac{{\rho L}}{{Wt}} = \left( {\frac{\rho }{t}} \right)\left( {\frac{L}{W}} \right)
-        = {R_{\Box}}\left( {\frac{L}{W}} \right) &\textit{Sheet resistance}
+        \Aboxed{ R &= {R_{\Box}}\left( {\frac{L}{W}} \right) } &\textit{Material resistance in terms of sheet resistance parameter}
     \end{align}
-Notice that $R_{\Box}$ is a convenient way to capture the process specific parameters.  Since IC resistors have a specified fixed thickness and resistivity – something not under the control of the circuit designer – we lump these parameters into a constant $R_{\Box}$.  This term is known as the \textbf{sheet resistance}\index{Sheet resistance}.  Even though it has units of resistance, or $\Omega$, we emphasize that it is a sheet resistance by the symbol $\Box$, since $R_{\Box}$ is the resistance of a square ($L = W$ implies $L/W = 1$).  
+Notice that $R_{\Box}$ is a convenient way to capture the process specific parameters.  This term is known as the \textbf{sheet resistance}\index{Sheet resistance}.  Even though it has units of resistance, or $\Omega$, we emphasize that it is a sheet resistance by the symbol $\Box$, since $R_{\Box}$ is the resistance of a square ($L = W$ implies $L/W = 1$).  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 4.3.5             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -359,6 +360,11 @@ This leads to the well known charge-voltage relationship shown in \emph{Fig.~\re
     \end{align}
 For an ideal capacitor constructed with metal plates, all charge must be at surface of the plates.  Recall that the field inside of an ideal metal is zero, so that means all the charge is at the surface.  If we plot the charge as a function of position, then we obtain two delta functions, because of the infinite concentration of charge \big(see \emph{Fig.~\ref{fig:mod2-2_ICtech_sld_19}(b)}\big).
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%             SUBSECTION 4.5.3             %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{A Non-Linear Capacitor}
+We will soon meet capacitors that have a non-linear Q-V relationship.  If plates are not ideal metal, the charge density can penetrate into surface.  For example, suppose the charge is uniformly distributed through the thickness of the plates as shown in \emph{Fig.~\ref{fig:mod2-2_ICtech_sld_20b}}.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
@@ -368,11 +374,7 @@ For an ideal capacitor constructed with metal plates, all charge must be at surf
 \label{fig:mod2-2_ICtech_sld_20b}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%             SUBSECTION 4.5.3             %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{A Non-Linear Capacitor}
-We will soon meet capacitors that have a non-linear Q-V relationship.  If plates are not ideal metal, the charge density can penetrate into surface.  For example, suppose the charge is uniformly distributed through the thickness of the plates as shown in \emph{Fig.~\ref{fig:mod2-2_ICtech_sld_20b}}.
+\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 For a \textbf{non-linear capacitor}\index{Capacitors!non-linear}, we have a general relationship between the charge and the voltage (see \emph{Fig.~\ref{fig:mod2-2_ICtech_sld_20}}):
     \begin{equation} 
@@ -420,3 +422,12 @@ The small signal capacitance is therefore given by:
     \begin{equation} 
         {C_j}(V) = \frac{{dQ_j^{}}}{{dV}} = \frac{{q{N_A}{x_p}}}{{2{\varphi _b}}}\frac{1}{{\sqrt {1 - \frac{V}{{{\varphi _b}}}}}} = \frac{{C_{j0}^{}}}{{\sqrt {1 - \frac{V}{{{\varphi _b}}}}}} 
     \end{equation}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                   SECTION 4.6                                        %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Chapter Summary}
+In this chapter we ...

@@ -12,6 +12,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Chapter Preview}
 In this chapter we will build models for conductors and semiconductors, starting with the simplest model of all, an ideal metal with a "gas" of electrons swarming about and study conduction in this ideal system.  Surprisingly, many properties of real conductors are captured with this model.  Next, we will delve into semiconductors, and learn why the model breaks down.  Then we will briefly look a the structure of semiconductors, and  develop a simple bond model that can account for free carriers; especially when a material is "doped", or when impurities are added to a solid to modulate its conductivity.  With this model in hand, we'll discuss drift and diffusion currents.  Drift currents are already familiar conduction of electrons in response to a field, or Ohm's Law, whereas diffusion current is due to concentration gradients, which play an important role in devices like diodes.  Some of the concepts in this chapter are referenced from \cite{purcell}, pages 133-142.
+\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                   SECTION 3.2                                        %
@@ -682,17 +683,10 @@ We define a \textbf{mobility}\index{Mobility} for both the electrons, $\mu_n$ an
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 As you might expect, the mobility should depend on temperature and also on the total dopant concentration, because the more dopants we introduce, the more scattering sites.  This is born out by measurement and theory, as shown in \emph{Fig.~\ref{fig:mobility}}, which shows that the mobility is highest for undoped silicon and then begins to drop as we introduce more and more dopants.  A typical values for electrons is about ${\mu _n} = 1000 \mathrm{cm^2}/\mathrm{V s}$ and for holes ${\mu _p} = 400 \mathrm{cm^2}/\mathrm{V s}$.  Electrons go faster as they are “lighter”.
 \newpage
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                                   SECTION 3.7                                        %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Diffusion Currents}
-We are all familiar with diffusion currents in everyday life, for example the fragrance of a bottle of perfume spreads across the room through the random motion of perfume molecules in air.  This motion is due to the fact that even through perfume molecules move randomly due to thermal energy, they move in directions from high concentration to low concentration.  Why does this happen exactly?
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[H]
+\begin{figure}[t]
 \centering
 \begin{tabular}{cc}
 \includegraphics[width=.45\columnwidth]{partition_closed} &
@@ -702,15 +696,13 @@ We are all familiar with diffusion currents in everyday life, for example the fr
 \caption{(a)  Particles moving randomly in a box with a partition are confined to the left partition.  (b)  When we open the partition, after a brief time we find particles distributed equally in both partitions.}
 \label{fig:slide46}
 \end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                 FIGURE                   %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[H]
-\centering
-\includegraphics[width=.95\columnwidth]{random_flow}
-\caption{Particles in random thermal motion move on average in every direction with equal probability.  If there's a concentration gradient, then regions of high concentration contribute more carriers moving towards regions of low concentration compared to particles from low concentrations, thus leading to diffusion.}
-\label{fig:random_flow}
-\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                   SECTION 3.7                                        %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Diffusion Currents}
+We are all familiar with diffusion currents in everyday life, for example the fragrance of a bottle of perfume spreads across the room through the random motion of perfume molecules in air.  This motion is due to the fact that even through perfume molecules move randomly due to thermal energy, they move in directions from high concentration to low concentration.  Why does this happen exactly?
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 3.7.1             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -718,6 +710,16 @@ We are all familiar with diffusion currents in everyday life, for example the fr
 Let’s do a simple thought experiment to figure out why \textbf{diffusion}\index{Current!diffusion} flows from high to low concentration.  In \emph{Fig.~\ref{fig:slide46}}, imagine that we fill the left chamber with a gas at temperate $T$. If we suddenly remove the divider, what happens?  The gas will fill the entire volume of the new chamber. How does this occur?
 
 Let’s zoom in to the motion of the molecules (\emph{Fig.~\ref{fig:random_flow}}).  The net motion of gas molecules to the right chamber was due to the concentration gradient.  If each particle moves on average left or right with equal probability, then eventually half will be in the right chamber. If the molecules were charged (or electrons), then there would be a net current flow.  It is clear that the diffusion current flows from high concentration to low concentration, because in areas of higher concentration there are more particles moving both left and right, which is larger than say the particles moving left and right in the regions of low concentration.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                 FIGURE                   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\centering
+\includegraphics[width=\columnwidth]{random_flow}
+\caption{Particles in random thermal motion move on average in every direction with equal probability.  If there's a concentration gradient, then regions of high concentration contribute more carriers moving towards regions of low concentration compared to particles from low concentrations, thus leading to diffusion.}
+\label{fig:random_flow}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
@@ -749,6 +751,7 @@ Now, since electrons carry charge, the current flows in the opposite direction:
     \begin{equation}
         J = - qF = q{v_{th}}\lambda \frac{{dn}}{{dx}}
     \end{equation}
+\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 3.7.3             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -767,12 +770,12 @@ The term we are interested in from the diffusion current equation is the product
     \end{equation}
 This leads to:
     \begin{equation}
-        J = q{v_{th}}\lambda \frac{{dn}}{{dx}} = q\left( {\frac{{kT}}{q}{\mu _n}} \right)\frac{{dn}}{{dx}}
+        J = q\,v_{th}\lambda \frac{dn}{dx} = q\left( {\frac{kT}{q}\mu_n} \right)\frac{dn}{dx}
     \end{equation}
 The term in the parenthesis is known as the \textbf{diffusion constant}\index{Diffusion constant}, and it is related to the mobility: 
-    \begin{equation}
-        {D_n} = \left( {\frac{{kT}}{q}} \right){\mu _n}
-    \end{equation}
+    \begin{align}
+        \Aboxed{ D_n &= \left( {\frac{kT}{q}} \right)\mu_n } &\textit{Einstein relation}
+    \end{align}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 3.7.4             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -781,16 +784,6 @@ When both drift and diffusion\index{Current!drift}\index{Current!diffusion} are 
     \begin{equation}
         J = {J_{drift}} + {J_{diff}} = q{\mu _n}nE + q{D_n}\frac{{dn}}{{dx}}
     \end{equation}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                 FIGURE                   %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[H]
-\centering
-\includegraphics[width=.25\columnwidth]{slide50}
-\caption{Uniform current flowing through a discontinuity in the conductivity must be accompanied by a discontinuity in the electric field.}
-\label{fig:slide50}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 In resistors, the carrier is approximately uniform and the second term is nearly zero. For currents flowing uniformly through an interface (no charge accumulation), as shown in \emph{Fig.~\ref{fig:slide50}}, the field is discontinuous.  Nevertheless the current must flow through the interface (unless charge is accumulating):
     \begin{equation}
         {J_1} = {J_2}
@@ -803,3 +796,21 @@ So the electric field is discontinuous by the inverse ratio of conductivity:
     \begin{equation}
         \frac{{{E_1}}}{{{E_2}}} = \frac{{{\sigma _2}}}{{{\sigma _1}}}
     \end{equation}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                 FIGURE                   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\centering
+\includegraphics[width=.45\columnwidth]{slide50}
+\caption{Uniform current flowing through a discontinuity in the conductivity must be accompanied by a discontinuity in the electric field.}
+\label{fig:slide50}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                   SECTION 3.8                                        %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Chapter Summary}
+In this chapter we ...

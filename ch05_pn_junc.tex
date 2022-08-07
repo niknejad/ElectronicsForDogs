@@ -103,27 +103,29 @@ For example, to quickly calculate the potential of a $P$-type region with a conc
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{\emph{PN}-Junction in Equilibrium}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                 FIGURE                   %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[H]
-\centering
-\begin{tabular}{ccc}
-\includegraphics[width=.45\columnwidth]{pn_flow1} &
-\includegraphics[width=.45\columnwidth]{pn_flow2}\\
-(a) & (b)\\
-\includegraphics[width=.45\columnwidth]{pn_flow3}\\
-(c)\\
-\end{tabular}
-\caption{Here we outline the non-equilibrium situation when a contact between the $N$-type and $P$-type regions are formed.  (a)  Diffusion currents flow due to the large concentration gradients.  (b)  Charge imbalance leads to a potential barrier between the two regions.  (c) This internal \emph{built-in} potential leads to an equilibrium state with zero net current, whereby diffusion currents are balanced by drift currents.}
-\label{fig:slide9}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 5.4.1             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{\emph{PN}-Junction: Overview}
 As illustrated in \emph{Fig.~\ref{fig:slide9}}, it is useful to do a thought experiment and consider what happens before we reach \textbf{equilibrium}\index{PN-junction!equilibrium}. Consider when the junction shown in \emph{Fig.~\ref{fig:slide2}} is first formed.  Due to the abrupt nature of the junction, we expect very large diffusion currents to flow.  Mobile charges transfer near the junction, especially majority carriers diffuse in large numbers.  The currents are large due to the large concentration gradients.  There are orders of magnitude more electrons in the $N$-type region, and orders of magnitude more holes in the $P$-type region.  So it is natural to assume that these carriers will diffuse to the other side, becoming minority carriers.  However, since these mobile carriers become minority carriers in the new region, they will not penetrate far due to recombination.
 
 The key observation is that initially the two regions are charge neutral.  But as holes and electrons are charge carriers, as they cross the junction, they disturb the delicate charge balance and introduce net charge into each region.  As a result, a voltage difference builds up between regions.  This voltage gets larger and larger as more mobile carriers diffuse across the barrier.   This creates a field at the junction that causes drift currents to oppose the diffusion current.  This will ensue until the field is sufficiently large to produce a drift current that can counter the diffusion current.  In thermal equilibrium, drift current and diffusion must balance each other on average.  We will also show that near the junction a "transition region" develops so that the density of holes $p(x)$ and electrons $n(x)$ change smoothly from one side to the other.
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                 FIGURE                   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\centering
+\includegraphics[width=.6\columnwidth]{pn_flow1}\\
+(a)\\[0.25cm]
+\includegraphics[width=.6\columnwidth]{pn_flow2}\\
+((b)\\[0.25cm]
+\includegraphics[width=.6\columnwidth]{pn_flow3}\\
+(c)\\[0.25cm]
+\caption{Here we outline the non-equilibrium situation when a contact between the $N$-type and $P$-type regions are formed.  (a)  Diffusion currents flow due to the large concentration gradients.  (b)  Charge imbalance leads to a potential barrier between the two regions.  (c) This internal \emph{built-in} potential leads to an equilibrium state with zero net current, whereby diffusion currents are balanced by drift currents.}
+\label{fig:slide9}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 5.4.2             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -144,21 +146,21 @@ We can also state the same applies for the holes:
         \mathcal{E}_0 = \frac{D_p\frac{dp_o}{dx}} {p_0\,\mu_p} = \frac{kT}{q}\frac{1}{p_0}\frac{dp_0}{dx} 
     \end{equation}
 Since the fields must be finite, the concentration of electrons and holes cannot change abruptly. Therefore, a smooth variation is expected in the "transition region".  This is shown schematically in \emph{Fig.~\ref{fig:slide11}}.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                 FIGURE                   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\centering
+\includegraphics[width=.65\columnwidth]{slide11}
+\caption{The concentration of electrons and holes changes smoothly from one region to the other.  The net charge at the boundary "space charge" region leads to an internal electric field which produces a drift current that balances the equilibrium diffusion current.}
+\label{fig:slide11}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 5.4.3             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{\emph{PN}-Junction Fields}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                 FIGURE                   %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[tb]
-\centering
-\includegraphics[width=.5\columnwidth]{slide11}
-\caption{The concentration of electrons and holes changes smoothly from one region to the other.  The net charge at the boundary "space charge" region leads to an internal electric field which produces a drift current that balances the equilibrium diffusion current.}
-\label{fig:slide11}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 With reference to \emph{Fig.~\ref{fig:slide11}}, let's define the transition region width as $x_{p_0}$ and $x_{n_0}$, where the first subscript denotes the region type, and the second subscript emphasizes thermal equilibrium\index{Thermal equilibrium}.  The \textbf{transition regions}\index{PN-junction!transition region} are defined as the region near the junction where the majority carrier concentrations deviate from the equilibrium values for an isolated doped semiconductor.  To solve for the electric fields, we need to write down the charge density in each region:
     \begin{equation} 
         \rho _0(x) = q(p_0 - n_0 + N_D - N_A) 
@@ -283,47 +285,49 @@ Or in words, the total fixed charge in the $N$-region equals the total fixed cha
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Potential Across Junction}
 From our earlier calculation we know that the potential in the $N$-region is higher than the  $P$-region.  We also noted that the potential has to smoothly transition from high to low in crossing the junction.   We know that the physical origin of the potential difference is due to the charge transfer that occurred due to the concentration gradient.   Let's integrate the field to get an analytical expression for the potential:
-    \begin{equation}
+    \begin{equation*}
         \varphi(x) = \varphi(-x_{p_0}) + \int_{-x_{p_0}}^{x} \frac{q\,N_A}{\varepsilon_s}(x' + x_{p_0})dx' 
-    \end{equation}
+    \end{equation*}
 This integral is easy to perform:
-    \begin{equation}
+    \begin{equation*}
         \varphi(x) = \varphi_p + \frac{q\,N_A}{\varepsilon_s}
                     \left( {\frac{{x{'^2}}}{2} + x'x_{p_0}} \right)
                     \big\vert_{-x_{p_0}}^x 
-    \end{equation}
+    \end{equation*}
 We arrive at potential on $P$-side:
-    \begin{equation}
+    \begin{equation*}
         \varphi_0^p(x) = \varphi_p + \frac{q\,N_A}{2\,\varepsilon_s}{(x + {x_{p_0})}^2} 
-    \end{equation}
+    \end{equation*}
 Also performing the integral on $N$-side:
-    \begin{equation}
+    \begin{equation*}
         \varphi_0^n(x) = \varphi_n - \frac{q\,N_D}{2\,\varepsilon_s}{(x - {x_{n_0})}^2} 
-    \end{equation}
+    \end{equation*}
 The potential \textit{must} be continuous at interface (field finite at interface)
-    \begin{equation}
+    \begin{equation*}
         \varphi_0^n(0) = \varphi_n - \frac{q\,N_D}{2\,\varepsilon_s}{{x_{n_0}}^2} 
                         = \varphi_p + \frac{q\,N_A}{2\,\varepsilon_s}{{x_{p_0}}^2} = \varphi_0^p(0)
-    \end{equation}
+    \end{equation*}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %              SUB-SUBSECTION              %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Solve for Depletion Lengths}
 We have two equations and two unknowns. We are finally in a position to solve for the depletion depths:
-    \begin{equation} 
+    \begin{equation*} 
         \varphi_n - \frac{q\,N_D}{2\,\varepsilon_s}{x_{n_0}}^2 = \varphi_p + \frac{q\,N_A}{2\,\varepsilon_s}{x_{p_0}}^2 
-    \end{equation}
-    \begin{equation} 
+    \end{equation*}
+    \begin{equation*} 
         q\,N_A\,x_{p_0} = q\,N_D\,x_{n_0} 
-    \end{equation}
+    \end{equation*}
 The solutions to these equations is given by:
-    \begin{equation} 
-        x_{n_0} = \sqrt{\frac{2\,\varepsilon_s\varphi_{bi}}{q\,N_D} \left( {\frac{N_A}{N_A + N_D}}\right)} 
-    \end{equation}
+    \begin{align} 
+        \Aboxed{ x_{n_0} &= \sqrt{ \frac{2\,\varepsilon_s\varphi_{bi}}{q\,N_D} \left( \frac{N_A}{N_A + N_D} \right) } }
+        &\textit{Depletion width on N-side}
+    \end{align}
 and:
-    \begin{equation}
-        x_{p_0} = \sqrt{\frac{2\,\varepsilon_s\varphi_{bi}}{q\,N_A} \left( {\frac{N_D}{N_A + N_D}}\right)} 
-    \end{equation}
+    \begin{align}
+        \Aboxed{ x_{p_0} &= \sqrt{ \frac{2\,\varepsilon_s\varphi_{bi}}{q\,N_A} \left( \frac{N_D}{N_A + N_D} \right) } }
+        &\textit{Depletion width on P-side}
+    \end{align}
 Where the total potential difference between the $N$-type and $P$-type side is \textbf{built-in potential}\index{PN-junction!built-in potential}:
     \begin{equation}
         \varphi_{bi} \equiv \varphi_n - \varphi_p > 0 
@@ -349,10 +353,11 @@ We see that the entire depletion width is dropped across $P$-region, as expected
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Total Depletion Width}
 The sum of the depletion widths is the \textbf{“space-charge region”}\index{Space-charge region}:
-    \begin{equation}
-        X_{{dep}_0} = x_{p_0} + x_{n_0} = 
-        \sqrt{ \frac{2\,\varepsilon_s\,\varphi_{bi}}{q} \left( \frac{1}{N_A} + \frac{1}{N_D} \right) } 
-    \end{equation}
+    \begin{align}
+        \Aboxed{ X_{{dep}_0} &= x_{p_0} + x_{n_0} = 
+        \sqrt{ \frac{2\,\varepsilon_s\,\varphi_{bi}}{q} \left( \frac{1}{N_A} + \frac{1}{N_D} \right) } }
+        &\textit{Total depletion region width}
+    \end{align}
 By definition, this region is essentially depleted of all mobile charge.  Due to high electric field, carriers move across region at velocity saturated speeds.  For example:
     \begin{equation} 
         X_{{dep}_0} = \sqrt{ \frac{2\,\varepsilon_s\,\varphi_{bi}}{q} \left( \frac{1}{{10}^{15}} \right) } \approx 1\,\mu
@@ -362,24 +367,26 @@ implies:
         \mathcal{E}_{pn-junction} \approx \frac{1\,V}{1\,\mu} = {10}^4\frac{V}{cm} 
     \end{equation}
 The expression for the built-in potential is given by:
-    \begin{equation} 
-        {\varphi _{bi}} \equiv {\varphi _n} - {\varphi _p} = {V_T}\left( {\ln \frac{{{N_D}}}{{{n_i}}} + \ln \frac{{{N_A}}}{{{n_i}}}} \right) = {V_T}\ln \frac{{{N_D}{N_A}}}{{n_i^2}}
+    \begin{equation*} 
+        \varphi_{bi} \equiv \varphi_n - \varphi_p
+        = V_T\,\Bigg( \ln \bigg( \frac{N_D}{n_i} \bigg) + \ln \bigg( \frac{N_A}{n_i} \bigg) \Bigg)
+    \end{equation*}
+    \begin{align}
+        \Aboxed{ \varphi_{bi} &= V_T\,\ln \left( \frac{N_D\,N_A}{{n_i}^2} \right) }
+        &\textit{Built-in potential}
         \label{eq:bi_voltage}
-    \end{equation}
+    \end{align}
 In \emph{Eq.~\ref{eq:bi_voltage}}, $V_T$ (also often symbolized as $\phi_T$) is known as \textbf{thermal voltage}\index{Thermal voltage}, and it is equivalent to $k\,T/q \approx 26\,mV$.
 Plugging in some typical numerical values for doping, we arrive at:
     \begin{equation} 
         \varphi_{bi} = 26\,mV \ln \frac{N_D\,N_A}{{n_i}^2} = 60\,mV \times 
         \log \frac{{10}^{15}\,{10}^{15}}{{10}^{20}} = 600\,mV 
     \end{equation}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%             SUBSECTION 5.4.7             %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Contact Potential}
+\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[H]
+\begin{figure}[t]
 \centering
 \begin{tabular}{ccc}
 \includegraphics[width=.35\columnwidth]{slide25} & \hspace{.5cm} &
@@ -389,6 +396,10 @@ Plugging in some typical numerical values for doping, we arrive at:
 \caption{(a) One may question if a $PN$-junction is like a battery that can supply power to a circuit.  (b) If we short circuit a $PN$-junction, no current flows because the contact potentials between the metal and the semiconductor perfectly balances the built-in potential. }
 \label{fig:slide25_26}
 \end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%             SUBSECTION 5.4.7             %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Contact Potential}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %              SUB-SUBSECTION              %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -413,6 +424,16 @@ Stated another way, a certain amount of energy is required to take an electron f
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Contact Potential Between Materials}
 In summary, the contact between a $PN$-junction creates a potential difference.    Likewise, the contact between two dissimilar metals creates a potential difference.\footnote{Proportional to the difference between the \textbf{work functions}\index{Work function}.}   When a metal semiconductor junction is formed, a contact potential forms as well.  In fact, forming a good "ohmic" contact\index{Ohmic contact} between a semiconductor and a metal requires special engineering that we usually ignore in an elementary coverage of $PN$-junctions.   
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                 FIGURE                   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[t]
+\centering
+\includegraphics[width=.65\columnwidth]{slide28}
+\caption{A voltage $V_D$ is applied across the $PN$-junction.  When the voltage $V_D < 0$V, we say the junction is reverse biased.}
+\label{fig:slide28}
+\end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 5.4.8             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -428,15 +449,6 @@ Under thermal equilibrium, the $PN$-junction does not draw any current.   But no
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Reverse Biased PN Junction}
 What happens if we \textbf{“reverse-bias”}\index{PN-junction!reverse-bias} the $PN$-junction, as shown in \emph{Fig.~\ref{fig:slide28}}?  Since no current is flowing, the entire reverse biased potential is dropped across the transition region.\footnote{As we will see in the next chapter, a very small amount of current will flow under reverse-bias conditions.}  To accommodate the extra potential, the charge in these regions must increase.  If no current is flowing, the only way for the charge to increase (decrease) is to grow (shrink) the depletion regions.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                 FIGURE                   %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[H]
-\centering
-\includegraphics[width=.5\columnwidth]{slide28}
-\caption{A voltage $V_D$ is applied across the $PN$-junction.  When the voltage $V_D < 0$V, we say the junction is reverse biased.}
-\label{fig:slide28}
-\end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 5.5.1             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -511,6 +523,7 @@ This looks like a parallel plate capacitor, with capacitance per unit area $C = 
     \begin{equation} 
         C_j^(V_D) = \frac{\varepsilon_s}{X_{dep}(V_D)} 
     \end{equation}
+\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 5.5.5             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -522,11 +535,19 @@ A good application of the reverse-biased $PN$-junction is a \textbf{"varactor"}\
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \centering
-\begin{tabular}{cc}
-\includegraphics[width=.6\columnwidth]{slide33} &
-\raisebox{1cm}{\includegraphics[width=.3\columnwidth]{lctank_varac}}\\
-(a) & (b)\\
-\end{tabular}
+\includegraphics[width=.85\columnwidth]{slide33}\\
+(a)\\
+\includegraphics[width=.55\columnwidth]{lctank_varac}\\
+(b)\\
 \caption{(a) The capacitance as a function of reverse bias voltage.  This result holds for an abrupt junction. (b)  This structure is often used to tune the center frequency of an $LC$ tank to build a voltage controlled oscillator.  The control voltage $V_c$ is the reverse bias DC voltage, and $C_2$ is needed to DC isolate the varactor from the tank.}
 \label{fig:slide33}
 \end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                   SECTION 5.6                                        %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Chapter Summary}
+In this chapter we ...

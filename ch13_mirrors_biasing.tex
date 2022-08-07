@@ -493,7 +493,7 @@ We can solve the above equation to obtain $I_{ref}$.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Constant \texorpdfstring{$G_m$}{Transconductance} Reference Current}
 What we desire is a supply and temperature independent reference current, and to the greatest extent possible, a current that does not depend on transistor parameters, which vary over process and temperature.  There are many clever circuits such as bandgap references that generate precision temperature independent voltages, but in order to generate a current we need a resistor, and unless it's an external precision resistor, there will be variations.  Calibration procedures are needed to tune the currents, a subject beyond the scope of this book.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 Here we will not delve into the details of various circuits to build references but instead present one simple and very useful example, the constant-$g_m$ reference generator, shown in \emph{Fig.~\ref{fig:constant_gm_ref}}.  This example is a particularly good one because it's simple and it builds on the principals we've discussed in this chapter.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
@@ -534,3 +534,12 @@ Notice that the current $I_{D4}$ does not depend on the supply voltage or the de
         g_{m,5} = \frac{2 I_{D5}}{V_{od5}} = \frac{\cancel{2} I_{D4}}{\cancel{2} V_{od4}} = \frac{1}{R_S} 
     \end{equation}
 For this reason, this circuit is known as a constant $g_m$ reference because all transistors biased with this current will have a $g_m$ that is constant and independent of process and temperature.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                 SECTION 13.8                                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Chapter Summary}
+In this chapter we ...

@@ -11,17 +11,18 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Chapter Preview}
-In this chapter we will review linearity in the context of an Linear Time-Invariant (LTI) system by making analogies with discrete finite dimensional systems.  Many people have familiarity with concepts such as orthogonality and eigenfunctions from linear algebra.  It's not critical to have this background, so these references can be skipped.  Most importantly, we will show that complex exponential functions are eigenfunctions of linear systems and they span the space of solutions.  We will define the time-domain impulse response and convolution operator, and in a very natural way show the relation between the impulse response and the transfer function in the frequency domain.  This will lead us into a preview of the frequency domain representation of linear systems, which we'll pick up in the next chapter.
+In this chapter we will review linearity in the context of an Linear Time-Invariant (LTI) system by making analogies with discrete finite dimensional systems.  Many people have familiarity with concepts such as orthogonality and eigenfunctions from linear algebra.  It is not critical to have this background, so these references can be skipped.  Most importantly, we will show that complex exponential functions are eigenfunctions of linear systems, and they span the space of solutions.  We will define the time-domain impulse response and convolution operator, and in a very natural way show the relation between the impulse response and the transfer function in the frequency domain.  This will lead us into a preview of the frequency domain representation of linear systems, which we will pick up in the next chapter.
+\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                   SECTION 1.2                                        %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Example:  Analyzing an RLC Circuit}
+\section{Example: Analyzing an RLC Circuit}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 1.2.1             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Example:  Low Pass Filter (LPF)}
+\subsection{Example: Low Pass Filter (LPF)}
 Let's begin with an example calculation.  Suppose we have a \textbf{low pass filter}\index{Filters!Low pass} as shown in \emph{Fig.~\ref{fig:lpf}}.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
@@ -39,9 +40,10 @@ If we drive this system with a source $v_s$ and observe the output at $v_o$, we 
         &= v_s(t) - i(t) R
     \end{align*}
 Recall the current in a capacitor:
-    \begin{equation}
-        i(t) = C \frac{dv_c(t)}{dt} \label{eq:cap_curr}
-    \end{equation}
+    \begin{align}
+        \Aboxed{ i(t) = C \frac{dv_c(t)}{dt} } &\textit{Current in a capacitor as a function of time}
+        \label{eq:cap_curr}
+    \end{align}
 Since the current is the same through the resistor and capacitor, and the voltage at the output is the same as the voltage across the capacitor, we have:
     \begin{equation*}
         v_o(t) = v_s(t) - RC \frac{dv_o(t)}{dt}
@@ -129,9 +131,9 @@ We can see that both the \textbf{amplitude}\index{Filters!amplitude} and \textbf
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{LPF Magnitude and Phase Response}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Plots of the magnitude and phase response are shown in \emph{Fig.~\ref{fig:magphase}}.  The magnitude plot shows that for signal frequencies below the cutoff frequency, $1/\tau$, the signal experiences little attenuation.  In fact, at the passband edge frequency of $1/\tau$, the magnitude is by definition lower by $1/\sqrt{2}$, which corresponds to half the power.  Likewise, the phase response is zero at low frequencies, meaning the signal is not delayed, but even at the cutoff frequency the delay is $45^\circ$, and asymptotically reaches $90^\circ$.
+Plots of the magnitude and phase response are shown in \emph{Fig.~\ref{fig:magphase}(a \& b)}.  The magnitude plot shows that for signal frequencies below the cutoff frequency, $1/\tau$, the signal experiences little attenuation.  In fact, at the passband edge frequency of $1/\tau$, the magnitude is by definition lower by $1/\sqrt{2}$, which corresponds to half the power.  Likewise, the phase response is zero at low frequencies, meaning the signal is not delayed, but even at the cutoff frequency the delay is $45^\circ$, and asymptotically reaches $90^\circ$.
 
-As is common practice in electrical engineering, we more often plot the magnitude on a log-log scale with units of dB,  as shown in \emph{Fig.~\ref{fig:magphase}}.  On the deciBel (deci = 10) scale, we take the base 10 $\log_{10}$ and multiply by $10$ to get rid of fractional parts.  The "Bel" part is in honor of the inventor of the phone,.  The dB scale allows us to expand the passband and more clearly understand the behavior of the transfer function as a function of frequency.  The multiplication by 10 is just for convenience.
+As is common practice in electrical engineering, we more often plot the magnitude on a log-log scale with units of dB,  as shown in \emph{Fig.~\ref{fig:magphase}(c)}.  On the deciBel (deci = 10) scale, we take the base 10 $\log_{10}$ and multiply by $10$ to get rid of fractional parts.  The "Bel" part is in honor of the inventor of the phone,.  The dB scale allows us to expand the passband and more clearly understand the behavior of the transfer function as a function of frequency.  The multiplication by 10 is just for convenience.
 
 But you'll notice that we often multiply log by $20$ rather than $10$ in the definition of $dB$.  Why is that?  Remember that power is proportional to voltage squared\footnote{See Appendix~\ref{sec:power_decibel} for a review of power and decibel conversions.}:
     \begin{equation}
@@ -970,6 +972,7 @@ Now we apply a bandpass filter with a  wider passband, allowing both tones to pa
 As we have demonstrated throughout this chapter, linear system theory is powerful and very useful for design and analysis.  But you may object and say that most real systems are non-linear, so why is this stuff useful?
 
 When systems are non-linear, we often "linearize" them about an operating point, and use linear theory to understand the response to "small" perturbations.  We will be doing this extensively in this course.  Soon you will find that the silicon transistor and diodes are non-linear, so we will build "small-signal" models that are linear.  This is useful as long as the signals of interest don't deviate too much from the operating point.  If they do, we need non-linear techniques.  Even in these situations,  we can gain useful insights from the small-signal approximation, and it is the starting point for design and analysis.
+\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                   SECTION 1.11                                       %
