@@ -34,7 +34,7 @@ We begin the chapter by discussing the structure of the MOSFET, discussing the d
 %             SUBSECTION 8.2.1             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{MOSFET Top View and Layout}
-The cross-section and top view of a \textbf{MOSFET}\index{MOSFET} are shown in \emph{Fig.~\ref{fig:mosfet_layout}}.  A MOS transistor is four terminal device that conducts current between two of its terminals under the control of the third terminal, the \textbf{"gate"}\index{MOSFET!gate} (G).  In a MOSFET, the terminals that carry current are known as the \textbf{"drain"}\index{MOSFET!drain} (D) and \textbf{"source"}\index{MOSFET!source} (S), in analogy with liquid flow.  The "source" supplies electrons, and the \textit{electrons flow from the source to the drain}.  Since electrons carry negative charge, the \textit{current flow is from the drain to the source}, which is confusing but standard convention.  The fourth terminal is the \textbf{"body"}\index{MOSFET!body} (B), which establishes a potential reference for the gate terminal.  Often the body and source are shorted together, and this leads to a "source referenced" notion of the gate voltage.  In general, it is the gate-to-body voltage that determines the operating point\index{Operating point} of the MOS-C, and therefore the MOSFET.
+The cross-section and top view of a \textbf{MOSFET}\index{MOSFET} are shown in \emph{Fig.~\ref{fig:mosfet_layout}}.  A MOS transistor is a \textit{four terminal device} that conducts current between two of its terminals under the control of the third terminal, the \textbf{"gate"}\index{MOSFET!gate} (G).  In a MOSFET, the terminals that carry current are known as the \textbf{"drain"}\index{MOSFET!drain} (D) and \textbf{"source"}\index{MOSFET!source} (S), in analogy with liquid flow.  The "source" supplies electrons, and the \textit{electrons flow from the source to the drain}.  Since electrons carry negative charge, the \textit{current flow is from the drain to the source}, which is confusing but standard convention.  The fourth terminal is the \textbf{"body"}\index{MOSFET!body} (B), which establishes a potential reference for the gate terminal.  Often the body and source are shorted together, and this leads to a "source referenced" notion of the gate voltage.  In general, it is the gate-to-body voltage that determines the operating point\index{Operating point} of the MOS-C, and therefore the MOSFET.
 
 A top view of the MOSFET shown in \emph{Fig.~\ref{fig:mosfet_layout}}.  It is important to note that the dimensions $L$ and $W$ are layout dependent, and can be varied by the circuit designer.  These parameters control the size of the channel that forms (from the source to the drain) which allows current to flow when the device is biased in inversion.  The parameter $W$ is the \textbf{device width}\index{MOSFET!device width}.  The larger the width, the more current the transistor can conduct.  The device dimension $L$ is the \textbf{channel length}\index{MOSFET!channel length}. The shorter the channel, the more conductive the channel.
 
@@ -195,7 +195,7 @@ We find that the current increases rapidly as we cross the threshold, and it rea
 \centering
 \begin{tabular}{cc}
 \includegraphics[width=.4\columnwidth]{idvds_sweep} &
-\includegraphics[width=.55\columnwidth]{ids_vds}\\
+\includegraphics[width=.5\columnwidth]{ids_vds}\\
 (a) & (b)\\
 \end{tabular}
 \caption{(a) The $I_{DS}$ versus $V_{DS}$ characteristics of a MOSFET can be traced out by holding the gate voltage constant and sweeping the drain voltage as shown.  (b) A family of curves results from varying the gate voltage in discrete steps.  Note that the device characteristics can be divided into two distinct regions.  In the "Triode Region" the device acts like a non-linear resistor whereas in the "Saturation Region" the current is relatively constant as a function of $V_{DS}$, acting like a current source.}
@@ -251,12 +251,12 @@ Notice that this electric field is different from the MOS-C vertical electric fi
     \begin{equation}
         \mathcal{E}_y = -\frac{V_{DS}}{L}
         \label{eq:lateral_field}
-    \end{equation}
-In \emph{Eq.~\ref{eq:lateral_field}} $L$ is the channel length, because the voltage is dropped uniformly across the channel.  Again, this assumption is only valid if the channel is \textit{uniform}.  Making this last substitution completes the derivation of current versus voltage for the MOSFET in the linear regime:
+    \end{equation}\textbf{}
+In \emph{Eq.~\ref{eq:lateral_field}} $L$ is the channel length, because the voltage is dropped uniformly across the channel.  Again, this assumption is only valid if the channel is \textit{uniform}.  Making this last substitution completes the derivation of current versus voltage for the MOSFET in the \textbf{linear regime}\index{MOSFET!linear regime}:
     \begin{align}
-        \Aboxed{ I_{DS} &= \frac{W}{L}\mu_n\,C_{ox}\,(V_{GS} - V_{T_n})V_{DS} } &\textit{MOSFET drain current, linear/triode regime}
+        \Aboxed{ I_{DS} &= \frac{W}{L}\mu_n\,C_{ox}\,(V_{GS} - V_{T_n})V_{DS} } &\textit{MOSFET drain current, linear regime}
     \end{align}
-Since current is proportional to voltage, we can define a \textbf{channel conductance}\index{MOSFET!channel conductance}:
+The linear region is a special section of the triode region, where the drain current is effectively linearly dependent on the drain voltage. Since current is proportional to voltage, we can now define a \textbf{channel conductance}\index{MOSFET!channel conductance}:
     \begin{equation}
         G_{DS} = \frac{I_{DS}}{V_{DS}} = {\mu_n\,C_{ox}\,(V_{GS} - V_{T_n}} \left( \frac{W}{L} \right)
         \label{eq:mosfet_conductance}
@@ -286,103 +286,140 @@ This is a variable resistor that is electronically tunable by adjustment of the 
 %             SUBSECTION 8.4.3             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Approximate Derivation of Inversion Charge Variation}
-Up to now, we have ignored the fact that the level of inversion should vary from the source to the drain.  To understand why, consider that the channel covers the surface of the device, and any gate voltage charge will be compensated by inversion charge in the channel.  If $V_{DS} \ne 0\,V$, then the channel potential is not uniform. Because the inversion charge depends on the gate-to-channel voltage, we should expect that the inversion charge to be maximum on the source side and lower on the drain side.  This is because $V_{DS} > 0\,V$, as shown in \emph{Fig.~\ref{fig:mos_current_derive}}.
+Up to now, we have ignored the fact that the level of inversion should vary from the source to the drain.  To understand why, consider that the channel covers the surface of the device, and any gate voltage charge will be compensated by inversion charge in the channel.  If $V_{DS} \ne 0\,V$, then the channel potential is not uniform. Because the inversion charge depends on the gate-to-channel voltage, we should expect that the inversion charge\index{MOSFET!inversion charge} to be \textit{maximum} on the \textbf{source side} and \textit{lower} on the \textbf{drain side}\index{MOSFET!channel charge}.  This is because $V_{DS} > 0\,V$, as shown in \emph{Fig.~\ref{fig:mos_current_derive}}.
 
-Let's approximate the inversion charge $Q_N(y)$ along the channel, now a function of position along the channel $y$, by taking an average of the source/drain values:
+Let's approximate the inversion charge $Q_N(y)$ along the channel, now a function of position along the channel $y$.  With a channel length of $L$, by taking an average of the source/drain values we have:
     \begin{equation} 
-        {Q_N}(y) \approx \frac{{Q_N}(y = 0) + {Q_N}(y = L)}{2} 
+        Q_N(y) \approx \frac{Q_N(y = 0) + Q_N(y = L)}{2}
     \end{equation}
 At the source side we have:
-    \begin{equation} 
-        {Q_N}(y = 0) =  - {C_{ox}}({V_{GS}} - {V_T}) 
-    \end{equation}
-while at the drain side we have
-    \begin{equation} 
-        {Q_N}(y = L) =  - {C_{ox}}({V_{GD}} - {V_T}) 
-    \end{equation}
-Note the gate-to-drain voltage is lower due to the higher potential at the drain side.  To see this, note that 
-the voltage at the drain is given as the voltage at the source plus the $V_{DS}$
-    \[
+    \begin{align} 
+        \Aboxed{ Q_N(y=0) &= -C_{ox}(V_{GS} - V_T) } &\textit{MOSFET channel charge, source side}
+    \end{align}
+While at the drain side we have:
+    \begin{align} 
+        \Aboxed{ Q_N(y=L) &= -C_{ox}(V_{GD} - V_T) } &\textit{MOSFET channel charge, drain side}
+    \end{align}
+Note that the gate-to-drain voltage is lower due to the higher potential at the drain side.  To see this, note that 
+the voltage at the drain is given as the voltage at the source plus the $V_{DS}$:
+    \begin{equation}
     	V_D = V_S + V_{DS}
-    \]
-    or
-    \[
-    	V_{GD} = V_{G} - V_{D} = V_{G} - (V_S + V_{DS}) = V_{GS} - V_{DS} 
-    \]
-resulting in less inversion charge at the drain side.  With this approximation, the average value of charge is given by
-    \begin{equation}
-        {Q_N}(y_{av}) \approx  - \frac{{{C_{ox}}({V_{GS}} - {V_T}) + {C_{ox}}({V_{GD}} - {V_T})}}{2}
+    	\label{eq:v_d}
     \end{equation}
-Using this relation we have
+Substituting \emph{Eq.~\ref{eq:v_d}} for $V_D$, we can see why $V_{GD}$ must be lower the $V_{GS}$:
+    \begin{align}
+    	V_{GD} &= V_{G} - V_{D} = V_{G} - (V_S + V_{DS})\\
+    	&= V_{GS} - V_{DS}
+    	\label{eq:v_gd}
+    \end{align}
+This results in less inversion charge at the drain side.  With this approximation, the average value of charge is given by:
     \begin{equation}
-        {Q_N}(y) \approx  - \frac{{{C_{ox}}({V_{GS}} - {V_T}) + {C_{ox}}({V_{GS}} - {V_{DS}} - {V_T})}}{2}
+        Q_{N_{ave}}(y) \approx - \frac{C_{ox}\,(V_{GS} - V_T) + C_{ox}\,(V_{GD} - V_T)}{2}
+        \label{eq:q_ave_gd}
     \end{equation}
-Collecting terms, we have $2(V_{GS} - V_T)$ terms and one in terms of $V_{DS}$
+Substituting \emph{Eq.~\ref{eq:v_gd}} for $V_{GD}$ into \emph{Eq.~\ref{eq:q_ave_gd}}, we have:
     \begin{equation}
-        {Q_N}(y) \approx  - \frac{{{C_{ox}}(2{V_{GS}} - 2{V_T}) - {C_{ox}}{V_{DS}}}}{2} =  - {C_{ox}}({V_{GS}} - {V_T} - \frac{{{V_{DS}}}}{2})
+        Q_{N_{ave}}(y) \approx -\frac{C_{ox}(V_{GS} - V_T) + C_{ox}(V_{GS} - V_{DS} - V_T)}{2}
     \end{equation}
-As expected, the average charge is lower than the source charge because the drain voltage is higher than the source, and so the vertical electric field is lower on the drain end, resulting in less inversion charge.
+Collecting terms, we have two $(V_{GS} - V_T)$ terms, with one in terms of $V_{DS}$:
+    \begin{align}
+        Q_{N_{ave}}(y) &\approx -\frac{C_{ox}(2\,V_{GS} - 2\,V_T) - C_{ox}V_{DS}}{2}
+    \end{align}
+Finally, we arrive at an expression for the \textbf{average channel charge}\index{MOSFET!average channel charge}:
+    \begin{align}
+        \Aboxed{ Q_{N_{ave}}(y) &= -C_{ox}(V_{GS} - V_T - \frac{V_{DS}}{2}) } &\textit{MOSFET average channel charge}
+    \end{align}
+As expected, the average charge is lower than the source charge, because the drain voltage is higher than the source.  So the vertical electric field is lower on the drain end, resulting in less inversion charge.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 8.4.4             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Drift Velocity and Drain Current}
-Now we use mobility to find velocity $v$ by approximating the $y$ direction field as before:
+Now we use mobility\index{Mobility} to find the drift velocity\index{Drift velocity} by approximating the $y$ direction field as before:
     \begin{equation}
-        v(y) =  - {\mu _n}E(y) \approx  - {\mu _n}( - \Delta V/\Delta y) = \frac{{{\mu _n}{V_{DS}}}}{L}
+        v_{drift}(y) =  -\mu_n\,\mathcal{E}(y) \approx -\mu_n \left( -\frac{\Delta V}{\Delta y} \right) = \frac{\mu_n\,V_{DS}}{L}
+        \label{eq:drift_velocity}
     \end{equation}
-This is clearly an approximation valid only under small $V_{DS}$.  Substituting into the expression for drift current, we have:
+This is clearly an approximation valid only under small $V_{DS}$.  Substituting \emph{Eq.~\ref{eq:drift_velocity}} into \emph{Eq.~\ref{eq:mosfet_ids}} for drift current\index{Drift current}, we have:
     \begin{equation}
-        I_{DS} =  - Wv{Q_N} \approx W\mu \frac{{{V_{DS}}}}{L}{C_{ox}}({V_{GS}} - {V_T} - \frac{{{V_{DS}}}}{2})
+        I_{DS} = -W\,v\,Q_N \approx W\,\mu \left( \frac{V_{DS}}{L} \right) C_{ox} \left( V_{GS} - V_T - \frac{V_{DS}}{2} \right)
     \end{equation}
-Re-writing this into a form that emphasizes the geometric aspect ratio $W/L$:
+Re-writing this into a form that emphasizes the geometric aspect ratio\index{MOSFET!aspect ratio} $W/L$:
     \begin{equation}
-        I_{DS} = \frac{W}{L}\mu {C_{ox}}({V_{GS}} - {V_T} - \frac{{{V_{DS}}}}{2}){V_{DS}}
+        I_{DS} = \left( \frac{W}{L} \right) \mu\,C_{ox} \left( V_{GS} - V_T - \frac{V_{DS}}{2} \right)V_{DS}
     \end{equation}
-This leads to a family of inverted parabolas for the current as a function of $V_{DS}$.  These curves describe the channel conductance observed in \emph{Fig.~\ref{fig:ids_vds}} wherein the current increases linearly but then bends as we increase $V_{DS}$.  We now understand the origin of the bend, since increasing $V_{DS}$ affects both the horizontal field along the channel (which tends to increase the current) but also results in lower levels of inversion in the channel, which tends to decrease the current.  These two effects essentially cancel out and the net result is a curve that is bending and flattening out.
+This leads to a family of inverted parabolas for the current as a function of $V_{DS}$.  These curves describe the channel conductance observed in \emph{Fig.~\ref{fig:ids_vds}}, wherein the current increases linearly, but then bends as we increase $V_{DS}$.
+
+We now understand the origin of the bend, since increasing $V_{DS}$ affects both the horizontal field along the channel (which tends to increase the current), but also results in lower levels of inversion in the channel, which tends to decrease the current.  These two effects essentially cancel out, and the net result is a curve that is bending and flattening out.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 8.4.5             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Square Law "Exact" Derivation}
-It's hard to make claims of "exactness" because the actual equations are very complex.  We are still making many assumptions in the following derivation, but what follows will be less hand-wavy and a bit more precise.  The key insight is that the threshold voltage varies along the channel because the channel potential (call it $V_{ch}(y)$) is not constant from source to drain
+It is hard to make claims of "exactness", because the actual equations are very complex.  We are still making many assumptions in the following derivation, but what follows will be less hand-wavy and a bit more precise.  The key insight is that the threshold voltage varies along the channel, because the \textbf{channel potential}\index{MOSFET!channel potential} (call it $V_{ch}(y)$) is not constant from the source to the drain:
     \begin{equation} 
-        V_T(y) = V_T(y= 0 ) + V_{ch}(y) 
+        V_T(y) = V_T(y=0) + V_{ch}(y)
     \end{equation}
-The threshold voltage at the drain end is related to the source end as follows:
+The threshold voltage\index{MOSFET!threshold voltage} at the drain end is related to the source end as follows:
     \begin{equation} 
-        V_T(y=L) = V_T(y = 0) + V_D 
+        V_T(y=L) = V_T(y=0) + V_D
+        \label{eq:threshold_varies}
     \end{equation} 
-since the higher drain potential requires a correspondingly higher gate voltage to reach the same level of inversion, exactly by the drain voltage.  That means the inversion charge varies from source to drain
+The relation in \emph{Eq.~\ref{eq:threshold_varies}} comes from the fact that the higher drain potential requires a correspondingly higher gate voltage to reach the same level of inversion, exactly by the drain voltage.  This means that the inversion charge\index{MOSFET!inversion charge} varies from source to drain:
     \begin{equation} 
-        Q_n(y) = C_{ox} (V_G - V_T(y)) 
+        Q_n(y) = C_{ox} \big(V_G - V_T(y)\big)
     \end{equation}
-Or in other words, if we define $V_T$ as the threshold voltage at the source end ($V_T(y=0) = V_{T}$), the inversion charge varies as
+In other words, if we define $V_T$ as the threshold voltage at the source end ($V_T(y=0) = V_{T}$), then the inversion charge varies as:
     \begin{equation} 
-        Q_n(y) = C_{ox} (V_G - V_T - V_{ch}(y) )  \label{eq:invcharge}
+        Q_n(y) = C_{ox} \big(V_G - V_T - V_{ch}(y)\big)
+        \label{eq:invcharge}
     \end{equation}
-Using this, and the fact that the $E$-field is the spatial derivative of the channel voltage, we have
+Using this, and the fact that the $\mathcal{E}$-field is the spatial derivative of the channel voltage, we have:
     \begin{equation} 
-        I_{DS} = \mu_n W C_{ox} \left(V_G - V_T - V_{ch}(y) \right) \frac{dV_{ch}}{dy} 
+        I_{DS} = \mu_n\,W\,C_{ox} \big(V_G - V_T - V_{ch}(y) \big) \frac{dV_{ch}}{dy}
+        \label{eq:spatial_drain}
     \end{equation}
-Let's multiply both sides by $dy$ and integrate above along the channel.  We are converting the integral from position to voltage along the channel.  Since the current is uniform along the channel, the expression on the left-hand side must evaluate to $I_{DS} \times L$:
+Let's multiply both sides of \emph{Eq.~\ref{eq:spatial_drain}} by $dy$, and integrate along the channel.  We are converting the integral from position along the channel, to voltage along the channel.  Because the current is uniform along the channel, the expression on the left-hand side must evaluate to $I_{DS} \times L$:
     \begin{equation} 
-        \int_0^L I_{DS} dy = I_{DS} \cdot L = \int_0^{V_D} \mu_n W C_{ox} (V_G - V_T - V_{ch}(y)) dV_{ch} 
+        \int_0^L I_{DS}\,dy = I_{DS} \times L = \int_0^{V_D} \mu_n\,W\,C_{ox}\big(V_G - V_T - V_{ch}(y)\big)\,dV_{ch} 
     \end{equation}
 Resulting in the expression:
-    \begin{equation} 
-        I_{DS} = \mu_n C_{ox} \frac{W}{L} \left( V_G - V_T - \frac{V_D}{2} \right) V_D
+    \begin{align} 
+        \Aboxed{ I_{DS} = \mu_n C_{ox} \frac{W}{L} \left( V_G - V_T - \frac{V_D}{2} \right) V_D } &\textit{Drain current, triode region}
         \label{eq:ids_triode}
-    \end{equation}
-Interestingly, this is the same equation we derived earlier.  While the result is that same, we have derived it in a way more consistent with the physics without resorting to hand-waving assumptions.  It should be noted that we have ignored one thing in this derivation, which is the variation of the threshold voltage due to the bulk depletion charges.  In \emph{Eq. ~\ref{eq:invcharge}}, we assume the inversion charge just varies linearly with the channel voltage. In practice, as the channel voltage increases from the source end, the depletion region width also changes, which means the threshold voltage is different. This is a subtle point that would over complicate the equations without providing more circuit insight or intuition, and it's common to make this simplification for hand calculations.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-The triode region current (\emph{Eq.~\ref{eq:ids_triode}}) is plotted in \emph{\emph{Fig.~\ref{fig:ids_triode_only}}}.  We note that the currents peak when $V_{DS} = V_{GS} - V_T$, and then the equations predict lower and lower currents (inverted parabolas).  In the laboratory, we don't observe the current decreasing, and so there's a fundamental flaw in the derivation that we must address.  
+    \end{align}
+Interestingly, this is the same equation we derived earlier.  While the result is that same, we have derived it in a way more consistent with the physics without resorting to hand-waving assumptions.  It should be noted that we have ignored one thing in this derivation, which is the variation of the threshold voltage due to the bulk depletion charges.  In \emph{Eq.~\ref{eq:invcharge}}, we assume the inversion charge just varies linearly with the channel voltage. In practice, as the channel voltage increases from the source end, the depletion region width also changes, which means the threshold voltage is different. This is a subtle point that would over complicate the equations without providing more circuit insight or intuition, and it's common to make this simplification for hand calculations.
+
+The triode region current (\emph{Eq.~\ref{eq:ids_triode}}) is plotted in \emph{Fig.~\ref{fig:ids_triode_only}}.  We note that the currents peak when $V_{DS} = V_{GS} - V_T$, and then the equations predict lower and lower currents (inverted parabolas).  However, in the laboratory we do not observe the current decreasing past the saturation point.  This is shown in \emph{Fig.~\ref{fig:ids_family}}, and so there is a fundamental flaw in the derivation that we must address.
+\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[tb]
+\begin{figure}[t]
 \centering
-\includegraphics[width=.75\columnwidth]{ids_triode_only} 
+\includegraphics[width=\columnwidth]{ids_triode_only} 
 \caption{The calculated family of MOSFET $I$-$V$ curves in the triode region.  The derivation here is only valid in the triode region and cannot predict the current saturation mechanism.}
 \label{fig:ids_triode_only}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace{1cm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                 FIGURE                   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\centering
+\includegraphics[width=\columnwidth]{ids_idsat_full} 
+\caption{The piece-wise calculated MOSFET $I$-$V$ curves are derived by assuming the current in the saturation region is essentially constant and given by the maximum value predicted from the square-law relations.}
+\label{fig:ids_family}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                 FIGURE                   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{mos_current_sat}
+\caption{When a MOSFET is biased with $V_{DS} > V_{DS,sat}$, the channel is pinched off at a point inside the channel, but near the drain.  This creates a very small depletion region between the drain diffusion region and the conductive channel.  This region is a high $\mathcal{E}$-field region.}
+\label{fig:mos_current_sat}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -390,130 +427,135 @@ The triode region current (\emph{Eq.~\ref{eq:ids_triode}}) is plotted in \emph{\
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Understanding Current Saturation (Pinch Off)}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                 FIGURE                   %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[tb]
-\centering
-\includegraphics[width=.75\columnwidth]{ids_idsat_full} 
-\caption{The piece-wise calculated MOSFET $I$-$V$ curves are derived by assuming the current in the saturation region is essentially constant and given by the maximum value predicted from the square-law relations.}
-\label{fig:ids_family}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 The observed experimental behavior of devices beyond a drain voltage of $V_{DS} = V_{GS} - V_T$ is a flattening of the current, rather than decreasing current.  Let's look into this a bit more to understand the origin of this saturation region, shown in \emph{Fig.~\ref{fig:mos_current_sat}}.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 8.5.1             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{The Saturation Region}
-From our equations, we have that when $V_{DS} > V_{GS} - V_T$, there is no inversion charge at the drain, so what happens? Intuitively it seems like the channel from the source to the drain is interrupted, or pinched off, so you might think this would lead to zero current again.  This intuition is so strong that this region is sometimes called the "pinch-off" region, but the current does not abruptly go to zero as intuition might lead you to believe.  
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                 FIGURE                   %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[tb]
-\centering
-\includegraphics[width=.75\columnwidth]{mos_current_sat}
-\caption{When a MOSFET is biased with $V_{DS} > V_{DS,sat}$, the channel is pinched off at a point inside but near the drain, creating a very small depletion region between the drain diffusion region and the conductive channel.  This region is a high $E$-field region.}
-\label{fig:mos_current_sat}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                 FIGURE                   %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[tb]
-\centering
-\includegraphics[width=.75\columnwidth]{waterfall}
-\caption{A good analog for a MOSFET biased with $V_{DS} > V_{DS,sat}$ is a water pipe flowing down a hill into a waterfall.  The region where the water flows on the hill has a potential drop of $V_{DS,sat}$ and the remaining potential $V_{DS} - V_{DS,sat}$, is dropped through the waterfall.  The overall current is independent of the waterfall height.}
-\label{fig:waterfall}
-\end{figure}
+From our equations, we have that when $V_{DS} > V_{GS} - V_T$, there is no inversion charge at the drain, so what happens? Intuitively, it seems like the channel from the source to the drain is interrupted, or pinched off, so you might think this would lead to zero current again.  This intuition is so strong that this region is sometimes called the \textbf{"pinch-off"}\index{MOSFET!pinch-off region} region, but the current does not abruptly go to zero as intuition might lead you to believe.  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 8.5.2             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Pinch Off}
-When $V_{DS} > V_{GS}-V_T$, we can say that the excess voltage $V_{DS} - (V_{GS}-V_T)$ is dropped across a small region between the drain and the channel, shown in \emph{Fig.~\ref{fig:mos_current_sat}}.  Let's define $V_{DS,sat} = V_{GS}-V_T$ as the saturation drain voltage.  Any voltage above $V_{DS,sat}$ results in a fixed electric field $E_{d,sat}$ in the channel and an excess electric field $E_{d}$ near the drain end.  Since this is a small region, even a modest drain voltage above $V_{DS,sat}$ results in a potentially very large electric field $E_d$.  This large electric field can propel electrons from the channel into the drain end at high velocity.  In this region, increasing the drain voltage does not increase current (appreciably) because the current flow is limited by the supply of electrons from channel side, which is dictated by $E_{d,sat}$, set by $V_{DS,sat}$.  A good analogy is to imagine a stream of water gently flowing down an incline and then into a waterfall, as shown in \emph{Fig.~\ref{fig:waterfall}}.  If the slope of the incline is increased, the current flow increases.  But the current flow is independent of the height of the waterfall.  In our system, the waterfall region is the high-field region.  
+When $V_{DS} > V_{GS}-V_T$, we can say that the excess voltage $V_{DS} - (V_{GS}-V_T)$ is dropped across a small region between the drain and the channel, shown in \emph{Fig.~\ref{fig:mos_current_sat}}.  Let's define the \textbf{saturation drain voltage}\index{MOSFET!saturation voltage}:
+    \begin{align}
+        \Aboxed{ V_{DS,sat} &= V_{GS} - V_T } &\textit{MOSFET saturation voltage}
+        \label{eq:saturation_voltage}
+    \end{align}
+Any voltage above $V_{DS,sat}$ results in a fixed electric field $\mathcal{E}_{d,sat}$ in the channel, and an excess electric field $\mathcal{E}_d$ near the drain end.  Since this is a small region, even a modest drain voltage above $V_{DS,sat}$ results in a potentially very large electric field $\mathcal{E}_d$.  This large electric field can propel electrons from the channel into the drain end at high velocity.  In this region, increasing the drain voltage does not increase current (appreciably), because the current flow is limited by the supply of electrons from channel side.  The supply of electrons is dictated by $\mathcal{E}_{d,sat}$, set by $V_{DS,sat}$.
+\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-In addition, in real transistors, current saturation may happen due to another mechanism, namely velocity saturation. If the field strength in the channel exceeds a threshold, the linear relation between drift velocity and electric field ceases to be valid and the velocity of carriers begins to saturate, as shown in \emph{Fig.~\ref{fig:ids_family}}.
+%                 FIGURE                   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{waterfall}
+\caption{A good analog for a MOSFET biased with $V_{DS} > V_{DS,sat}$ is a water pipe flowing down a hill into a waterfall.  The region where the water flows on the hill has a potential drop of $V_{DS,sat}$ and the remaining potential $V_{DS} - V_{DS,sat}$, is dropped through the waterfall.  The overall current is independent of the waterfall height.}
+\label{fig:waterfall}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+A good analogy is to imagine a stream of water gently flowing down an incline and then into a waterfall, as shown in \emph{Fig.~\ref{fig:waterfall}}.  If the slope of the incline is increased, the current flow increases.  But the current flow is independent of the height of the waterfall.  In our system, the waterfall region is the high $\mathcal{E}$-field region.  
+
+In addition, in real transistors current saturation may happen due to another mechanism, namely velocity saturation. If the field strength in the channel exceeds a threshold, the linear relation between drift velocity and electric field ceases to be valid, and the velocity of carriers begins to saturate.  This is shown in \emph{Fig.~\ref{fig:ids_family}}.
+\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 8.5.3             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Square-Law Current in Saturation}
-Taking the above discussion into account, we can say that the current peaks at maximum value when 
+Taking the previous discussion into account, we can say that the current peaks at maximum value when 
 $V_{DS} = V_{GS} - V_{T} = V_{DS,sat}$.  Or in other words:
-    \begin{equation}
-        I_{DS} = \frac{W}{L}\mu {C_{ox}}({V_{GS}} - {V_T} - \frac{{{V_{DS,sat}}}}{2}){V_{DS,sat}}
-    \end{equation}
-or 
-    \begin{equation}
-        {I_{DS,sat}} = \frac{W}{L}\mu {C_{ox}}({V_{GS}} - {V_T} - \frac{{{V_{GS}} - {V_T}}}{2})({V_{GS}} - {V_T})
-    \end{equation}
-This equation can be simplified into the following form:
-    \begin{equation}
-        {I_{DS,sat}} = \frac{W}{L}\frac{{\mu {C_{ox}}}}{2}{({V_{GS}} - {V_T})^2}
-    \end{equation}
-Notice that in the saturation region, the current is nearly independent of variations in the drain voltage and only depends on the gate voltage.  We can think of the transistor as an ideal voltage-controlled current source, with an output current dictated by the control terminal, the gate.  This is the characteristics of an ideal amplifier.
+    \begin{align}
+        I_{DS,sat} &= \frac{W}{L}\mu\,C_{ox}\left(V_{GS} - V_T - \frac{V_{DS,sat}}{2}\right)V_{DS,sat}\\[0.25cm]
+        &= \frac{W}{L}\mu\,C_{ox}\left(V_{GS} - V_T - \frac{V_{GS} - V_T}{2}\right) \big(V_{GS} - V_T\big)
+        \label{eq:ids_saturation_long}
+    \end{align}
+\vspace{0.25cm}
+\emph{Eq.~\ref{eq:ids_saturation_long}} can be simplified by expanding the two terms in parentheses on the RHS:
+    \begin{align*}
+        \left(V_{GS} - V_T - \frac{V_{GS} - V_T}{2}\right) \big(V_{GS} - V_T\big)
+        &= {V_{GS}}^2 - V_{GS}\,V_T - \frac{1}{2}{V_{GS}}^2 + \frac{1}{2}V_{GS}\,V_T - V_{GS}\,V_T\\[0.15cm]
+        &\qquad + {V_T}^2 + \frac{1}{2}V_{GS}\,V_T - \frac{1}{2}{V_T}^2\\[0.45cm]
+        &=\frac{1}{2}{V_{GS}}^2 + \frac{1}{2}{V_T}^2 - V_{GS}\,V_T\\[0.45cm]
+        &=\frac{1}{2}\big( {V_{GS}}^2 - 2V_{GS}\,V_T + {V_T}^2 \big)\\[0.45cm]
+        &=\frac{1}{2} {\big(V_{GS} - V_T\big)}^2
+    \end{align*}
+Finally, we arrive at the following form, which is the \textbf{saturation current}\index{MOSFET!saturation current}:
+    \begin{align}
+        \Aboxed{ I_{DS,sat} = \left( \frac{W}{2L} \right) \mu\,C_{ox} {\big(V_{GS} - V_T\big)}^2 } &\textit{MOSFET saturation current}
+        \label{eq:ids_saturation}
+    \end{align}
+Notice that in the saturation region, the current is nearly independent of variations in the drain voltage and only depends on the gate voltage.  We can think of the transistor as an ideal \textbf{voltage-controlled current source} (VCCS)\index{Voltage-controlled current source}, with an output current dictated by the control terminal, the gate.  This is the characteristics of an ideal amplifier\index{Amplifier!ideal}.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 8.5.4             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Actual Saturation Current}
-Now we need to do deal with another fact.  The measured values of  $I_{DS}$ increases slightly with increasing $V_{DS}$, in other words the curves are not 100\% flat.   The physics is complicated, but a simple way to see this is that the channel is getting shorter as the drain voltage depletes away more electrons from the drain end, resulting in a shorter channel length.   We can model this with an additional linear term $\lambda$ that allows the current to increase slightly for larger and larger $V_{DS}$ values:
-    \begin{equation}
-        {I_{DS,sat}} = \frac{W}{L}\frac{{\mu {C_{ox}}}}{2}{({V_{GS}} - {V_T})^2}(1 + \lambda {V_{DS}})
-    \end{equation}
+Now we need to do deal with another fact.  The measured values of  $I_{DS}$ increases slightly with increasing $V_{DS}$, in other words the curves are not $100\%$ flat.   The physics is complicated, but a simple way to see this is that the channel is getting shorter as the drain voltage depletes away more electrons from the drain end, resulting in a shorter channel length.  This phenomenon is known as the \textbf{channel length modulation}\index{MOSFET!channel length modulation}.  We can model this with an additional linear term, $\lambda$, that allows the current to increase slightly for larger and larger $V_{DS}$ values:
+    \begin{align}
+        \Aboxed{ I_{DS,sat} = \left( \frac{W}{2L} \right) \mu\,C_{ox} {\big(V_{GS} - V_T\big)}^2 (1 + \lambda V_{DS}) } &\textit{Saturation current, with CLM}
+        \label{eq:drain_current_clm}
+    \end{align}
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                 FIGURE                   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{mos_current_sat_clm}
+\caption{Channel Length Modulation (CLM) occurs when the drain voltage is modulated beyond $V_{DS,sat}$.  The extra voltage dropped across the high $\mathcal{E}$-field region causes the effective channel length to shrink by $\Delta L$, which results in an increase in the drain-source current.}
+\label{fig:mos_current_sat_clm}
+\end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 8.5.5             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Channel Length Modulation} \label{sec:mos_clm}
-To see why the current increases, let's go back to when $V_{DS} = V_{GS} - V_T = V_{DS,sat}$, at which point the channel pinches off near the drain. With further increase in $V_{DS}$, we see that the pinch-off point moves toward the source, effectively reducing the channel length from $L$ to $L-\Delta L$, as shown in \emph{Fig.~\ref{fig:mos_current_sat_clm}}.  Since current is inversely proportional to $L$, we have
+To see why the current increases as a result of the channel length modulation, let's go back to when $V_{DS} = V_{GS} - V_T = V_{DS,sat}$.  This is the point in which the channel pinches off near the drain.  With a further increase in $V_{DS}$, we see that the pinch-off point moves toward the source, effectively reducing the channel length from $L$ to $L-\Delta L$, as shown in \emph{Fig.~\ref{fig:mos_current_sat_clm}}.  Since current is inversely proportional to $L$, we have:
     \begin{equation} 
-        I_{DS} = \frac{1}{2}{\mu _n}{C_{ox}}\frac{W}{{L - \Delta L}}{\left( {{V_{GS}} - {V_T}} \right)^2} 
+        I_{DS} = \left( \frac{1}{2} \right) \mu_n\,C_{ox} \left( \frac{W}{L - \Delta L} \right) {\left( {V_{GS} - V_T} \right)}^2
     \end{equation}
-If $\Delta L \ll L$, we can simplify this to 
+If this is a \textbf{long-channel MOSFET}\index{MOSFET!long-channel}, then $\Delta L \ll L$, and we can simplify this to:
     \begin{equation} 
-        I_{DS} = \frac{1}{2}{\mu _n}{C_{ox}}\frac{W}{L}{\left( {{V_{GS}} - {V_T}} \right)^2}  \left(1 - \frac{\Delta L(V_{DS})}{L} \right)
+        I_{DS} = \left( \frac{1}{2} \right) \mu_n\,C_{ox} \left( \frac{W}{L} \right) {\left( {V_{GS} - V_T} \right)}^2 \left(1 - \frac{\Delta L(V_{DS})}{L} \right)
     \end{equation}
-The change is $L$ as a function of $V_{DS}$ is known as Channel Length Modulation (CLM).  To first order
+The channel length modulation is the change in $L$ as a function of $V_{DS}$.  To first order:
     \begin{equation} 
         \frac{\Delta L(V_{DS})}{L} = \lambda V_{DS}
     \end{equation}
-Allowing us to write
-    \begin{equation} 
-        I_{DS} = \frac{1}{2}{\mu _n}{C_{ox}}\frac{W}{L}{\left( {{V_{GS}} - {V_T}} \right)^2}\left( {1 + \lambda {V_{DS}}} \right) 
-    \end{equation}
-Note that the channel length modulation parameter $\lambda$ has units of inverse volts, $\mathrm{V^{-1}}$.  Sometimes this parameter is called the "Early Voltage" 
-    \begin{equation} 
-        V_A = \frac{1}{\lambda}
-    \end{equation}
-The name "Early" is related to the Early Effect, named after its discoverer James M. Early, first applied to bipolar junction transistors.  
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                 FIGURE                   %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[tb]
-\centering
-\includegraphics[width=.75\columnwidth]{mos_current_sat_clm}
-\caption{Channel Length Modulation (CLM) occurs when the drain voltage is modulated beyond $V_{DS,sat}$.  The extra voltage dropped across the high-field region causes the effective channel length to shrink by $\Delta L$, which results in an increase in the drain-source current.}
-\label{fig:mos_current_sat_clm}
-\end{figure}
+Thus, we have arrived at the same result as \emph{Eq.~\ref{eq:drain_current_clm}}:
+    \begin{equation*} 
+        I_{DS} = \left( \frac{1}{2} \right) \mu_n\,C_{ox} \left( \frac{W}{L} \right) {\left( {V_{GS} - V_T} \right)}^2 \left(1 - \lambda V_{DS} \right)
+    \end{equation*}
+Note that the channel length modulation parameter $\lambda$ has units of inverse volts, $\mathrm{V^{-1}}$.  Sometimes this parameter is called the \textbf{"Early Voltage"}\index{Early voltage}: 
+    \begin{align} 
+        \Aboxed{ V_A &= \frac{1}{\lambda} } &\textit{Early voltage}
+        \label{eq:early_voltage}
+    \end{align}
+The name "Early" is related to the Early Effect, named after its discoverer James M. Early, first applied to bipolar junction transistors.
+\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 8.5.6             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Summary: Regions of Operation}
-Let's now summarize the various regions of operation, beginning with cut-off, or $V_{GS} < V_T$:
-    \begin{equation}
-        I_{DS} = 0\mathrm{A}
-    \end{equation}
-Note: this is an approximation we will make in this class.  In later courses you will learn about sub-threshold conduction and leakage in the device.  
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Next, let's consider the "Linear Region", when the device acts like a variable conductor.  In this region  $V_{GS} > V_T$, but $V_{DS} \ll V_{GS} - V_T$, resulting in
-    \begin{equation}
-        {I_{DS}} = \frac{W}{L}{\mu _n}{C_{ox}}({V_{GS}} - {V_T}){V_{DS}}
-    \end{equation}
-In the "Triode Region", defined when the channel is inverted so $V_{GS} > V_T$, a drain voltage is applied to allow current to flow, but the drain voltage does not exceed the gate-overdrive voltage, $V_{DS} < V_{GS} - V_T = V_{DS,sat}$.  The current is governed by
-    \begin{equation}
-        {I_{DS}} = \frac{W}{L}{\mu _n}{C_{ox}}({V_{GS}} - {V_T} - \frac{{{V_{DS}}}}{2}){V_{DS}}
-    \end{equation}
-Finally, if the channel is inverted at the source side but not at the drain side, we are in the "Saturation Region".  In this region, $V_{GS} > V_T$, and $V_{DS} > V_{GS} - V_T = V_{DS,sat}$.  The current is nearly constant
-    \begin{equation}
-        {I_{DS,sat}} = \frac{W}{L}\frac{{\mu {C_{ox}}}}{2}{({V_{GS}} - {V_T})^2}(1 + \lambda {V_{DS}})
-    \end{equation}
-And only varies minutely due to the channel length modulation effect described earlier. 
+Now we will summarize the various conditions that dictate which region of operation a MOSFET is operating in, and the currents associated with them.
+\subsubsection{\textbf{Cut-off region:} $V_{GS} < V_T$}
+In cut-off mode the transistor is off, and there is effectively no current that flows\footnote{This is an approximation we will make in this class.  In later courses you will learn about sub-threshold\index{MOSFET!sub-threshold} conduction and leakage in the device.}:
+    \begin{equation*}
+        \boxed{ I_{DS,off} = 0\mathrm{A} }
+    \end{equation*}
+\subsubsection{\textbf{Linear region:} $V_{GS} > V_T$,\;$V_{DS} \ll V_{GS} - V_T$}
+In this region the device acts like a variable conductor, resulting in:
+    \begin{equation*}
+        \boxed{ I_{DS,lin} = \left( \frac{W}{L} \right) \mu_n\,C_{ox} \left( V_{GS} - V_T \right)V_{DS} }
+    \end{equation*}
+\subsubsection{\textbf{Triode region:} $V_{GS} > V_T,\;V_{DS} < V_{GS} - V_T = V_{DS,sat}$}
+In the triode region the channel is inverted, and a drain voltage is applied to allow current to flow. However, the drain voltage does not exceed the gate-overdrive voltage, which governs the current by:
+    \begin{equation*}
+        \boxed{ I_{DS,tri} = \left( \frac{W}{L} \right) \mu_n\,C_{ox} \left( V_{GS} - V_T - \frac{V_{DS}}{2} \right)V_{DS} }
+    \end{equation*}
+\subsubsection{\textbf{Saturation region:} $V_{GS} > V_T,\;V_{DS} > V_{GS} - V_T = V_{DS,sat}$}
+Finally, in saturation the channel is inverted at the source side, but not at the drain side.  In this region the current is nearly constant, and only varies minutely due to the channel length modulation effect described earlier:
+    \begin{equation*}
+        \boxed{ I_{DS,sat} = \left( \frac{W}{2L} \right) \mu_n\,C_{ox} {\left( V_{GS} - {V_T} \right)}^2 (1 + \lambda V_{DS}) }
+    \end{equation*}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                   SECTION 8.6                                        %
@@ -524,28 +566,31 @@ And only varies minutely due to the channel length modulation effect described e
 %             SUBSECTION 8.6.1             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{PMOS Device}
-So far, we have derived all of our equations for an NMOS device.  The  PMOS devices work exactly the same way, but with an $N$-type body and a channel made of positive charges (holes).  As noted earlier, the schematic symbol is also different, with an arrow corresponding to the direction of current flow from the source to the drain.  Notice that holes do flow from the source to drain, so unlike an NMOS device, here the arrow and the flow of carriers is the same.  The complete square law relation is shown in \emph{Fig.~\ref{fig:idspmos}}.  Compared to the NMOS device, everything is upside down. This is only if we insist on keeping the same polarity for voltages and currents.  Let's define the current as $I_{SD}$, not $I_{DS}$.   Also $V_{SG}$ and $V_{SD}$ are positive for forward active regions, so in terms of these variables, the curves look right-side-up as shown in \emph{Fig.~\ref{fig:ids_pmos_negative}}.
+So far, we have derived all of our equations for an NMOS device.  The PMOS devices work exactly the same way, except that they have an $N$-type body, and a channel that is made of positive charges (holes).  As we noted earlier in \emph{Fig.~\ref{fig:mos_symbols}}, the schematic symbol is also different, with an arrow corresponding to the direction of current flow from the source to the drain.  Notice that holes do flow from the source to drain, so unlike an NMOS device, here the arrow and the flow of carriers is the same.  The complete square law relation is shown in \emph{Fig.~\ref{fig:idspmos}}.  Compared to the NMOS device, everything is upside down. This is only if we insist on keeping the same polarity for voltages and currents.  Let's define the current as $I_{SD}$, not $I_{DS}$.   Also $V_{SG}$ and $V_{SD}$ are positive for \textbf{forward active regions}\index{Forward active region}, so in terms of these variables, the curves look right-side-up as shown in \emph{Fig.~\ref{fig:ids_pmos_negative}}.
+
+To derive the $I$-$V$ relation of a PMOS device without repeating all the steps above, we can simply invert all voltages and currents and arrive at the same equations.  For example, the saturation current is given by:
+    \begin{align}
+        \Aboxed{ I_{SD,sat} = \left( \frac{W}{2L} \right) \mu\,C_{ox} {\big(V_{SG} - \lvert{V_{T_p}\rvert}\big)}^2 (1 + \lambda V_{SD}) } &\textit{PMOS saturation current}
+    \end{align}
+Since we inverted all the terms, we take an absolute value of the threshold voltage to make the equations identical with the NMOS case.
+\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[tb]
+\begin{figure}[t]
 \centering
-\includegraphics[width=.75\columnwidth]{idspmos}
-\caption{PMOS $I$-$V$ curves are inverted compared to the NMOS curves because the current flows in the opposite direction (holes versus electrons), and the device is biased with a negative gate-to-source voltage in order to form the hole inversion channel.}
+\includegraphics[width=\columnwidth]{idspmos}
+\caption{PMOS $I$-$V$ curves are inverted compared to the NMOS curves, because the current flows in the opposite direction (holes versus electrons), and the device is biased with a negative gate-to-source voltage in order to form the hole inversion channel.}
 \label{fig:idspmos}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-To derive the $I$-$V$ relation of a PMOS device without repeating all the steps above, we can simply invert all voltages and currents and arrive at the same equations.  For example, the saturation current is given by
-    \begin{equation}
-        {I_{SD,sat}} = \frac{W}{L}\frac{{\mu {C_{ox}}}}{2}{({V_{SG}} - {|V_{Tp}|})^2}(1 + \lambda {V_{SD}})
-    \end{equation}
-Since we inverted all the terms, we take an absolute value of the threshold voltage to make the equations identical with the NMOS case.  
+\vspace{1cm}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[tb]
+\begin{figure}[H]
 \centering
-\includegraphics[width=.75\columnwidth]{ids_pmos_negative}
+\includegraphics[width=\columnwidth]{ids_pmos_negative}
 \caption{PMOS $I$-$V$ curves "right-side-up" by flipping the orientation of the device voltage and currents.}
 \label{fig:ids_pmos_negative}
 \end{figure}
