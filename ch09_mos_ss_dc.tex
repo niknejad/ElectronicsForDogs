@@ -11,16 +11,28 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Chapter Preview}
-When the inventors of the bipolar transistor at Bell Labs first built a working device (see \emph{Fig.~\ref{fig:bjt_invent}}), the next thing they did was to build an audio amplifier to prove that the transistor was actually working.  In this chapter we are going to introduce you to your first amplifier, and discuss how we go about analyzing the amplifier using the $I$-$V$ equations we derived in the previous chapter.  The amplifier will be a \emph{"common source"} amplifier.  We will discuss bias points, also known as the operating point, and what happens when a signal is applied.  Throughout the chapter we will make a very common and important assumption, which leads to the \emph{Small Signal Analysis} technique.  This technique simply states that if the signal amplitudes are small (we will define what "small" means), we can analyze the circuit using linear techniques. This leads us to a linearized model of the circuit, which is much easier to analyze.  Finally, we will introduce the equivalent linear circuit model for a MOS transistor, and derive its small-signal parameters, such as transconductance and output resistance.  In the next chapter, we will cover charge storage effects and modify the model to include capacitors, which are needed to properly account for the frequency response of amplifiers.
+When the inventors of the bipolar transistor at Bell Labs first built a working device (see \emph{Fig.~\ref{fig:bjt_invent}}), the next thing they did was to build an audio amplifier to prove that the transistor was actually working.  In this chapter we are going to introduce you to your first amplifier, and discuss how we go about analyzing the amplifier using the $I$-$V$ equations we derived in the previous chapter.  The amplifier will be a \emph{"common source"} amplifier.  We will discuss bias points, also known as the operating point, and what happens when a signal is applied.
+
+Throughout the chapter we will make a very common and important assumption, which leads to the \emph{small signal analysis}\index{Small signal analysis} technique.  This technique simply states that if the signal amplitudes are small (we will define what "small" means), we can analyze the circuit using linear techniques. This leads us to a linearized model of the circuit, which is much easier to analyze.  Finally, we will introduce the equivalent linear circuit model for a MOS transistor, and derive its small-signal parameters, such as transconductance and output resistance.  In the next chapter, we will cover charge storage effects and modify the model to include capacitors, which are needed to properly account for the frequency response of amplifiers.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                 FIGURE                   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\centering
+\includegraphics[width=.25\columnwidth]{bjt_invent.png}
+\caption{The first transistor amplifier was demonstrated on December 23, 1947, by three scientist at Bell Laboratories.  The three scientists were Dr. Shockley, Dr. Bardeen, and Dr. Brattain, honored with the Nobel Prize in 1956.}
+\label{fig:bjt_invent}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[tb]
+\begin{figure}[t]
 \centering
-\includegraphics[width=.5\columnwidth]{bjt_invent.png}
-\caption{The first transistor amplifier was demonstrated on December 23, 1947, by three scientist at Bell Laboratories.  The three scientists were Dr. Shockley, Dr. Bardeen, and Dr. Brattain, honored with the Nobel Prize in 1956.}
-\label{fig:bjt_invent}
+\includegraphics[width=\columnwidth]{csamp_signals}
+\caption{A common source transistor amplifier biased with DC voltages $V_{GS}$ and $V_{DD}$ and driven by an AC signal $v_s$ at the input.  The output signal is taken at the drain side.}
+\label{fig:csamp_signals}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -32,93 +44,88 @@ When the inventors of the bipolar transistor at Bell Labs first built a working 
 %             SUBSECTION 9.2.1             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{A Simple Circuit: A MOS Amplifier}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                 FIGURE                   %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[tb]
-\centering
-\includegraphics[width=.75\columnwidth]{csamp_signals}
-\caption{A common source transistor amplifier biased with DC voltages $V_{GS}$ and $V_{DD}$ and driven by an AC signal $v_s$ at the input.  The output signal is taken at the drain side.}
-\label{fig:csamp_signals}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-A MOS amplifier is shown in \emph{Fig.~\ref{fig:csamp_signals}}.  Notice that a MOS transistor sits at the core of the amplifier.  The input signal is applied to the gate, and the output is taken at the drain of the transistor.  The source is ground (and so is the body, even though it's not shown explicitly).  MOS devices are biased in the saturation region so that the output current is only a function of the gate-source voltage (approximately), which means the transistor is acting like a voltage-controlled current source (see \emph{Fig.~\ref{fig:mos_building_block}}).  In order to turn the MOS "on" and bias it in saturation, the drain is pulled up through a resistor\footnote{See Appendix ~\ref{app:networks} for an explanation of pull-up and pull-down networks.} $R_D$, which is connected to the supply.  The "on" current $I_{DS,sat}$ and the resistor $R_D$ are selected together to determine the operating point.  On the gate side the appropriate $V_{GS}$ needs to be supplied to obtain the desired current $I_{DS,sat}$.  The input signal $v_{s}$ is applied in series with this gate bias voltage $V_{GS}$.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                 FIGURE                   %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[tb]
-\centering
-\includegraphics[width=.75\columnwidth]{mos_building_block}
-\caption{The MOS $I_{DS}$ vs $V_{DS}$ family of curves in saturation are nearly flat, indicating that the gate is largely responsible for the current.  The device acts like a controlled current source (amplifier).}
-\label{fig:mos_building_block}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+A \textbf{MOS amplifier}\index{Amplifier!MOS} is shown in \emph{Fig.~\ref{fig:csamp_signals}}.  Notice that an NMOS sits at the core.  The input signal is applied to the gate, and the output is taken at the drain of the transistor.  The source is ground (and the body, although not shown explicitly).  MOS devices are biased in the saturation region\index{MOSFET!saturation}, so that the output current is only a function of the gate-source voltage (approximately).  This means that the transistor is acting like a voltage-controlled current source (VCCS)\index{Voltage-controlled current source} (see \emph{Fig.~\ref{fig:mos_building_block}}).  In order to turn the MOS "on" and bias it in saturation, the drain is pulled up through a resistor\footnote{See Appendix ~\ref{app:networks} for an explanation of pull-up and pull-down networks.} $R_D$, which is connected to the supply.  The "on" current $I_{DS,sat}$ and the resistor $R_D$ are selected together to determine the operating point\index{Operating point}.  On the gate side, the appropriate $V_{GS}$ needs to be supplied to obtain the desired current $I_{DS,sat}$.  The input signal $v_{s}$ is applied in series with this gate bias voltage $V_{GS}$.
+
 A plot of input and output signals is shown in \emph{Fig.~\ref{fig:gain}}.  Note that the DC value is subtracted out.  In many cases the DC value is not of interest.  A good example is an audio amplifier.  The speaker only responds to AC signals, and sound is an AC signal.  The important point about this plot is the voltage excursions at the output are much larger than the input, providing voltage gain.  As shown in \emph{Fig.~\ref{fig:id_vgs_slope}}, the key insight is that a gate voltage modulates the source-drain current, and this current can produce a much larger drain-source voltage.  This is because the drain-source current only depends on the value of the gate voltage, and not so much on the drain-source voltage, in the saturation region. The goal of this chapter is to derive this plot in a step-by-step fashion.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                 FIGURE                   %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[tb]
-\centering
-\includegraphics[width=.75\columnwidth]{gain}
-\caption{The input signal $v_s$ and output signal $v_o$ plotted versus time.  The output voltage is an amplified (and inverted) copy of the input.}
-\label{fig:gain}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                 FIGURE                   %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[tb]
-\centering
-\includegraphics[width=.75\columnwidth]{ids_vgs_vds}
-\caption{To illustrate the transconductance of a MOSFET, we bias the device at a particular operation or Q point and excite it with a small-signal AC around the operating point.  The resulting output current can produce a larger drain voltage by using a large load resistor.}
-\label{fig:ids_vgs_vds}
-\end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 9.2.2             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Common-Source Amplifier}
 The amplifier that we have presented is known as a \textbf{Common Source}\index{Amplifers!Common source} (CS) amplifier, because the transistor source terminal is in common with both the input signal and the output signal.  Or more simply, the source is grounded to the "common" node, also known as the reference voltage.  Another way to understand this is that the "common" node does not carry the signal (both input and output).  Since a transistor has three terminals (actually 4, but the body is usually tied to the source), and a voltage is defined by 2 terminals, then you can readily count and see that there are three simple configurations for a single transistor amplifier, "common source", "common drain", and "common gate".  In this chapter we'll focus on the common source variety.
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                 FIGURE                   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[t]
+\centering
+\includegraphics[width=.9\columnwidth]{mos_building_block}
+\caption{The MOS $I_{DS}$ vs $V_{DS}$ family of curves in saturation are nearly flat, indicating that the gate is largely responsible for the current.  The device acts like a controlled current source (amplifier).}
+\label{fig:mos_building_block}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                 FIGURE                   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\centering
+\includegraphics[width=.9\columnwidth]{gain}
+\caption{The input signal $v_s$ and output signal $v_o$ plotted versus time.  The output voltage is an amplified (and inverted) copy of the input.}
+\label{fig:gain}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                   SECTION 9.3                                        %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Operating Points}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                 FIGURE                   %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[tb]
-\centering
-\subcaptionbox{(a) \label{fig:csamp_oppoint} }{\includegraphics[scale=1]{csamp_oppoint}}
-\subcaptionbox{(b) \label{fig:csamp_dc}}{\includegraphics[scale=1]{csamp_dc}}
-\caption{MOS amplifier (a) DC setup.  The voltage source $V_{GS}$ determines the quiescent current $I_{DS,Q}$, which in turn determines the output (b) DC operating voltage.  Notice the DC operating point is independent of the AC input signals.} 
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-The bias voltages (DC voltages shown in red in \emph{Fig.~\ref{fig:csamp_oppoint}}) that you apply to the MOSFET determine its \textbf{operating point}\index{Operating point}, also known as the \textbf{quiescent point}\index{Quiescent point}, or \textbf{Q-point} for simplicity.  How you bias the MOSFET will make a big difference in how it functions.  If we operate with a sufficiently high $V_{GS}$ \emph{and} a sufficiently high $V_{DS}$ to place the device in the saturation region, we can make a very good amplifier.
+The bias voltages (DC voltages shown in red in \emph{Fig.~\ref{fig:csamp_oppoint}}) that you apply to the MOSFET determine its \textbf{operating point}\index{Operating point}, also known as the \textbf{quiescent point}\index{Quiescent point}, or \textbf{Q-point} for simplicity.  The biasing of the Q-point is illustrated in \emph{Fig.~\ref{fig:ids_vgs_vds}}.  How you bias the MOSFET will make a big difference in the way that it functions.  If we operate with a sufficiently high $V_{GS}$ \emph{and} a sufficiently high $V_{DS}$ to place the device in the saturation region, we can make a very good amplifier.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 9.3.1             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Small Signal vs. Large Signal}
 We derived that $I_{DS}$ vs. $V_{GS}$ is a quadratic function for $V_{GS} > V_T$.  Therefore large changes in $V_{GS}$ result in quadratically larger changes at the output.  However, small changes in $V_{GS}$ (denoted as $v_{gs}$) will produce linear changes at the output.  We can show this using a Taylor series\footnote{See Appendix ~\ref{app:calc} for a review of the Taylor series} expansion:
     \begin{equation}
-        {I_{DS}(V_{GS} + v_{gs})} \approx I_{DS} {(V_{GS})} + \frac{dI_{DS}}{dV_{GS}} \cdot v_{gs}  
+        I_{DS}(V_{GS} + v_{gs}) \approx I_{DS}\,(V_{GS}) + \frac{dI_{DS}}{dV_{GS}} \cdot v_{gs}
     \end{equation}
-In many applications of interest, we can make this approximation and assume the signals are small with respect to the bias points\index{Bias point}, which allows us to convert MOS transistor equations into linear equations, which are much simpler to analyze.
+In many applications of interest, we can make this approximation and assume the signals are small with respect to the bias points\index{Bias point}.  This allows us to convert MOS transistor equations into linear equations, which are much simpler to analyze.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 9.3.2             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Selecting the Output Bias Point}
-As shown in \emph{Fig.~\ref{fig:csamp_dc}}, we must select the CS amplifier Q points to produce the desired response.  A common choice is to bias $V_{GS}$ so that the output is mid-rail (between $V_{DD}$ and ground).  This is a design choice, not a requirement, but doing so results in a large swing at the output.  Notice that the output cannot go larger than $V_{DD}$, and to provide gain (remain in saturation) it should not go lower than $V_{GS}-V_T$, so any drain-source voltage greater than $V_{DS,sat} = V_{GS}-V_T$ and smaller than $V_{DD}$ is possible.  Mid-rail is a good back-of-the-envelope value to maximize the AC sinusoidal swing (this assumes $V_{DS,sat}$ is very small).  This places a constraint on the DC drain current through the resistor:
+As shown in \emph{Fig.~\ref{fig:csamp_dc}}, we must select the CS amplifier Q points to produce the desired response.  A common choice is to bias $V_{GS}$ so that the output is \textbf{mid-rail}\index{Biasing!mid-rail} (between $V_{DD}$ and ground).  This is a design choice, not a requirement, but doing so results in a large swing at the output\index{Output swing}.  Notice that the output cannot go larger than $V_{DD}$, and to provide gain (remain in saturation) it should not go lower than $V_{GS}-V_T$, so any drain-source voltage greater than $V_{DS,sat} = V_{GS}-V_T$ and smaller than $V_{DD}$ is possible.  Mid-rail is a good back-of-the-envelope value to maximize the AC sinusoidal swing (this assumes $V_{DS,sat}$ is very small).  This places a constraint on the DC drain current through the resistor:
     \begin{equation}
-        {I_R} = \frac{{{V_{DD}} - {V_o}}}{{{R_D}}} = \frac{{{V_{DD}} - {V_{DS}}}}{{{R_D}}}
+        I_R = \frac{V_{DD} - V_o}{R_D} = \frac{V_{DD} - V_{DS}}{R_D}
     \end{equation}
 The resistor current flows into transistor:
     \begin{equation}
-        {I_R} = {I_{DS,sat}}
+        I_R = I_{DS,sat}
     \end{equation}
-We must ensure that this gives a self-consistent solution (transistor is biased in saturation)
+We must ensure that this gives a self-consistent solution (transistor is biased in saturation):
     \begin{equation}
-        {V_{DS}} > V_{DS,sat} = {V_{GS}} - {V_T}
+        V_{DS} > V_{DS,sat} = V_{GS} - V_T
     \end{equation}
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                 FIGURE                   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[t]
+\centering
+\subcaptionbox{\label{fig:csamp_oppoint} }{\includegraphics[scale=1.1]{csamp_oppoint}}
+\subcaptionbox{\label{fig:csamp_dc}}{\includegraphics[scale=1.1]{csamp_dc}}
+\caption{MOS amplifier (a) DC setup.  The voltage source $V_{GS}$ determines the quiescent current $I_{DS,Q}$, which in turn determines the output (b) DC operating voltage.  Notice the DC operating point is independent of the AC input signals.} 
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                 FIGURE                   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\centering
+\includegraphics[width=\columnwidth]{ids_vgs_vds}
+\caption{To illustrate the transconductance of a MOSFET, we bias the device at a particular operation or \textit{Q point}, and excite it with a small-signal AC around the operating point.  The resulting output current can produce a larger drain voltage by using a large load resistor.}
+\label{fig:ids_vgs_vds}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 9.3.3             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
