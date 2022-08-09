@@ -68,7 +68,7 @@ The amplifier that we have presented is known as a \textbf{Common Source}\index{
 \begin{figure}[H]
 \centering
 \includegraphics[width=.9\columnwidth]{gain}
-\caption{The input signal $v_s$ and output signal $v_o$ plotted versus time.  The output voltage is an amplified (and inverted) copy of the input.}
+\caption{The input signal $v_s$ and output signal $v_o$ plotted versus time.  The output voltage is an amplified (and inverted) copy of the input.  In common source amplifiers the gain is always inverted.}
 \label{fig:gain}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -93,7 +93,7 @@ In many applications of interest, we can make this approximation and assume the 
 %             SUBSECTION 9.3.2             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Selecting the Output Bias Point}
-As shown in \emph{Fig.~\ref{fig:csamp_dc}}, we must select the CS amplifier Q points to produce the desired response.  A common choice is to bias $V_{GS}$ so that the output is \textbf{mid-rail}\index{Biasing!mid-rail} (between $V_{DD}$ and ground).  This is a design choice, not a requirement, but doing so results in a large swing at the output\index{Output swing}.  Notice that the output cannot go larger than $V_{DD}$, and to provide gain (remain in saturation) it should not go lower than $V_{GS}-V_T$, so any drain-source voltage greater than $V_{DS,sat} = V_{GS}-V_T$ and smaller than $V_{DD}$ is possible.  Mid-rail is a good back-of-the-envelope value to maximize the AC sinusoidal swing (this assumes $V_{DS,sat}$ is very small).  This places a constraint on the DC drain current through the resistor:
+As shown in \emph{Fig.~\ref{fig:csamp_dc}}, we must select the CS amplifier Q points to produce the desired response.  A common choice is to bias $V_{GS}$ so that the output is \textbf{mid-rail}\index{Biasing!mid-rail} (between $V_{DD}$ and ground).  This is a design choice, not a requirement, but doing so results in a large swing at the output\index{Output swing}.  Notice that the output cannot go larger than $V_{DD}$, and to provide gain (remain in saturation) it should not go lower than $V_{GS}-V_T$, so any drain-source voltage greater than $V_{DS,sat} = V_{GS}-V_T$ and smaller than $V_{DD}$ is possible.  Mid-rail is a good back-of-the-envelope value to maximize the \textbf{AC sinusoidal swing}\index{Output swing} (this assumes $V_{DS,sat}$ is very small).  This places a constraint on the DC drain current through the resistor:
     \begin{equation}
         I_R = \frac{V_{DD} - V_o}{R_D} = \frac{V_{DD} - V_{DS}}{R_D}
     \end{equation}
@@ -130,112 +130,131 @@ We must ensure that this gives a self-consistent solution (transistor is biased 
 %             SUBSECTION 9.3.3             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Finding the Input Bias Voltage}
-For now let's ignore the output resistance (the term involving $\lambda$) to simplify the analysis:
+For now let's ignore the \textbf{output resistance}\index{Output resistance} (the term involving $\lambda$) to simplify the analysis:
     \begin{equation}
-        {I_{DS,sat}} = \frac{W}{L}{\mu _n}{C_{ox}}\frac{1}{2}{({V_{GS}} - {V_{Tn}})^2}
+        I_{DS,sat} = \frac{W}{L}\mu_n\,C_{ox}\frac{1}{2}{(V_{GS} - V_{T_n})^2}
     \end{equation}
-This means that the current through the resistor is given by
+This means that the current through the resistor is given by:
     \begin{equation}
-        {I_{{R_D}}} = \frac{{{V_{DD}}}}{{2{R_D}}} = {I_{DS,sat}} = \frac{W}{L}{\mu _n}{C_{ox}}\frac{1}{2}{({V_{GS}} - {V_{Tn}})^2}
+        I_{R_D} = \frac{V_{DD}}{2\,{R_D}} = I_{DS,sat} = \frac{W}{L}\mu_n\,C_{ox}\frac{1}{2}{(V_{GS} - V_{T_n})}^2
+        \label{eq:current_res}
     \end{equation}
-Note that we assume the voltage drop across the resistor is $V_{DD}/2$, which was our design choice.  To make this a bit less abstract, let's use some typical numbers for a long channel transistor: $W=40\mu$m, $L = 2\mu$m,  $R_D = 25$k$\Omega$, $\mu_nCox = 100\mu$A/V$^2$, $V_T = 1$V, and $V_{DD} = 5$V.  Substituting numerical values:
+Note that we assume the voltage drop across the resistor is $V_{DD}/2$ (mid-rail), which was our design choice.  To make this a bit less abstract, let's use some typical numbers for a long channel transistor: $W=40\,\mu m$, $L = 2\,\mu m$,  $R_D = 25\,k\Omega$, $\mu_n\,C_{ox} = 100\mu\,A/V^2$, $V_T = 1\,V$, and $V_{DD} = 5\,V$.  Substituting numerical values into \emph{Eq.~\ref{eq:current_res}}:
+    \begin{align*}
+        \frac{V_{DD}}{2\,{R_D}} &= \frac{5\,V}{50\,k\Omega} = I_{DS,sat} = 100\,\mu A\\[0.25cm]
+        &= \frac{W}{L}\mu_n\,C_{ox}\frac{1}{2}{(V_{GS} - V_{T_n})}^2\\[0.25cm]
+        &= \left( \cancelto{20}{\frac{40\,\mu m}{2\,\mu m}} \right) \cdot \,\left( \frac{100\,\mu A}{V^2} \right)
+                \left( \frac{1}{2} \right) {(V_{GS} - 1\,V)}^2
+    \end{align*}
+Solving for $V_{GS}$:
+    \begin{align*}
+        \cancel{100}\,\bcancel{\mu A} &= \cancelto{10}{20} \cdot \quad \left( \frac{\cancel{100}\,\bcancel{\mu A}}{V^2} \right)
+                \left( \frac{1}{\cancel{2}} \right) {(V_{GS} - 1\,V)}^2\\[0.25cm]
+                &\implies \qquad {(V_{GS} - 1\,V)}^2 = \left( \frac{1}{10} \right) V^2
+    \end{align*}
+Rearranging, we find a value for $V_{GS}$:
     \begin{equation}
-        \frac{{5{\rm{V}}}}{{50{\rm{k}}\Omega }} = 100{\rm{\mu A}} = 20 \cdot 100\frac{{{\rm{\mu A}}}}{{{{\rm{V}}^2}}} \cdot \frac{1}{2}{({V_{GS}} - 1)^2}
+        V_{GS} = \left( \sqrt{\frac{1}{10}} \right) V + 1\,V = \boxed{1.32\,V}
+        \label{eq:solve_vgs}
     \end{equation}
-and solving for $V_{GS}$, we have $.1\mathrm{V} = {({V_{GS}} - 1V)^2}$, which gives ${V_{GS}} = 1.32$V.  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Let's make sure that our assumption of operating point was correct, namely that the device is in saturation.  The $V_{DS,sat}$ is given by ${V_{GS}} - {V_T} = .32$V, and by design $V_{DS} = 2.5$V, so $V_{DS,sat} < {V_{DS}} = 2.5$V, which confirms our assumption.
+We need to check the result from \emph{Eq.~\ref{eq:solve_vgs}} to make sure that our assumption of operating point\index{Operating point} was correct, namely that the device is in saturation.  The $V_{DS,sat}$ is given by $V_{GS} - V_T = 0.32\,V$, and by design $V_{DS} = 2.5\,V$.  So $V_{DS,sat} < V_{DS} = 2.5\,V$, which confirms our assumption.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 9.3.4             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Applying the AC Voltage:  The "Hard Way"}
-To find the output signal, we'll take two approaches.  The first is the "hard way" because it involves many steps and a lot of approximations.  Later we'll introduce the "easy way" which leads directly to a linear circuit that we can analyze with known techniques.  
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-In our first approach to solving for the output voltage, we will just use $v_{gs}$ in the equations for the total drain current $I_{DS}$  and find $v_o$ :
+To find the output signal, we'll take two approaches.  The first is the "hard way" because it involves many steps and a lot of approximations.  Later we will introduce the "easy way" which leads directly to a linear circuit that we can analyze with known techniques.  
+
+In our first approach to solving for the output voltage, we will just use $v_{gs}$ in the equations for the total drain current $I_{DS}$, and find $v_o$:
+    \begin{align}
+        V_{GS} &= V_{GS,Q} + v_{gs}\\[0.55cm]
+        v_{gs} &= {V_s}\cos \omega t\\[0.25cm]
+        V_o &= V_{DD} - R_D\,I_{DS} = V_{DD} - R_D \bigg[\left(\frac{W}{2L}\right)\mu_n\,C_{ox}{(V_{GS,Q} + v_{gs} - V_T)^2} \bigg]
+    \end{align}
+We are neglecting charge storage effects, and we are also ignoring the device output resistance to keep things simple.  Now let's solve for the output voltage $v_o$:
     \begin{equation}
-        {V_{GS}} = {V_{GS,Q}} + {v_{gs}}
-    \end{equation}
-    \begin{equation}
-        v_{gs} = {\hat V_s}\cos \omega t
-    \end{equation}
-    \begin{equation}
-        {V_o} = {V_{DD}} - {R_D}{I_{DS}} = {V_{DD}} - {R_D}{\mu _n}{C_{ox}}\frac{W}{L}\frac{1}{2}{({V_{GS,Q}} + {v_{gs}} - {V_T})^2}
-    \end{equation}
-We are neglecting charge storage effects and we're ignoring the device output resistance to keep things simple.  Now let's solve for the output voltage $v_o$:
-    \begin{equation}
-        {V_o} = {V_{DD}} - {R_D}{I_{DS}} = {V_{DD}} - {R_D}\left( {\mu _n}{C_{ox}}\frac{W}{L}\frac{1}{2}{({V_{GS}} + {v_{gs}} - {V_T})^2} \right)
+        V_o = V_{DD} - R_D\,I_{DS} = V_{DD} - R_D \bigg[\left(\frac{W}{2L}\right)\mu_n\,C_{ox}{(V_{GS} + v_{gs} - V_T)^2} \bigg]
     \end{equation}
 Focusing on the drain current, we note that it can be factored into two terms, the bias point $I_{DS,Q}$ and the signal:
     \begin{equation}
-        I_{DS} = \underbrace{{\mu _n}{C_{ox}}\frac{W}{L}\frac{1}{2}{({V_{GS}} - {V_T})^2}}_{I_{DS,Q}}{\left( {1 + \frac{{{v_{gs}}}}{{{V_{GS}} - {V_T}}}} \right)^2}
+        I_{DS} = \underbrace{\left(\frac{W}{2L}\right)\mu_n\,C_{ox}{\big(V_{GS} - V_T\big)}^2}_{I_{DS,Q}}
+                    \cdot {\left({1 + \frac{v_{gs}}{V_{GS} - V_T}} \right)}^2
     \end{equation}
 The bias current $I_{DS,Q}$ was selected to produce a mid-rail output voltage:
-    \begin{equation}
-        {V_o} = {V_{DD}} - \underbrace{ {R_D}{I_{DS,Q}}}_{\frac{V_{DD}}{2}}{\left( {1 + \frac{{{v_{gs}}}}{{{V_{GS}} - {V_T}}}} \right)^2}
-    \end{equation}
-The above equation is the "Large Signal" output voltage as a function of the input voltage.
+    \begin{align}
+        \Aboxed{V_o &= V_{DD} -\underbrace{(R_D\,I_{DS,Q})}_{\frac{V_{DD}}{2}} {\left(1 + \frac{v_{gs}}{V_{GS} - {V_T}} \right)}^2}
+        & \textit{Large-signal output voltage}
+    \end{align}
+The above equation is the \textbf{"Large Signal" output voltage}\index{Amplifier!large-signal output voltage} as a function of the input voltage.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 9.3.5             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Small-Signal Simplifications}
 We linearize the output voltage for the small-signal case by expanding  $(1+x)^2 = 1 + 2x + x^2$.  The last term can be dropped when $x \ll 1$ (the small-signal case):
     \begin{equation}
-        {\left( {1 + \frac{{{v_{gs}}}}{{{V_{GS}} - {V_T}}}} \right)^2} = 1 + \frac{{2{v_{gs}}}}{{{V_{GS}} - {V_T}}} + \cancel{\left( {\frac{{{v_{gs}}}}	{{{V_{GS}} - {V_T}}}} \right)^2}
+        {\left(1 + \frac{v_{gs}}{V_{GS} - {V_T}} \right)}^2
+        = 1 + 2\left( \frac{v_{gs}}{V_{GS} - {V_T}} \right) + \cancelto{0}{{\left(\frac{v_{gs}}{V_{GS} - {V_T}} \right)}^2}
     \end{equation}
-which leads to the following equation for the output voltage:
+This leads to the following equation for the output voltage:
     \begin{equation}
-        {V_o} \approx {V_{DD}} - {R_D}{I_{DS,Q}}\left( {1 + \frac{{2{v_{gs}}}}{{{V_{GS}} - {V_T}}}} \right)
+        V_o \approx V_{DD} - \big(R_D\,I_{DS,Q}\big) \left( 1 + \frac{2\,v_{gs}}{V_{GS} - {V_T}} \right)
+        \approx V_{DD} - I_{DS,Q}\,R_{D} - \frac{2\,I_{DS,Q}\,R_D\,v_{gs}}{V_{GS} - V_T}
     \end{equation}
 This can be further simplified by identifying the DC terms (bias) and the signal terms (AC):
-    \begin{equation}
-        {V_o} \approx ({V_{DD}} - {I_{DS,Q}}{R_{D}}) - \frac{{2{I_{DS,Q}}{R_{D}}{v_{gs}}}}{{{V_{GS}} - {V_T}}} = \frac{{{V_{DD}}}}{2} - \frac{{{V_{DD}}{v_{gs}}}}{{{V_{GS}} - {V_T}}}
-    \end{equation}
-As written, the first term is just the DC bias point, which we designed for maximum swing:  $V_{DD} - I_{DS,Q} R_{D} = \frac{V_{DD}}{2}$.  The small-signal output voltage is:
-    \begin{equation}
-        v_o \approx  - \frac{2I_{DS,Q} R_{D} v_{gs}}{V_{GS} - V_T} = \underbrace{ - \frac{V_{DD}}{V_{GS} - V_T}}_{\text{voltage gain } A_v}  v_{gs}
-    \end{equation}
-Since $V_{DD} > V_{GS} - V_T$, the output voltage is a larger copy of the input, or we have realized voltage gain!  This analysis implies that we should use a high supply $V_{DD}$ and a low over-drive voltage $V_{DS,sat} = V_{GS} - V_T$.  For example, using numbers from our earlier example, let's take $V_{DD} / (V_{GS} - V_T) = 5\mathrm{V}/.32\mathrm{V} = 16$.  The plot of \emph{Fig.~\ref{fig:gain}} was generated in this case, showing a gain of $16$.  Notice that the gain is "inverting", which is always the case for CS amplifiers.
+    \begin{align}
+        V_o &\approx V_{DD} - \left( I_{DS,Q}\,R_{D} \right) - \frac{2\left(I_{DS,Q}\,R_D\right)v_{gs}}{V_{GS} - V_T}\\[0.25cm]
+        &= V_{DD} - \left( \frac{V_{DD}}{2} \right) - \frac{2\left( \frac{V_{DD}}{2} \right)v_{gs}}{V_{GS} - V_T}\\[0.25cm]
+        &=  \frac{V_{DD}}{2} - \frac{V_{DD}\,v_{gs}}{V_{GS} - V_T}
+        \label{eq:small_signal_eq}
+    \end{align}
+As written, the first term in \emph{Eq.~\ref{eq:small_signal_eq}} is just the DC bias point, which we designed for maximum swing:  $V_{DD} - I_{DS,Q} R_{D} = \frac{V_{DD}}{2}$.  The second term is the \textbf{small-signal output voltage}\index{Amplifier!small-signal output voltage}:
+    \begin{align}
+        \Aboxed{v_o &\approx  - \frac{2\,I_{DS,Q}\,R_{D}\,v_{gs}}{V_{GS} - V_T}
+        = \underbrace{-\left(\frac{V_{DD}}{V_{GS} - V_T}\right)}_{voltage\;gain,\,A_v}v_{gs}} &\textit{Small-signal output voltage}
+    \end{align}
+Since $V_{DD} > V_{GS} - V_T$, the output voltage is a larger copy of the input, and we have realized voltage gain!  This analysis implies that we should use a high supply $V_{DD}$, and a low overdrive voltage $V_{DS,sat} = V_{GS} - V_T = V_{OD}$.  For example, using numbers from our earlier example, let's take $V_{DD} / (V_{GS} - V_T) = 5\,V / 0.32\,V$, which gives us a gain of 16.  The plot of \emph{Fig.~\ref{fig:gain}} was generated in this case, and shows a gain of $16$.  Notice that the gain is "inverting", which is always the case for CS amplifiers.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                   SECTION 9.4                                        %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Amplifier Design and Analysis Using the Small-Signal Approach}
-Even though we arrived at a final answer, we did make two key simplifying assumptions.  First we neglected the device output resistance.  Second, we ignored all charge storage effects.  Together these effects lead to a set of coupled non-linear differential equations, which are painfully difficult to solve in the general case.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-In the second approach, called the "Small-Signal Analysis", we solve the problem in two steps.  First we solve for DC voltages and currents.  In this step we ignore AC signal sources.  This step is essentially to find the bias point of the MOSFET.  Notice that this step is identical to the steps we took earlier.  Next we substitute a small-signal model for the MOSFET and the small-signal models of the other circuit elements and use standard AC circuit analysis techniques to arrive at the desired solution, say the voltage gain. This constitutes small-signal analysis.  In the next chapter we'll add capacitors to allow us to predict the frequency response of amplifiers.
+Even though we arrived at a final answer, we did make two key simplifying assumptions.  First we neglected the device output resistance.  Second, we ignored all charge storage effects.  Together, these effects lead to a set of coupled non-linear differential equations\index{Differential equation!non-linear}, which are painfully difficult to solve in the general case.
+
+In the second approach, called the \textit{"Small-Signal Analysis"}\index{Small-signal analysis}, we solve the problem in two steps.  First we solve for DC voltages and currents.  In this step we ignore AC signal sources.  This step is essentially to find the bias point of the MOSFET.  Notice that this step is identical to the steps we took earlier.  Next we substitute a small-signal model for the MOSFET, and the small-signal models of the other circuit elements.  This allows us to use standard AC circuit analysis techniques to arrive at the desired solution, say the voltage gain. This constitutes small-signal analysis.  In the next chapter we will add capacitors to allow us to predict the frequency response\index{Frequency response} of amplifiers.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 9.4.1             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Small-Signal Current}
-In general the current $I_{DS}$ is a function of both $V_{GS}$ and $V_{DS}$.  In the small-signal approximation, we begin by decomposing the drain-source current into two terms, the DC and AC parts:
+In general, the current $I_{DS}$ is a function of both $V_{GS}$ and $V_{DS}$.  In the small-signal approximation, we begin by decomposing the drain-source current into two terms, the DC and AC parts:
     \begin{equation}
         I_{DS}(V_{GS},V_{DS}) = {I_{DS,Q}} + {i_{ds}}
     \end{equation}
-and perform a Taylor Series expansion of the current:
+Then we perform a Taylor Series expansion\index{Taylor expansion} of the current:
     \begin{equation}
-        I_{DS}(V_{GS} + v_{gs},V_{DS} + v_{ds}) \approx I_{DS,Q} + \left. \frac{{\partial {I_{DS}}}} {{\partial {V_{GS}}}} \right|_Q{v_{gs}} + \left. \frac{{\partial {I_{DS}}}}{{\partial {V_{DS}}}} \right|_Q {v_{ds}} + \cdots
+        I_{DS}(V_{GS} + v_{gs},V_{DS} + v_{ds})
+        \approx I_{DS,Q} + \frac{\partial{I_{DS}}}{\partial{V_{GS}}} \bigg\rvert_Q \cdot v_{gs}
+                + \frac{\partial{I_{DS}}}{\partial{V_{DS}}} \bigg\rvert_Q \cdot v_{ds} + \dots
     \end{equation}
-If we ignore all terms but the linear, the AC output signal is given by the simple relation:
-    \begin{equation}
-        {i_{ds}} = {g_m}{v_{gs}} + \frac{1}{{{r_o}}}{v_{ds}}
-    \end{equation}
-with
-    \begin{equation}
-        g_m = \left. \frac{{\partial {I_{DS}}}} {{\partial {V_{GS}}}} \right|_Q
-    \end{equation}
-and
-    \begin{equation}
-        g_o = \frac{1}{r_o} = \left. \frac{{\partial {I_{DS}}}}{{\partial {V_{DS}}}} \right|_Q 
-    \end{equation}
-The first term is known as the \textit{trans}conductance $g_m$.  The second term is known as the output conductance $g_o$, or the inverse of the output resistance $r_o$.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+If we ignore all terms but the linear, the \textbf{AC output signal}\index{AC output signal} is given by the simple relation:
+    \begin{align}
+        \Aboxed{i_{ds} &= g_m\,v_{gs} + \left(\frac{1}{r_o}\right) v_{ds}} &\textit{AC output signal}
+    \end{align}
+$g_m$ is the (\textbf{trans}fer \textbf{conductance}\index{Transconductance}:
+    \begin{align}
+        \Aboxed{g_m = \frac{\partial{i_{DS}}}{\partial{v_{GS}}} \bigg\rvert_Q} &\textit{Transconductance}
+    \end{align}
+$g_o$ is the \textbf{output conductance}\index{Output conductance}, which is the inverse of the output resistance:
+    \begin{align}
+        \Aboxed{g_o = \frac{1}{r_o} = \frac{\partial{i_{DS}}}{\partial{v_{DS}}}\bigg\rvert_Q} &\textit{Output conductance}
+    \end{align}
 The meaning of $g_m$ is illustrated graphically in \emph{Fig.~\ref{fig:id_vgs_slope}}.  First we hold $V_{DS}$ constant at $V_{DS,Q}$ and sweep the gate-to-source voltage $V_{GS}$ and plot the current, as shown.   We are implicitly assuming that  $V_{DS} > V_{DS,sat} = V_{GS} - V_T$ so that the quadratic relation holds.  Then we evaluate the slope of the curve at the operating point of interest, $V_{GS,Q}$.  This slope represents the small-signal current produced by a small voltage excursion of $v_{gs}$ about the operating point.
+\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[tb]
+\begin{figure}[t]
 \centering
-\includegraphics[width=.75\columnwidth]{id_vgs_slope}
+\includegraphics[width=.85\columnwidth]{id_vgs_slope}
 \caption{The transconductance $g_m$ is the slope of the $I_{DS}$ vs $V_{GS}$ curve for a fixed value of $V_{DS}$.}
 \label{fig:id_vgs_slope}
 \end{figure}
@@ -243,136 +262,143 @@ The meaning of $g_m$ is illustrated graphically in \emph{Fig.~\ref{fig:id_vgs_sl
 %             SUBSECTION 9.4.2             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{The MOS \textit{Transconductance}}
-In saturation the drain-source current is given by:
+By using the definition of transconductance (the change in drain current due to a change in the \textit{gate-source} voltage), and the MOSFET saturation drain current (\emph{Eq.~\ref{eq:mosfet_ids}}), with \textit{everything else constant}, we evaluate the derivative of $I_{DS,sat}$ with respect to $V_{GS}$:
+    \begin{align}
+        g_m &= \frac{\Delta I_D}{\Delta V_{GS}} \bigg\rvert_{V_{GS},V_{DS}}
+        = \frac{\partial I_{DS}}{\partial V_{GS}} \bigg\rvert_{V_{GS},V_{DS}}
+        = \left( \frac{W}{L} \right) \mu_n\,C_{ox} \big(V_{GS} - V_T)(1 +\underbrace{\lambda V_{DS}}_{\approx 0}\big)\\[0.25cm]
+        &= \left( \frac{W}{L} \right) \mu_n\,C_{ox} \big(V_{GS,Q} - V_T)
+        = \left( \frac{W}{L} \right) \mu_n\,C_{ox} \big(V_{DS,sat}\big)
+        \label{eq:gm_sol}
+    \end{align}
+This equation shows that $g_m$ is a strong function of the gate-overdrive voltage ($V_{GS} - V_T$), the device mobility $\mu$, and the gate-oxide capacitance $C_{ox}$.  We can write $g_m$ in other equivalent forms.  For instance, by solving for $V_{GS}-V_T$ from \emph{Eq.~\ref{eq:mosfet_ids}} (with $\lambda = 0$), and substituting into \emph{Eq.~\ref{eq:gm_sol}}:
     \begin{equation}
-        {I_{DS,sat}} = \frac{W}{L}\frac{{\mu {C_{ox}}}}{2}{({V_{GS}} - {V_T})^2}(1 + \lambda {V_{DS}})
-        \label{eq:ids}
-    \end{equation} 
-By using the definition of transconductance, the change in drain current due to a change in the \textit{gate-source} voltage, with \textit{everything else constant}, we evaluate the derivative of $I_{DS,sat}$ with respect to $V_{GS}$:
-    \begin{equation}
-        {g_m} = {\left. {\frac{{\Delta {i_D}}}{{\Delta {v_{GS}}}}} \right|_{{V_{GS,}}{V_{DS}}}} = {\left. {\frac{{\partial {i_D}}}{{\partial {v_{GS}}}}} \right|_{{V_{GS,}}{V_{DS}}}} = \mu {C_{ox}}\frac{W}{L}({V_{GS}} - {V_T})(1 +\underbrace{ \lambda {V_{DS}}}_{\approx 0})
+        g_m = \left( \frac{W}{L} \right) \mu_n\,C_{ox} \sqrt{\frac{2L\cdot I_{DS}}{W\,\mu\,C_{ox}}}
+        = \sqrt{\frac{2L\,\mu^2\,W^2\,{C_{ox}}^2\cdot I_{DS}}{L^2\,W\,\mu\,C_{ox}}}
+        = \boxed{ \sqrt{\left( \frac{2W}{L} \right)\mu\,C_{ox}\,I_{DS}} }
+        \label{eq:gm_increasing_bias}
     \end{equation}
+\emph{Eq.~\ref{eq:gm_increasing_bias}} shows that the $g_m$ increases like $\sqrt{I_{DS}}$ with increasing bias.  Finally, we can express $g_m$ in a third way, by dividing \emph{Eq.~\ref{eq:mosfet_ids}} by $V_{GS}-V_T$:
     \begin{equation}
-        {g_m} = \mu {C_{ox}}\frac{W}{L}({V_{GS,Q}} - {V_T}) = \mu {C_{ox}}\frac{W}{L}(V_{DS,sat})
-    \end{equation}
-This equation shows that $g_m$ is a strong function of the gate-overdrive voltage, defined as the gate bias beyond threshold, $V_{GS} - V_T$, and the device mobility $\mu$ and gate-oxide capacitance $C_{ox}$.  We can write $g_m$ in other equivalent forms, for instance by substitution of $V_{GS}-V_T$ from \emph{Eq.~\ref{eq:ids}} (with $\lambda = 0$):
-    \begin{equation}
-        {g_m} = \mu {C_{ox}}\frac{W}{L}\sqrt {\frac{{2{I_{DS}}}}{{\frac{W}{L}\mu {C_{ox}}}}}  = \sqrt {2\mu{C_{ox}}\frac{W}{L}{I_{DS}}}
-    \end{equation}
-which shows the $g_m$ increases like $\sqrt{I_{DS}}$ with increasing bias.  Finally, we can express $g_m$ in a third way by dividing \emph{Eq.~\ref{eq:ids}} by $V_{GS}-V_T$:
-    \begin{equation}
-        {g_m} = \frac{{2{I_{DS}}}}{{({V_{GS}} - {V_T})}} \label{eq:gm_vstar}
+        \frac{I_{DS,sat}}{V_{GS} - V_T} =
+            \frac{1}{2} \underbrace{\bigg[ \left( \frac{W}{L} \right) \mu\,C_{ox}\,\big(V_{GS} - V_T\big) \bigg]}_{g_m} = \frac{g_m}{2}
+            \implies \boxed{g_m = \frac{2\,I_{DS}}{V_{GS} - V_T}}
+            \label{eq:gm_vstar}
     \end{equation} 
 This form may seem the most ambiguous, because it depends on both the bias current and the gate-overdrive, but it turns out to be a very useful way to compare the required $g_m$ to meet certain specifications, as we will show in the following chapters.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%             SUBSECTION 9.4.3             %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Output Resistance \texorpdfstring{$r_o$}{}}
+\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[tb]
+\begin{figure}[t]
 \centering
-\includegraphics[width=.75\columnwidth]{ids_idsat_ro}
+\includegraphics[width=\columnwidth]{ids_idsat_ro}
 \caption{The output conductance $g_o$ is the slope of the $I_{DS}$ vs $V_{DS}$ curve for a fixed value of $V_{GS}$.  It's more common to state the output resistance $r_o = g_o^{-1}$.}
 \label{fig:ids_idsat_ro}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-We again start with \emph{Eq.~\ref{eq:ids}}, but now to find $g_o$ ($1/r_o$), defined as the change in drain current due to a change in the \textit{drain-source} voltage, with \textit{everything else constant}.  In other words:
+%             SUBSECTION 9.4.3             %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Output Resistance \texorpdfstring{$r_o$}{}}
+We again start with \emph{Eq.~\ref{eq:mosfet_ids}}, but now to find $g_o$ ($1/r_o$), defined as the change in drain current due to a change in the \textit{drain-source} voltage, with \textit{everything else constant}.  In other words:
     \begin{equation}
-        {g_o} = \,{ {{{\left. {\frac{{\partial {i_D}}}{{\partial {v_{DS}}}}} \right|}_{{V_{GS}},{V_{DS}}}}} }
+        g_o = \frac{\partial i_D}{\partial v_{DS}} \bigg\rvert_{V_{GS},V_{DS}}
     \end{equation}
-or
+As shown in \emph{Fig.~\ref{fig:ids_idsat_ro}}, it is more common to state the output resistance, which is the reciprocal of the output conductance:
     \begin{equation}
-        {r_o} = \,{\left( {{{\left. {\frac{{\partial {i_D}}}{{\partial {v_{DS}}}}} \right|}_{{V_{GS}},{V_{DS}}}}} \right)^{ - 1}}
+        r_o = {\frac{\partial i_D}{\partial v_{DS}} \bigg\rvert_{V_{GS},V_{DS}}}^{-1}
     \end{equation}
-Since the current in \emph{Eq.~\ref{eq:ids}} is only a linear function of $V_{DS}$, the derivative is easy to evaluate:
+Since the current in \emph{Eq.~\ref{eq:mosfet_ids}} is only a linear function of $V_{DS}$, the derivative is easy to evaluate:
     \begin{equation}
-        {r_o} = \frac{1}{{\frac{W}{L}\frac{{\mu {C_{ox}}}}{2}{{({V_{GS}} - {V_T})}^2}\lambda }}
+        r_o = \frac{1} {\frac{W}{L}\frac{\mu\,C_{ox}}{2} {(V_{GS} - V_T)}^2\;\lambda}
     \end{equation}
 If $\lambda$ is small, then the current is approximately the term in the denominator:
-    \begin{equation}
-        {r_o} \approx \frac{1}{{\lambda {I_{DS}}}}
-    \end{equation}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%             SUBSECTION 9.4.4             %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Small-Signal Model for MOSFET}
+    \begin{align}
+        \Aboxed{r_o &\approx \frac{1}{\lambda\,I_{DS}}} &\textit{Output resistance}
+    \end{align}
+\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[tb]
+\begin{figure}[t]
 \centering
-\includegraphics[scale=1]{mos3term_ac_nocap}
+\includegraphics[scale=1.5]{mos3term_ac_nocap}
 \caption{The small-signal equivalent circuit model of a NMOS device.  This is a three terminal model and does not include any charge storage effects.}
 \label{fig:mos3term_ac_nocap}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-If we translate the derived equation for the small-signal linearized current, repeated here for convenience,
-    \begin{equation}
-        {i_{ds}} = {g_m}{v_{gs}} + \frac{1}{{{r_o}}}{v_{ds}}
-    \end{equation}
-into a circuit diagram, we obtain the simplified  3-terminal small-signal model for a MOSFET shown in \emph{Fig.~\ref{fig:mos3term_ac_nocap}}.  In the next chapter, we will develop a more complete model.  It's important to note that once you specify the DC operating point of an amplifier, you also fix the small-signal parameters.  Thus to determine the small-signal circuit, you only need to know the DC operating point.
+%             SUBSECTION 9.4.4             %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Small-Signal Model for MOSFET}
+The derived equation for the small-signal linearized current\index{MOSFET!small-signal current}, repeated here for convenience:
+    \begin{align}
+        \Aboxed{i_{ds} &= g_m\,v_{gs} + \left( \frac{1}{r_o} \right) v_{ds}} &\textit{MOSFET small-signal current}
+        \label{eq:mosfet_small_signal_current}
+    \end{align}
+If we translate \emph{Eq.~\ref{eq:mosfet_small_signal_current}} into a circuit diagram, we obtain the simplified  3-terminal small-signal model for a MOSFET shown in \emph{Fig.~\ref{fig:mos3term_ac_nocap}}.  In the next chapter, we will develop a more complete model.  It is important to note that once you specify the DC operating point of an amplifier, you also fix the small-signal parameters.  Thus, to determine the small-signal circuit, you only need to know the DC operating point\index{Operating point}.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 9.4.5             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Small-Signal Analysis Steps:  The "Easy Way"}
 Earlier we solved for the small-signal response of the amplifier the "hard way".  Now we have introduced a systematic approach.  We can summarize the small-signal analysis technique by breaking it down into simple steps:
+\vspace{0.45cm}
     \begin{enumerate}
-    	\item  Calculate bias points using DC sources
-    	\item  Use the bias point to determine the MOSFET region of operation as well as to calculate small-signal parameters
-    	\item  Turn off DC sources in the schematic (short DC voltages, open DC currents)
-    	\item  Redraw the schematic by using the small-signal model for the MOSFET in place of the transistor
-    	\item  Calculate the gain ($v_{out}/v_{in}$) of the circuit, or any other parameter of interest.
+    	\item{Calculate the bias points using DC sources.}
+    	\vspace{0.25cm}
+    	\item{Use the bias point to determine the MOSFET region of operation, as well as to calculate small-signal parameters.}
+    	\vspace{0.25cm}
+    	\item{Turn off the DC sources in the schematic (short DC voltages, open DC currents).}
+    	\vspace{0.25cm}
+    	\item{Redraw the schematic by using the small-signal model for the MOSFET in place of the transistor.}
+    	\vspace{0.25cm}
+    	\item{Calculate the gain $\left(\mathlarger{\frac{v_{out}}{v_{in}}}\right)$ of the circuit, or any other parameter of interest.}
     \end{enumerate}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %              SUB-SUBSECTION              %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Small Signal Analysis:  Step 1 and 2}
-We already found the DC operating point in the earlier part of this chapter.  From the DC operating point we can next calculate the small-signal parameters of the transistor:
-    \begin{equation}
-        {g_m} = \frac{{2{I_{DS}}}}{{({V_{GS}} - {V_T})}}
-    \end{equation}
-    \begin{equation}
-        {r_o} \approx \frac{1}{{\lambda {I_{DS}}}}
-    \end{equation}
+We already found the DC operating point in the earlier part of this chapter.  From the DC operating point we can next calculate the \textbf{small-signal parameters}\index{MOSFET!small-signal parameters} of the transistor:
+    \begin{align*}
+        \Aboxed{g_m &= \frac{2\,I_{DS}}{(V_{GS} - V_T)}} &\textit{Transconductance}\\[0.5cm]
+        \Aboxed{r_o &\approx \frac{1}{\lambda\,I_{DS}}} &\textit{Output resistance}
+    \end{align*}
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                 FIGURE                   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[t]
+\centering
+\includegraphics[scale=1.15]{cs_amp_ac}
+\caption{The AC model of a the amplifier is produced by shorting out all DC voltage sources.} \label{fig:cs_amp_ac}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                 FIGURE                   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\centering
+\includegraphics[scale=1.25]{cs_amp_ss1}
+\caption{The small-signal AC model of the NMOS common-source amplifier\index{Amplifier!common-source}. Note that this is derived by replacing the NMOS transistor (\emph{Fig.~\ref{fig:cs_amp_ac}}) with its small-signal equivalent circuit (\emph{Fig.~\ref{fig:mos3term_ac_nocap}}).}
+\label{fig:cs_amp_ss1}
+\end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %              SUB-SUBSECTION              %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Small Signal Analysis:  Step 3}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                 FIGURE                   %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[tb]
-\centering
-\includegraphics[scale=1]{cs_amp_ac}
-\caption{The AC model of a the amplifier is produced by shorting out all DC voltage sources.} \label{fig:cs_amp_ac}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 In this step we turn off all DC sources, as shown in \emph{Fig.~\ref{fig:cs_amp_ac}}.  The DC voltage sources become shorts and DC current sources become opens.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %              SUB-SUBSECTION              %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Small Signal Analysis:  Step 4}
+Now we draw a new schematic, by replacing the transistor with its small-signal model, shown in \emph{Fig.~\ref{fig:cs_amp_ss1}}.  As you become more proficient at analyzing transistor circuits, you can sometimes avoid this step. But that will come later, maybe in this class or maybe in your next.  For now it's totally okay to just draw out the circuit to familiarize yourself with it.
+
+Instead of a "macro" replacement, you should actually redraw the circuit to simplify the connections and make things as obvious as possible. This will facilitate "inspection" style analysis. For example, you will be able to identify that $R_D$ and $r_o$ are in parallel, so you can treat them as a single equivalent resistor.  See \emph{Fig.~\ref{fig:cs_amp_ss2}}.
+\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[tb]
+\begin{figure}[t]
 \centering
-\includegraphics[scale=1]{cs_amp_ss1}
-\caption{The small-signal AC model of the NMOS CS amplifier. Note that this is derived by replacing the NMOS transistor (\emph{Fig.~\ref{fig:cs_amp_ac}}) with its small-signal equivalent circuit (\emph{Fig.~\ref{fig:mos3term_ac_nocap}}).}
-\label{fig:cs_amp_ss1}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Now we draw a new schematic, by replacing the transistor with its small-signal model, shown in \emph{Fig.~\ref{fig:cs_amp_ss1}}.  As you become more proficient at analyzing transistor circuits, you can sometimes avoid this step. But that'll come later, maybe in this class or maybe in your next.  For now it's totally okay to just draw out the circuit to familiarize yourself with it.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Instead of a "macro" replacement, you should actually redraw the circuit to simplify the connections and make things as obvious as possible. This will facilitate "inspection" style analysis. For example, you'll be able to identify that $R_D$ and $r_o$ are in parallel, so you can treat them as a single equivalent resistor.  See \emph{Fig.~\ref{fig:cs_amp_ss2}}.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                 FIGURE                   %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[tb]
-\centering
-\includegraphics[scale=1]{cs_amp_ss2}
+\includegraphics[scale=1.5]{cs_amp_ss2}
 \caption{A simplified small-signal AC model of the amplifier, derived from \emph{Fig.~\ref{fig:cs_amp_ss1}}.} \label{fig:cs_amp_ss2}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -381,23 +407,33 @@ Instead of a "macro" replacement, you should actually redraw the circuit to simp
 \subsubsection{Small Signal Analysis:  Step 5}
 Now we are ready to analyze the circuit like any other linear AC circuit.  You can find the gain, the input/output impedance, etc.  This circuit is very easy to analyze, and the output voltage is given by
     \begin{equation}
-        v_o = -g_m v_{gs} \cdot r_o || R_D 
+        v_o = -g_m v_{gs} \left( r_o \big|\big| R_D \right)
     \end{equation}
 Notice that the input signal $v_s$ is actually the same as $v_{gs}$, so we have
     \begin{equation}
-        A_v = \frac{v_o}{v_s} = -g_m r_o || R_D
+        A_v = \frac{v_o}{v_s} = -g_m\left( r_o \big|\big| R_D \right)
     \end{equation}
-We have the device output resistance in this analysis "for free" where we neglected it in the "hard way" analysis we did earlier.   Still the final answer doesn't seem to agree with our earlier analysis.  To see why, first write $g_m$ in terms of the transistor bias.  In this case, it's convenient to use this form
+We have the device output resistance in this analysis "for free", where we neglected it in the "hard way" analysis we did earlier.  Still, the final answer doesn't seem to agree with our earlier analysis.  To see why, first write $g_m$ in terms of the transistor bias.  In this case, it is convenient to use this form:
     \begin{equation}
-        g_m = \frac{2 I_{DS,Q}}{V_{GS,Q}-V_T}
+        g_m = \frac{2\,I_{DS,Q}}{V_{GS,Q} - V_T}
     \end{equation}
     \begin{equation}
-        A_v =  -\frac{2 I_{DS} r_o||R_D}{V_{GS}-V_T}
+        A_v =  -\frac{2\,I_{DS}\left( r_o \big|\big| R_D \right)}{V_{GS} - V_T}
     \end{equation}
-If we assume $r_o \gg R_D$, then we get the same result as before because $I_D R_D = \frac{V_{DD}}{2}$:
+If we assume $r_o \gg R_D$, then we get the same result as before because $I_D\,R_D = \mathlarger{\frac{V_{DD}}{2}}$:
     \begin{equation}
-        A_v \approx  -\frac{2 I_{DS} R_D}{V_{GS}-V_T} = \frac{2\frac{V_{DD}}{2} }{V_{GS}-V_T} = \frac{V_{DD}}{V_{GS}-V_T}
+        A_v \approx  -\frac{2\,I_{DS}\,R_D}{V_{GS} - V_T} = \frac{2\frac{V_{DD}}{2}}{V_{GS} - V_T} = \frac{V_{DD}}{V_{GS} - V_T}
     \end{equation}
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                 FIGURE                   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[t]
+\centering
+\includegraphics[scale=1.5]{pmos3term_dc}
+\caption{The PMOS small-signal equivalent circuit model.  Compare with \emph{Fig.~\ref{fig:mos3term_ac_nocap}}.}
+\label{fig:pmos3term_dc}
+\end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                   SECTION 9.5                                        %
@@ -408,52 +444,43 @@ If we assume $r_o \gg R_D$, then we get the same result as before because $I_D R
 %             SUBSECTION 9.5.1             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Small-Signal PMOS Model}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                 FIGURE                   %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[tb]
-\centering
-\includegraphics[scale=1]{pmos3term_dc}
-\caption{The PMOS small-signal equivalent circuit model.  Compare with \emph{Fig.~\ref{fig:mos3term_ac_nocap}}.}
-\label{fig:pmos3term_dc}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-So far we have focused on the NMOS device. Let's introduce the PMOS small-signal model shown in \emph{Fig.~\ref{fig:pmos3term_dc}}.  This model looks like an upside down NMOS model.  Remember that the current flows from the source to the drain of a PMOS (from higher potential to lower potential).  In an NMOS, the drain is at a higher potential, so you must flip the model around.   A good way to sanity check is to "wiggle" the gate of the transistor and observe what the model predicts and make sure the polarity is correct.  If we increase the gate voltage for a PMOS, we're reducing the inversion layer conductance, so the current should go down. Note that the small-signal model agrees and shows the current going negative.
+So far we have focused on the NMOS device. Let's introduce the PMOS small-signal model shown in \emph{Fig.~\ref{fig:pmos3term_dc}}.  This model looks like an upside down NMOS model.  Remember that the current flows from the source to the drain of a PMOS (from \textit{higher potential to lower potential}).  In an NMOS, the drain is at a higher potential, so you must flip the model around.   A good way to sanity check is to "wiggle" the gate of the transistor and observe what the model predicts, and make sure the polarity is correct.  If we increase the gate voltage for a PMOS, we are reducing the inversion layer conductance, so the current should go down. Note that the small-signal model agrees and shows the current going negative.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 9.5.2             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{PMOS Amplifier}
+We take the same exact steps as in the NMOS amplifier to produce an amplifier with a PMOS device, shown in \emph{Fig.~\ref{fig:cs_amp_pmos_ss1}}.  Note this is a "Common Source" Amplifier even though the PMOS source connects to DC supply.  \textbf{DC supplies are AC grounds, so the source is actually AC grounded.}   The small-signal model of the amplifier is drawn in \emph{Fig.~\ref{fig:csamp_pmos_ss}}, and it is identical to the NMOS case.  So there's no reason to redo the math.
+
+Which is better, the NMOS or PMOS?  Traditionally NMOS amplifiers are preferred, because the electron mobility is higher.  This leads to a higher $g_m$, and thus a higher gain.  But PMOS amplifiers are also useful, and they will be used extensively.  Namely, when you need to "flip" the DC bias around you can use an cascade of an NMOS and PMOS, and avoid large coupling capacitors.  That's jumping ahead, but you will see NMOS and PMOS amplifiers used together in cascade often by the end of this book.  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[tb]
+\begin{figure}[H]
 \begin{center}
-\includegraphics[scale=1]{cs_amp_pmos_ss1}
+\includegraphics[scale=1.15]{cs_amp_pmos_ss1}
 \end{center}
-\caption{The PMOS CS amplifier and its AC equivalent circuit.}
+\caption{The PMOS common-source amplifier and its AC equivalent circuit.}
 \label{fig:cs_amp_pmos_ss1}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-We take the same exact steps as in the NMOS amplifier to produce an amplifier with a PMOS device, shown in \emph{Fig.~\ref{fig:cs_amp_pmos_ss1}}.  Note this is a "Common Source" Amplifier even though the PMOS source connects to DC supply.  \textbf{DC supplies are AC grounds, so the source is actually AC grounded.}   The small-signal model of the amplifier is drawn in \emph{Fig.~\ref{fig:csamp_pmos_ss}}, and it is identical to the NMOS case.  So there's no reason to redo the math.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Which is better, the NMOS or PMOS?  Traditionally NMOS amplifiers are preferred because the electron mobility is higher, leading to higher $g_m$ and thus higher gain.  But PMOS amplifiers are also useful and will be used extensively.  Namely when you need to "flip" the DC bias around, you can use an cascade of an NMOS and PMOS and avoid large coupling capacitors.  That's jumping ahead but you'll see NMOS and PMOS amplifiers used together in cascade often by the end of this book.  
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[tb]
+\begin{figure}[t]
 \centering
-\includegraphics[scale=1]{csamp_pmos_ss}
+\includegraphics[scale=1.25]{csamp_pmos_ss}
 \caption{The re-drawn PMOS small-signal AC schematic, which is identical to the NMOS case.} \label{fig:csamp_pmos_ss}
 \end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                   SECTION 9.6                                        %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{What We've Ignored}
-We have actually made a lot of approximations up to now.  But simplicity is a good thing and the models we developed in this chapter will form the core of our analysis and intuition.  When we want to model other "second-order" effects, we must in some cases introduce the fourth terminal of the MOSFET, or bring back the body of the transistor.  We'll show that the body of the transistor acts like a second gate, or "back gate", and cannot be ignored if the body-source voltage is moving around.  We also know that the source/drain junctions of the transistor form $PN$-junction diodes with body, which  introduces parasitic capacitance.  In fact, we also ignored the gate-oxide capacitance. It turns out that we can simply add many of these capacitors to our small-signal model, as we'll show in the next chapter.
+We have actually made a lot of approximations up to now.  But simplicity is a good thing, and the models we have developed in this chapter will form the core of our analysis and intuition.  When we want to model other "second-order" effects, in some cases we must introduce the fourth terminal of the MOSFET, or bring back the body of the transistor.  We will show that the body of the transistor acts like a second gate, or "back gate", and cannot be ignored if the body-source voltage is moving around.  We also know that the source/drain junctions of the transistor form $PN$-junction\index{PN-junction!inside of MOSFETs} diodes with body, which  introduces parasitic capacitance\index{Parasitic capacitance}.  In fact, we also ignored the gate-oxide capacitance. It turns out that we can simply add many of these capacitors to our small-signal model, as we will show in the next chapter.
 
-Also modern transistors are very short channel length devices, and there are many "short channel" effects that we're ignoring, such as velocity saturation and other "high field" effects.  Finally we have been assuming that you have to bias the transistor in the strong inversion region $V_{GS} > V_T$, but it turns out that even with moderate inversion, or even sub-threshold bias, the transistor still behaves like a transistor for AC signals.  This is especially useful in low power circuits which are preferentially biased in moderate or weak-inversion (sub-threshold).  This is a more advanced topic that you can learn in your next course on circuit design.
+Also modern transistors are very short channel length devices, and there are many "short channel" effects\index{MOSFET!short-channel effects} that we are ignoring.  Some of these effects are velocity saturation, and other "high field" effects.  Finally, we have been assuming that you have to bias the transistor in the strong inversion region $V_{GS} > V_T$.  However, it turns out that even with moderate inversion, or even sub-threshold bias, the transistor still behaves like a transistor for AC signals.  This is especially useful in low power circuits which are preferentially biased in moderate or weak-inversion (sub-threshold).  This is a more advanced topic that you can learn in your next course on circuit design.
 \newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
