@@ -96,7 +96,7 @@ Since the MOSFET drain and source are physically identical, this is not surprisi
 %             SUBSECTION 10.2.4            %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Drain/Source-Bulk Capacitances \texorpdfstring{$C_{DB}\text{ and }C_{SB}$}{}}
-The \textbf{Drain-Bulk}\index{MOSFET!drain-bulk capacitance} yet more undesired parasitics.  They \textbf{Source-Bulk}\index{MOSFET!source-bulk capacitance} capacitances are caused by $PN$-junction depletion regions that isolate the drain/source from the body. The junction forms a "box" inside the body, and so there are five junctions to consider. \textit{Four side-wall junctions} and one \textit{bottom wall} junction, shown in \emph{Fig.~\ref{fig:cap_junc_3d}}.
+The \textbf{Drain-Bulk}\index{MOSFET!drain-bulk capacitance} and \textbf{Source-Bulk}\index{MOSFET!source-bulk capacitance} capacitances are two more undesired parasitics.  They are caused by $PN$-junction depletion regions that isolate the drain/source from the body. The junction forms a "box" inside the body, and so there are five junctions to consider. \textit{Four side-wall junctions} and one \textit{bottom wall} junction, shown in \emph{Fig.~\ref{fig:cap_junc_3d}}.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -124,7 +124,7 @@ Although we have used a \textbf{grading coefficient}\index{MOSFET!capacitance gr
 
 It is important to realize that the source/drain are symmetric.  The source/drain is defined by potentials/biasing and the schematic rather than the process. For this reason, the doping parameters for the source and drain are symmetric, and so the calculations for the source and drain to bulk are very much the same.  Of course, the area of the junctions may differ based on the device layout.	Some special technologies (high breakdown devices) have an asymmetric source/drain, but this is rare.
 
-\textit{If the source and body are both AC grounded, then the source-to-bulk capacitance does not play a role in AC response and it is excluded from the model.}
+\textit{If the source and body are both AC grounded, then the source-to-bulk capacitance does not play a role in AC response, and it is excluded from the model.}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 10.2.5            %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -192,10 +192,10 @@ The change in threshold due to body bias is given by:
         = \gamma \left( {\sqrt{V_{SB} - 2\,\phi_p} - \sqrt{-2\,\phi_p}} \right)
     \end{equation}
 This is written more compactly in the following form:
-    \begin{equation}
-        V_T = V_{T_0} + \gamma \left( \sqrt{V_{SB} - 2\,\phi_p} - \sqrt{-2\,\phi_p} \right)
+    \begin{align}
+        \Aboxed{V_T &= V_{T_0} + \gamma \left( \sqrt{V_{SB} - 2\,\phi_p} - \sqrt{-2\,\phi_p} \right)} &\textit{Threshold voltage with body bias}
         \label{eq:vtbias}
-    \end{equation}
+    \end{align}
 $\gamma$ is a \textbf{device parameter}\index{MOSFET!device parameter} in \emph{Eq.~\ref{eq:vtbias}}:
     \begin{align}
         \Aboxed{\gamma &= \frac{\sqrt{2\,q\,\varepsilon_s\,N_A}}{C_{ox}}} &\textit{MOSFET device parameter}
@@ -204,23 +204,39 @@ $\gamma$ is a \textbf{device parameter}\index{MOSFET!device parameter} in \emph{
 %             SUBSECTION 10.3.3            %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Role of the Substrate Potential - AC Signals}
-Since $V_{SB}$ changes the threshold voltage, which in turn changes the drain current, the body acts like a "back-gate” and it should cause an AC current to flow in response to an AC signal between the body and source.  The back-gate transconductance is defined as:
+Since $V_{SB}$ changes the threshold voltage, which in turn changes the drain current, the body acts like a "back-gate", and it should cause an AC current to flow in response to an AC signal between the body and source.  The \textbf{back-gate transconductance}\index{MOSFET!back-gate transconductance} is defined as:
     \begin{equation} 
-        {g_{mb}} = {\left. {\frac{{\Delta {i_D}}}{{\Delta {v_{BS}}}}} \right|_Q} = {\left. {\frac{{\partial {i_D}}}{{\partial {v_{BS}}}}} \right|_Q} 
+        g_{mb} = \frac{\Delta i_D}{\Delta v_{BS}} \bigg\rvert_Q
+        = \frac{\partial i_D}{\partial v_{BS}} \bigg\rvert_Q
     \end{equation}
 We can simplify this calculation by using the chain rule and taking advantage of our previous calculation of the change in $V_T$:
     \begin{equation}
-        {g_{mb}} = {\left. {\frac{{\partial {I_D}}}{{\partial {V_{BS}}}}} \right|_Q} = {\left. {\frac{{\partial {I_D}}}{{\partial {V_{T}}}}} \right|_Q}{\left. {\frac{{\partial {V_{T}}}}{{\partial {V_{BS}}}}} \right|_Q}
+        g_{mb} = \frac{\partial I_D}{\partial V_{BS}} \bigg\rvert_Q
+        = \frac{\partial I_D}{\partial V_{T}} \bigg\rvert_Q \cdot \frac{\partial V_{T}}{\partial V_{BS}} \bigg\rvert_Q
     \end{equation}
-We have that the threshold voltage is given by \emph{Eq.~\ref{eq:vtbias}}.  Taking the derivatives with $V_{BS}$ and $V_T$ results in the following:
+The threshold voltage is given by \emph{Eq.~\ref{eq:vtbias}}.  Taking the derivatives with $V_{BS}$ and $V_T$ results in the following:
     \begin{equation}
-        {g_{mb}} = {\left. {\frac{{\partial {I_D}}}{{\partial {V_{BS}}}}} \right|_Q} = {\left. {\frac{{\partial {I_D}}}{{\partial {V_{T}}}}} \right|_Q}{\left. {\frac{{\partial {V_{T}}}}{{\partial {V_{BS}}}}} \right|_Q} = \frac{{\gamma {g_m}}}{{2\sqrt { - {V_{BS}} - 2{\phi _p}} }}
+        g_{mb} = \frac{\partial I_D}{\partial V_{BS}} \bigg\rvert_Q
+        = \frac{\partial I_D}{\partial V_{T}} \bigg\rvert_Q \cdot \frac{\partial V_{T}}{\partial V_{BS}} \bigg\rvert_Q
+        = \frac{\gamma\,g_m}{2\sqrt{-V_{BS} - 2\,\phi_p}}
     \end{equation}
 You can also intuitively guess that the answer should in fact be equal to:
-    \begin{equation}
-        g_{mb} = g_m \frac{C_{dep}}{C_{ox}}
-    \end{equation}
-In most transistors $C_{ox} > C_{dep}$, so the back-gate transconductance is smaller.   
+    \begin{align}
+        \Aboxed{g_{mb} &= g_m \left(\frac{C_{dep}}{C_{ox}} \right)} &\textit{Back-gate transconductance}
+    \end{align}
+In most transistors $C_{ox} > C_{dep}$, so the back-gate transconductance is smaller.
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                 FIGURE                   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[t]
+\centering
+\subcaptionbox{\label{fig:mos4term_dc_gmb}}{
+\includegraphics[scale=1.15]{mos4term_dc_gmb}}
+\subcaptionbox{\label{fig:mos4term_ac_gmb}}{
+\includegraphics[scale=1.15]{mos4term_ac_gmb}}
+\caption{The complete small-signal models for an $N$-type MOSFET with (a) no capacitors and with (b) capacitors.  The model without capacitors is useful for low frequency calculations.} 
+\end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                   SECTION 10.4                                       %
@@ -231,34 +247,22 @@ In most transistors $C_{ox} > C_{dep}$, so the back-gate transconductance is sma
 %             SUBSECTION 10.4.1            %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Four-Terminal Small-Signal Model}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                 FIGURE                   %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[tb]
-\centering
-\subcaptionbox{\label{fig:mos4term_dc_gmb}}{
-\includegraphics[scale=.9]{mos4term_dc_gmb}}
-\subcaptionbox{\label{fig:mos4term_ac_gmb}}{
-\includegraphics[scale=.9]{mos4term_ac_gmb}}
-\caption{The complete small-signal models for an $N$-type MOSFET with (a) no capacitors and with (b) capacitors.  The model without capacitors is useful for low frequency calculations.} 
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-We now complete the small-signal model by noting that the drain-source current depends on $v_{gs}$ (transconductance), on $v_{ds}$ (output resistance of device), and also on $v_{bs}$ (back-gate):
-    \begin{equation}
-        {i_{ds}} = {g_m}{v_{gs}} + \frac{1}{{{r_o}}}{v_{ds}} + {g_{mb}}{v_{bs}} 
-    \end{equation}
-This equation is captured by the equivalent circuit shown in \emph{Fig.~\ref{fig:mos4term_dc_gmb}}.  This model naturally shows the symmetry between the front-gate and the back-gate.  If we include all the capacitors as well, we arrive at \emph{Fig.~\ref{fig:mos4term_ac_gmb}}, the complete small-signal model for an NMOS transistor.
+We now complete the small-signal model\index{MOSFET!small-signal current with body bias} by noting that the drain-source current depends on $v_{gs}$ (transconductance), $v_{ds}$ (output resistance of device), and also on $v_{bs}$ (back-gate):
+    \begin{align}
+        \Aboxed{i_{ds} &= g_m\,v_{gs} + \left( \frac{1}{r_o} \right)v_{ds} + g_{mb}\,v_{bs}} &\textit{Small-signal current with body effect}
+    \end{align}
+This equation is captured by the equivalent circuit shown in \emph{Fig.~\ref{fig:mos4term_dc_gmb}}.  This model naturally shows the symmetry between the front-gate and the back-gate.  If we include all the capacitors as well, we arrive at \emph{Fig.~\ref{fig:mos4term_ac_gmb}}, the \textbf{complete small-signal model}\index{MOSFET!Complete small-signal model} for an NMOS transistor.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 10.4.2            %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Complete Small-Signal Model PMOS}
-Using the same arguments, we can also conclude that a PMOS device is also described by a similar four terminal small-signal equivalent circuit model, as shown in \emph{Fig.~\ref{fig:pmos4term_ac}}.
+Using the same arguments, we can also conclude that a PMOS device is also described by a similar four-terminal small-signal equivalent circuit model, as shown in \emph{Fig.~\ref{fig:pmos4term_ac}}.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[h]
 \centering
-\includegraphics[scale=1]{pmos4term_ac}
+\includegraphics[scale=1.05]{pmos4term_ac}
 \caption{The complete small-signal models for an $P$-type MOSFET.}
 \label{fig:pmos4term_ac}
 \end{figure}
