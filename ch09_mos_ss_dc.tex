@@ -407,18 +407,18 @@ Instead of a "macro" replacement, you should actually redraw the circuit to simp
 \subsubsection{Small Signal Analysis:  Step 5}
 Now we are ready to analyze the circuit like any other linear AC circuit.  You can find the gain, the input/output impedance, etc.  This circuit is very easy to analyze, and the output voltage is given by
     \begin{equation}
-        v_o = -g_m v_{gs} \left( r_o \big|\big| R_D \right)
+        v_o = -g_m v_{gs} \left( r_o \parallel R_D \right)
     \end{equation}
 Notice that the input signal $v_s$ is actually the same as $v_{gs}$, so we have
     \begin{equation}
-        A_v = \frac{v_o}{v_s} = -g_m\left( r_o \big|\big| R_D \right)
+        A_v = \frac{v_o}{v_s} = -g_m\left( r_o \parallel R_D \right)
     \end{equation}
 We have the device output resistance in this analysis "for free", where we neglected it in the "hard way" analysis we did earlier.  Still, the final answer doesn't seem to agree with our earlier analysis.  To see why, first write $g_m$ in terms of the transistor bias.  In this case, it is convenient to use this form:
     \begin{equation}
         g_m = \frac{2\,I_{DS,Q}}{V_{GS,Q} - V_T}
     \end{equation}
     \begin{equation}
-        A_v =  -\frac{2\,I_{DS}\left( r_o \big|\big| R_D \right)}{V_{GS} - V_T}
+        A_v =  -\frac{2\,I_{DS}\left( r_o \parallel R_D \right)}{V_{GS} - V_T}
     \end{equation}
 If we assume $r_o \gg R_D$, then we get the same result as before because $I_D\,R_D = \mathlarger{\frac{V_{DD}}{2}}$:
     \begin{equation}
