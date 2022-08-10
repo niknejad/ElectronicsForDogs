@@ -11,8 +11,26 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Chapter Preview}
-This chapter reviews the three important single-stage amplifier topologies.  Understanding these single-stage amplifiers is crucial, as we will build on these amplifiers in the following chapters to build more complex and higher performance multi-stage amplifiers.  Intimate knowledge of the input and output impedance and the voltage/current gains is needed in order to move onto more complex amplifiers.  We will therefore begin by reviewing the fundamentals of amplifiers using two-port models, and then we will show how each single-stage amplifier can be classified accordingly.
+This chapter reviews the three important single-stage amplifier topologies.  Understanding these single-stage amplifiers is crucial, as we will build on these amplifiers in the following chapters to build more complex and higher performance multi-stage amplifiers.  Intimate knowledge of the input and output impedance, and the voltage/current gains is needed in order to move onto more complex amplifiers.  Therefore, we will begin by reviewing the fundamentals of amplifiers using two-port models.  Then we will show how each single-stage amplifier can be classified accordingly.
 \newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                 FIGURE                   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[tb]
+\centering
+\includegraphics[scale=1]{oneports}
+\caption{A black box one-port linear circuit can be represented as a Thevenin or Norton equivalent.}
+\label{fig:oneports}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                 FIGURE                   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\centering
+\includegraphics[scale=1.05]{2port_ss}
+\caption{Similar to a one-port, a two-port linear circuit can be represented using an equivalent model.  If the blackbox is an amplifier, we can choose among many different representations shown in \emph{Fig.~\ref{fig:vi_amp}} and \emph{Fig.~\ref{fig:gm_z_amp}}.}
+\label{fig:2port_ss}
+\end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                   SECTION 12.2                                       %
@@ -23,47 +41,24 @@ This chapter reviews the three important single-stage amplifier topologies.  Und
 %             SUBSECTION 12.2.1            %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{One-Port Equivalent Models}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                 FIGURE                   %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[tb]
-\centering
-\includegraphics[scale=1]{oneports}
-\caption{A blackbox one-port linear circuit can be represented as a Thevenin or Norton equivalent.} \label{fig:oneports}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Consider any linear circuit as a blackbox with a pair of exposed terminals.  We know from basic circuit theory that we can represent this blackbox as an equivalent Thevenin or Norton model (\emph{Fig.~\ref{fig:oneports}}).  This is also true of amplifiers, but amplifiers have two important differences.  First, most amplifiers have an input and an output port, where a "port" is a  pair of terminals.  Often one terminal is shared, or "common", between the ports, such as the ground connection.   The other important difference is that two-port amplifiers do not have any sources (of the independent variety) in them.  Finally, we assume that an amplifier is a \textit{unilateral} block, meaning the output depends on input but input is independent of output.  In other words, signals travel in one direction, but not the other.  This is why the schematic symbol for an amplifier is often drawn as a triangle (think of an arrow).  In general, though, the output port depends linearly on the current and voltage at the input and output ports, because there's output impedance.  
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Why are amplifiers unilateral?  Think about the small-signal model of a FET or BJT.  The output depends on the input $v_{\pi}$ or $v_{gs}$ through $g_m$ but the input is more or less independent of the output, except for the effects of the small "overlap" or junction capacitance $C_{gd}$/$C_\mu$.  As long as the "forward" gain $g_m$ is much larger than the reverse, $j\omega C_{gd}$, then the amplifier is unilateral.  At low frequencies, this is certainly true and a useful simplifying approximation.
+Consider any \textbf{one-port}\index{Circuit models!one-port} linear circuit as a black box with a pair of exposed terminals.  We know from basic circuit theory that we can represent this black box as an equivalent \textbf{Thevenin or Norton model}\index{Thevenin equivalent}\index{Norton equivalent} (\emph{Fig.~\ref{fig:oneports}}).  This is also true of amplifiers, but amplifiers have two important differences.  First, most amplifiers have an input and an output port, where a "port" is a  pair of terminals.  Often one terminal is shared, or "common", between the ports, such as the ground connection.  The other important difference is that \textbf{two-port}\index{Circuit models!two-port} amplifiers do not have any sources (of the independent variety) in them.  Finally, we assume that an amplifier is a \textit{unilateral} block, meaning the output depends on input but input is independent of output.  In other words, signals travel in one direction, but not the other.  This is why the schematic symbol for an amplifier is often drawn as a triangle (think of an arrow).  In general, though, the output port depends linearly on the current and voltage at the input and output ports, because there is output impedance.  
+
+Why are amplifiers \textit{unilateral}?  Think about the small-signal model of a MOSFET\index{MOSFET!small-signal model} or BJT\index{BJT!small-signal model}.  The output depends on the input ($v_{\pi}$ for BJTs, or $v_{gs}$ for FETs) through the transconductance, $g_m$.  However, the input is more or less independent of the output, except for the effects of the small "overlap" or junction capacitance ($C_\mu$ for BJTs, or $C_{gd}$ for FETs).  As long as the "forward" gain $g_m$ is much larger than the reverse, $j\omega C_{gd}$, then the amplifier is unilateral.  At low frequencies, this is certainly true and a useful simplifying approximation.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 12.2.2            %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Small-Signal Two-Port Models}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                 FIGURE                   %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[tb]
-\centering
-\includegraphics[scale=1]{2port_ss}
-\caption{Similar to a one-port, a two-port linear circuit can be represented using an equivalent model.  If the blackbox is an amplifier, we can choose among many different representations shown in \emph{Fig.~\ref{fig:vi_amp}} and \emph{Fig.~\ref{fig:gm_z_amp}}.}
-\label{fig:2port_ss}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-A linear two-port box, shown in \emph{Fig.~\ref{fig:2port_ss}}, under the unilateral assumption, can be represented as a generic amplifier in four different ways, as shown in \emph{Fig.~\ref{fig:vi_amp}} and \emph{Fig.~\ref{fig:gm_z_amp}}.  Note that signals can be represented as voltage, or as current, or some combination of the two.  Also it's important to note that any real amplifier has input impedance $R_{in}$ and output impedance $R_{out}$ because both voltages and currents (power) are needed for the circuit to work.  
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%              SUB-SUBSECTION              %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsubsection{Two-Port Small-Signal Voltage Amplifier}
-Let's begin with \emph{Fig.~\ref{fig:vi_amp}(a)}, or a Voltage Amplifier.  This is perhaps the most straightforward amplifier to understand, as both input/output signals are voltages.  Recall that an ideal voltage amplifier has a very large input impedance $R_{in}$ so that it does not "load" the driver circuitry, and so most of the applied voltage appears across $R_{in}$ rather than the source impedance.  Likewise, for similar reasons, the voltage amplifier should have a very small output impedance $R_{out}$.
+A linear two-port box is shown in \emph{Fig.~\ref{fig:2port_ss}}, under the unilateral assumption.  This can be represented as a generic amplifier in four different ways, as shown in \emph{Fig.~\ref{fig:vi_amp}} and \emph{Fig.~\ref{fig:gm_z_amp}}.  Note that signals can be represented as voltage, or as current, or some combination of the two.  It is also important to note that any real amplifier has and \textbf{input impedance}\index{Amplifier!input impedance} $R_{in}$, and an \textbf{output impedance}\index{Amplifier!output impedance} $R_{out}$.  This is because both voltages \textit{and} currents (power) are needed for the circuit to work.
+\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tb]
 \centering
 \begin{tabular}{c}
-\includegraphics[width=.7\columnwidth]{vamp_label}\\
+\includegraphics[width=.9\columnwidth]{vamp_label}\\
 (a)\\
-\includegraphics[width=.7\columnwidth]{iamp}\\
+\includegraphics[width=.9\columnwidth]{iamp}\\
 (b)\\
 \end{tabular}
 \caption{(a) A two-port voltage amplifier has internal gain $A_v$, input impedance $R_{in}$, and output impedance $R_{out}$.  (b) A two-port current amplifier has internal gain $A_i$, input impedance $R_{in}$, and output impedance $R_{out}$.}
@@ -72,84 +67,86 @@ Let's begin with \emph{Fig.~\ref{fig:vi_amp}(a)}, or a Voltage Amplifier.  This 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %              SUB-SUBSECTION              %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsubsection{Two-Port Small-Signal Current Amplifier}
-The dual of a Voltage Amplifier is the Current Amplifier, shown in \emph{Fig.~\ref{fig:vi_amp}}.  The role of voltage and current are interchanged, and an input current into the amplifier is amplified and divided between the load and the internal output impedance $R_{out}$.  For this reason, we would like a current amplifier to have as large of an output impedance $R_{out}$ as possible, to maximize the current gain.  Also, a current amplifier with a low input impedance can "steal" all the current from a source since a current divider favors the path of highest conductance.
+\subsubsection{Two-Port Small-Signal Voltage Amplifier}
+Let's begin with \emph{Fig.~\ref{fig:vi_amp}a}, or a \textbf{voltage amplifier}\index{Amplifier!Voltage amplifier}.  This is perhaps the most straightforward amplifier to understand, because both the input and output signals are voltages.  Recall that an ideal voltage amplifier has a very large input impedance $R_{in}$ so that it does not "load" the driver circuitry. Then most of the applied voltage will appear across $R_{in}$ rather than the source impedance.  Likewise, for similar reasons, the voltage amplifier should have a very small output impedance $R_{out}$.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %              SUB-SUBSECTION              %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsubsection{Two-Port Small-Signal Transconductance Amplifier}
+\subsubsection{Two-Port Small-Signal Current Amplifier}
+The dual of a voltage amplifier is the \textbf{current amplifier}\index{Amplifier!Current amplifier}, shown in \emph{Fig.~\ref{fig:vi_amp}b}.  Now the role of voltage and current are interchanged. The input current into the amplifier is amplified and divided between the load and the internal output impedance $R_{out}$.  For this reason, we would like a current amplifier to have as large of an output impedance $R_{out}$ as possible, in order to maximize the current gain.  Also, a current amplifier with a low input impedance can "steal" all the current from a source since a current divider favors the path of highest conductance.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[tb]
+\begin{figure}[H]
 \centering
 \begin{tabular}{c}
-\includegraphics[width=.7\columnwidth]{gmamp}\\
+\includegraphics[width=.9\columnwidth]{gmamp}\\
 (a)\\
-\includegraphics[width=.7\columnwidth]{ramp}\\
+\includegraphics[width=.9\columnwidth]{ramp}\\
 (b)\\
 \end{tabular}
 \caption{(a) A two-port transconductance amplifier has internal gain $G_m$, input impedance $R_{in}$, and output impedance $R_{out}$.  (b) A two-port trans-resistance amplifier has internal gain $R$, input impedance $R_{in}$, and output impedance $R_{out}$.}
 \label{fig:gm_z_amp}
 \end{figure}
-
-The Transconductance Amplifier shown in \emph{Fig.~\ref{fig:gm_z_amp}(a)} takes an input voltage and generates an output current, just like a conductor, but the signals are at different ports, making it a "trans" conductor, effectively \emph{transporting} the signal from the voltage domain to the current domain.  Take a moment to consider that the concept of voltage and current domain only make sense with respect to the source and load impedance.  A good voltage source has low impedance with respect to the load, and a good current source has a high output impedance with respect to the load.  So a transconductance amplifier is effective if it presents a input high impedance, ideally infinite, and generates an output current with high output impedance.  A MOS transistor biased in saturation (and a BJT biased in the forward-active region) is almost an ideal transconductor, because its input is a high impedance at low frequencies, and its output is nearly open, due to the large output impedance of a transistor in saturation.  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Notice that the most general transconductance model has 4 separate terminals, but we've drawn a version with a common node, similar to the transistor hybrid-pi model. 
+\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %              SUB-SUBSECTION              %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsubsection{Two-Port Small-Signal Trans-Resistance Amplifier}
-The Trans-resistance amplifier is an amplifier that converts an input current into a voltage, as shown in \emph{Fig.~\ref{fig:gm_z_amp}(b)}.  It's the dual of the Transconductance Amplifier, and ideally present a low input impedance at the input and drives the output with a low impedance voltage.  Trans-resistance amplifiers are also known as Trans-Impedance Amplifiers (TIAs) and play an important role in fiber optic communication, where the input light signal is a current (proportional to photon flux) that is converted to a voltage by a TIA.  Also, many sensors naturally generate a current signal (they have high source impedance) and need to be converted into voltage signals to drive other circuitry, such as Analog-to-Digital Converters (ADCs), which expect to be driven by a relatively low source impedance.  
+\subsubsection{Two-Port Small-Signal Transconductance Amplifier}
+The \textbf{transconductance amplifier}\index{Amplifier!Transconductance amplifier} shown in \emph{Fig.~\ref{fig:gm_z_amp}a} takes an input voltage and generates an output current, just like a conductor.  But the signals are at different ports, making it a "trans" conductor, effectively \emph{transporting} the signal from the voltage domain to the current domain.  Take a moment to consider that the concept of voltage and current domain only make sense with respect to the source and load impedance.  A \textit{good voltage source has a low output impedance with respect to the input impedance of the load}, and a \textit{good current source has a high output impedance with respect to the input impedance of the load}.  Then it follows that a transconductance amplifier is effective only if it presents a high impedance, ideally infinite, and generates an output current with high output impedance.  A MOS transistor biased in saturation (and a BJT biased in the forward-active region) is almost an ideal transconductor, because its input is a high impedance at low frequencies, and its output is nearly open, due to the large output impedance of a transistor in saturation.  Notice that the most general transconductance model has 4 separate terminals, but we've drawn a version with a common node, similar to the transistor hybrid-pi model. 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%              SUB-SUBSECTION              %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Two-Port Small-Signal Transresistance Amplifier}
+The \textbf{transresistance amplifier}\index{Amplifier!Transresistance amplifier} is an amplifier that converts an input current into a voltage, as shown in \emph{Fig.~\ref{fig:gm_z_amp}b}.  It is the dual of the transconductance amplifier.  It ideally presents a low input impedance at the input, and drives the output with a low impedance voltage.  Transresistance amplifiers are also known as \textbf{transimpedance amplifiers}\index{Amplifier!Transimpedance amplifier}.  They are important in fiber optic communication, where the input light signal is a current (proportional to photon flux) that is converted to a voltage by a TIA.  Also, many sensors naturally generate a current signal (they have high source impedance), and need to be converted into voltage signals to drive other circuitry, such as \textbf{Analog-to-Digital Converters}\index{Analog-to-Digital Converters}, which expect to be driven by a relatively low source impedance.  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 12.2.3            %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Input Impedance \texorpdfstring{$Z_{in}$}{}}
-To calculate the input and output impedances of two-ports, we can simply use a test source at the input or output  in order to determine the equivalent load at each port, as shown schematically in \emph{Fig.~\ref{fig:2port_zin_vx}}.  In a truly unilateral two-port, when probing the input port, the output port would play no role in determining the input impedance, and it could be left open-circuit, short-circuited, or terminated in an arbitrary impedance $Z$.  But in practice, circuits are not perfectly unilateral, and so we should have a convention for what to connect to the second output port.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-A common convention is to measure the input port impedance while terminating the output port with the load impedance attached, as shown in \emph{Fig.~\ref{fig:2port_zin_vx}}.  For example, if we excite the input with a test current (voltage) source, and then observe the input voltage (current), we have:
-    \begin{equation}
-        {Z_{in}} = {\left. \frac{v_x}{i_x}\right|_{\genfrac{}{}{0pt}{2}
-            {\scriptstyle{Z_S}\text{removed},}
-            {\scriptstyle{Z_L}\text{attached}}}}
-    \end{equation}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                 FIGURE                   %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[tb]
-\centering
-\begin{tabular}{cc}
-\includegraphics[width=.45\columnwidth]{2port_zin_vx} &
-\includegraphics[width=.45\columnwidth]{2port_zin_ix}\\
-(a) & (b)\\
-\end{tabular}
-\caption{To calculate the input impedance of a two-port, we apply a test (a) voltage or (b) current source and measure the current/voltage.  By convention, we leave the output resistance connected to the load.}
-\label{fig:2port_zin_vx}
-\end{figure}
+To calculate the input and output impedances\index{Amplifier!input impedance} of two-ports, we can simply use a test source at the input or output, in order to determine the equivalent load at each port.  This is shown schematically in \emph{Fig.~\ref{fig:2port_zin_vx}}, where the test sources are labeled as $v_x$ and $i_x$.  When probing the input port of a truly unilateral two-port, the output port plays no role in determining the input impedance.  It could be left open-circuited, short-circuited, or terminated in an arbitrary impedance $Z$.  However, in practice circuits are not perfectly unilateral, and so we should have a convention for what to connect to the second output port.  It is common to measure the input port impedance while terminating the output port with the load impedance attached, as shown in \emph{Fig.~\ref{fig:2port_zin_vx}}.  For example, if we excite the input with a test current (voltage) source, and then observe the input voltage (current), we have:
+    \begin{align}
+        \Aboxed{Z_{in} = \frac{v_x}{i_x}\bigg\rvert_{\genfrac{}{}{0pt}{2}
+            {\scriptstyle{Z_S}\;removed,}
+            {\scriptstyle{Z_L}\;attached}}}
+            &\textit{Two-port input impedance using test source}
+    \end{align}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 12.2.4            %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Output Impedance \texorpdfstring{$Z_{out}$}{}}
-We measure the output impedance in the same manner as the input impedance.  Again, if the amplifier were truly unilateral, connecting a source at the output would not affect the input port, but due to parasitic leakage (say through capacitance), there is a small influence.  By convention, the \textit{input} port is terminated with the \textit{source} resistance, and the output port is measured, as shown in \emph{Fig.~\ref{fig:2port_zout_vx}}.
-For example, we can excite with a test voltage (current) source, and then measure the output current (voltage):
-    \begin{equation}
-        {Z_{out}} = {\left. \frac{v_x}{i_x}\right|_{\genfrac{}{}{0pt}{2}
-            {\scriptstyle{Z_L}\text{removed},}
-            {\scriptstyle{Z_S}\text{attached}}}}
-    \end{equation}
+We measure the output impedance\index{Amplifier!output impedance} in the same manner as the input impedance.  Again, if the amplifier were truly unilateral, connecting a source at the output would not affect the input port.  However, due to parasitic leakage (say through capacitance), there is a small influence\index{Parasitic capacitance}.  By convention, the \textit{input} port is terminated with the \textit{source} resistance, and the \textit{output} port is measured, as shown in \emph{Fig.~\ref{fig:2port_zout_vx}}.  For example, we can excite with a test voltage (current) source, and then measure the output current (voltage):
+    \begin{align}
+        \Aboxed{Z_{out} &= \frac{v_x}{i_x}\bigg\rvert_{\genfrac{}{}{0pt}{2}
+            {\scriptstyle{Z_L}\;removed,}
+            {\scriptstyle{Z_S}\;attached}}}
+            &\textit{Two-port output impedance using test source}
+    \end{align}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[tb]
+\begin{figure}[H]
 \centering
-\begin{tabular}{cc}
-\includegraphics[width=.45\columnwidth]{2port_zout_vx} &
-\includegraphics[width=.45\columnwidth]{2port_zout_ix}\\
-(a) & (b)\\
-\end{tabular}
-\caption{To calculate the output impedance of a two-port, we apply a test (a) voltage or (b) current source and measure the current/voltage.  By convention, we leave the source resistance connected to the input.}
+\includegraphics[width=.85\columnwidth]{2port_zin_vx}\\
+(a)\\
+\includegraphics[width=.85\columnwidth]{2port_zin_ix}\\
+(b)\\
+\caption{To calculate the \textit{input impedance} of a two-port, we apply a test (a) voltage or (b) current source and measure the current/voltage.  By convention, we leave the \textit{output resistance} connected to the load.}
+\label{fig:2port_zin_vx}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                 FIGURE                   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\centering
+\includegraphics[width=.85\columnwidth]{2port_zout_vx}\\
+(a)\\
+\includegraphics[width=.85\columnwidth]{2port_zout_ix}\\
+(b)\\
+\caption{To calculate the \textit{output impedance} of a two-port, we apply a test (a) voltage or (b) current source and measure the current/voltage.  By convention, we leave the \textit{source resistance} connected to the input.}
 \label{fig:2port_zout_vx}
 \end{figure}
+\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                   SECTION 12.3                                       %
@@ -413,6 +410,7 @@ This analysis is important because it shows that a CG amplifier can be interpret
 \caption{(a) The Common Drain (CD) amplifier full schematic.  (b) AC equivalent circuit of CD amplifier.}
 \label{fig:cd_amp_dc_ac}
 \end{figure}
+\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                   SECTION 12.4                                       %
@@ -502,6 +500,7 @@ Finally, if we put everything together, we can see that a CD amplifier, or a Sou
 \caption{A two-port model for the CD amplifier is a voltage buffer with unity gain and output impedance $1/g_m$.}
 \label{fig:cd_amp_model}
 \end{figure}
+\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                   SECTION 12.5                                       %
@@ -543,22 +542,23 @@ This last equation leads us to the voltage gain:
     \begin{equation}
         \frac{{{v_{out}}}}{{{v_{s}}}} = \frac{{{g_m}}}{{\frac{1}{{{R_L}||{r_o}}} + {g_m} + g_{mb}}}
     \end{equation}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                                   SECTION 12.6                                       %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Chapter Summary: Amplifiers \texorpdfstring{$\rightarrow \; G_m$/$V$/$I$}{}}
+\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[tb]
+\begin{figure}[t]
 \centering
 \includegraphics[width=\columnwidth]{ampchart_models}
 \caption{The family of single-stage transistor amplifiers and the corresponding two-port models.  As you analyze more circuits, this chart will become to be imprinted in your memory.}
 \label{fig:ampchart_models}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                   SECTION 12.6                                       %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Chapter Summary: Amplifiers \texorpdfstring{$\rightarrow \; G_m$/$V$/$I$}{}}
 Let's summarize this chapter by reviewing the three possible amplifier topologies and the equivalent circuit, all shown in \emph{Fig.~\ref{fig:ampchart_models}}.  In each case we model the amplifier in a certain way that best characterizes the input/output impedance of the topology.  For example, a CS amplifier has high input impedance and high output impedance, making it an ideal transconductance amplifier.  This is not to say that it cannot be designed as a (inverting) buffer, a voltage amplifier, or a current amplifier, it's just that its native impedance level lends it well to being used as a transconductance amplifier.  
 
 The CG amplifier is likewise best seen as a current buffer, since the input and output current are nearly identical.  But CG amplifiers make great voltage amplifiers too, provided that you can drive their input impedance.  Also, their output impedance is high, and so if it's desirable to drive a low load impedance, a voltage buffer is needed.  
