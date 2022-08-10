@@ -11,10 +11,20 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Chapter Preview}
-Historically, the first transistor conceived was the MOS device, but the first successful transistor to be built and tested was the bipolar junction transistor, or BJT for short.  In fact, the photo shown in the previous chapter (\emph{Fig.~\ref{fig:bjt_invent}}) was that very transistor.  While the CMOS transistors reign supreme in terms of digital logic circuits, offering much lower power and higher density compared to their BJT logic circuit counterparts, BJT transistors continue to play an important role in many applications.  For one, they generally have better current handling capability as currents flow through the bulk of the device, as opposed to the surface of an MOS transistor.  BJT transistors are also faster in the same lithographic technology node, with the fastest transistors crossing the 1 THz frequency, about 2-3 times faster than CMOS counterparts.  But even if you anticipate spending your entire life designing CMOS circuits, there's a good reason to understand bipolar transistor device physics.  First and foremost, it's a very interesting device to study with a voltage-current mechanism that is very different from the CMOS transistor.  In fact, it's very much a close cousin of the $PN$-junction diode.  Second, every CMOS device has a BJT inside of it, like it or not, and for low gate voltages, or the so-called sub-threshold region, the BJT dominates and determines the currents.  
+Historically, the first transistor conceived was the MOS device, but the first successful transistor to be built and tested was the bipolar junction transistor, or BJT for short.  In fact, the photo shown in the previous chapter (\emph{Fig.~\ref{fig:bjt_invent}}) was that very transistor.  While the CMOS transistors reign supreme in terms of digital logic circuits, offering much lower power and higher density compared to their BJT logic circuit counterparts, BJT transistors continue to play an important role in many applications.  For one, they generally have better current handling capability as currents flow through the bulk of the device, as opposed to the surface of an MOS transistor.  BJT transistors are also faster in the same lithographic technology node, with the fastest transistors crossing the $1\,THz$ frequency, about 2-3 times faster than CMOS counterparts.  But even if you anticipate spending your entire life designing CMOS circuits, there is a good reason to understand bipolar transistor device physics.  First and foremost, it is a very interesting device to study with a voltage-current mechanism that is very different from the CMOS transistor.  In fact, it is very much a close cousin of the $PN$-junction diode.  Second, every CMOS device has a BJT inside of it, like it or not.  For low gate voltages, or the so-called sub-threshold region, the BJT dominates and determines the currents.  
 
-In this chapter we start with a physical description of the device structure, and then move on to derive the $I$-$V$ characteristics, building on our knowledge of $PN$-junctions. We shall strive to understand the behavior in two ways, first without using any equations, building from our physical understanding of the $PN$-junction, and next using equations.  We'll see that like an MOS device, there's one terminal, the "base'', that is "in control" of the current flowing between the other terminals (called the "gate" for MOS).  Similar to "source" and "drain", a bipolar transistor has an "emitter" and a "collector".   We'll conclude the chapter with circuit models of the bipolar transistor, including a "Large Signal" Ebers-Moll model and then a small-signal model, which is actually very close to the MOS small-signal model, enabling us to re-use a lot of our background intuition.
+In this chapter we start with a physical description of the device structure, and then move on to derive the $I$-$V$ characteristics, building on our knowledge of $PN$-junctions. We shall strive to understand the behavior in two ways.  First, we will not use any equations, but instead build from our physical understanding of the $PN$-junction.  Then we will move on to using equations.  We will see that like a MOS device, there is one terminal, the "base", that is "in control" of the current flowing between the other terminals (called the "gate" for MOS).  Similar to "source" and "drain", a bipolar transistor has an "emitter" and a "collector".
+We will conclude the chapter with circuit models of the bipolar transistor, including a "Large Signal" Ebers-Moll model, and then a small-signal model.  The small-signal model for a BJT is actually very close to the MOS small-signal model, enabling us to re-use a lot of our background intuition.
 \newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                 FIGURE                   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{slide2_bjt_overview}
+\caption{Simplified device structure and schematic symbols for $NPN$ and $PNP$ bipolar junction transistors.}
+\label{fig:slide2_bjt_overview}
+\end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                   SECTION 11.2                                       %
@@ -25,91 +35,94 @@ In this chapter we start with a physical description of the device structure, an
 %             SUBSECTION 11.2.1            %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Ideal BJT Structure}
+The structure of a BJT transistor is deceptively simple.  It is just either an $NPN$ sandwich, or a $PNP$ sandwich, as shown in \emph{Fig.~\ref{fig:slide2_bjt_overview}}.  Each region is a doped semiconductor, either $N$-type or $P$-type.  The middle part is the \textbf{Base}\index{BJT!terminals!base} (B), and in an $NPN$ transistor (similar to NMOS), it's doped $P$-type.  Usually a bias voltage is applied across the $NPN$ transistor terminals in such a manner such that the top is at a positive voltage, and the bottom at a lower voltage, sometimes ground.  The bottom is known as the \textbf{Emitter}\index{BJT!terminals!emitter} (E), as it emits electrons into the base.  The electrons are "collected" at the \textbf{Collector}\index{BJT!terminals!collector} (C), at the top terminal.  So the current into the collector ideally flows out of the emitter, similar to a MOS device.
+
+But how does current flow at all, since the structure is two back-to-back diodes, pointing in opposite directions?  One diode says "one way" North and the other says "one way" South!  The two junctions cannot be simultaneously forward biased if the collector is at a high voltage relative to the base, which is the normal \textbf{operating point}\index{BJT!operating point} for the transistor.
+
+The solution lies in making the base very thin so that as minority carriers diffuse across the base from a forward biased \textbf{base-emitter junction}, they quickly reach the \textbf{base-collector junction}\index{BJT!junctions}, where they are swept into collector due to the fields from the reverse biased junction, providing a pathway for current to flow.  In a well designed transistor, most of the emitter electron current flows into the collector and not the base, so:
+    \begin{equation}
+        I_C \approx -I_E
+    \end{equation}
+This means that the base current is very small:
+    \begin{equation}
+        I_C \gg I_B
+    \end{equation}
+Because the collector current is a forward-biased diode current of the base-emitter, it has the following form:
+    \begin{align}
+        \Aboxed{I_C &\approx I_S \cdot e^{\mathlarger{\frac{q\,V_{BE}}{kT}}}} &\textit{BJT collector current}
+    \end{align}
+This behavior is very much a like a "transistor", because the current through the collector is a function of another terminal-pair, namely the base-emitter.  Thus, the BJT device is a \textbf{voltage-controlled current source} (VCCS)\index{Voltage-controlled current source}, just like the MOS transistor.
+\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[tb]
+\begin{figure}[t]
 \centering
-\includegraphics[width=.85\columnwidth]{slide2_bjt_overview}
-\caption{Simplified device structure and schematic symbols for $NPN$ and $PNP$ bipolar junction transistors.}
-\label{fig:slide2_bjt_overview}
+\includegraphics[width=.95\columnwidth]{slide3_bjtcross}
+\caption{Cross-section of a BJT device fabricated in a planar process.  The actual transistor active region is under the emitter, with the $p^+$ base and $n^+$ buried layer providing low access resistance to the structure.}
+\label{fig:slide3_bjtcross}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-The structure of a BJT transistor is deceptively simple.  It is just either an npn sandwich, or a pnp sandwich, as shown in \emph{Fig.~\ref{fig:slide2_bjt_overview}}.  Each region is a doped semiconductor, either $N$-type or $P$-type.  The middle part is the Base (B), and in an npn transistor (similar to NMOS), it's doped $P$-type.  Usually a bias voltage is applied across the npn transistor terminals in such a manner such that the top is at a positive voltage and the bottom at a lower voltage, sometimes ground.  The bottom is known as the Emitter (E), as it emits electrons into the base.  The electrons are "collected" at the Collector (C), at the top terminal.  So the current into the collector ideally flows out of the emitter, similar to an MOS device.
+%                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-But how does current flow at all, since the structure is two back-to-back diodes, pointing in opposite directions.  One diode says "one way" North and the other says "one way" South!  The two junctions cannot be simultaneously forward biased if the collector is at a high voltage relative to the base, which is the normal operating point for the transistor.  The solution lies in making the base very thin so that as minority carriers diffuse across the base from a forward biased base-emitter junction, they quickly reach the base-collector junction, where they are swept into collector due to the fields from the reverse biased junction, providing a pathway for current to flow.  
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-In a well designed transistor, most of the emitter electron current flows into the collector and not the base, so 
-    \begin{equation}
-        {I_C} \approx  - {I_E}
-    \end{equation}
-and so the base current is very small:
-    \begin{equation}
-        {I_C} \gg {I_B}
-    \end{equation}
-And since the collector current is a forward-biased diode current of the base-emitter, it has the following form:
-    \begin{equation}
-        {I_C} \approx {I_S}{e^{\frac{{q{V_{BE}}}}{{kT}}}}
-    \end{equation}
-This behavior is very much a "transistor" one since the current through the collector is a function of another terminal-pair, namely the base-emitter.  Thus the BJT device is a voltage controlled current source, just like the MOS transistor.
+\begin{figure}[H]
+\centering
+\includegraphics[width=.95\columnwidth]{mos_bjt}
+\caption{Cross-section of a CMOS technology NMOS and PMOS devices.  Note that PMOS devices form lateral $PNP$ transistors and substrate transistors.  Likewise NMOS devices form lateral $NPN$ devices with all bodies tied to the substrate.}
+\label{fig:mos_bjt}
+\end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 11.2.2            %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Actual BJT Cross-Section}
+A real transistor is actually fabricated using a \textbf{crystalline}\index{Crystalline} substrate, with various layers grown using diffusion regions and counter-doping.  A typical \textbf{"vertical" BJT}\index{BJT!vertical fabrication} is shown in \emph{Fig.~\ref{fig:slide3_bjtcross}}.  This is a complicated figure so let's dissect it piece by piece.  First, focus in on the dashed box.  This is the "active region" where the transistor actually resides.  This region is very much like the $NPN$ sandwich of an ideal structure.  The collector is the bottom $N$-type region, the middle region is a $P$-type base, and the top is made of an $N$-type emitter.  Notice that each layer is doped and so the concentration of dopants necessarily increases from the bottom to the top. The emitter is the most heavily doped, and the collector is the lightest doping. The base is in the middle in terms of doping.  This order, collector, then base, and then emitter is chosen for a good reason.  Due to symmetry, an $N^+PN$ transistor can be viewed as an upside down transistor with $NPN^+$.  However, due to the difference in doping levels, this upside down transistor is not a good transistor, which we will see shortly.
+
+Transistors can also be fabricated laterally, similar to NMOS and PMOS devices.  In fact, if you examine the cross-section of a MOS device, such as \emph{Fig.~\ref{fig:mos_bjt}}, it actually has a couple of BJT's hiding in there!  Even though the gate couples capacitively to the channel, it can indirectly act like a base terminal.  These \textbf{"lateral" BJTs}\index{BJT!lateral fabrication} tend to have inferior performance because the base width is determined lithographically rather than due to diffusion. One advantage of the BJT structure is in fact the ability to make very thin bases without using lithography.  In the early days this was critical for good device performance.
+
+Everything else in the cross-section of the BJT is actually just there to support the device.  The $n^+$ buried layer is a low resistance contact to the collector, and the $p^+$ region under the base contact serves the same purpose.  The emitter is contacted using a highly doped polysilicon film. In fact, film can be used as the emitter itself.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[tb]
+\begin{figure}[t]
 \centering
-\includegraphics[width=.75\columnwidth]{slide3_bjtcross}
-\caption{Cross-section of a BJT device fabricated in a planar process.  The actual transistor active region is under the emitter, with the p$^+$ base and n$^+$ buried layer providing low access resistance to the structure.}
-\label{fig:slide3_bjtcross}
+\includegraphics[width=.45\columnwidth]{slide4_bjt_layout}\\
+(a)\\[0.25cm]
+\includegraphics[width=.45\columnwidth]{bjt_npn_round}\\
+(b)
+\caption{(a) A top view of a BJT transistor and corresponding cross-section.  The device is scaled by making it wider, or using multiple fingers of a basic device.  (b) Top view and cross-section of a BJT with rings of base and collector diffusion regions surrounding the device.} 
+\label{fig:bjt_top}
 \end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-A real transistor is actually fabricated using a crystalline substrate with various layers grown using diffusion regions and counter-doping.  A typical "vertical" BJT is shown in \emph{Fig.~\ref{fig:slide3_bjtcross}}.  This is a complicated figure so let's dissect it piece by piece.   First let's focus in on the dashed box, the "active region" where the transistor actually resides.  This region is very much like the npn sandwich of an ideal structure.  The collector is the bottom $N$-type region, the middle region is a $P$-type base, and the top is made of an $N$-type emitter.  Notice that each layer is doped and so the concentration of dopants necessarily increases from the bottom to the top. The emitter is the most heavily doped, and the collector is the lightest doping. The base is in the middle in terms of doping.  This order, collector, then base, and then emitter is chosen for a good reason.  Due to symmetry, an $n_1 p n_2$ transistor can be viewed as an upside down transistor with $n_2 p n_1$, but due to the difference in doping levels, this upside down transistor is not a good transistor, as we shall see.  
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                 FIGURE                   %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[tb]
-\centering
-\includegraphics[width=.75\columnwidth]{mos_bjt}
-\caption{Cross-section of a CMOS technology NMOS and PMOS devices.  Note that PMOS devices form lateral pnp transistors and substrate transistors.  Likewise NMOS devices form lateral npn devices with all bodies tied to the substrate.}
-\label{fig:mos_bjt}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Transistors can also be fabricated laterally, similar to NMOS and PMOS devices.  In fact, if you examine the cross-section of a MOS device, such as \emph{Fig.~\ref{fig:mos_bjt}}, it actually has a couple of BJT's hiding in there!  Even though the gate couples capacitively to the channel, it can indirectly act like a base terminal.  These lateral BJTs tend to have inferior performance because the base width is determined lithographically rather than due to diffusion. One advantage of the BJT structure is in fact the ability to make very thin bases without using lithography, which in the early days was critical for good device performance.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Everything else in the cross-section of the BJT is actually just there to support the device.  The n$^+$ buried layer is a low resistance contact to the collector, and the p$^+$ region under the base contact serves the same purpose.  The emitter is contacted using a highly doped polysilicon film. In fact, film can be used as the emitter itself.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 11.2.3            %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{BJT Layout}
+Let's now view the layout from the top\index{BJT!top-view layout}, as shown in \emph{Fig.~\ref{fig:bjt_top}a}.  This is a unit cell that can grow in width as shown, similar to how we can scale a MOSFET.  The emitter area is the most relevant transistor parameter, because the transistor current is injected from the emitter to the base.  The base and collector can also form rings around the device to lower the \textbf{parasitic resistance}\index{BJT!parasitic resistance} (\emph{Fig.~\ref{fig:bjt_top}b}).  Although it is not shown in this figure, a multi-finger layout strategy can be used to obtain lower parasitic resistances to the collector and base.
+\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[tb]
-\centering
-\subcaptionbox{\label{fig:slide4_bjt_layout}}{\includegraphics[width=.4\columnwidth]{slide4_bjt_layout}}
-\hspace{1cm}
-\subcaptionbox{\label{fig:bjt_round}}{\includegraphics[width=.4\columnwidth]{bjt_npn_round}}
-\caption{(a) A top view of a BJT transistor and corresponding cross-section.  The device is scaled by making it wider, or using multiple fingers of a basic device.  (b) Top view and cross-section of a BJT with rings of base and collector diffusion regions surrounding the device.} 
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Let's now view the layout from the top, as shown in \emph{Fig.~\ref{fig:slide4_bjt_layout}}.  This is a unit cell that can grow in width as shown, similar to how we can scale a MOSFET.  The emitter area is the most relevant transistor parameter because the transistor current is injected from the emitter to the base.  The base and collector can also form rings around the device to lower the parasitic resistance (\emph{Fig.~\ref{fig:bjt_round}}).  Although it's not shown in this figure, a multi-finger layout strategy can be used to obtain lower parasitic resistances to the collector and base.  
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%             SUBSECTION 11.2.4            %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{BJT Schematic Symbol}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                 FIGURE                   %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[tb]
+\begin{figure}[t]
 \centering
 \includegraphics[width=.6\columnwidth]{slide5_bjt_schematic}
 \caption{Definition of terminal currents (into the device) and junction voltages in a BJT.} \label{fig:slide5_bjt_schematic}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-The schematic shown in \emph{Fig.~\ref{fig:slide5_bjt_schematic}} is for an npn device.  The symbol looks a lot like the MOSFET, and the arrow is in the direction of the base-emitter diode.  As already noted, the device looks symmetric but unlike a MOSFET the collector and emitter cannot be swapped because of the difference in doping profile. In fact, when the BJT is operated in this inverted fashion, it's in the "reverse active" regime and the performance is much worse as we shall explain shortly. 
+%             SUBSECTION 11.2.4            %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{BJT Schematic Symbol}
+The schematic shown in \emph{Fig.~\ref{fig:slide5_bjt_schematic}} is for an $NPN$ device.  The symbol looks a lot like the MOSFET, and the arrow is in the direction of the base-emitter diode.  As already noted, the device looks symmetric.  But unlike a MOSFET, the collector and emitter cannot be swapped, because of the difference in the doping profiles. In fact, when the BJT is operated in this inverted fashion, it is in the \textbf{"reverse active" regime}\index{BJT!regions of operation!reverse active}.  In this region the performance is much worse, as we shall explain shortly.
+\vspace{1cm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                 FIGURE                   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\centering
+\includegraphics[width=\columnwidth]{slide8_bjt_ic_vs_ve_curves}
+\caption{The $I_C$-$V_{BE}$ characteristics of an npn BJT transistor measured by sweeping the $V_{CE}$ voltage (x-axis) and observing the collector current $I_C$ (y-axis).  The family of curves are generated by varying the base voltage $V_{BE}$, as shown in the inset.  The current increases exponentially for linear changes in $V_{BE}$.}
+\label{fig:slide8_bjt_ic_vs_ve_curves}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                   SECTION 11.3                                       %
@@ -128,16 +141,6 @@ These equations show that the collector current is an amplified copy of the base
 %             SUBSECTION 11.3.1            %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Base-Emitter Voltage Control}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                 FIGURE                   %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[tb]
-\centering
-\includegraphics[width=\columnwidth]{slide8_bjt_ic_vs_ve_curves}
-\caption{The $I_C$-$V_{BE}$ characteristics of an npn BJT transistor measured by sweeping the $V_{CE}$ voltage (x-axis) and observing the collector current $I_C$ (y-axis).  The family of curves are generated by varying the base voltage $V_{BE}$, as shown in the inset.  The current increases exponentially for linear changes in $V_{BE}$.}
-\label{fig:slide8_bjt_ic_vs_ve_curves}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 First let's observe the BJT device using voltage control on the base-emitter junction, as shown in the inset of \emph{Fig.~\ref{fig:slide8_bjt_ic_vs_ve_curves}}.  For a fixed $V_{BE}$, we sweep the collector-emitter voltage $V_{CE}$ to generate a $I_C$-$V_{CE}$ curve, and we observe that the current is approximately flat for a fixed value of $V_{BE}$.  As we increase $V_{BE}$ in discrete steps, we observe a family of curves with current increasing exponentially as we increase the base-emitter voltage linearly.  This is the diode $I$-$V$ curve we have met before.  What is curious about the transistor is that it's a diode between the base-emitter but the current can be collected at the collector rather than the base.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 11.3.2            %
