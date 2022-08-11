@@ -11,8 +11,26 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Chapter Preview}
-This chapter begins by motivating the need for high load impedance in amplifiers.  Resistive loads have many drawbacks including taking up a lot of physical space on an IC and requiring a very large voltage headroom due to $IR$ voltage drops.  We introduce the basic current mirror, which can be used as a current source load in an amplifier with reduced headroom requirements.  Next we introduce an improved current source known as the cascode current source.  We discuss both NMOS and PMOS variants, which can be used to build current sources and current "sinks", and we conclude the chapter with an amplifier design example.
+This chapter begins by motivating the need for high load impedance in amplifiers.  Resistive loads have many drawbacks, including taking up a lot of physical space on an IC, and requiring a very large voltage headroom due to $IR$ voltage drops.  We introduce the basic current mirror, which can be used as a current source load in an amplifier with reduced headroom requirements.  Next we introduce an improved current source known as the cascode current source.  We discuss both NMOS and PMOS variants, which can be used to build current sources and current "sinks".  We conclude the chapter with an amplifier design example.
 \newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                 FIGURE                   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[t]
+\centering
+\includegraphics[width=.85\columnwidth]{0highZload.pdf}
+\caption{High voltage gain amplifiers require a high load impedance $Z_L$.}
+\label{fig:0highZload.pdf}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                 FIGURE                   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\centering
+\includegraphics[scale=1]{1cs_headroom.pdf}
+\caption{To maximize voltage gain, the transistor should operate in the saturation (or forward-active) region, which means $V_{DS} > V_{od}$ ($V_{CE} > V_{CE,sat}$), which places limits on how large we can make $R_L$ for a fixed bias current.}
+\label{fig:1cs_headroom.pdf}
+\end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                   SECTION 13.2                                       %
@@ -23,51 +41,31 @@ This chapter begins by motivating the need for high load impedance in amplifiers
 %             SUBSECTION 13.2.1            %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Load Impedance}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                 FIGURE                   %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[tb]
-\centering
-\includegraphics[width=1\columnwidth]{0highZload.pdf}
-\caption{High voltage gain amplifiers require a high load impedance $Z_L$.}
-\label{fig:0highZload.pdf}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-In each amplifier shown in \emph{Fig.~\ref{fig:0highZload.pdf}}, to maximize gain we should maximize the load impedance $Z_L$.   Can we just use an arbitrarily large load resistor?  In an IC process technology, resistors are realized either as diffusion regions or using polysilicon films.  The resistance per square is on the order of 100's to 1000's of ohms-per-square, which requires many squares to realize a large resistor, taking up a lot of area.  We are also limited in the minimum width of the resistor, since thinner resistors have limits on maximum current handling capability (due to self-heating) and also experience wider variations from part to part, making the design gain more variable.  But the biggest limitation of all is simply the voltage drop across the resistors, discussed next. 
+In each amplifier shown in \emph{Fig.~\ref{fig:0highZload.pdf}}, to maximize gain we should maximize the \textbf{load impedance}\index{Amplifier!load impedance} $Z_L$.  Can we just use an arbitrarily large load resistor?  In an IC process technology, resistors are realized either as diffusion regions or using polysilicon films.  The resistance per square is on the order of 100's to 1000's of ohms-per-square, which requires many squares to realize a large resistor, taking up a lot of area.  We are also limited in the minimum width of the resistor, because thinner resistors have limits on maximum current handling capability (due to self-heating).  Thinner resistors also experience wider variations from part to part, making the design gain more variable.  Next we will discuss the biggest limitation of all, which is simply the voltage drop across the resistors. 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 13.2.2            %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Headroom Limitations}
+\index{headroom}
+To keep the transistor in saturation requires $V_{DS} > V_{od}$ (the over-drive voltage, $V_{GS} - V_T$).  For a fixed bias current, if we increase $R_L$, eventually we squash the transistor.  This means that it goes from the saturation region to the triode region, and the gain of the circuit is compromised.  This is illustrated in \emph{Fig.~\ref{fig:1cs_headroom.pdf}}.  One solution is to use a larger $V_{DD}$, but in practice this solution is hard to implement because each generation of IC technology has a voltage supply limit.  For example, today's nanoscale transistors can only tolerate $\sim 1\,V$ of voltage supply due to the thin oxides in the devices.  Even "thick oxide" devices, available for I/O\footnote{Iinput/output devices are used for driving external loads and receiving inputs from the outside of the chip.}, typically work at a maximum voltage of 2.5V or 3.3V (these voltage levels are standardized).
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[tb]
+\begin{figure}[t]
 \centering
-\includegraphics[scale=1]{1cs_headroom.pdf}
-\caption{To maximize voltage gain, the transistor should operate in the saturation (or forward-active) region, which means $V_{DS} > V_{od}$ ($V_{CE} > V_{CE,sat}$), which places limits on how large we can make $R_L$ for a fixed bias current.}
-\label{fig:1cs_headroom.pdf}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-To keep the transistor in saturation requires $V_{DS} > V_{od}$ (the over-drive voltage, $V_{GS} - V_T$).  For a fixed bias current, if we increase $R_L$, eventually we squash the transistor and it goes from the saturation region to the triode region, and the gain of the circuit is compromised.  This is illustrated in \emph{Fig.~\ref{fig:1cs_headroom.pdf}}.  One solution is to use a larger $V_{DD}$, but in practice this solution is hard to implement because each generation of IC technology has a voltage supply limit.  For example, today's nanoscale transistors can only tolerate $\sim 1$V of voltage supply due to the thin oxides in the devices.  Even "thick oxide" devices, available for I/O\footnote{Iinput/output devices are used for driving external loads and receiving inputs from the outside of the chip.}, typically work at a maximum voltage of 2.5V or 3.3V (these voltage levels are standardized).
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%             SUBSECTION 13.2.3            %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Achieving High Gain}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                 FIGURE                   %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[tb]
-\centering
-\begin{tabular}{cc}
-\includegraphics[width=.45\columnwidth]{2cs_current_mirror_load.pdf} &
-\includegraphics[width=.45\columnwidth]{mos_output_voltage.pdf}\\
-(a) & (b)\\
-\end{tabular}
+\includegraphics[width=.55\columnwidth]{2cs_current_mirror_load.pdf}\\
+(a)\\
+\includegraphics[width=.6\columnwidth]{mos_output_voltage.pdf}\\
+(b)\\
 \caption{(a) An ideal current source load results in the maximum gain for any bias current.  An ideal current source does not dictate the output voltage, just the current.  Note that $V_{bias,Q}$ determines the transistor operating point, which should match $I_{CS}$.  (b) The actual output voltage is determined by the transistor $I_{DS}$-$V_{DS}$ curve.}
 \label{fig:2cs_current_mirror_load.pdf}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-What if someone handed you a current source?  Then you could use it to bias the transistor, as shown in \emph{Fig.~\ref{fig:2cs_current_mirror_load.pdf}}, and since an ideal current source has infinite output resistance, it would maximize the gain while supporting any value of $V_{DS}$.  Unfortunately ideal current sources don't exist, but we could build one from a transistor with a fixed gate bias.  But how should we generate the correct bias voltage?  We'll answer this question by first considering the wrong approach.
+%             SUBSECTION 13.2.3            %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Achieving High Gain}
+What if someone handed you a current source?  Then you could use it to bias the transistor, as shown in \emph{Fig.~\ref{fig:2cs_current_mirror_load.pdf}}.  Because an ideal current source has infinite output resistance, it would maximize the gain while supporting any value of $V_{DS}$.  Unfortunately, ideal current sources don't exist.  However, we could build one from a transistor with a fixed gate bias.  But how should we generate the correct bias voltage?  We will answer this question by first considering the wrong approach.
+\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 13.2.4            %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -88,6 +86,7 @@ A transistor biased in saturation with $V_{GS} = \text{constant}$ is effectively
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Transistor Process / Temperature Variations}
 If we simply fix the $V_{GS}$ value to realize a specific current, we are designing a current source that will have a very unpredictable output current.  For example, if the temperature varies, the threshold voltage changes, and so will the current.  Also, if we fix the gate bias value based on a model, then in real applications we'll find that every transistor is a bit different from the model from natural statistical variations (in doping levels and geometry, especially for small transistors), and so the output current will be a random variable with a large variance.  To keep the variance low, we should use another strategy, which is to observe that while two arbitrary transistors are not well matched, two transistors sitting right next to each other, or better yet two "inter-digitated transistors" (how this is done will be explained in Sect.~\ref{sec:interdigitate}), will behave very similarly. So the strategy should be to use one transistor to generate the $V_{GS}$ for the other.
+\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                   SECTION 13.3                                       %
@@ -229,6 +228,7 @@ As shown in \emph{Fig.~\ref{fig:7mirror_current_source.pdf}}, a current mirror a
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 The output impedance seen by the load can be calculated using the small-signal model shown in \emph{Fig.~\ref{fig:8mirror_small_signal.pdf}}.  Use a test generator $v_t$ and find the current draw from the source.  Note that M1 is not driven by a source because $I_{ref}$ is DC and so an open circuit in the small-signal model.  Thus without a source, M1 is effectively driven with zero $v_{gs}$ and has no output, pulling the $v_{gs}$ of both transistors to ground.  Thus M2's dependent $g_m$ is zero, and the only current draw is from $r_{o,2}$.
+\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                   SECTION 13.4                                       %
@@ -356,6 +356,7 @@ This can be quite a large voltage penalty compared to a simple mirror, but an ea
 \caption{To maximize the swing of a cascode mirror, the gate of the top "cascode" transistor M4 should be biased at $V_T + 2 V_{od}$ to place M2 at the edge of saturation.}
 \label{fig:cascode_hiswing}
 \end{figure}
+\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                   SECTION 13.5                                       %
@@ -394,6 +395,7 @@ One nice observation is that a current mirror can have multiple outputs.  Think 
 \includegraphics[scale=1]{19current_mirror_multioutput.pdf}
 \caption{A precision current reference $I_{ref}$ is fed into this circuit and multiple copies are produced, both as current sinks and sources.  Each current can be scaled appropriately as needed.} \label{fig:19current_mirror_multioutput.pdf}
 \end{figure}
+\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                   SECTION 13.6                                       %
@@ -463,6 +465,7 @@ The voltage gain is given by:
     \begin{equation}
         G_v = \frac{v_{out}}{v_s} = \frac{ g_m R_{L,eff}}{ 1 + g_m R_{L,eff}}
     \end{equation}
+\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                   SECTION 13.7                                       %
