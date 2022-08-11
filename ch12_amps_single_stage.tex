@@ -451,7 +451,7 @@ There is another benefit of the CG amplifier as a voltage amplifier, compared to
 \includegraphics[scale=1.15]{cd_amp_dc}\\
 (a)\\[0.15cm]
 \includegraphics[scale=1.25]{cd_amp_ac}\\
-((b)\\
+(b)\\
 \caption{(a) The full schematic of the common drain (CD) amplifier.  (b) The AC equivalent circuit of a CD amplifier.}
 \label{fig:cd_amp_dc_ac}
 \end{figure}
@@ -461,19 +461,19 @@ There is another benefit of the CG amplifier as a voltage amplifier, compared to
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Common Drain Amplifier}
-The full schematic of the common drain amplifier\index{Amplifier!MOSFET!common drain} is shown in \emph{Fig.~\ref{fig:cd_amp_dc_ac}a}.  The "common" terminal is obviously the drain.  However, unlike the CG and CS amplifiers, it is not grounded. Instead it is connected to a DC supply.  This is because we need to connect the drain to a higher potential than the gate/source in order to bias the transistor in saturation.  As far as AC signals are concerned, though, the drain voltage is DC and therefore AC grounded.  This is shown in \emph{Fig.~\ref{fig:cd_amp_dc_ac}b}.
+The full schematic of the common drain amplifier\index{Amplifier!MOSFET!common drain} is shown in \emph{Fig.~\ref{fig:cd_amp_dc_ac}a}.  The "common" terminal is the drain, because the signal input comes into the gate, and the signal output exits the source.  However, unlike the CG and CS amplifiers, the drain is not grounded. Instead it is connected to a DC supply.  This is because we need to connect the drain to a higher potential than the gate/source in order to bias the transistor in saturation.  As far as AC signals are concerned, though, the drain voltage is DC and therefore \textbf{AC grounded}\index{Amplifier!AC grounded}.  This is shown in \emph{Fig.~\ref{fig:cd_amp_dc_ac}b}.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 12.4.1            %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{CD DC Operating Point}
-The CD amplifier is usually biased with a constant current $I_Q$ as shown.  The load is AC coupled and so the transistor $I_{DS}$ flows into $I_Q$:
-    \begin{equation}
+The CD amplifier is usually biased with a constant current $I_Q$ as shown.  The load is \textbf{AC coupled}\index{Amplifier!AC coupled}, and so the transistor $I_{DS}$ flows into $I_Q$:
+    \begin{equation*}
         I_Q = I_{DS} = \left(\frac{W}{2L}\right)\mu\,C_{ox}{(V_{GS} - V_T)}^2	
-    \end{equation}
+    \end{equation*}
 In theory, the gate voltage could be at any DC bias point, but in practice we know that the current $I_Q$ dictates a positive $V_{GS}$:
-    \begin{equation}
+    \begin{equation*}
         V_{GS} = V_T + \sqrt{\frac{2\,I_{Q}}{\mu\,C_{ox}\,\frac{W}{L}}}
-    \end{equation}
+    \end{equation*}
 To give the current source $I_Q$ some headroom\index{headroom} (DC voltage), we need to bias the gate of the transistor at a correspondingly higher voltage.  For now let's call that $V_{bias,Q}$ similar to the CG amplifier.
 \newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -481,11 +481,11 @@ To give the current source $I_Q$ some headroom\index{headroom} (DC voltage), we 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[t]
 \centering
-\includegraphics[scale=1.25]{cd_amp_ss_av2}\\
+\includegraphics[scale=1.15]{cd_amp_ss_av2}\\
 (a)\\
-\includegraphics[scale=1.25]{cd_amp_ss_rout}\\
+\includegraphics[scale=1.15]{cd_amp_ss_rout}\\
 ((b)\\
-\caption{(a) Common Drain amplifier small-signal equivalent circuit.  (b) Small-signal circuit schematic for calculation of output impedance.}
+\caption{(a) \textit{Common drain} amplifier small-signal equivalent circuit.  (b) Small-signal circuit schematic for calculation of output impedance.}
 \label{fig:cd_amp_ss_av2}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -493,54 +493,58 @@ To give the current source $I_Q$ some headroom\index{headroom} (DC voltage), we 
 %             SUBSECTION 12.4.2            %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{CD Voltage Gain}
-To find the voltage gain of the CD amplifier, we apply an AC source to the gate and observe the output voltage at the source, as shown in \emph{Fig.~\ref{fig:cd_amp_ss_av2}}.  In the small-signal model, we have grayed out the \textbf{back-gate generator}\index{Back-gate generator} $g_{mb}$, which would be the case if we short the source to the body of the transistor.  We will handle the situation of the grounded body later. Let's write KCL at the output node:
-    \begin{equation}
+To find the voltage gain of the CD amplifier, we apply an AC source to the gate and observe the output voltage at the source, as shown in \emph{Fig.~\ref{fig:cd_amp_ss_av2}a}.  In the small-signal model, we have grayed out the \textbf{back-gate generator}\index{Back-gate generator} $g_{mb}$, which would be the case if we short the source to the body of the transistor.  We will handle the situation of the grounded body later. Let's write KCL at the output node:
+    \begin{equation*}
         \frac{v_{out}}{R_L \parallel r_o} = g_m\,v_{gs}
-    \end{equation}
+    \end{equation*}
 Because the input and output are just separated by $v_{gs}$, or $v_{gs} = v_{s} - v_{out}$, we have:
-    \begin{equation}
+    \begin{equation*}
         \frac{v_{out}}{R_L \parallel r_o} = g_m(v_s - v_{out})
-    \end{equation}
+    \end{equation*}
 Collecting common factors:
     \begin{equation}
         \left(\frac{1}{R_L \parallel r_o} + g_m\right)v_{out} = g_m\,v_s
+        \label{eq:cd_gain_kcl}
     \end{equation}
-This last equation leads us to the voltage gain:
-    \begin{equation}
-        \frac{v_{out}}{v_s} = \frac{g_m}{\frac{1}{R_L \parallel r_o} + {g_m}}
-    \end{equation}
+\emph{Eq.~\ref{eq:cd_gain_kcl}} leads us to the voltage gain\index{Amplifier!MOSFET!common drain!voltage gain}:
+    \begin{align}
+        \Aboxed{\frac{v_{out}}{v_s} = \frac{g_m}{\frac{1}{R_L \parallel r_o} + g_m}} &\textit{Common drain voltage gain}
+    \end{align}
 Assuming that $r_o \gg R_L$, we have:
     \begin{equation}
         \frac{v_{out}}{v_s} \approx \frac{g_m}{\frac{1}{R_L} + g_m} \approx 1
+        \label{eq:cd_gain_one}
     \end{equation}
-This final result leads to another name for this amplifier, namely the \textbf{"Source Follower"}\index{Amplifier!source follower}, because the source voltage closely tracks the gate voltage.  In other words, this is a voltage amplifier with unity gain, or a voltage buffer.
+This final result in \emph{Eq.~\ref{eq:cd_gain_one}} leads to another name for this amplifier, namely the \textbf{"Source Follower"}\index{Amplifier!source follower}, because the source voltage closely tracks the gate voltage.  In other words, this is a voltage amplifier with unity gain, or a voltage buffer\index{Amplifier!voltage buffer}.
 
 To be a voltage buffer, though, also requires high input impedance and low output impedance.  Obviously the input impedance is large, especially at low frequencies, because of the insulating nature of the gate.  Now let's examine the output impedance of the CD.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 12.4.3            %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{CD Output Resistance}
-To calculate the output impedance, refer to \emph{Fig.~\ref{fig:cd_amp_ss_av2}b}.  We apply a test source $v_x$ and find the current $i_x$.  For a moment, forget about $r_o$ and $r_{oc}$, the output resistance of the transistor and the current source.  They are simply in parallel with the source and can be added later.  In that case, let's sum currents at output (source) node:
+To calculate the output impedance\index{Amplifier!MOSFET!common drain!output resistance}, refer to \emph{Fig.~\ref{fig:cd_amp_ss_av2}b}.  We apply a test source $v_x$ and find the current $i_x$.  For a moment, forget about $r_o$ and $r_{oc}$, the output resistance of the transistor and the current source.\footnote{For proof that this simplification yields the same result using KCL, see \emph{App.~\ref{app:cd_output_kcl}}.}  They are simply in parallel with the source and can be added later.  In that case, let's sum currents at output (source) node:
     \begin{equation}
         i_x = g_m\,v_x
+        \label{eq:cd_output_i_x}
     \end{equation}
-which leads to:
+\emph{Eq.~\ref{eq:cd_output_i_x}} which leads to:
     \begin{equation}
-        R_{out} = r_o \parallel R_L \parallel \frac{v_x}{i_x} = r_o \parallel R_L \parallel \frac{1}{g_m}
+        R_{out} = \left(r_o \parallel r_{oc}\right) \parallel \frac{v_x}{i_x}
+        = \boxed{\left(r_o \parallel r_{oc}\right) \parallel \frac{1}{g_m}}
+        \label{eq:cd_output_resistance}
     \end{equation}
-If $r_o \parallel R_L$ is much larger than the inverses of the transconductance, the output impedance is given by:
-    \begin{equation}
-        R_{out} \approx \frac{1}{g_m}
-    \end{equation}
-This equation implies that a good voltage buffer needs to be biased with a large $g_m$.  Recall that the $g_m$ of a transistor is proportional to $\sqrt{I_{DS}}$, so a good voltage buffer is realized by burning sufficiently large DC current.  Indeed, the CD amplifier is often used as an output stage to drive a heavy load.  A heavy load is a small resistance, because for a fixed voltage swing it draws more power than a larger resistor.  In order to buffer a gain stage from a small load, we can add a Source Follower amplifier.
-
-Finally, if we put everything together, we can see that a CD amplifier, or a Source Follower, is modeled as shown in \emph{Fig.~\ref{fig:cd_amp_model}}.  
+If $r_o \parallel r_{oc}$ is much larger than the inverses of the transconductance, the output impedance is given by:
+    \begin{align}
+        \Aboxed{R_{out} &\approx \frac{1}{g_m}} &\textit{Common drain output resistance}
+        \label{eq:cd_output_resistance_simple}
+    \end{align}
+Recall that $g_m \propto \sqrt{I_{DS}}$, so a good voltage buffer is biased with a large $g_m$, and burns sufficiently large DC current.  The CD amplifier is often used as an output stage to drive a heavy load.  A heavy load is a small resistance, because for a fixed voltage swing it draws more power than a larger resistor.  In order to buffer a gain stage from a small load, we can add a \textit{source follower} amplifier.  Putting everything together, a CD amplifier is modeled as shown in \emph{Fig.~\ref{fig:cd_amp_model}}.  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \centering
-\includegraphics[scale=1.15]{cd_amp_model}
+\includegraphics[scale=1.25]{cd_amp_model}
 \caption{A two-port model for the CD amplifier is a voltage buffer with unity gain and output impedance $1/g_m$.}
 \label{fig:cd_amp_model}
 \end{figure}
@@ -550,9 +554,9 @@ Finally, if we put everything together, we can see that a CD amplifier, or a Sou
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[t]
 \centering
-\includegraphics[scale=1.35]{cd_amp_ac_body}\\
+\includegraphics[scale=1.25]{cd_amp_ac_body}\\
 (a)\\
-\includegraphics[scale=1.25]{cd_amp_ss_av_body 2}\\
+\includegraphics[scale=1.15]{cd_amp_ss_av_body 2}\\
 (b)\\
 \caption{(a) The CD amplifier built with a four terminal MOSFET with a grounded body.  Note that the voltage $v_{sb}$ is not zero and therefore we must consider (b) the complete low-frequency small-signal schematic of the CD amplifier (including the back-gate effect).}
 \label{fig:cd_amp_ac_body}
@@ -563,28 +567,31 @@ Finally, if we put everything together, we can see that a CD amplifier, or a Sou
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Impact of Body Effect}
-As we noted earlier, if the source and body are not tied together, there's a back-gate effect that we need to consider.  Recall that if an NMOS transistor is fabricated in a $P$-type substrate, then its body connection is the substrate, which must be grounded in an IC (or tied to the lowest potential), as shown in \emph{Fig.~\ref{fig:cd_amp_ac_body}a}.  It's possible to create a "triple well" process (or a "deep $N$-well" process) to accommodate placing NMOS devices in their own body wells to prevent the back-gate effect, but these process options are more expensive and increase the size of the device.  Often many NMOS devices will reside in the same substrate or $P$-well and so all the bodies are tied to a common (ground) node.
+As we noted earlier, if the source and body are not tied together, there is a back-gate effect\index{Amplifer!body effect} that we need to consider.  Recall that if an NMOS transistor is fabricated in a $P$-type substrate, then its body connection is the substrate.  The body connection must be grounded in an IC (or tied to the lowest potential), as shown in \emph{Fig.~\ref{fig:cd_amp_ac_body}a}.  It is possible to create a "triple well" process (or a "deep $N$-well" process) to accommodate placing NMOS devices in their own body wells. This process can prevent the back-gate effect, but these process options are more expensive and increase the size of the device.  Often many NMOS devices will reside in the same substrate or $P$-well, and so all the bodies are tied to a common (ground) node.
 
-To calculate the gain with the back-gate effect, we return to the full four-terminal small-signal schematic, redrawn in \emph{Fig.~\ref{fig:cd_amp_ac_body}b}.  To find the voltage gain, we write KCL at the output node: 
-    \begin{equation}
+To calculate the gain with the back-gate effect, we return to the full \textbf{four-terminal small-signal}\index{Amplifier!four-terminal small-signal} schematic, redrawn in \emph{Fig.~\ref{fig:cd_amp_ac_body}b}.  To find the voltage gain, we write KCL at the output node: 
+    \begin{equation*}
         \frac{v_{out}}{R_L \parallel r_o} = g_m\,v_{gs} + g_{mb}\,v_{bs}
-    \end{equation}
+    \end{equation*}
 As before, $v_{gs} = v_{s} - v_{out}$, but now we must consider that the source voltage moves with respect to the body:
-    \begin{equation}
+    \begin{equation*}
         v_{bs} = 0 - v_{out} = -v_{out}
-    \end{equation}
+    \end{equation*}
 Making these substitutions:
-    \begin{equation}
+    \begin{equation*}
         \frac{v_{out}}{R_L \parallel r_o} = g_m\left(v_{s} - v_{out} - g_{mb}\,v_{out}\right)
-    \end{equation}
+    \end{equation*}
 Collecting common factors:
-    \begin{equation}
+    \begin{equation*}
         \left(\frac{1}{R_L \parallel r_o} + g_m + g_{mb}\right)v_{out} = g_m\,v_{s}
-    \end{equation}
-This last equation leads us to the voltage gain:
-    \begin{equation}
-        \frac{v_{out}}{v_s} = \frac{g_m}{\frac{1}{R_L \parallel r_o} + g_m + g_{mb}}
-    \end{equation}
+    \end{equation*}
+This last equation leads us to the voltage gain\index{Amplifier!MOSFET!common drain!voltage gain with body effect}:
+    \begin{align}
+        \Aboxed{\frac{v_{out}}{v_s} &= \frac{g_m}{\frac{1}{R_L \parallel r_o} + g_m + g_{mb}}}
+        &\textit{CD gain with body effect}
+    \end{align}
+\vspace{4cm}
+\subsubsection{Amplifier Topologies}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -602,8 +609,8 @@ This last equation leads us to the voltage gain:
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Chapter Summary: Amplifiers \texorpdfstring{$\rightarrow \; G_m$/$V$/$I$}{}}
-Let's summarize this chapter by reviewing the three possible amplifier topologies and the equivalent circuit, all shown in \emph{Fig.~\ref{fig:ampchart_models}}.  In each case we model the amplifier in a certain way that best characterizes the input/output impedance of the topology.  For example, a CS amplifier has high input impedance and high output impedance, making it an ideal transconductance amplifier.  This is not to say that it cannot be designed as a (inverting) buffer, a voltage amplifier, or a current amplifier, it's just that its native impedance level lends it well to being used as a transconductance amplifier.  
+Let's summarize this chapter by reviewing the three possible amplifier topologies and the equivalent circuit, all shown in \emph{Fig.~\ref{fig:ampchart_models}}.  In each case we model the amplifier in a certain way that best characterizes the input/output impedance of the topology.  For example, a CS amplifier has high input impedance and high output impedance, making it an ideal transconductance amplifier.  This is not to say that it cannot be designed as a (inverting) buffer, a voltage amplifier, or a current amplifier.  It is just that the native impedance level of the CS lends well to it being used as a transconductance amplifier.  
 
-The CG amplifier is likewise best seen as a current buffer, since the input and output current are nearly identical.  But CG amplifiers make great voltage amplifiers too, provided that you can drive their input impedance.  Also, their output impedance is high, and so if it's desirable to drive a low load impedance, a voltage buffer is needed.  
+The CG amplifier is likewise best seen as a current buffer, because the input and output currents are nearly identical.  But CG amplifiers make great voltage amplifiers too, provided that you can drive their input impedance.  Their output impedance is also high, and so a voltage buffer is needed if driving a low impedance load is desired.  
 
 Finally, the CD amplifier is best viewed as a voltage buffer, providing high input impedance and low output impedance.  Its voltage gain is less than unity, but with enough bias current we can approach unity gain.  Even though the voltage gain is always less than one, it can provide \emph{power gain} by driving a load with power without requiring much input power.

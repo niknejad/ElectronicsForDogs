@@ -399,13 +399,11 @@ innerbottommargin=5pt]{cBox}
 	\setlength\fboxsep{0pt}%
 	\noindent\colorbox{ocre!20}{\strut\parbox[c][.7cm]{\ecart}{\color{ocre!70}\Large\sffamily\bfseries\centering#1}}\hskip\esp\colorbox{ocre!40}{\strut\parbox[c][.7cm]{\linewidth-\ecart-\esp}{\Large\sffamily\centering#2}}%
 }
-
 % Unnumbered part in the table of contents
 \newcommand{\@myparttocformat}[1]{%
 	\setlength\fboxsep{0pt}%
 	\noindent\colorbox{ocre!40}{\strut\parbox[c][.7cm]{\linewidth}{\Large\sffamily\centering#1}}%
 }
-
 \newlength\esp
 \setlength\esp{4pt}
 \newlength\ecart
@@ -511,24 +509,32 @@ innerbottommargin=5pt]{cBox}
 %----------------------------------------------------------------------------------------
 
 \usepackage{hyperref}
-%\hypersetup{hidelinks,backref=true,pagebackref=true,hyperindex=true,colorlinks=false,breaklinks=true,urlcolor=ocre,bookmarks=true,bookmarksopen=false}
-\hypersetup{hidelinks, colorlinks=false, breaklinks=true, urlcolor=ocre, bookmarksopen=false}
+\hypersetup{
+    hidelinks,
+    colorlinks=true,
+    linkcolor=black,
+    breaklinks=true,
+    urlcolor=blue,
+    bookmarksopen=false
+    }
 \usepackage{bookmark}
 \bookmarksetup{
-open,
-numbered,
-addtohook={%
-\ifnum\bookmarkget{level}=0 % chapter
-\bookmarksetup{bold}%
-\fi
-\ifnum\bookmarkget{level}=-1 % part
-\bookmarksetup{color=ocre,bold}%
-\fi
-}
-}
+    open,
+    numbered,
+    addtohook={
+                \ifnum\bookmarkget{level}=0 % chapter
+                \bookmarksetup{bold}%
+                \fi
+                \ifnum\bookmarkget{level}=-1 % part
+                \bookmarksetup{color=ocre,bold}%
+                \fi
+                }
+    }
+
 %----------------------------------------------------------------------------------------
 %	Caption
 %----------------------------------------------------------------------------------------
+
 \usepackage{subcaption}
 \usepackage{caption}
 \captionsetup[figure]{font=small,labelfont=small}
