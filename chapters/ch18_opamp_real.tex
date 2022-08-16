@@ -11,7 +11,9 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Chapter Preview}
-In the last chapter we introduced a model for an operation amplifier (op-amp) that could predict the gain-bandwidth (GBW) trade-off of the amplifier in single-pole dominated op-amps.  The model was physically inspired and included an input OTA followed by an optional buffer.   The model accounted for finite open-loop gain ($A_0 < \infty$ ), finite input resistance ($R_i < \infty\Omega$ ), non-zero output resistance ($R_o > 0\Omega$ ), and finite bandwidth.  In this chapter we continue our investigation of op-amps but we will also discuss other non-ideal effects and non-linearities that are present in real op-amps.  These include an offset voltage, DC bias currents at the input, swing and slew-rate limitations, and distortion.  We end the chapter by discussing some other effects such as noise, but we will only scratch the surface of this topic and leave this for a more advanced analog circuits course.
+In the last chapter we introduced a model for an operational amplifier (op-amp) that could predict the gain-bandwidth (GBW) trade-off of the amplifier in single-pole dominated op-amps.  The model was physically inspired, and included an input OTA followed by an optional buffer.  The model accounted for finite open-loop gain ($A_0 < \infty$ ), finite input resistance ($R_i < \infty\Omega$ ), non-zero output resistance ($R_o > 0\Omega$), and finite bandwidth.
+
+In this chapter we continue our investigation of op-amps, but we will also discuss other non-ideal effects and non-linearities that are present in real op-amps.  These include an offset voltage, DC bias currents at the input, swing and slew-rate limitations, and distortion.  We end the chapter by discussing some other effects such as noise, but we will only scratch the surface of this topic and leave this for a more advanced analog circuits course.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -23,6 +25,15 @@ In the last chapter we introduced a model for an operation amplifier (op-amp) th
 % \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                 FIGURE                   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[tb]
+\centering
+\includegraphics[scale=1.15]{opamp_offset}
+\caption{The offset voltage of an op-amp can be modeled by assuming the op-amp is free of offset, and then placing a voltage source at one of the input terminals.  Since the sign of the offset voltage is a random variable, the offset voltage can be placed at either input terminal.}
+\label{fig:opamp_offset}
+\end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                   SECTION 18.2                                       %
@@ -33,28 +44,20 @@ In the last chapter we introduced a model for an operation amplifier (op-amp) th
 %             SUBSECTION 18.2.1            %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Offset Voltage}
+If you short the inputs of an op-amp, you would expect that the output would be at zero voltages.  Unfortunately, due to imbalances in the construction of the amplifier, the output may not be at zero at all.  In fact, in many cases it might even "rail out", and sit at either $V_{sup}$ or $-V_{sup}$, where $\pm V_{sup}$ are the supply rails.  From our study of the \textit{differential pair}\index{Differential pair}, we know that the origin of this \textbf{offset voltage}\index{Op-amp!offset voltage} arises from mismatches between the input differential pair transistors or load resistors.  
+
+We model an op-amp with an offset voltage as an ideal op-amp inside another amplifier with a simple DC offset voltage, shown in \emph{Fig.~\ref{fig:opamp_offset}}.  Even though the DC offset voltage is shown with a certain polarity, in reality it can be positive or negative, because it is a random variable.  This means that for each model of an op-amp there will be a different offset voltage for each part.  In datasheets for op-amps you will see that the stated offset voltage $V_{os}$ is usually the standard deviation of the offset voltage.  Therefore it is clear that we can place the DC voltage on either terminal.  The impact is to shift the transfer curve left or right (shown in \emph{Fig.~\ref{fig:opamp_offset_plot}}), depending on the sign and magnitude of the offset.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[tb]
-\centering
-\includegraphics[scale=1]{opamp_offset}
-\caption{The offset voltage of an op-amp can be modeled by assuming the op-amp is free of offset and then placing a voltage source at the input terminals.  Since the sign of the offset voltage is a random variable, the offset voltage can be placed at either input terminal.}
-\label{fig:opamp_offset}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                 FIGURE                   %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[tb]
+\begin{figure}[H]
 \centering
 \includegraphics[width=.75\columnwidth]{opamp_offset_plot}
 \caption{The offset voltage causes the input-output transfer curve of an op-amp to deviate from the origin.  In other words, even a zero input results in a non-zero output voltage.}
 \label{fig:opamp_offset_plot}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-If you short the inputs of an op-amp, you would expect that the output would be at zero voltages.  Unfortunately, due to imbalances in the construction of the amplifier, the output may not be at zero at all, and in many cases it might even "rail out" and sit at either $V_{sup}$ or $-V_{sup}$, where $\pm V_{sup}$ are the supply rails.  From our study of the differential pair, we know the origin of this offset voltage as arising from mismatches between the input differential pair transistors or load resistors.  
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-We model an op-amp with an offset voltage as an ideal op-amp inside another amplifier with a simple DC offset voltage, shown in \emph{Fig.~\ref{fig:opamp_offset}}.  Even though the DC offset voltage is shown with a certain polarity, in reality it can be positive or negative, as it's a random variable.  From part to part you'll see variation and the stated offset voltage $V_{os}$ is usually the standard deviation of the offset voltage.  Therefore it's clear that we can place the DC voltage on either terminal.  The impact is to shift the transfer curve left or right \big(shown in \emph{Fig.~\ref{fig:opamp_offset_plot}}\big), depending on the sign and magnitude of the offset.
+\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 18.2.2            %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -64,19 +67,18 @@ We model an op-amp with an offset voltage as an ideal op-amp inside another ampl
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tb]
 \centering
-\includegraphics[width=1\columnwidth]{lm741_pinout}
-\caption{The pinouts of the LM741H op-amp have several pins dedicated for offset nulling the amplifier.} \label{fig:lm741_pinout}
+\includegraphics[width=.75\columnwidth]{lm741_pinout}
+\caption{The pinout of the LM741H op-amp has several pins dedicated for offset nulling the amplifier.} \label{fig:lm741_pinout}
 \end{figure}
+The pinout of a typical op-amp is shown in \emph{Fig.~\ref{fig:lm741_pinout}}.  In addition to the obvious pins (input, output, supplies), there are extra pins labeled "offset null".   The output DC offset voltage of an op-amp can be trimmed to zero by connecting a potentiometer to the two offset-nulling terminals, as shown in \emph{Fig.~\ref{fig:opamp_pinout_offset}}. In this example, the wiper of the potentiometer should be connected to the negative supply of the op-amp.  In fully integrated circuits, the offset null circuitry is internal (for example with electronically steerable resistors or current sources) and the offset is nulled out using a calibration step or feedback.  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[tb]
+\begin{figure}[H]
 \centering
-\includegraphics[scale=1]{opamp_pinout_offset}
-\caption{The pinouts of many op-amps include offset null pins that should be connected as directed in the datasheet.  For example, in this amplifier a potentiometer is used to tune out the offset.} \label{fig:opamp_pinout_offset}
+\includegraphics[scale=1.25]{opamp_pinout_offset}
+\caption{The pinout of many op-amps include offset null pins that should be connected as directed in the datasheet.  For example, in this amplifier a potentiometer is used to tune out the offset.} \label{fig:opamp_pinout_offset}
 \end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-The pinouts of a typical op-amp are shown in \emph{Fig.~\ref{fig:lm741_pinout}}.  In addition to the obvious pins (input, output, supplies), there are extra pins labeled "offset null".   The output DC offset voltage of an op-amp can be trimmed to zero by connecting a potentiometer to the two offset-nulling terminals, as shown in \emph{Fig.~\ref{fig:opamp_pinout_offset}}. In this example, the wiper of the potentiometer should be connected to the negative supply of the op-amp.  In fully integrated circuits, the offset null circuitry is internal (for example with electronically steerable resistors or current sources) and the offset is nulled out using a calibration step or feedback.  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 18.2.3            %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -87,69 +89,73 @@ The pinouts of a typical op-amp are shown in \emph{Fig.~\ref{fig:lm741_pinout}}.
 \begin{figure}[tb]
 \centering
 \begin{tabular}{cc}
-\includegraphics[scale=1]{opamp_offset_I} &
-\includegraphics[scale=1]{bjt_input_darlington}\\
+\includegraphics[scale=1.05]{opamp_offset_I} &
+\includegraphics[scale=1.05]{bjt_input_darlington}\\
 (a) & (b)\\
 \end{tabular}
 \caption{(a) Many op-amps require input bias currents to flow into the amplifier.  These bias currents are never perfectly matched, resulting in an input offset current. (b) The physical implementation of the input of an op-amp with bipolar transistors may incorporate a "Darlington Pair" to reduce the input current. The pair of transistors acts like a macro transistor with reduced base current. The first (input) BJT's are followers and the differential pair is formed as usual using the Darlingtons.}
 \label{fig:opamp_offset_I}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Some op-amps, in particular ones implemented with bipolar transistors, have an input bias current that needs to flow into or out of the op-amp inputs in order for everything to function properly. This is typically a very small current (100nA), and modeled by adding explicit current sources to the input of an ideal op-amp, shown in \emph{Fig.~\ref{fig:opamp_offset_I}}.  The bias currents flowing into each input terminal can also vary, and the difference is the input offset current, usually an order of magnitude smaller than the input currents (10nA).  The average current is given by:
+Some op-amps, in particular ones implemented with bipolar transistors, have an input bias current that needs to flow into or out of the op-amp inputs in order for everything to function properly. This is typically a very small current ($100\,nA$), and modeled by adding explicit current sources to the input of an ideal op-amp, shown in \emph{Fig.~\ref{fig:opamp_offset_I}}.  The bias currents flowing into each input terminal can also vary, and the difference is the \textbf{input offset current}\index{Op-amp!input offset current}, usually an order of magnitude smaller than the input currents ($10\,nA$).  The average current is given by:
 \begin{equation}
-       I_B = \frac{I_{B1}+I_{B2}}{2}
+       I_B = \frac{I_{B1} + I_{B2}}{2}
 \end{equation}
-And the difference between the bias currents is known as the offset current:
-\begin{equation}
-        I_{OS} = |I_{B1} - I_{B2} |
-\end{equation}
-It's important to understand that this is a DC current, and not an AC current, and it's not due to the input impedance.  It's usually the base current of a bipolar transistor, $I_B = I_C/\beta$.  Variations in $\beta$ cause the input offset.
+The difference between the bias currents is known as the offset current:
+\begin{align}
+        \Aboxed{I_{OS} = \left|I_{B1} - I_{B2}\right|}
+        &\textit{Op-amp input offset current}
+\end{align}
+It is important to understand that this is a DC current.  It is \textit{not} an AC current, and it is \textit{not} due to the input impedance.  It is usually the base current of a bipolar transistor, $I_B = I_C/\beta$.  Variations in $\beta$ cause the input offset.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 18.2.4            %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Effect of Input Bias Current in Amplifier Circuit}
+Let's assume for now that the offset voltage of an op-amp is zero.  In absence of an input voltage, as shown in \emph{Fig.~\ref{fig:opamp_offset_i2v}}, one would expect zero output.  However, due to non-zero $I_B$, the output is given by:
+\begin{equation}
+      V_o = I_{B1}\,R_2 \approx I_B\,R_2 
+      \label{eq:off1}
+\end{equation}
+This places a limit on the value of $R_2$. A lower value of $R_2$ requires a higher power op-amp, which is undesirable in many applications.  In the next section, we will show a simple way to mitigate this.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[tb]
+\begin{figure}[H]
 \centering
-\includegraphics[scale=1]{opamp_offset_i2v}
+\includegraphics[scale=1.25]{opamp_offset_i2v}
 \caption{In an op-amp with feedback, the input bias currents cause output offset voltages as shown.  Note the current through $R_1$ is zero since the input of the op-amp is at a virtual ground due to the high loop gain.}
 \label{fig:opamp_offset_i2v}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Let's assume for now that the offset voltage of an op-amp is zero.  In absence of an input voltage, as shown in \emph{Fig.~\ref{fig:opamp_offset_i2v}}, one would expect zero output.  However, due to non-zero $I_B$, the output is given by
-\begin{equation}
-      V_o = I_{B1} R_2 \approx I_B R_2 
-      \label{eq:off1}
-\end{equation}
-This places a limit on the value of $R_2$, and a lower value of $R_2$ requires a higher power op-amp, which is undesirable in many applications.  In the next section, we'll show a simple way to mitigate this.
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                 FIGURE                   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[t]
+\centering
+\includegraphics[scale=1.5]{opamp_offset_reduce}
+\caption{The effect of input currents and input offset can be minimized by placing an appropriately sized resistor $R_3$ at the positive terminal of the op-amp without impacting the AC performance.} \label{fig:opamp_offset_reduce}
+\end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 18.2.5            %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Reducing the Effect of Input Bias Currents}
 In \emph{Fig.~\ref{fig:opamp_offset_reduce}}, we add a resistor $R_3$, which has no impact on the AC response of an ideal op-amp since the current into the grounded node of the positive terminal is zero.  Let's calculate the output offset voltage in this case.  The figure labels are very helpful in deriving this equation:
-\begin{equation}
-      V_o = I_{B2} R_3 + R_2 \left(  \frac{I_{B2}R_3}{R_1} - I_{B1}  \right)
-\end{equation}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                 FIGURE                   %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[tb]
-\centering
-\includegraphics[scale=1]{opamp_offset_reduce}
-\caption{The effect of input currents and input offset can be minimized by placing an appropriately sized resistor $R_3$ at the positive terminal of the op-amp without impacting the AC performance.} \label{fig:opamp_offset_reduce}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\noindent Let's assume zero offset for now ($I_{B1} = I_{B2} = I_B$).  Then this equation can be simplified:
     \begin{equation}
-        V_o = I_{B} R_3 + R_2 I_B \left( \frac{R_3}{R_1} - 1 \right)
+          V_o = I_{B2}\,R_3 + R_2\left(\frac{I_{B2}\,R_3}{R_1} - I_{B1}\right)
+    \end{equation}
+Let's assume zero offset for now ($I_{B1} = I_{B2} = I_B$).  Then this equation can be simplified:
+    \begin{equation}
+        V_o = I_B\,R_3 + R_2\,I_B\left(\frac{R_3}{R_1} - 1\right)
     \end{equation}
 The output offset voltage due to $I_B$ is given by:
-    \begin{equation}
-        = I_{B}  \left( -R_2 + R_3\left(1+ \frac{R_2}{R_1}  \right)  \right)
-    \end{equation}
-Notice that if we choose $R_3 = \frac{R_2}{1 + R_2/R_1}$, we can drive $V_o = 0$V, thus eliminating the systematic offset of the circuit.  You can show that if we now include an offset current, the above choice of $R_3$ results in $V_o = I_{OS} R_2 $, which is an order of magnitude lower than $I_B R_2$ from \emph{Eq.~\ref{eq:off1}}.
+    \begin{align}
+        \Aboxed{V_{OS} &= I_B\left[-R_2 + R_3\left(1 + \frac{R_2}{R_1}\right)\right]}
+        &\textit{Op-amp output offset voltage}
+        \label{eq:op_amp_output_offset}
+    \end{align}
+Notice that if we choose $R_3 = \frac{R_2}{1 + R_2/R_1}$, we can drive $V_o = 0\,V$, thus eliminating the systematic offset of the circuit.  You can show that if we now include an offset current, the above choice of $R_3$ results in $V_o = I_{OS}\,R_2 $, which is an order of magnitude lower than $I_B\,R_2$ from \emph{Eq.~\ref{eq:off1}}.
+\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                   SECTION 18.3                                       %
