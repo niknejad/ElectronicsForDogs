@@ -1,0 +1,849 @@
+%!TEX root = edance.tex
+%%%%%%%%%%%%%%%%
+%  CHAPTER 16  %
+%%%%%%%%%%%%%%%%
+\chapter{Differential Amplifiers}
+\label{ch:ch16_diff_amp}
+\graphicspath{{./figures/figs_ch16_diffamp/}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                   SECTION 16.1                                       %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Chapter Preview}
+This chapter introduces a very important building block known as the differential amplifier.  This amplifier is at the heart of almost every analog amplifier, and most notably forms the input stage of every operational amplifier.  We begin by motivating the need for differential amplifiers, and then we give a pseudo-historical account of how the differential amplifier was invented.  In this way we can actually learn how the amplifier takes form into a fully symmetric structure.  We will derive the transfer function in detail for both large and small signals.  The key to the analysis will be to take advantage of the symmetry in the circuit to simplify the analysis.  To do this, we need to take arbitrary inputs and represent it as a combination of \emph{differential-mode} and \emph{common-mode} signals, which enables us to make symmetry arguments.  With such a representation, we will define common-mode and differential-mode gains, and we will discuss important concepts such as common-mode rejection.  We end the chapter by discussing more advanced differential amplifier architectures, with current source and current mirror loads, which provide high gain and good common-mode rejection.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                 FIGURE                   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \begin{figure}[H]
+% \centering
+% \includegraphics[scale=1.00]{null}
+% \caption{null}
+% \label{fig:ch16_intro}
+% \end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                   SECTION 16.2                                       %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Motivation for Differential Operation}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                 FIGURE                   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[tb]
+\centering
+\includegraphics[width=0.75\columnwidth]{diff_vs_cm.pdf} 
+\caption{In a differential system, two wires carry the signal with opposite phase, as shown.  The differential signal is measured between the two wires.  In a single-ended system, only a single wire carries the signal and the potential is referenced to ground.}
+\label{fig:diffckt}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                 FIGURE                   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[tb]
+\centering
+\includegraphics[width=0.85\columnwidth]{diff_cm_noise.pdf} 
+\caption{In a differential system, any noise pickup that is common-mode, for example from power supplies or from the substrate of the IC, is rejected since the output is a differential signal.  In a single-ended system, this noise cannot be distinguished from the signal itself.}
+\label{fig:noisereject}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+First of all, what's a differential circuit?  In \emph{Fig.~\ref{fig:diffckt}} we highlight the difference between a "single-ended" circuit and a differential circuit. In a single-ended circuit, all signals are referenced to a common ground, and signals are routed using a single wire.  In a differential circuit, each signal is represented with two wires, and optimally each wire carries half the signal such that each signal is equal and opposite in phase to the other.  In this form the signals are self-referenced without needing a ground connection.   The potential difference between the wires is known an the \emph{differential-mode} signal, and the signal in common with both is known as the \emph{common-mode} signal.  Ideally the common-mode signal is just a DC reference or bias voltage, but in practice the common-mode signal may varying due to interference or imbalances.  A good example of interference is ground or supply noise, that ideally couples to the differential wires in the same manner, producing a common-mode signal.  In a single-ended system, any common-mode noise is indistinguishable from the desired signal, and often it can swamp the desired signal.  A good example is the large AC voltages/currents flowing in power lines -- even a small fraction picked up by a sensor due to capacitive coupling can easily swamp out a micro-volt signal.  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Differential circuits are much less sensitive to common-mode noise and interference and are preferred to the greatest extent possible.  As shown in \emph{Fig.~\ref{fig:noisereject}}, common-mode noise is rejected in a differential circuit as long as the circuits are balanced (noise is picked up as a pure common mode signal).  Other benefits of the differential configuration is that it enables us to bias amplifiers and connect multiple stages without using coupling or bypass capacitors, see \emph{Fig.~\ref{fig:diff_amp_cascade}}.  We'll cover this in detail.  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Correct differential operation requires excellent matching of transistors and other components, which favors implementation in integrated circuti (IC) form where matched transistors can be fabricated side-by-side or even inter-digitated together (see \emph{Fig.~\ref{fig:mirror_layout}}).  Differential amplifiers require twice as many transistors, but again in an IC this is not an issue at all because transistors are essentially "free" compared to other larger components (such as resistors and capacitors).
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                   SECTION 16.3                                       %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Birth of Symmetric Source-Coupled Pair}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%             SUBSECTION 16.3.1            %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Goal:  Differential Transconductance \texorpdfstring{$G_m$}{}}
+Let's imagine that you're living in a pre-differential world where all signal processing is done in single-ended form.  You're inspired to build a transconductance stage that can be controlled by the difference in voltage between two nodes, rather than a single-ended transconductor, which is commonly used in the form of a transistor.   In other words, our goal is to have an output current that satisfies this equation:
+    \begin{equation}
+        i_o = G_m (v^+ - v^-)
+    \end{equation}
+Ideally the circuit should have very high output impedance and very little loading on nodes $v^+$ and $v^-$.  As a good circuit designer, you come to the realization that a common-source and common-gate amplifiers are complementary in the sense that they have opposite phase, and if you equalize the gain, you can potentially build a differential $G_m$.  In fact, you can combine the common-source and common-gate amplifier into a single transistor as shown in \emph{Fig.~\ref{fig:amp_diff_CS_CG.pdf}(a)}.  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+calculate the gain by superposition:  If we excite $v^-$, and ground $v^+$, we have an output voltage given by:
+    \begin{equation}
+        v_{o,cs} = -g_m R_D v^-
+    \end{equation} 
+Likewise if you excite the common-gate stage through $v^+$ (and ground $v^-$), we have:
+    \begin{equation}
+        v_{o,cg} = g_m R_D  v^+
+    \end{equation} 
+Summing these signals, we have
+    \begin{equation}
+        v_o =   g_m R_D  (v^+ - v^- )
+    \end{equation}
+This looks pretty promising, so what's missing? 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                 FIGURE                   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[tb]
+\centering
+\begin{tabular}{cc}
+\includegraphics[scale=1]{amp_diff_CS_CG.pdf} &
+\includegraphics[scale=1]{amp_diff_CS_CG_buffer.pdf}\\
+(a) & (b)\\
+\end{tabular}
+\caption{(a) A combined common-gate and common-source amplifier.  From the $v^+$ terminal, the circuit is a common-gate amplifier whereas from the $v^-$ terminal it's a common source amplifier.  (b) A buffer is needed to raise the impedance of the common-gate amplifier if we wish to equalize the gain under arbitrary drive conditions.}
+\label{fig:amp_diff_CS_CG.pdf}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%              SUB-SUBSECTION              %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Problem:  Asymmetric (Low) Input Impedance}
+Notice that the gain is symmetric from the "plus" and "minus" side for an ideal voltage drive, but not for any drive with finite non-zero source resistance.  Because of the low input impedance of the common-gate stage, there's going to be a gain mismatch due to the voltage division between the source $R_s$ and the input impedance of the common gate stage, which is roughly $1/g_m$:
+    \begin{equation}
+        v_{o,cg} = \frac{1/g_m}{1/g_m + R_s} g_m R_D  v^+ = \frac{g_m}{1 + g_m R_s}  R_D  v^+
+    \end{equation} 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%              SUB-SUBSECTION              %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Solution:  Add Buffer to Source Side}
+So what's the solution? Simply adding a voltage buffer as shown in \emph{Fig.~\ref{fig:amp_diff_CS_CG.pdf}(b)} would solve the problem, but any real buffer has output impedance, leading us back to the same issue.  For example, the source follower shown in \emph{Fig.~\ref{fig:amp_diff_CS_CG_CD.pdf}} has an output impedance of $1/g_{m,\text{buff}}$, and to minimize the voltage loss we could burn more and more power in the buffer to make the output impedance smaller, but this is not an elegant solution, because the gain mismatch will always be there.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                 FIGURE                   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[tb]
+\centering
+\begin{tabular}{cc}
+\includegraphics[scale=1]{amp_diff_CS_CG_CD.pdf} &
+\includegraphics[scale=1]{amp_CG_CD_Model.pdf}\\
+(a) & (b)\\
+\end{tabular}
+\caption{(a) Common-source and common-gate amplifier with a source follower buffer added.  (b) The buffer output impedance $1/g_m$ degenerates the common-source stage and reduces the gain of the common-gate amplifier.}
+\label{fig:amp_diff_CS_CG_CD.pdf}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%             SUBSECTION 16.3.2            %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Gain of Source Degenerated CS}
+Let's think about this problem in another way.   The introduction of the buffer didn't solve the problem completely, and in fact it introduced another problem.  Even though the input impedance of the common source stage is very large, the gain is now degenerated by the output impedance of the buffer:   
+    \begin{equation}
+        v_{o,cs} = -\frac{g_m}{1+g_m \frac{1}{g_{m,buff}} } R_D v^-    
+    \end{equation}
+What if we equalized the $g_{m,\text{buff}} = g_m$ with the common source/gate stage?  Then the gain loss for the common source would be $1/2$, and the buffer driving the common-gate stage would also suffer a voltage loss of $1/2$.  In other words, in this symmetrical arrangement, the gains will be matched precisely as desired and both ports have a high input impedance.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%             SUBSECTION 16.3.3            %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{A Symmetric Source Coupled Pair is Born}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                 FIGURE                   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[tb]
+\centering
+\begin{tabular}{cc}
+\includegraphics[scale=1]{amp_CS_CG_sym.pdf} &
+\includegraphics[scale=1]{amp_sym_pair.pdf}\\
+(a) & (b)\\
+\end{tabular}
+\caption{(a) A combined common-source and common-gate amplifier with equally sized devices for the buffer and amplifier, thereby making the circuit symmetric.  (b) Redrawn circuit to emphasize the symmetry.  This circuit is known as the differential pair.}
+\label{fig:amp_CS_CG_sym.pdf}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Putting these ideas together, we arrive at \emph{Fig.~\ref{fig:amp_CS_CG_sym.pdf}(a)}.  The resistor $R_S$ is just there for biasing, and we can replace it with a current source and combine it with the current source of the follower.  The result, redrawn in \emph{Fig.~\ref{fig:amp_CS_CG_sym.pdf}(b)}, is a fully symmetric circuit.  Now the circuit has two outputs, rather than one, which are in exactly the opposite phase.  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+The key insight is that the circuit is fully symmetric and the gain from both sides is lowered by the same factor:
+    \begin{equation}
+        v_{o,cs} = -\frac{g_m}{1+g_m \frac{1}{g_m} } R_D v^- = -\frac{g_m}{2} R_D v^-   
+    \end{equation}
+    \begin{equation}
+        v_{o,cg} = \frac{g_m}{1+g_m \frac{1}{g_m} } R_D v^+ = +\frac{g_m}{2} R_D v^+   
+    \end{equation}
+where for simplicity we only consider one output, but there are in fact two outputs, and since they are opposite in phase, we can combine them and consider the output as the voltage difference between the drain nodes:
+    \begin{equation}
+        v_{o,1} = \frac{g_m}{2} R_D (v^+ - v^-)  
+    \end{equation}
+    \begin{equation}
+        v_{o,2} = \frac{g_m}{2} R_D (v^- - v^+)  
+    \end{equation}
+In other words, we have a fully differential circuit, allowing us to carry the signal differentially at both the input and output:
+    \begin{equation}
+        v_{od} = v_{o,1} - v_{o,2} = g_m R_D (v^+ - v^-) = g_m R_D v_{id}  
+    \end{equation}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                   SECTION 16.4                                       %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Differential Operation}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%             SUBSECTION 16.4.1            %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{MOS Differential Pair:  DC Bias}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                 FIGURE                   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[tb]
+\centering
+\includegraphics[scale=1]{diffamp_cm_dc.pdf}
+\caption{Differential pair under a common mode DC voltage drive.}
+\label{fig:diffamp_cm_dc.pdf}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Consider the differential pair with a DC bias connected to both sides of the input, as shown in \emph{Fig.~\ref{fig:diffamp_cm_dc.pdf}}.  We will shortly demonstrate that the DC bias point of M1/M2 does not depend on the common gate voltage DC voltage since the current source sets the bias point of each transistor at half the bias current $I_Q$:
+    \begin{equation} 
+        {I_{D1}} = {I_{D2}} = \frac{I_Q}{2}
+    \end{equation}
+This must be true by a simple symmetry argument. Everything is assumed to be symmetric, and so $I_Q$ must divide in half.  That means each transistor has the same $V_{GS}$ and consequently the same overdrive $V_{od}$, assuming the threshold voltages match:
+    \begin{equation} 
+        \frac{I_Q}{2} = \frac{{{k_n}}}{2}{\left( {{V_{GS}} - {V_{tn}}} \right)^2}
+    \end{equation}
+    \begin{equation}
+        {V_{GS1}} = {V_{GS2}} = {V_{tn}} + \sqrt {\frac{I_Q}{{{k_n}}}}   = V_{tn} + V_{od}
+    \end{equation}
+The drain voltage for both transistors is also equal to:
+    \begin{equation}
+        {v_{D1}} = {v_{D2}} = {V_{DD}} - \frac{I_Q}{2}{R_D}  
+    \end{equation}
+And the differential DC output is exactly zero:
+    \begin{equation}
+        {v_{D1}} - {v_{D2}} = 0\mathrm{V}
+    \end{equation}
+Consequently, the DC level at the output is independent of DC level at input! In \emph{Fig.~\ref{fig:diff_amp_bias_cm.pdf}} we illustrate this by varying the DC level at the input and finding the operating point in the circuit.  Clearly the circuit operating point, the region of operation of M1/M2 does not depend on the input DC level.  Note that although $V_{GS}$ and $V_{D}$ are held constant, the source voltage moves, but since the source node is driven by an ideal current source, we can tolerate this variation.  This allows us to cascade differential pairs without worrying about DC level, which obviates the need for bulky AC coupling capacitors, as shown in \emph{Fig.~\ref{fig:diff_amp_cascade}}! Is this too good to be true?  As long as we ensure that the current source is not squashed, the circuit works as advertised.  A real current source (transistor) has a finite headroom to operate, for example a $V_{od}$ for a single transistor current source.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                 FIGURE                   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[tb]
+\centering
+\includegraphics[width=\columnwidth]{diff_amp_bias_cm.pdf}
+\caption{Differential pair with varying input DC voltage common-mode drive illustrating that the DC operating point of the circuit, in so far as the bias current and the drain voltage at the output is concerned, is independent of the input DC level.}
+\label{fig:diff_amp_bias_cm.pdf}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                 FIGURE                   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[tb]
+\centering
+\includegraphics[scale=.8]{Diff_Cascade.pdf}
+\caption{Cascading differential amplifiers without using AC coupling capacitors is possible because each amplifier bias point is independent of the input DC level, see \emph{Fig.~\ref{fig:diff_amp_bias_cm.pdf}}.}
+\label{fig:diff_amp_cascade}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%             SUBSECTION 16.4.2            %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{MOS Differential-Pair:  Differential Inputs}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                 FIGURE                   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[tb]
+\centering
+\includegraphics[scale=1]{Diffamp_large_signal.pdf}
+\caption{Differential-Pair under arbitrary large signal drive at the inputs.}
+\label{fig:Diff_amp_large.pdf}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Let's consider applying a differential voltage to the differential pair as shown in \emph{Fig.~\ref{fig:Diff_amp_large.pdf}}.  We apply a gate voltage $v_1$ to M1 and $v_2$ to M2, with the condition that the difference between the inputs is the differential input signal:
+    \begin{equation}
+        v_1 - v_2 = v_{id}
+    \end{equation}
+Since the input voltages applied to each gate is arbitrary, the current $I_Q$ no longer splits equally.  In fact, you can think of M1 and M2 as two devices competing for the current $I_Q$.  The current will favor the device with higher $v_{GS}$ and so we can think of M1/M2 as a pair of transistors that steer the current left or right depending on the magnitude of the input drive.  For large positive voltage $v_{id} = v_{GS1} - v_{GS2}$, we expect most of the current $I_Q$ to be steered into M1.  Likewise, when $v_{id}$ is large and negative, then most of the current $I_Q$ should flow into M2.  Let's confirm this observation with the MOS equations.  In general we have:
+    \begin{equation}
+        {i_{D1}} = \frac{{{k_n}}}{2}{\left( {{v_{GS1}} - {V_t}} \right)^2}
+    \end{equation}
+and
+    \begin{equation} 
+        {i_{D2}} = \frac{{{k_n}}}{2}{\left( {{v_{GS2}} - {V_t}} \right)^2}
+    \end{equation}
+But the currents must sum to $I_Q$:
+    \begin{equation}
+        {i_{D1}} + {i_{D2}} = I_Q \rightarrow {\rm{ }}{i_{D2}} = I_Q - {i_{D1}}
+    \end{equation}
+Using these relations it's possible to derive a complete expression for the drain currents of M1/M2 as a function of the differential voltage drive $v_{id}$:
+    \begin{equation}
+        {i_{D1,2}} = \frac{I_Q}{2} \pm \sqrt {{k_n}I_Q} \frac{{{v_{id}}}}{2}\sqrt {1 - \frac{{{{({v_{id}}/2)}^2}}}{{I_Q/{k_n}}}} 
+    \end{equation}
+Or in terms of the transistor over-drive voltage $V_{od}$, we know that the quiescent bias point satisfies:
+    \begin{equation}
+        \frac{I_Q}{2} = \frac{1}{2}{k_n}V_{od}^2{\rm{ }} \rightarrow {k_n} = I_Q/V_{od}^2 
+    \end{equation}
+Allowing us to express the current in the following insightful form:
+    \begin{equation} 
+        {i_{D1,2}} = \frac{I_Q}{2} \pm \frac{I_Q}{{{V_{od}}}}\frac{{{v_{id}}}}{2}\sqrt {1 - \frac{{{{({v_{id}}/2)}^2}}}{{V_{od}^2}}}
+        \label{eq:diff_large}
+    \end{equation}
+The full derivation is presented in Section~\ref{sec:derive_diff_large} for your reference.  A plot of the currents through each transistor is shown in \emph{Fig.~\ref{fig:mosdiffamp_id}}.  As expected, the curves are symmetric with respect to the two transistors and the input voltage $v_{id}$, where a positive voltage $v_{id}$ steers the current into M1.  The steering is very linear near the origin, and if the input is sufficiently large, we see that the current is steered entirely in one direction or the other.  When $v_{id} = \sqrt{2} V_{od}$, \emph{Eq.~\ref{eq:diff_large}} can be simplified:
+    \begin{equation} 
+        {i_{D1,2}} = \frac{I_Q}{2} \pm \frac{I_Q}{{{\cancel{V_{od}}}}}\frac{{{\sqrt{2} \cancel{V_{od}}}}}{2} \sqrt {1 - \frac{{{{({\sqrt{2}\cancel{V_{od}}}/2)}^2}}}{{\cancel{V_{od}^2}}}}	= \frac{I_Q}{2} \pm \frac{I_Q}{2} = \left\{ \begin{array}{cc} +I_Q &  \to i_{D1} \\ 0 & \to i_{D2} \end{array} \right.
+    \end{equation}
+We see that all the current $I_Q$ goes to $i_{D1}$ when the input is sufficiently large and M2 shuts off.  When $v_{id} = - \sqrt{2} V_{od}$, the situation is exactly the opposite, with M1 shutting off and M2 getting all the current $I_Q$.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                 FIGURE                   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[tb]
+\centering
+\includegraphics[width=.7\columnwidth]{mosdiffamp_id}
+\caption{The currents in each branch of the differential-pair circuit as a function of the input differential voltage $v_{id}$.  For zero drive, each transistor shares half of the current $I_Q$.  When the differential pair is steered with a voltage of $\pm \sqrt{2} V_{od}$, the current switches completely to one branch.}
+\label{fig:mosdiffamp_id}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                 FIGURE                   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[tb]
+\centering
+\includegraphics[width=.7\columnwidth]{mosdiffamp_id_od}
+\caption{Family of currents in each branch of the differential-pair circuit as a function of the input differential voltage $v_{id}$ with varying over-drive voltage $V_{od}$.  Larger over-drive results in a larger linear range.}
+\label{fig:mosdiffamp_id_od}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+The slope of the curves in \emph{Fig.~\ref{fig:mosdiffamp_id}} is the differential pair $G_m$ for each transistor.   The linear range of operation of the MOS differential pair can be extended by operating the transistor at a higher value of $V_{od}$, as shown in \emph{Fig.~\ref{fig:mosdiffamp_id_od}}.   At the origin, we can estimate the slope by considering a small input signal $v_{id}$, which causes the square root to be simplify
+    \begin{equation} 
+        \sqrt {1 - \frac{{{{({v_{id}}/2)}^2}}}{{V_{od}^2}}}  \approx 1
+    \end{equation}
+which results in linear deviations of the currents from the DC operation points:
+    \begin{equation} 
+        {i_{D1}} = \frac{I_Q}{2} + \frac{I_Q}{{{V_{od}}}}\frac{{{v_{id}}}}{2} 
+    \end{equation}
+    \begin{equation} 
+        {i_{D2}} = \frac{I_Q}{2} - \frac{I_Q}{{{V_{od}}}}\frac{{{v_{id}}}}{2}
+    \end{equation}
+It's clear that the first term is the bias current through M1/M2.  The slope of the linear deviation is actually familiar, it's looks like the transistor $g_m$:
+    \begin{equation}
+        g_m = \frac{2 I_D}{V_{od}}
+    \end{equation}
+Since each transistor is biased at $I_Q/2$, the expression can be interpreted as follows:
+    \begin{equation} 
+        {i_{D1,2}} = \frac{I_Q}{2} \pm g_{m1,2} \frac{{{v_{id}}}}{2}
+    \end{equation}
+In other words, each transistor is excited in the small-signal with a voltage of $v_{id}/2$.  This is expected since the voltage $v_{id}$ is dropped across two series connected transistors (back-to-back), and the voltage splits in two.  What's surprising is that the $g_m$ looks like it's the transconductance of a common source stage, even though the source coupled node is "floating".  This requires some further explanation, provided next.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                   SECTION 16.5                                       %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Small-Signal Differential Circuits}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%             SUBSECTION 16.5.1            %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{General Differential Drive}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                 FIGURE                   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[tb]
+\centering
+\includegraphics[scale=1]{Diff_Pair_Diff_CM.pdf}
+\caption{The differential pair driven with both a common-mode and differential mode signal.} \label{fig:Diff_Pair_Diff_CM.pdf}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+The key to analyzing differential circuits is to take a general input to the amplifier with voltages $v_1$ and $v_2$ and expressing it as a combination of a "common-mode" signal $v_{cm}$ and a "differential-mode" signal $v_{dm}$
+    \begin{equation}
+        v_1 = v_{cm} + \frac{v_{dm}}{2}
+        \label{eq:v1}
+    \end{equation}
+    \begin{equation}
+        v_2 = v_{cm} - \frac{v_{dm}}{2}
+        \label{eq:v2}
+    \end{equation}
+To find $v_{cm}$, sum the signals so that $\pm v_{dm}/2$ cancels out:
+    \begin{equation}
+        v_1 + v_2 = 2 v_{cm}
+    \end{equation}
+which shows that $v_{cm}$ is the average input to the amplifier:
+    \begin{equation}
+        v_{cm} = \frac{v_1 + v_2}{2}
+    \end{equation}
+Next, take the difference between \emph{Eq.~\ref{eq:v1}} and \emph{Eq.\ref{eq:v2}}:
+    \begin{equation}
+        v_1 - v_2 = v_{dm} 
+    \end{equation}
+Putting these relations together, we have:
+    \begin{equation}
+    	\begin{pmatrix}
+    		v_{cm}\\
+    		v_{dm}\\
+    	\end{pmatrix} =
+    	\begin{pmatrix}
+    		+\frac{1}{2} & +\frac{1}{2}\\
+    		+1 & -1\\
+    	\end{pmatrix} 
+    	\begin{pmatrix}
+    		v_{1}\\
+    		v_{2}\\
+    	\end{pmatrix} 
+    \end{equation}  
+These set of transformations are invertible and one can go back and forth between the two representations.  You can verify by matrix inversion that we can reconstruct our original signals:
+    \begin{equation}
+    	\begin{pmatrix}
+    		v_{1}\\
+    		v_{2}\\
+    	\end{pmatrix} =
+    	\begin{pmatrix}
+    		+1 & +\frac{1}{2}\\
+    		+1 & -\frac{1}{2}\\
+    	\end{pmatrix} 
+    	\begin{pmatrix}
+    		v_{cm}\\
+    		v_{dm}\\
+    	\end{pmatrix} 
+    \end{equation}  
+The reason we prefer to represent our signal in terms of a "common-mode" and "differential-mode" is due to the symmetry of the waveforms $v_{cm}$ and $v_{dm}$.  Since the differential pair is fully symmetric, applying a "common-mode" signal has "even" symmetry, the left and right side of the circuit are excited with the same signal, so we expect the circuit to respond in the same way on the left and right hand sides.  On the other hand, exciting a circuit with $v_{dm}$ has "odd" symmetry, because every signal on the left should be the polar opposite of what's on the right.	Finally, as discussed earlier, the differential signal is usually of interest and we usually want to amplify this component of the signal. The AC portion of the common-mode signal is interference or noise, and it should be rejected.  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%             SUBSECTION 16.5.2            %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Pure Differential-Mode Excitation}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                 FIGURE                   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[tb]
+\centering
+\includegraphics[width=\columnwidth]{DM_model.pdf}
+\caption{AC circuit schematic of a symmetric circuit driven by a pure differential signal.  Since the common-source node does not move, it can be grounded without changing the behavior of the circuit.} \label{fig:DM_model.pdf}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+To take a concrete example, consider the circuit shown in \emph{Fig.~\ref{fig:DM_model.pdf}}. When the inputs are purely differential-mode, the middle "source" node does not experience any voltage fluctuation.  This is true even if the source node has a finite impedance to ground.  Due to superposition, we can say that any fluctuation induced from one side of the differential pair is canceled by the other side due to the symmetry. We are therefore free to place a "virtual" ground at this node and split the circuit in two, with a grounded source connection.  Note that we have created a virtual ground without using a large bypass capacitor!  Now you may appreciate why the large-signal analysis of the previous section resulted in a small-signal $g_m$ that corresponded to a common source amplifier without degeneration. 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%             SUBSECTION 16.5.3            %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Pure Common-Mode Excitation}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                 FIGURE                   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[tb]
+\centering
+\includegraphics[width=\columnwidth]{CM_model.pdf}
+\caption{AC circuit schematic of a symmetric circuit driven by a pure common-mode signal.  Since no current can travel through the middle branch, it can be cut without changing the behavior of the circuit.}
+\label{fig:CM_model.pdf}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Now consider the circuit shown in \emph{Fig.~\ref{fig:CM_model.pdf}}.  When the inputs are purely common-mode, then by symmetry no current can flow from the "left" to "right" since all signals are in phase.  We are therefore free to cut this node and split the circuit into two identical circuits.  Note that the common-mode half circuit differs from the differential-mode half circuit, as one is grounded while the other one is "floating", which leads to different values of common-mode and differential-mode gain.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%             SUBSECTION 16.5.4            %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Differential-Mode "Half Circuit"}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                 FIGURE                   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[tb]
+\centering
+\includegraphics[scale=1]{Diff_Pair_DM_Drive.pdf}
+\caption{AC model of a differential pair under pure differential drive.   The circuit can be split into two common-source amplifiers.}
+\label{fig:Diff_Pair_DM_Drive.pdf}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+We can now proceed to analyze the differential pair under differential-mode excitation.  Since the circuit has been split, as shown in \emph{Fig.~\ref{fig:Diff_Pair_DM_Drive.pdf}}, we can analyze the two halves independently.  Each half is a simple common source amplifier.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%              SUB-SUBSECTION              %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Differential-Mode Gain}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                 FIGURE                   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[tb]
+\centering
+\includegraphics[scale=1]{Diff_ss_gain.pdf}
+\caption{Schematic of the differential circuit biased with a DC voltage $V_{CM}$ and driven with a pure differential drive.}
+\label{fig:Diff_ss_gain.pdf}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+The first step in analyzing any AC circuit is to find the DC operating point.  As shown in \emph{Fig.~\ref{fig:Diff_ss_gain.pdf}}, each transistor is biased at $I_Q/2$ with the gates at a common DC bias of $V_{CM}$.  Note that the common-mode signal is DC, and not AC, so for the AC circuit it's excited by a pure differential-mode signal.
+    \begin{equation}
+        {v_{G1.2}} = {V_{CM}} \pm \frac{1}{2}{v_{dm}}
+    \end{equation}
+The AC input signal is given by:
+    \begin{equation}
+        {v_{g1.2}} = \pm \frac{1}{2}{v_{dm}}
+    \end{equation}
+The output at the $\pm$ nodes is given by:
+    \begin{equation}
+        {v_{o}^-} = - {g_m}({v_{dm}}/2){R_D} =  - {g_m}{R_D}{v_{dm}}/2
+    \end{equation}
+    \begin{equation} 
+        {v_{o}^+} = - {g_m}( - {v_{dm}}/2){R_D} = {g_m}{R_D}{v_{dm}}/2 
+    \end{equation}
+The differential output is the voltage $v_o = v_o^+ - v_o^-$, which leads to a differential-mode gain of:
+    \begin{equation} 
+        {A_d} = \frac{{{v_{o}^+} - {v_{o}^-}}}{{{v_{dm}}}} = {g_m}{R_D}
+    \end{equation}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%             SUBSECTION 16.5.5            %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Complete Small-Signal Differential and Common-Mode Models}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                 FIGURE                   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[tb]
+\centering
+\includegraphics[width=\columnwidth]{DM_symmetry_small_signal.pdf}
+\caption{Small-signal AC schematic of a differential pair excited with a differential signal.} \label{fig:DM_symmetry_small_signal.pdf}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                 FIGURE                   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[tb]
+\centering
+\includegraphics[width=\columnwidth]{CM_symmetry_small_signal.pdf}
+\caption{Small-signal AC schematic of a differential pair excited with a common-mode signal.} \label{fig:CM_symmetry_small_signal.pdf}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+The complete small-signal models for differential-mode and common-mode operation are shown in \emph{Fig.~\ref{fig:DM_symmetry_small_signal.pdf}} and \emph{Fig.~\ref{fig:CM_symmetry_small_signal.pdf}}.  For the differential-mode circuit, since the schematic is split in the middle, we just have a common source amplifier, so everything we've learned about common source amplifiers can be transferred to the differential pair.  We've been implicitly using these small-signal models in our analysis thus far.  For the common-mode equivalent half circuit, it's noteworthy that the circuit is "floating" and thus it cannot process any signals.  To see this, note that when a voltage is applied to the gate of one side, the source node will simply follow to ensure $v_{gs} = 0$V and so the output current of the transistor is zero, effectively rejecting the common-mode signal.  As far as the source node is considered, the circuit is a source follower after all.  Without modeling the impedance of a current source, the common-mode rejection is infinite.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%             SUBSECTION 16.5.6            %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Common-Mode Operation - Real Current Source}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                 FIGURE                   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[tb]
+\centering
+\begin{tabular}{cc}
+\includegraphics[scale=1]{Diff_Pair_CM_inputs.pdf} &
+\includegraphics[scale=1]{Diff_Pair_AC_SS.pdf}\\
+(a) & (b)\\
+\end{tabular}
+\caption{(a) A differential pair with a real current source must include the current source output impedance. (b) The AC circuit can be split in half due to symmetry.  Splitting a resistor in half in the parallel direction is equivalent to two resistors in parallel, each with twice the resistance.} \label{fig:Diff_Pair_CM_inputs.pdf}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+The modified differential pair, shown in \emph{Fig.~\ref{fig:Diff_Pair_CM_inputs.pdf}(a)}, uses a real current source, with $R_{CS}$ modeling the output impedance of the current source.  By splitting $R_{CS}$ in two parallel resistors $2R_{CS}$, the circuit fully symmetric allowing the half-circuit decomposition shown in \emph{Fig.~\ref{fig:Diff_Pair_CM_inputs.pdf}(b)}.  Now, the source is no longer floating, meaning that common-mode sigals will see a (small) gain.  The gain can be made arbitrarily small by increasing $R_{CS}$ relative to $R_D$, but lowering $R_D$ also hurts the differential-mode gain.  We need to consider both to understand how well a circuit can amplify a differential signals while rejecting common-mode signals.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%             SUBSECTION 16.5.7            %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Differential and Common-Mode Gain}
+Obviously the most important gain is the differential-mode gain:
+    \begin{equation}
+        A_{dm} = \frac{v_{odm}}{v_{idm}}
+    \end{equation}
+Also of concern, is the common-mode gain, since a common-mode signal could potentially "jam" the amplifier by causing it to rail:
+    \begin{equation}
+        A_{cm} = \frac{v_{ocm}}{v_{icm}}
+    \end{equation}
+Notice that it's entirely possible for a common-mode signal to be converted to a differential-mode through any kind of imbalances or mismatches in the amplifier.  This is especially problematic because when this conversion occurs, the common-mode signal is indistinguishable from the differential-mode.  We thus would like to minimize:
+    \begin{equation}
+        A_{cm \to dm} = \frac{v_{odm}}{v_{icm}}
+    \end{equation}
+In a fully balanced amplifier, with differential inputs and outputs and zero mismatch between the components, $A_{cm \to dm}$ is identically zero.  But when the output is unbalanced (only one output is taken), or if there are mismatches between components, $A_{cm \to dm}$ can be of great importance.  Finally, even though it's possible to convert differential-mode to common-mode, this is usually of less concern.  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%             SUBSECTION 16.5.8            %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Small-Signal Common-Mode Operation}
+Let's analyze \emph{Fig.~\ref{fig:Diff_Pair_CM_inputs.pdf}(b)}.  Recall that $R_{CS}$ models any output resistance at the common-source node to ground.   The gain in common-mode is simply the gain of a source degenerated amplifier:
+    \begin{equation}
+        A_{cm} = -\frac{g_m}{1 + g_m 2R_{CS}} R_D \approx -\frac{R_D}{2R_{CS}}
+    \end{equation}
+If we examine the differential output, the signal is zero (assuming perfect matching):
+    \begin{equation}
+        A_{cm \to dm} = 0
+    \end{equation}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%             SUBSECTION 16.5.9            %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Current-Source Loads}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                 FIGURE                   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[tb]
+\centering
+\begin{tabular}{cc}
+\includegraphics[scale=1]{Diff_mirror_load.pdf} &
+\includegraphics[scale=1]{Diff_mirror_cascode.pdf}\\
+(a) & (b)\\
+\end{tabular}
+\caption{(a) Differential pair with a current mirror load.  (b) A cascode differential pair with a cascode load.}
+\label{fig:Diff_mirror_load.pdf}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Similar to a common source amplifier, an active load is often preferred.  Active loads occupy less area and require less headroom.  The differential-mode gain with the active current source loads in \emph{Fig.~\ref{fig:Diff_mirror_load.pdf}(a)} is simply given by:
+    \begin{equation}
+        {A_{dm}} = \frac{{{v_{odm}}}}{{{v_{idm}}}} = {g_{m1}}\left( {{r_{o1}}||{r_{o3}}} \right)
+    \end{equation}
+To increase the gain, at the expense of loss of swing, we can cascode the load.  To reap the benefits of the higher output impedance of the load, we have to convert the differential pair into a cascode differential pair to boost the output impedance:
+    \begin{equation}
+        {A_{dm}} = \frac{{{v_{odm}}}}{{{v_{idm}}}} = {g_{m1}}\left( {{R_{on}}||{R_{op}}} \right) 
+    \end{equation}
+From our knowledge of cascodes we can estimate the impedance seen looking into the NMOS transistors:
+    \begin{equation}
+        {R_{on}} = \left( {{g_{m3}}{r_{o3}}} \right){r_{o1}} 
+    \end{equation}
+And likewise the PMOS load transistors:
+    \begin{equation}
+        {R_{op}} = \left( {{g_{m5}}{r_{o5}}} \right){r_{o7}}
+    \end{equation}
+The overall output impedance is the parallel combination.  For simplicity, assume the NMOS and PMOS loads present equal load impedance:
+    \begin{equation}
+        {R_{on}} = {R_{op}} = {g_m}r_o^2
+    \end{equation}
+This means the maximum differential-mode gain is given by:
+    \begin{equation}
+        {A_{dm}} = \frac{1}{2}g_m^2r_o^2
+    \end{equation}
+We can boost the gain higher by using a triple cascode, but the loss of headroom is unacceptable for most applications.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                   SECTION 16.6                                       %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Common-Mode Rejection Ratio and DC Offsets}
+\label{sec:cmrr}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%             SUBSECTION 16.6.1            %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Common-Mode Rejection Ratio}
+As we've emphasized, an important metric for a differential amplifier is its ability to reject the common-mode signal relative to the differential-mode signal.  The ratio of the gain is known as the Common-Mode Rejection Ratio $CMRR$:
+    \begin{equation} 
+        CMRR \equiv \frac{{\left| {{A_{dm}}} \right|}}{{\left| {{A_{cm \to dm}}} \right|}}
+    \end{equation}
+Notice that an ideal (matched) amplifier has zero $A_{cm \to dm}$ ans so it has infinite $CMRR$. Certain applications, such as sensitive biomedical measurements require 70 dB - 100 dB of $CMRR$ to reject environmental noise (such as 50/60 Hz AC power) compared to minuscule sensor signals!
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%             SUBSECTION 16.6.2            %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Common-Mode Gain with Mismatched \texorpdfstring{$R_D$}{Load Resistance}}
+Suppose we have a mismatch in the load resistors.  Then the gain from one side of the amplifier will not match the gain from the other side, causing the common-mode signal to be converted to differential-mode.  Let's say one resistor is larger by $\Delta R_{D}$:
+    \begin{equation} 
+        {R_{D1,2}} = {R_D} \pm \frac{\Delta {R_D}}{2}
+    \end{equation}
+Now calculate the differential-mode output for a common-mode input:
+    \begin{equation}
+        {v_{odm}} = {v_{o2}} - {v_{o1}} = \frac{{ - \Delta {R_D}}}{{2{R_{CS}}}}{v_{icm}}
+    \end{equation}
+This leads to common-mode to differential-mode gain:
+    \begin{equation} 
+        {A_{cm\to dm}} = \frac{{{v_{odm}}}}{{{v_{icm}}}} = \frac{{ - \Delta {R_D}}}{{2{R_{CS}}}} = \left( {\frac{{ - {R_D}}}{{2{R_{CS}}}}} \right)\left( {\frac{{\Delta {R_D}}}{{{R_D}}}} \right)
+    \end{equation}
+The $CMRR$  depends on the precision of the resistors and the achievable output resistance of the current source:
+    \begin{equation} 
+        CMRR  = \frac{{{g_m}{R_D}}}{{\frac{{\Delta {R_D}}}{{2{R_{CS}}}}}} = \frac{{2{g_m}{R_{CS}}}}{{\left( {\frac{{\Delta {R_D}}}{{{R_D}}}} \right)}}
+    \end{equation}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%             SUBSECTION 16.6.3            %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Common-Mode Gain with Mismatch of \texorpdfstring{$g_m$}{Transconductance}}
+In practice, the transistors on each side of a differential pair are not identical and have different threshold voltage $V_T$ and slightly different dimensions $W$ and $L$, and we should also expect variations in $C_{ox}$ due to changes in $t_{ox}$.  To minimize these variations, differential pairs in integrated circuits are laid out very carefully with various schemes designed to maximize the matching.  Essentially each transistor is broken down into parallel unit amplifiers that are connected in various inter-digitated ways to minimize variations due to process variations and temperature gradients (see \emph{Fig.~\ref{fig:mirror_layout}}).
+To get a sense for the impact in the transistor mismatch, let's consider a transistor mismatch in $g_m$:
+    \begin{equation} 
+        {g_{m1}} = {g_m} + \frac{1}{2}\Delta {g_m};{\rm{         }}{g_{m2}} = {g_m} - \frac{1}{2}\Delta {g_m}
+    \end{equation}
+The difference in the $g_m$ is given by:
+    \begin{equation}
+        {g_{m1}} - {g_{m2}} = \Delta {g_m}
+    \end{equation}
+It is fairly easy to show that:
+    \begin{equation}
+        {A_{cm \to dm }} = \frac{{{v_{odm}}}}{{{v_{icm}}}} = \frac{{{R_D}}}{{2{R_{CS}}}}\frac{{\Delta {g_m}}}{{{g_m}}}
+    \end{equation}
+Again, we desire high current source output resistance and good matching precision between the transistors.  The $CMRR$ is given by:
+    \begin{equation}
+        CMRR  =  \frac{{{g_m}{R_D}}}{{\frac{{{R_D}}}{{2{R_{CS}}}}\frac{{\Delta {g_m}}}{{{g_m}}}}} = \frac{{2{g_m}{R_{CS}}}}{{\left( {\frac{{\Delta {g_m}}}{{{g_m}}}} \right)}} 
+    \end{equation}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%             SUBSECTION 16.6.4            %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{DC Offset}
+Suppose we tie both inputs of a differential pair to the same DC voltage $V_{cm}$, as shown in \emph{Fig.~\ref{fig:Diffamp_offset.pdf}(a)}.  We expect, due to symmetry, for the outputs to be at precisely the same voltage, producing a zero output differential voltage.  In practice, due to mismatches in the device $g_m$'s and load resistors $R_D$, the differential output will be non-zero.  Now suppose we connect a voltage source at the input to "zero out" the offset, as shown in \emph{Fig.~\ref{fig:Diffamp_offset.pdf}(b)}.  This voltage is known as the offset voltage $V_{OS}$.  The value of $V_{OS}$ is simply the output DC offset divided by the gain of the amplifier.  This voltage is known as the input-referred offset voltage.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                 FIGURE                   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[tb]
+\centering
+\begin{tabular}{cc}
+\includegraphics[scale=1]{Diffamp_offset.pdf} &
+\includegraphics[scale=1]{Diffamp_offset_input.pdf}\\
+(a) & (b)\\
+\end{tabular}
+\caption{(a) The offset voltage $V_O$ is defined as the output DC voltage when the inputs are balanced (zero differential drive).  (b) The offset can be referred to the input as $V_{OS}$, or the required DC voltage applied to the inputs to zero-out the offset voltage.}
+\label{fig:Diffamp_offset.pdf}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+We can calculate the offset by considering various sources of mismatch within the amplifier, as we did when we calculated the common-mode to differential-mode conversion.  Let's consider a resistor load mismatch:
+    \begin{equation} 
+        {R_{D1,2}} = {R_D} \pm \frac{ \Delta {R_D}}{2} 
+    \end{equation}
+The offset voltage is defined as the DC output for zero input.  Since the transistors are well matched and the source and drain nodes are decoupled, we still expect the bias current to split evenly.  Assuming that each transistor is biased at $I_Q/2$, we simply have:
+    \begin{equation}
+        {V_o} = {V_{D2}} - {V_{D1}} = \frac{I_Q}{2}\Delta {R_D}
+    \end{equation}
+Dividing by the DC gain, the input-referred offset voltage is:
+    \begin{equation}
+        {V_{OS}} = \frac{{{V_O}}}{{{A_{dm}}}} = \frac{{I_Q\Delta {R_D}/2}}{{{g_m}{R_D}}} = \frac{{I_Q\Delta {R_D}/2}}{{2\left( {\frac{{I_Q/2}}{{{V_{od}}}}} \right){R_D}}} = \frac{{{V_{od}}}}{2}\frac{{\Delta {R_D}}}{{{R_D}}}
+    \end{equation}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                   SECTION 16.7                                       %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Current Mirror Load}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%             SUBSECTION 16.7.1            %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Differential Input, Single-End Output}
+So far we have designed a circuit with differential inputs and differential outputs, but in many cases we want a single-ended output.  This is because many components outside of our control are single-ended.  In some situations it's a matter of practicality, for example when dozens of signals are routed from one chip to another, as single-ended operation requires half the number of signal lines.  As shown in \emph{Fig.~\ref{fig:Diff_in_SE_out.pdf}(a)}, we desire a way to convert the differential signal to a single-ended signal.  The simplest choice is to just take one of the outputs of the differential amplifier, as shown in \emph{Fig.~\ref{fig:Diff_in_SE_out.pdf}(b)}.   This works, but we're compromising by giving up half of the gain and severely impacting the common-mode rejection.  Recall that that the differential pair has common-mode gain that is rejected only when we consider the output differentially.  With a single-ended output, the common-mode gain is automatically converted to a single-ended signal and it cannot be separated from the desired signal.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                 FIGURE                   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[tb]
+\centering
+\begin{tabular}{cc}
+\includegraphics[scale=1]{Diff_in_SE_out.pdf} &
+\includegraphics[scale=1]{diffamp_SE_out_simp}\\
+(a) & (b)\\
+\end{tabular}
+\caption{(a) In many applications we desire to process the circuit differentially, and to convert the result to a single-ended signal as shown.   (b) Taking the single-ended output is one way to achieve this, although there is a better technique introduced in Section~\ref{sec:cur_mir_load}.} \label{fig:Diff_in_SE_out.pdf}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%             SUBSECTION 16.7.2            %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Current Mirror Load} \label{sec:cur_mir_load}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                 FIGURE                   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[tb]
+\centering
+\begin{tabular}{cc}
+\includegraphics[scale=1]{Diffpair_se_output.pdf} &
+\includegraphics[scale=1]{Diffpair_se_ac.pdf}\\
+(a) & (b)\\
+\end{tabular}
+\caption{(a) Differential pair with a current mirror load.  (b) The output of M1 is mirrored to M2 through the load. In the process, the single-ended output is doubled in amplitude and the common-mode signal is rejected.}
+\label{fig:Diffpair_se_output.pdf}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+An elegant solution that generates a single-ended output from the differential signal is shown in \emph{Fig.~\ref{fig:Diffpair_se_output.pdf}}.  We draw the AC equivalent circuit for differential input and assume that M1/M2 generate equal and opposite currents.  Even though the circuit is not fully symmetric, we continue to make this assumption because we are assuming that $i_D = f(v_{GS})$ and not $v_{DS}$.  For the transistor M1, the current flows into the MOS diode load, which generates the required $v_{GS}$ to generate the same current for M2.  The current flowing from the output side is therefore the difference of the mirror current and the transistor current M2.  Since these currents are equal and of opposite phase, the output current flowing into a load is $2\times i$. 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                 FIGURE                   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[tb]
+\centering
+\includegraphics[scale=1]{Diffpair_se_ac_gm.pdf} 
+\caption{AC analysis of a differential pair with a current mirror load using the virtual ground.  Even though the circuit is not fully symmetric, since M3 is configured as a MOS diode and M4 is not, this model is still very accurate since the transistors M1/M2 are gate and not drain controlled.} \label{fig:Diffpair_se_ac_gm.pdf}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+We can analyze the circuit in more detail using the differential-mode half-circuit as shown in \emph{Fig.~\ref{fig:Diffpair_se_ac_gm.pdf}}.  Again, the circuit is not fully symmetric, since the mirror has a diode connection on one side.  We are relying on the fact that the transistor is only a weak function of the drain voltage.  The differential transconductance is defined by:
+    \begin{equation}
+        {G_m} = \frac{{{i_o}}}{{{v_{dm}}}}
+    \end{equation}
+where $i_o$ is a current flowing into a short circuit at the output.  This output current is the difference between the current generated by M2 and the one generated by M4:
+    \begin{equation}
+        {i_o} = {g_{m2}}\left( {\frac{{{v_{dm}}}}{2}} \right) - {g_{m4}}{v_{gs4}}
+        \label{eq:cmgain_mirror}
+    \end{equation}
+The voltage $v_{gs4}$ is the same as $v_{gs3}$, and since we know the current and impedance level at the G/D of M3, we have:
+    \begin{equation}
+        {v_{gs4}} = {v_{gs3}} =  - {g_{m1}}\left( {\frac{{{v_{dm}}}}{2}} \right)\left( {\frac{1}{{{g_{m3}}}}||{r_{o3}}||{r_{o1}}} \right) 
+    \end{equation}
+The impedance at the drain of M1 is dominated by the diode connection, and so it's a good approximation to assume it's dominated by $1/g_{m3}$:
+    \begin{equation}
+        \approx  - \frac{{{g_{m1}}}}{{{g_{m3}}}}\frac{{{v_{dm}}}}{2}
+    \end{equation}
+Let's assume that the transistors are well matched.  Then, since M1/M2 are biased with the same DC current:
+    \begin{equation}
+        {g_{m1}} = {g_{m2}} = {g_m}
+    \end{equation}
+and the same is true for M3/M4:
+    \begin{equation}
+        {g_{m3}} = {g_{m4}}
+    \end{equation}
+Substitution in \emph{Eq.~\ref{eq:cmgain_mirror}} results in the following:
+    \begin{equation}
+        {i_o} = {g_m}{v_{dm}} = G_m v_{dm}
+    \end{equation}
+This result is not at all surprising.  Since the transistors M3/M4 form a mirror, we already predicted the doubling of the $G_m$ compared to a single-ended output without the mirror.
+We can now calculate the differential-mode gain.  Since the output resistance is the parallel combination of the mirror loads looking both up and down:
+    \begin{equation}
+        {R_{out}} = {R_{op}}||{R_{on}} = {r_{o4}}||{r_{o2}}
+    \end{equation}
+The gain is simply given by:
+    \begin{equation}
+        {A_{dm}} = {G_m}{R_{out}} = {g_m}\left( {{r_{o4}}||{r_{o2}}} \right)
+    \end{equation}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%             SUBSECTION 16.7.3            %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Common-Mode Gain}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                 FIGURE                   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[tb]
+\centering
+\includegraphics[scale=1]{Diffpair_se_cmgain.pdf}
+\caption{Schematic of a differential pair with a current mirror load under a common-mode excitation.  There is a small residual current $\Delta i$ that is converted into a differential mode due to the slight error in the mirror due to output resistance.}
+\label{fig:Diffpair_se_cmgain.pdf}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+At first glance you might guess that the circuit ideally does not convert any of its common-mode output to a differential-mode, and you're almost correct.  However, there is a residual mismatch that is due to the fact that the mirror is not perfect.  Let's analyze this in detail.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+For the common-mode excitation shown in \emph{Fig.~\ref{fig:Diffpair_se_cmgain.pdf}}, the drain current of M4 is a result of the gate-source voltage generated by M3, as previously noted.  Now we take into account the actual impedance at the drain of M1 to calculate $v_{gs3}$:
+    \begin{equation}
+        i_{d4} = g_{m3} v_{gs3} = -g_{m3} i_{d1} \left( \frac{1}{g_{m3}} || r_{o3} || r_{o1} \right) 
+    \end{equation}
+At this point we don't make the common approximation $1/g_m \ll r_o$ because we're trying to calculate a very small quantity, and throwing this term away would also result in losing the baby with the bathwater.  Now let's just continue to calculate $i_{d4}$ using the complete expression:
+    \begin{equation}
+        i_{d4} =  -i_{d1}  \frac{g_{m3} r_{o1} || r_{o3}}{1 + g_{m3} r_{o1} || r_{o3}}
+    \end{equation}
+This current sums with $i_{d2}$, and of course $i_{d2} = i_{d1}$, as the input is a common-mode signal. Any difference between $i_{d2}$ and $i_{d4}$ generates a differential-mode signal, which is highly undesirable:
+    \begin{equation}
+        \Delta i = i_{d2} - | i_{d4} | = i_{d1}  \frac{1}{1 + g_{m3} r_{o1} || r_{o3}}
+    \end{equation}
+Fortunately this $\Delta i$ current is very small since $g_m r_o \gg 1$.  The differential output voltage is given by:
+    \begin{equation}
+        v_{o,cm\to dm} = \Delta i \cdot r_{o2}||r_{o4} = i_{d1}  \frac{1}{1 + g_{m3} r_{o1} || r_{o3}} r_{o2}||r_{o4}
+    \end{equation}
+As $i_{d1}$ is generated by a common-mode input, we can use the degenerated transconductance for a common source amplifier:
+    \begin{equation}
+        i_{d1} = \frac{g_{m1}}{1 + g_{m1} 2 R_{CS}} v_{icm} \approx \frac{1}{2 R_{CS}} v_{icm}
+    \end{equation}
+Putting this all together, the gain $A_{cm \to dm}$ is given by:
+    \begin{equation}
+        {A_{cm \to dm }} \approx  \frac{1}{g_{m3} r_{o1} || r_{o3}} \frac{1}{2 R_{CS}}  r_{o2}||r_{o4} = \frac{1}{2 g_{m3} R_{CS}} 
+    \end{equation}
+And most importantly, if we compare this gain to the differential-mode gain, we have the $CMRR$:
+    \begin{equation}
+        CMRR = \frac{{\left| {{A_{dm}}} \right|}}{{\left| {{A_{cm \to dm}}} \right|}} = {g_{m1}} r_{o2} || r_{o4} \times 2 R_{CS} g_{m3} \gg 1
+    \end{equation}
+This is much better than the $CMRR$ of a circuit that does not use a mirror and uses one output instead.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                   SECTION 16.8                                       %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Appendix: Large Signal Derivation Steps} \label{sec:derive_diff_large}
+It's not too difficult to show the validity of \emph{Eq.~\ref{eq:diff_large}}.  To begin, let's eliminate $v_{GS}$ from the expressions by taking the difference between $\sqrt{i_D}$'s of the transistors:
+    \begin{equation}
+        \sqrt {{i_{D1}}}  - \sqrt {{i_{D2}}}  = \sqrt {\frac{{{k_n}}}{2}} \left( {{v_{GS1}} - {v_{GS2}}} \right) = \sqrt {\frac{{{k_n}}}{2}} {v_{id}} 
+    \end{equation}
+This is needed to express a linear difference between the $v_{GS}$ voltages of M1/M2, which is by definition the input differential voltage.  Next let's square $\sqrt {{i_{D1}}}  - \sqrt {{i_{D2}}}$:
+    \begin{equation}
+        i_{D1} - 2 \sqrt{i_{D1} i_{D2}} + i_{D2}  = \frac{k_n}{2} v_{id}^2
+    \end{equation}
+Re-arranging the equation, we have:
+    \begin{equation}
+        I_Q - 2 \sqrt{i_{D1} i_{D2}} = \frac{k_n}{2} v_{id}^2
+    \end{equation}
+Now use ${i_{D2}} = I_Q - {i_{D1}}$:
+    \begin{equation}
+        I_Q - \frac{k_n}{2} v_{id}^2 = 2 \sqrt{i_{D1} (I_Q - i_{D1})}
+    \end{equation}
+Squaring the result:
+    \begin{equation}
+        \left( I_Q - \frac{k_n}{2} v_{id}^2 \right)^2 = 4 i_{D1} (I_Q - i_{D1}) = 4 i_{D1} I_Q - 4 i_{D1}^2
+    \end{equation}
+We now have all the elements to setup a quadratic equation:
+    \begin{equation}
+        i_{D1}^2 - I_Q i_{D1} + \frac{1}{4} \left(I_Q - \frac{k_n}{2} v_{id}^2 \right)^2 = 0 
+    \end{equation}
+Solving the quadratic:
+    \begin{equation}
+        i_{D1} = \frac{I_Q}{2} \pm \frac{1}{2} \sqrt{I_Q^2 - \cancel{4} \frac{1}{\cancel{4}} \left(I_Q - \frac{k_n}{2} v_{id}^2 \right)^2 }
+    \end{equation}
+Which is almost in the desired form.  Simply factor out $I_Q$:
+    \begin{equation}
+        i_{D1} = \frac{I_Q}{2} \pm \frac{I_Q}{2} \sqrt{1 -  \left(1 - \frac{k_n}{2} \frac{v_{id}^2}{I_Q} \right)^2 }
+    \end{equation}
+Finally note definition of $V_{od}$:
+    \begin{equation}
+        V_{od} = \sqrt{\frac{2 I_Q}{k_n}}
+    \end{equation}
+and substitute and simplify to obtain final form shown in \emph{Eq.~\ref{eq:diff_large}}.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                 SECTION 16.9                                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Chapter Summary}
+In this chapter we ...

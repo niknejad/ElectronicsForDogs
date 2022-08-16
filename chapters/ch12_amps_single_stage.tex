@@ -1,0 +1,626 @@
+%!TEX root = edance.tex
+%%%%%%%%%%%%%%%%
+%  CHAPTER 12  %
+%%%%%%%%%%%%%%%%
+\chapter{Single-Stage Amplifiers}
+\label{ch:ch12_amps_single_stage}
+\graphicspath{{./figures/figs_ch12_amps_single_stage/}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                   SECTION 12.1                                       %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Chapter Preview}
+This chapter reviews the three important single-stage amplifier topologies.  Understanding these single-stage amplifiers is crucial, as we will build on these amplifiers in the following chapters to build more complex and higher performance multi-stage amplifiers.  Intimate knowledge of the input and output impedance, and the voltage/current gains is needed in order to move onto more complex amplifiers.  Therefore, we will begin by reviewing the fundamentals of amplifiers using two-port models.  Then we will show how each single-stage amplifier can be classified accordingly.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                 FIGURE                   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \begin{figure}[H]
+% \centering
+% \includegraphics[scale=1.00]{null}
+% \caption{null}
+% \label{fig:ch12_intro}
+% \end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                 FIGURE                   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[tb]
+\centering
+\includegraphics[scale=1]{oneports}
+\caption{A black box one-port linear circuit can be represented as a Thevenin or Norton equivalent.}
+\label{fig:oneports}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                 FIGURE                   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\centering
+\includegraphics[scale=1.05]{2port_ss}
+\caption{Similar to a one-port, a two-port linear circuit can be represented using an equivalent model.  If the blackbox is an amplifier, we can choose among many different representations shown in \emph{Fig.~\ref{fig:vi_amp}} and \emph{Fig.~\ref{fig:gm_z_amp}}.}
+\label{fig:2port_ss}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                   SECTION 12.2                                       %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Review Two-Port Amplifiers}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%             SUBSECTION 12.2.1            %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{One-Port Equivalent Models}
+Consider any \textbf{one-port}\index{Circuit models!one-port} linear circuit as a black box with a pair of exposed terminals.  We know from basic circuit theory that we can represent this black box as an equivalent \textbf{Thevenin or Norton model}\index{Thevenin equivalent}\index{Norton equivalent} (\emph{Fig.~\ref{fig:oneports}}).  This is also true of amplifiers, but amplifiers have two important differences.  First, most amplifiers have an input and an output port, where a "port" is a  pair of terminals.  Often one terminal is shared, or "common", between the ports, such as the ground connection.  The other important difference is that \textbf{two-port}\index{Circuit models!two-port} amplifiers do not have any sources (of the independent variety) in them.  Finally, we assume that an amplifier is a \textit{unilateral} block, meaning the output depends on input but input is independent of output.  In other words, signals travel in one direction, but not the other.  This is why the schematic symbol for an amplifier is often drawn as a triangle (think of an arrow).  In general, though, the output port depends linearly on the current and voltage at the input and output ports, because there is output impedance.  
+
+Why are amplifiers \textit{unilateral}?  Think about the small-signal model of a MOSFET\index{MOSFET!small-signal model} or BJT\index{BJT!small-signal model}.  The output depends on the input ($v_{\pi}$ for BJTs, or $v_{gs}$ for FETs) through the transconductance, $g_m$.  However, the input is more or less independent of the output, except for the effects of the small "overlap" or junction capacitance ($C_\mu$ for BJTs, or $C_{gd}$ for FETs).  As long as the "forward" gain $g_m$ is much larger than the reverse, $j\omega C_{gd}$, then the amplifier is unilateral.  At low frequencies, this is certainly true and a useful simplifying approximation.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%             SUBSECTION 12.2.2            %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Small-Signal Two-Port Models}
+A linear two-port box is shown in \emph{Fig.~\ref{fig:2port_ss}}, under the unilateral assumption.  This can be represented as a generic amplifier in four different ways, as shown in \emph{Fig.~\ref{fig:vi_amp}} and \emph{Fig.~\ref{fig:gm_z_amp}}.  Note that signals can be represented as voltage, or as current, or some combination of the two.  It is also important to note that any real amplifier has and \textbf{input impedance}\index{Amplifier!input impedance} $R_{in}$, and an \textbf{output impedance}\index{Amplifier!output impedance} $R_{out}$.  This is because both voltages \textit{and} currents (power) are needed for the circuit to work.
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                 FIGURE                   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[tb]
+\centering
+\begin{tabular}{c}
+\includegraphics[width=.9\columnwidth]{vamp_label}\\
+(a)\\
+\includegraphics[width=.9\columnwidth]{iamp}\\
+(b)\\
+\end{tabular}
+\caption{(a) A two-port voltage amplifier has internal gain $A_v$, input impedance $R_{in}$, and output impedance $R_{out}$.  (b) A two-port current amplifier has internal gain $A_i$, input impedance $R_{in}$, and output impedance $R_{out}$.}
+\label{fig:vi_amp}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%              SUB-SUBSECTION              %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Two-Port Small-Signal Voltage Amplifier}
+Let's begin with \emph{Fig.~\ref{fig:vi_amp}a}, or a \textbf{voltage amplifier}\index{Amplifier!Voltage amplifier}.  This is perhaps the most straightforward amplifier to understand, because both the input and output signals are voltages.  Recall that an ideal voltage amplifier has a very large input impedance $R_{in}$ so that it does not "load" the driver circuitry. Then most of the applied voltage will appear across $R_{in}$ rather than the source impedance.  Likewise, for similar reasons, the voltage amplifier should have a very small output impedance $R_{out}$.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%              SUB-SUBSECTION              %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Two-Port Small-Signal Current Amplifier}
+The dual of a voltage amplifier is the \textbf{current amplifier}\index{Amplifier!Current amplifier}, shown in \emph{Fig.~\ref{fig:vi_amp}b}.  Now the role of voltage and current are interchanged. The input current into the amplifier is amplified and divided between the load and the internal output impedance $R_{out}$.  For this reason, we would like a current amplifier to have as large of an output impedance $R_{out}$ as possible, in order to maximize the current gain.  Also, a current amplifier with a low input impedance can "steal" all the current from a source since a current divider favors the path of highest conductance.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                 FIGURE                   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\centering
+\begin{tabular}{c}
+\includegraphics[width=.9\columnwidth]{gmamp}\\
+(a)\\
+\includegraphics[width=.9\columnwidth]{ramp}\\
+(b)\\
+\end{tabular}
+\caption{(a) A two-port transconductance amplifier has internal gain $G_m$, input impedance $R_{in}$, and output impedance $R_{out}$.  (b) A two-port trans-resistance amplifier has internal gain $R$, input impedance $R_{in}$, and output impedance $R_{out}$.}
+\label{fig:gm_z_amp}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%              SUB-SUBSECTION              %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Two-Port Small-Signal Transconductance Amplifier}
+The \textbf{transconductance amplifier}\index{Amplifier!Transconductance amplifier} shown in \emph{Fig.~\ref{fig:gm_z_amp}a} takes an input voltage and generates an output current, just like a conductor.  But the signals are at different ports, making it a "trans" conductor, effectively \emph{transporting} the signal from the voltage domain to the current domain.  Take a moment to consider that the concept of voltage and current domain only make sense with respect to the source and load impedance.  A \textit{good voltage source has a low output impedance with respect to the input impedance of the load}, and a \textit{good current source has a high output impedance with respect to the input impedance of the load}.  Then it follows that a transconductance amplifier is effective only if it presents a high impedance, ideally infinite, and generates an output current with high output impedance.  A MOS transistor biased in saturation (and a BJT biased in the forward-active region) is almost an ideal transconductor, because its input is a high impedance at low frequencies, and its output is nearly open, due to the large output impedance of a transistor in saturation.  Notice that the most general transconductance model has 4 separate terminals, but we've drawn a version with a common node, similar to the transistor hybrid-pi model. 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%              SUB-SUBSECTION              %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Two-Port Small-Signal Transresistance Amplifier}
+The \textbf{transresistance amplifier}\index{Amplifier!Transresistance amplifier} is an amplifier that converts an input current into a voltage, as shown in \emph{Fig.~\ref{fig:gm_z_amp}b}.  It is the dual of the transconductance amplifier.  It ideally presents a low input impedance at the input, and drives the output with a low impedance voltage.  Transresistance amplifiers are also known as \textbf{transimpedance amplifiers}\index{Amplifier!Transimpedance amplifier}.  They are important in fiber optic communication, where the input light signal is a current (proportional to photon flux) that is converted to a voltage by a TIA.  Also, many sensors naturally generate a current signal (they have high source impedance), and need to be converted into voltage signals to drive other circuitry, such as \textbf{Analog-to-Digital Converters}\index{Analog-to-Digital Converters}, which expect to be driven by a relatively low source impedance.  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%             SUBSECTION 12.2.3            %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Input Impedance \texorpdfstring{$Z_{in}$}{}}
+To calculate the input and output impedances\index{Amplifier!input impedance} of two-ports, we can simply use a test source at the input or output, in order to determine the equivalent load at each port.  This is shown schematically in \emph{Fig.~\ref{fig:2port_zin_vx}}, where the test sources are labeled as $v_x$ and $i_x$.  When probing the input port of a truly unilateral two-port, the output port plays no role in determining the input impedance.  It could be left open-circuited, short-circuited, or terminated in an arbitrary impedance $Z$.  However, in practice circuits are not perfectly unilateral, and so we should have a convention for what to connect to the second output port.  It is common to measure the input port impedance while terminating the output port with the load impedance attached, as shown in \emph{Fig.~\ref{fig:2port_zin_vx}}.  For example, if we excite the input with a test current (voltage) source, and then observe the input voltage (current), we have:
+    \begin{align}
+        \Aboxed{Z_{in} = \frac{v_x}{i_x}\bigg\rvert_{\genfrac{}{}{0pt}{2}
+            {\scriptstyle{Z_S}\;removed,}
+            {\scriptstyle{Z_L}\;attached}}}
+            &\textit{Two-port input impedance using test source}
+    \end{align}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%             SUBSECTION 12.2.4            %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Output Impedance \texorpdfstring{$Z_{out}$}{}}
+We measure the output impedance\index{Amplifier!output impedance} in the same manner as the input impedance.  Again, if the amplifier were truly unilateral, connecting a source at the output would not affect the input port.  However, due to parasitic leakage (say through capacitance), there is a small influence\index{Parasitic capacitance}.  By convention, the \textit{input} port is terminated with the \textit{source} resistance, and the \textit{output} port is measured, as shown in \emph{Fig.~\ref{fig:2port_zout_vx}}.  For example, we can excite with a test voltage (current) source, and then measure the output current (voltage):
+    \begin{align}
+        \Aboxed{Z_{out} &= \frac{v_x}{i_x}\bigg\rvert_{\genfrac{}{}{0pt}{2}
+            {\scriptstyle{Z_L}\;removed,}
+            {\scriptstyle{Z_S}\;attached}}}
+            &\textit{Two-port output impedance using test source}
+    \end{align}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                 FIGURE                   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\centering
+\includegraphics[width=.85\columnwidth]{2port_zin_vx}\\
+(a)\\
+\includegraphics[width=.85\columnwidth]{2port_zin_ix}\\
+(b)\\
+\caption{To calculate the \textit{input impedance} of a two-port, we apply a test (a) voltage or (b) current source and measure the current/voltage.  By convention, we leave the \textit{output resistance} connected to the load.}
+\label{fig:2port_zin_vx}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                 FIGURE                   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\centering
+\includegraphics[width=.85\columnwidth]{2port_zout_vx}\\
+(a)\\
+\includegraphics[width=.85\columnwidth]{2port_zout_ix}\\
+(b)\\
+\caption{To calculate the \textit{output impedance} of a two-port, we apply a test (a) voltage or (b) current source and measure the current/voltage.  By convention, we leave the \textit{source resistance} connected to the input.}
+\label{fig:2port_zout_vx}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                 FIGURE                   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[t]
+\centering
+\includegraphics[scale=1]{ampchart}
+\caption{Family of NMOS and PMOS single-stage amplifiers.  Listing from the top: the Common Source, Common-Gate, and Common Drain Amplifiers.  As shown, each is biased with an ideal current source, while in practice we use transistor based current mirrors (see Ch.~\ref{ch:ch13_mirrors_biasing}) or resistors to bias the amplifiers.}
+\label{fig:ampchart}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                   SECTION 12.3                                       %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Single-Stage MOS Amplifier Family}
+Because a transistor is a three-terminal device (ignoring the body terminal of a MOSFET), and an amplifier is a four-terminal two-port, constructing an amplifier out of a transistor requires one terminal to be in "common" with both ports.  This leads to the family of amplifiers shown in \emph{Fig.~\ref{fig:ampchart}}.  The \textbf{common source} (CS) amplifier\index{Amplifier!MOSFET!common source} was already studied extensively in the previous chapters on small-signal modeling.  We now introduce the \textbf{common gate} (CG) amplifier\index{Amplifier!MOSFET!common gate}, and the \textbf{common drain} (CD) amplifier\index{Amplifier!MOSFET!common drain}.  The BJT equivalents are the \textbf{common emitter}\index{Amplifier!BJT!common emitter} (CE), \textbf{common base}\index{Amplifier!BJT!common base} (CB), and the \textbf{common collector}\index{Amplifier!BJT!common collector} (CC).  In this chapter we will focus on the MOS amplifiers, but with relatively small changes we can apply our knowledge to BJT amplifiers as well.  While this is true of the small-signal models, the large-signal behavior, such as the operating point, requires a very different approach.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%             SUBSECTION 12.3.1            %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Isolating the Bias Points}
+When hooking up a source or load to an amplifier, it is easy to change the DC operating point\index{Amplifier!operating point}.  One solution, adopted with discrete amplifiers, is to use a large \textbf{"AC coupling"} capacitor\index{Capacitor!AC coupling} at the input and/or output to isolate the load, as shown in \emph{Fig.~\ref{fig:ac_couple}a}. Think of a very large capacitor as a battery. \textit{At AC frequencies, it acts like a short circuit}.  One way to emphasize these capacitors as very large is to label them with $C_\infty$. This indicates that they are ideally infinitely large capacitors, so that they act as short circuits for any non-zero frequency.  Often we also need to \textit{block AC signals} from getting shorted out by bias voltages.  One solution adopted (shown in the figure) is a \textit{large resistor}.  The resistors are made large enough to avoid loading the amplifier.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%              SUB-SUBSECTION              %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{"Chokes"}
+In place of large resistors, infinitely large inductors, or \textbf{"chokes"}\index{Inductor!used as a choke} as they are sometimes called, are also convenient.  They work at DC, but at any non-zero frequency they are essentially open circuits.  Chokes are also used to \textit{isolate the DC supply or reference voltages} of sensitive circuits from the rest of the (noisy) system, as shown in \emph{Fig.~\ref{fig:ac_couple}b}.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                 FIGURE                   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\centering
+\includegraphics[width=.55\columnwidth]{csamp_bias}\\
+(a)\\[1cm]
+\includegraphics[width=.55\columnwidth]{csamp_biasT}\\
+(b)\\
+\caption{(a) AC coupling capacitors are large (ideally infinite) and act like batteries, allowing different points in a circuit to be biased to different DC values, effectively blocking DC but allowing AC signals to flow.  A large resistor is used to "block" the AC signals without loading the circuit.  (b) Large biasing inductors, sometimes called "chokes" are used to apply a DC voltage to a node while acting like an open-circuit at AC frequencies.  A combination of an inductor and capacitor forms a bias-T.}
+\label{fig:ac_couple}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                 FIGURE                   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[t]
+\centering
+\includegraphics[width=.9\columnwidth]{amp_bandpass}
+\caption{Definition of the "mid-band" or "pass-band" of an amplifier occurs at AC frequencies where large capacitors act like shorts (and large inductors are open).}
+\label{fig:midband}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%             SUBSECTION 12.3.2            %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{DC Coupled vs AC Coupled Amplifiers}
+AC coupled amplifiers have no gain at DC because the capacitors are "open" at very low frequencies, or alternatively the chokes short out the signal at DC.  The \textbf{mid-band}\index{Amplifier!mid-band} region of an amplifier is shown in \emph{Fig.~\ref{fig:midband}}.  It is defined as the region where the gain is approximately flat before rolling off due to high frequency effects, and after recovering from the effect of large capacitors. The general rule is to replace large capacitors with shorts, and small capacitors (transistor parasitics for example) as opens when finding the \textbf{mid-band gain}\index{Amplifier!mid-band gain}. 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%             SUBSECTION 12.3.3            %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Common Gate (CG) Amplifier}
+The common gate amplifier\index{Amplifier!MOSFET!common gate} is shown in \emph{Fig.~\ref{fig:cgamp_is}}.  The current source $I_Q$ and voltage source $V_{bias,Q}$ are DC supplies used to \textit{bias the amplifier}\index{Amplifier!biasing}.  The signal $i_s$ and resistor $R_s$ form the \textbf{AC signal source}\index{Amplifier!AC signal source}, and they are isolated by a large capacitor.  Likewise, the load $R_L$ is isolated by another capacitor.  Notice that without these capacitors, the DC points at the source and drain would shift.  The DC operating point\index{Amplifier!MOSFET!common gate DC operating point} of the amplifier is simply given by:
+\begin{align}
+	\Aboxed{I_Q &= I_{DS}} &\textit{Common-gate DC operating point}
+\end{align}
+Since $V_{bias,Q}$ does not appear in the equation, you may be wondering why we don not simply ground the gate, as the circuit functionality is unaffected.  For an ideal current source, operating the gate at ground would bring the source node to a negative voltage.  We will learn in the next chapter that real current sources will cease to function under such conditions.  The gate bias voltage is there to provide some \textbf{"headroom"}\index{Amplifier!biasing headroom} to the current source $I_Q$.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%             SUBSECTION 12.3.4            %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Common Gate AC Model}
+The \textbf{AC equivalent} circuit model\index{Amplifier!MOSFET!common gate AC model} is shown in \emph{Fig.~\ref{fig:cgamp_is_ac}a}, which is obtained from \emph{Fig.~\ref{fig:cgamp_is}} by simply shorting out all the DC sources.  To analyze the circuit, we can replace the transistor with its hybrid-pi equivalent circuit model, shown in \emph{Fig.~\ref{fig:cgamp_is_ac}b}.
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                 FIGURE                   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[t]
+\centering
+\includegraphics[scale=1.05]{cgamp_is}
+\caption{A common-gate amplifier driven by a source $i_s$ with source resistance $R_s$.  Capacitors are used to block the source/load DC levels from the amplifier, which is biased through $I_Q$ and $V_{bias,Q}$.}
+\label{fig:cgamp_is}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                 FIGURE                   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\centering
+\includegraphics[scale=1.05]{cgamp_is_ac}\\
+(a)\\[0.1cm]
+\includegraphics[scale=1.05]{cgamp_is_ac_ss}\\
+(b)\\
+\caption{(a) The AC equivalent schematic of the common-gate amplifier.  (b) The small-signal equivalent circuit of the common-gate amplifier.}
+\label{fig:cgamp_is_ac}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                 FIGURE                   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[t]
+\centering
+\includegraphics[scale=1.15]{cgamp_is_ac_ss_short}
+\caption{To find the intrinsic current gain of a common-gate amplifier, we short the output and drive the input with an ideal current source.  The current gain is the current flowing out $i_{out}$ divided by $i_s$.}
+\label{fig:cgamp_is_ac_ss_short}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%             SUBSECTION 12.3.5            %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{CG as a Current Amplifier\texorpdfstring{: Find $A_{i}$}{}}
+We will first analyze the circuit as a current amplifier.  To find the current gain of a current amplifier, we should short-circuit the output and observe the output current (flowing into the short) when driven by an ideal current source.  This means we drive it with a current source with zero source conductance, as shown in \emph{Fig.~\ref{fig:cgamp_is_ac_ss_short}}.  Notice that the output current is the drain.  Also notice that the source current must flow through the output because that is the only path for the current to return:
+    \begin{equation}
+        i_{out} = i_d =  -i_s
+    \end{equation}
+From these observations, it is obvious that the \textbf{intrinsic current gain}\index{Amplifier!MOSFET!common gate!intrinsic current gain} is given by:
+    \begin{align}
+        \Aboxed{A_i &=  -\left(\frac{i_{out}}{i_s}\right) = -1} &\textit{Intrinsic current gain for CG amplifier}
+    \end{align}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                 FIGURE                   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[t]
+\centering
+\includegraphics[scale=1.15]{cgamp_is_ac_ss_zin}
+\caption{To determine the input impedance of a common-gate amplifier, we drive the input with a test source $v_x$ and measure the current $i_x$ flowing into the amplifier.  By convention, we leave the load resistance connected at the output.}
+\label{fig:cgamp_is_ac_ss_zin}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%             SUBSECTION 12.3.6            %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{CG Input Impedance}
+Next we calculate the input impedance of the CG amplifier.  By convention, we leave the load resistance connected at the output, and we apply a test source.  We can use a test voltage $v_x$ or a current.  In \emph{Fig.~\ref{fig:cgamp_is_ac_ss_zin}}, we apply a test voltage and observe the current $i_x$.  The test current splits between the transistor $r_o$ and the $g_m$ generator:
+    \begin{equation}
+        i_x = -g_m\,v_{gs} + \left(\frac{v_x - v_{out}}{r_o}\right)
+        \label{eq:cg_input}
+    \end{equation}
+At the output of the amplifier, the current flows into the load resistor $R_L$ in parallel with $R_D$:
+    \begin{equation}
+        v_{out} = -i_d\left(R_D \parallel R_L\right) = i_x\left(R_D \parallel R_L\right)
+    \end{equation}
+Also notice that the voltage $v_{gs}$ is in fact just the negative of the test source.  With these observations, we substitute into \emph{Eq.~\ref{eq:cg_input}} to obtain:
+    \begin{equation}
+        i_x = g_m\,v_x + \left(\frac{v_x - i_x\left(R_D \parallel R_L\right)}{r_o}\right)
+        = v_x\left(g_m + \frac{1}{r_o}\right) - i_x\left(R_D \parallel R_L\right)
+        \label{eq:cg_input2}
+    \end{equation}
+Rearranging \emph{Eq.~\ref{eq:cg_input2}}:
+    \begin{equation}
+        i_x\left(1 - \frac{R_D \parallel R_L}{r_o}\right) = v_x\left(g_m + \frac{1}{r_o}\right)
+        \label{eq:cg_input3}
+    \end{equation}
+From \emph{Eq.~\ref{eq:cg_input3}}, we can now find the \textbf{input impedance}\index{Amplifier!MOSFET!common gate!input impedance}:
+    \begin{align}
+        \Aboxed{R_{in} &= \frac{v_x}{i_x} = \frac{1 + \frac{R_D \parallel R_L}{r_o}}{g_m + \frac{1}{r_o}}}
+        &\textit{Input impedance for CG amplifier}
+        \label{eq:cg_amplifier_input_impedance}
+    \end{align}
+The reciprocal of \emph{Eq.~\ref{eq:cg_amplifier_input_impedance}} is the \textbf{input conductance}\index{Amplifier!MOSFET!common gate!input conductance}, taking the form:
+    \begin{align}
+        \Aboxed{G_{in} &= \frac{1}{R_{in}} = \frac{i_x}{v_x} = \frac{g_m + \frac{1}{r_o}}{1 + \frac{R_D \parallel R_L}{r_o}}}
+        &\textit{Input conductance for CG amplifier}
+        \label{eq:cg_amplifier_input_conductance}
+    \end{align}
+Notice that the input impedance depends on the load, an undesirable result.  But as we shall see, the dependence on the load is rather weak.  Let's make some approximations to simplify the results.  First of all, a good transistor has good intrinsic voltage gain $A_0$: 
+    \begin{equation}
+        A_0 = g_m\,r_o \gg 1
+    \end{equation}
+If we factor $g_m$ out from \emph{Eq.~\ref{eq:cg_amplifier_input_conductance}}:
+    \begin{equation}
+        G_{in} = g_m \frac{1 + \frac{1}{g_m\,r_o}}{1 + \frac{R_D \parallel R_L}{r_o}}
+    \end{equation}
+Next let's assume that $r_o \gg R_D \parallel R_L$, which allows us to simplify to:
+    \begin{align}
+        \Aboxed{R_{in} &= \frac{1}{g_m}} &\textit{Input impedance for CG amplifier, $r_o \gg R_D \parallel R_L$}
+        \label{eq:cg_amplifier_input_impedance_big_r_o}
+    \end{align}
+Does this result make sense?  After some careful deliberation, it is actually somewhat intuitive, at least in the limit that we have obtained in the approximation.  To see this, ignore the output node and assume it is grounded (drain is grounded). Modulating the source voltage modulates the $v_{sg}$ of the transistor.  This modulation causes the current to increase by $-g_m\,v_{sg}$, resulting in an input conductance of $g_m$.  In the absence of $R_D$ and $R_L$, the only correction to this would be to account for $r_o$.  Because $r_o$ is simply in parallel, the input conductance would be $g_m + 1/r_o$.  But the presence of the load $R_D \parallel R_L$ complicates things a bit.  In practice we usually satisfy the condition that $R_D \parallel R_L \ll r_o$, so the simple result is enough. 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                 FIGURE                   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[t]
+\centering
+\includegraphics[scale=1.15]{cgamp_is_ac_ss_rout}
+\caption{To determine the output impedance of a common-gate amplifier, we drive the output with a test source $i_x$ and measure the voltage $v_x$.  By convention, we leave the source resistance connected at the input.}
+\label{fig:cgamp_is_ac_ss_rout}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%             SUBSECTION 12.3.7            %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{CG Output Impedance}
+To find the CG amplifier output impedance, let's connect a test current source $i_x$ at the output and observe the voltage $v_x$, as shown in \emph{Fig.~\ref{fig:cgamp_is_ac_ss_rout}}.  Write KCL at the input of the amplifier:
+    \begin{equation}
+        \frac{v_s}{R_S} - g_m\,v_{gs} + \frac{v_s - v_x}{r_o} = 0
+        \label{eq:cg_output}
+    \end{equation}
+Let's make a simplifying step and eliminate $R_D$ for a moment, because it will simply load the output in an obvious way (it is in parallel with the transistor effective output impedance).  In this case, notice that the voltage at the source is $v_s = i_x R_S$.  This is because $i_x$ would flow entirely through $R_S$ without $R_D$.  Also, $v_{gs} = -v_s$, so the \emph{Eq.~\ref{eq:cg_output}} can be simplified to:
+    \begin{equation}
+        v_s\left(\frac{1}{R_S} + g_m + \frac{1}{r_o}\right) = \frac{v_x}{r_o}
+        = i_x\,R_S\left(\frac{1}{R_S} + g_m + \frac{1}{r_o}\right)
+        \label{eq:cg_output2}
+    \end{equation}
+We can rearrange \emph{Eq.~\ref{eq:cg_output2}}, which implies that the effective \textbf{output impedance}\index{Amplifier!MOSFET!common gate!output impedance} looking into the drain of the amplifier, in the presence of $R_S$, is boosted to::
+    \begin{align}
+        \Aboxed{R_{out,\,no\;R_D} &= \frac{v_x}{i_x} = {R_S}\left(\frac{r_o}{R_S} + g_m\,r_o + 1\right)}
+        &\textit{Output impedance for CG amplifier}
+        \label{eq:cg_amplifier_output_impedance}
+    \end{align}
+Bringing back $R_D$:
+    \begin{align}
+        \Aboxed{R_{out} &= R_D \parallel \left(r_o + g_m\,r_o\,R_S + R_S\right)}
+        &\textit{Output impedance for CG amplifier with $R_D$}
+        \label{eq:cg_amplifier_output_impedance_rd}
+    \end{align}
+This is a very interesting result, and not so obvious.  Adding a resistor $R_S$ in series with the transistor on the drain side would simply increase the resistance to $r_o + R_S$.  On the other hand, adding such a resistor on the source side increased the output impedance by a factor of $1 + g_m R_S$, potentially a large factor.  To understand why this happens, we must use feedback theory, something that you will learn in the future.
+
+The exact result is complicated, and a simpler version is easier to remember and nearly as accurate:
+    \begin{equation} 
+        R_{out} \cong R_D \parallel (r_o + g_m\,r_o\,R_S + R_S) \approx \boxed{R_D \parallel \bigg(1 + g_m\,R_S + \frac{R_S}{r_o}\bigg)r_o}
+    \end{equation}
+An even simpler version can be obtained by assuming the source resistance is less than $r_o$:
+    \begin{equation} 
+        R_{out} \approx R_D \parallel (r_o + g_m\,r_o\,R_S) = \boxed{R_D \parallel \Big(r_o(1 + g_m\,R_S)\Big)}
+    \end{equation}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                 FIGURE                   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[t]
+\centering
+\includegraphics[scale=1.5]{cg_model}
+\caption{A two-port model for the CG amplifier is a current buffer with input impedance $1/g_m$ and output impedance as shown.}
+\label{fig:cg_model}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%             SUBSECTION 12.3.8            %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{CG Two-Port Model}
+We can summarize everything we have learned about the CG amplifier thus far by building an equivalent model of the CG amplifier, shown in \emph{Fig.~\ref{fig:cg_model}}\index{Amplifier!MOSFET!common gate!two-port model}.  This is a current amplifier model with a current gain of unity, which means it is a \textbf{"current buffer"}\index{Amplifier!current buffer}.  A current buffer needs to meet three requirements:
+\vspace{0.25cm}
+    \begin{enumerate}
+        \setlength\itemsep{0.15cm}
+        \item{It must have a \textit{current gain of unity}.}
+        \item{It should present a \textit{low input impedance}.}
+        \item{It should present a \textit{high output impedance}.}
+    \end{enumerate}
+\vspace{0.25cm}
+Under these three conditions, the output current into a load is a faithful reproduction of the input.  It is extremely important to understand the role of low input impedance and high output impedance in this functionality.  A CS amplifier\index{Amplifier!common source} is \textit{not} a good current buffer, because it fails the first two criteria.  It is \textit{not even a good current amplifier}, because it does not satisfy the second criteria at low frequencies.  Although at sufficiently high frequencies, we can think of it as a current amplifier.  If this idea of a current buffer is not making sense, take some time and calculate the current gain of a \textit{two-port current amplifier} under arbitrary load and source impedance.  Then find the conditions for the externally observed current gain to match the internal current gain of the amplifier.
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                 FIGURE                   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[t]
+\centering
+\includegraphics[scale=1.55]{cgamp_vs_ac}
+\caption{When the common-gate amplifier is voltage driven, the input voltage source is divided between its source resistance and the input of the amplifier, reducing the gain.}
+\label{fig:cg_v_amp}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%             SUBSECTION 12.3.9            %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Common-Gate as a "Voltage Amplifier"}
+If we voltage drive the CG amplifier, as shown in \emph{Fig.~\ref{fig:cg_v_amp}}, with source resistance $R_S = 0\,\Omega$, then the $g_m$ is the same as a CS, and the gain is also just as good as a CS amplifier (with opposite phase):
+    \begin{align*}
+        v_{gs} &= -v_s\\[0.35cm] 
+        v_{out} &= - i_d \big(R_L \parallel R_D\big)\\[0.15cm]
+        &= -(-g_m\,v_s)\big(R_L \parallel R_D\big) &\textit{$i_d = -g_m\,v_s$ at the output}\\[0.15cm]
+        &= g_m\,v_s \big(R_L \parallel R_D\big)
+    \end{align*}
+Now we have the CG gain, when used as a voltage amplifier:
+    \begin{align}
+        \Aboxed{A_v &= \frac{v_{out}}{v_s} = g_m \big(R_L \parallel R_D\big)} &\textit{Voltage gain, CG voltage amplifier}
+        \label{eq:cg_voltage_amp_gain}
+    \end{align}
+But if we have a source resistance such that $R_S \ne 0\,\Omega$, then the low input impedance causes a voltage divider effect:
+    \begin{align}
+        v_{gs} &= -v_s \frac{Z_{in}}{Z_{in} + R_s}\\[0.15cm]
+        &= -v_s \frac{1/g_m}{1/g_m + R_s}
+        &\textit{Recall \emph{Eq.~\ref{eq:cg_amplifier_input_impedance_big_r_o}} for why $Z_{in} = 1/g_m$}\\[0.15cm]
+        \Aboxed{&= -\frac{v_s}{1 + g_m R_s}}
+        \label{eq:cg_voltage_divider}
+    \end{align}
+This results in a lower transconductance:
+    \begin{align}
+        v_{out} &= -i_d\big(R_L \parallel R_D\big)\\[0.15cm]
+        &= -(v_{gs}\,g_m + \cancelto{\approx0}{\frac{1}{r_0}})\big(R_L \parallel R_D\big)
+        &\textit{$r_o \gg R_D \parallel R_L$}\\[0.45cm]
+        &= -\frac{-v_s\,g_m}{1 + g_m\,R_s}\big(R_L \parallel R_D\big)
+        &\textit{Substitution from \emph{Eq.~\ref{eq:cg_voltage_divider}}}\\[0.45cm]
+        \Aboxed{&= \frac{v_s\,g_m}{1 + g_m\,R_s}\big(R_L \parallel R_D\big)} &\textit{Transconductance, CG voltage amplifier}
+    \end{align}
+And consequently a lower voltage gain: 
+    \begin{align}
+        \Aboxed{A_v = \frac{v_{out}}{v_s} = \frac{g_m}{1 + g_m\,R_s}\big(R_L \parallel R_D\big)} &\textit{Gain, CD voltage amplifier}
+    \end{align}
+This analysis is important because it shows that a CG amplifier can be interpreted in different ways.  It can not only be used as a current buffer, but it can also provide voltage gain and be viewed as a voltage amplifier.  You just have to remember that its input impedance is low, and so it will likely load the source.
+
+In some applications, such as \textbf{RF amplifiers}\index{Amplifers!RF}, this is desirable, because for power matching we desire the load and the source impedance to match (to extract the maximum power from the source).  The low input impedance of the CG is a convenient match to $75\,\Omega$ or $50\,\Omega$ \textbf{transmission-line impedances}\index{Transmission-line impedances}.
+
+There is another benefit of the CG amplifier as a voltage amplifier, compared to the CS amplifier in particular.  The benefit is that it has a positive gain, as opposed to the inverting amplification of the CS stage.  In some applications, we need positive gain, or we want to combine positive gain with negative gain.  One application where we need positive gain is in a differential amplifier, and so the CG amplifier will be useful.
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                 FIGURE                   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[t]
+\centering
+\includegraphics[scale=1.15]{cd_amp_dc}\\
+(a)\\[0.15cm]
+\includegraphics[scale=1.25]{cd_amp_ac}\\
+(b)\\
+\caption{(a) The full schematic of the common drain (CD) amplifier.  (b) The AC equivalent circuit of a CD amplifier.}
+\label{fig:cd_amp_dc_ac}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                   SECTION 12.4                                       %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Common Drain Amplifier}
+The full schematic of the common drain amplifier\index{Amplifier!MOSFET!common drain} is shown in \emph{Fig.~\ref{fig:cd_amp_dc_ac}a}.  The "common" terminal is the drain, because the signal input comes into the gate, and the signal output exits the source.  However, unlike the CG and CS amplifiers, the drain is not grounded. Instead it is connected to a DC supply.  This is because we need to connect the drain to a higher potential than the gate/source in order to bias the transistor in saturation.  As far as AC signals are concerned, though, the drain voltage is DC and therefore \textbf{AC grounded}\index{Amplifier!AC grounded}.  This is shown in \emph{Fig.~\ref{fig:cd_amp_dc_ac}b}.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%             SUBSECTION 12.4.1            %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{CD DC Operating Point}
+The CD amplifier is usually biased with a constant current $I_Q$ as shown.  The load is \textbf{AC coupled}\index{Amplifier!AC coupled}, and so the transistor $I_{DS}$ flows into $I_Q$:
+    \begin{equation*}
+        I_Q = I_{DS} = \left(\frac{W}{2L}\right)\mu\,C_{ox}{(V_{GS} - V_T)}^2	
+    \end{equation*}
+In theory, the gate voltage could be at any DC bias point, but in practice we know that the current $I_Q$ dictates a positive $V_{GS}$:
+    \begin{equation*}
+        V_{GS} = V_T + \sqrt{\frac{2\,I_{Q}}{\mu\,C_{ox}\,\frac{W}{L}}}
+    \end{equation*}
+To give the current source $I_Q$ some headroom\index{headroom} (DC voltage), we need to bias the gate of the transistor at a correspondingly higher voltage.  For now let's call that $V_{bias,Q}$ similar to the CG amplifier.
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                 FIGURE                   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[t]
+\centering
+\includegraphics[scale=1.15]{cd_amp_ss_av2}\\
+(a)\\
+\includegraphics[scale=1.15]{cd_amp_ss_rout}\\
+((b)\\
+\caption{(a) \textit{Common drain} amplifier small-signal equivalent circuit.  (b) Small-signal circuit schematic for calculation of output impedance.}
+\label{fig:cd_amp_ss_av2}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%             SUBSECTION 12.4.2            %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{CD Voltage Gain}
+To find the voltage gain of the CD amplifier, we apply an AC source to the gate and observe the output voltage at the source, as shown in \emph{Fig.~\ref{fig:cd_amp_ss_av2}a}.  In the small-signal model, we have grayed out the \textbf{back-gate generator}\index{Back-gate generator} $g_{mb}$, which would be the case if we short the source to the body of the transistor.  We will handle the situation of the grounded body later. Let's write KCL at the output node:
+    \begin{equation*}
+        \frac{v_{out}}{R_L \parallel r_o} = g_m\,v_{gs}
+    \end{equation*}
+Because the input and output are just separated by $v_{gs}$, or $v_{gs} = v_{s} - v_{out}$, we have:
+    \begin{equation*}
+        \frac{v_{out}}{R_L \parallel r_o} = g_m(v_s - v_{out})
+    \end{equation*}
+Collecting common factors:
+    \begin{equation}
+        \left(\frac{1}{R_L \parallel r_o} + g_m\right)v_{out} = g_m\,v_s
+        \label{eq:cd_gain_kcl}
+    \end{equation}
+\emph{Eq.~\ref{eq:cd_gain_kcl}} leads us to the voltage gain\index{Amplifier!MOSFET!common drain!voltage gain}:
+    \begin{align}
+        \Aboxed{\frac{v_{out}}{v_s} = \frac{g_m}{\frac{1}{R_L \parallel r_o} + g_m}} &\textit{Common drain voltage gain}
+    \end{align}
+Assuming that $r_o \gg R_L$, we have:
+    \begin{equation}
+        \frac{v_{out}}{v_s} \approx \frac{g_m}{\frac{1}{R_L} + g_m} \approx 1
+        \label{eq:cd_gain_one}
+    \end{equation}
+This final result in \emph{Eq.~\ref{eq:cd_gain_one}} leads to another name for this amplifier, namely the \textbf{"Source Follower"}\index{Amplifier!source follower}, because the source voltage closely tracks the gate voltage.  In other words, this is a voltage amplifier with unity gain, or a voltage buffer\index{Amplifier!voltage buffer}.
+
+To be a voltage buffer, though, also requires high input impedance and low output impedance.  Obviously the input impedance is large, especially at low frequencies, because of the insulating nature of the gate.  Now let's examine the output impedance of the CD.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%             SUBSECTION 12.4.3            %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{CD Output Resistance}
+To calculate the output impedance\index{Amplifier!MOSFET!common drain!output resistance}, refer to \emph{Fig.~\ref{fig:cd_amp_ss_av2}b}.  We apply a test source $v_x$ and find the current $i_x$.  For a moment, forget about $r_o$ and $r_{oc}$, the output resistance of the transistor and the current source.\footnote{For proof that this simplification yields the same result using KCL, see \emph{App.~\ref{app:cd_output_kcl}}.}  They are simply in parallel with the source and can be added later.  In that case, let's sum currents at output (source) node:
+    \begin{equation}
+        i_x = g_m\,v_x
+        \label{eq:cd_output_i_x}
+    \end{equation}
+\emph{Eq.~\ref{eq:cd_output_i_x}} which leads to:
+    \begin{equation}
+        R_{out} = \left(r_o \parallel r_{oc}\right) \parallel \frac{v_x}{i_x}
+        = \boxed{\left(r_o \parallel r_{oc}\right) \parallel \frac{1}{g_m}}
+        \label{eq:cd_output_resistance}
+    \end{equation}
+If $r_o \parallel r_{oc}$ is much larger than the inverses of the transconductance, the output impedance is given by:
+    \begin{align}
+        \Aboxed{R_{out} &\approx \frac{1}{g_m}} &\textit{Common drain output resistance}
+        \label{eq:cd_output_resistance_simple}
+    \end{align}
+Recall that $g_m \propto \sqrt{I_{DS}}$, so a good voltage buffer is biased with a large $g_m$, and burns sufficiently large DC current.  The CD amplifier is often used as an output stage to drive a heavy load.  A heavy load is a small resistance, because for a fixed voltage swing it draws more power than a larger resistor.  In order to buffer a gain stage from a small load, we can add a \textit{source follower} amplifier.  Putting everything together, a CD amplifier is modeled as shown in \emph{Fig.~\ref{fig:cd_amp_model}}.  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                 FIGURE                   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\centering
+\includegraphics[scale=1.25]{cd_amp_model}
+\caption{A two-port model for the CD amplifier is a voltage buffer with unity gain and output impedance $1/g_m$.}
+\label{fig:cd_amp_model}
+\end{figure}
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                 FIGURE                   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[t]
+\centering
+\includegraphics[scale=1.25]{cd_amp_ac_body}\\
+(a)\\
+\includegraphics[scale=1.15]{cd_amp_ss_av_body 2}\\
+(b)\\
+\caption{(a) The CD amplifier built with a four terminal MOSFET with a grounded body.  Note that the voltage $v_{sb}$ is not zero and therefore we must consider (b) the complete low-frequency small-signal schematic of the CD amplifier (including the back-gate effect).}
+\label{fig:cd_amp_ac_body}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                   SECTION 12.5                                       %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Impact of Body Effect}
+As we noted earlier, if the source and body are not tied together, there is a back-gate effect\index{Amplifer!body effect} that we need to consider.  Recall that if an NMOS transistor is fabricated in a $P$-type substrate, then its body connection is the substrate.  The body connection must be grounded in an IC (or tied to the lowest potential), as shown in \emph{Fig.~\ref{fig:cd_amp_ac_body}a}.  It is possible to create a "triple well" process (or a "deep $N$-well" process) to accommodate placing NMOS devices in their own body wells. This process can prevent the back-gate effect, but these process options are more expensive and increase the size of the device.  Often many NMOS devices will reside in the same substrate or $P$-well, and so all the bodies are tied to a common (ground) node.
+
+To calculate the gain with the back-gate effect, we return to the full \textbf{four-terminal small-signal}\index{Amplifier!four-terminal small-signal} schematic, redrawn in \emph{Fig.~\ref{fig:cd_amp_ac_body}b}.  To find the voltage gain, we write KCL at the output node: 
+    \begin{equation*}
+        \frac{v_{out}}{R_L \parallel r_o} = g_m\,v_{gs} + g_{mb}\,v_{bs}
+    \end{equation*}
+As before, $v_{gs} = v_{s} - v_{out}$, but now we must consider that the source voltage moves with respect to the body:
+    \begin{equation*}
+        v_{bs} = 0 - v_{out} = -v_{out}
+    \end{equation*}
+Making these substitutions:
+    \begin{equation*}
+        \frac{v_{out}}{R_L \parallel r_o} = g_m\left(v_{s} - v_{out} - g_{mb}\,v_{out}\right)
+    \end{equation*}
+Collecting common factors:
+    \begin{equation*}
+        \left(\frac{1}{R_L \parallel r_o} + g_m + g_{mb}\right)v_{out} = g_m\,v_{s}
+    \end{equation*}
+This last equation leads us to the voltage gain\index{Amplifier!MOSFET!common drain!voltage gain with body effect}:
+    \begin{align}
+        \Aboxed{\frac{v_{out}}{v_s} &= \frac{g_m}{\frac{1}{R_L \parallel r_o} + g_m + g_{mb}}}
+        &\textit{CD gain with body effect}
+    \end{align}
+\vspace{4cm}
+\subsubsection{Amplifier Topologies}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                 FIGURE                   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\centering
+\includegraphics[width=\columnwidth]{ampchart_models}
+\caption{The family of single-stage transistor amplifiers and the corresponding two-port models.  As you analyze more circuits, this chart will become to be imprinted in your memory.}
+\label{fig:ampchart_models}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                   SECTION 12.6                                       %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Chapter Summary: Amplifiers \texorpdfstring{$\rightarrow \; G_m$/$V$/$I$}{}}
+Let's summarize this chapter by reviewing the three possible amplifier topologies and the equivalent circuit, all shown in \emph{Fig.~\ref{fig:ampchart_models}}.  In each case we model the amplifier in a certain way that best characterizes the input/output impedance of the topology.  For example, a CS amplifier has high input impedance and high output impedance, making it an ideal transconductance amplifier.  This is not to say that it cannot be designed as a (inverting) buffer, a voltage amplifier, or a current amplifier.  It is just that the native impedance level of the CS lends well to it being used as a transconductance amplifier.  
+
+The CG amplifier is likewise best seen as a current buffer, because the input and output currents are nearly identical.  But CG amplifiers make great voltage amplifiers too, provided that you can drive their input impedance.  Their output impedance is also high, and so a voltage buffer is needed if driving a low impedance load is desired.  
+
+Finally, the CD amplifier is best viewed as a voltage buffer, providing high input impedance and low output impedance.  Its voltage gain is less than unity, but with enough bias current we can approach unity gain.  Even though the voltage gain is always less than one, it can provide \emph{power gain} by driving a load with power without requiring much input power.
