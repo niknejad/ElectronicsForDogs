@@ -16,48 +16,48 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Chapter Preview}
-In this chapter we'll be covering multi-stage amplifiers consisting of a cascade of two or more single-stage amplifiers.  First we'll be reviewing amplifier input/output impedance characteristics, which will provide insights on the best ways to cascade amplifiers.  Next, we'll start with the important common-source amplifier stage and show that while cascading these stages will result in higher gain, it comes with a severe penalty of bandwidth reduction.  To partially circumvent this bandwidth reduction, we'll see how voltage buffers can be inserted in between amplifier stages.  We'll also cover an important special case of a capacitive load, which commonly occurs for on-chip amplifiers, and how to drive these loads.  The next cascade we'll investigate in detail is the common-source amplifier cascaded with a common-gate amplifier, which is better known as the cascode amplifier.  We'll discuss this topology in detail because it plays such an important role in circuit design.  The chapter will conclude with a "big'' example to demonstrate how a seemingly complex circuit can be simplified into simple building blocks.  Obviously this ability to see through the clutter of a circuit will not be learned overnight, but it's something you can learn fairly quickly through practice.  In many ways we'll only touch on the important concepts of multi-stage amplifiers, as the examples in this chapter are fairly simple.  But we must first learn to walk before we attempt to run.
+In this chapter we will be covering multi-stage amplifiers consisting of a \textit{cascade} of two or more single-stage amplifiers.  First we will be reviewing amplifier input/output impedance characteristics, which will provide insights on the best ways to cascade amplifiers.  Next, we will start with the important common source amplifier stage and show that while cascading these stages will result in a higher gain.  However, the higher gain comes with a severe penalty of bandwidth reduction.  To partially circumvent this bandwidth reduction, we will see how voltage buffers can be inserted in between amplifier stages.  We will also cover an important special case of a capacitive load, which commonly occurs for on-chip amplifiers, and how to drive these loads.  The next topology we will investigate in detail is the common source amplifier cascaded with a common gate amplifier, which is better known as the \textit{cascode amplifier}.  We will discuss this topology in detail, because it plays such an important role in circuit design.
+
+The chapter will conclude with a "big" example to demonstrate how a seemingly complex circuit can be simplified into simple building blocks.  Obviously this ability to see through the clutter of a circuit will not be learned overnight, but it is something you can learn fairly quickly through practice.  In many ways we will only touch on the important concepts of multi-stage amplifiers, as the examples in this chapter are fairly simple.  But we must first learn to walk before we attempt to run.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% \begin{figure}[H]
-% \centering
-% \includegraphics[scale=1.00]{null}
-% \caption{null}
-% \label{fig:ch15_intro}
-% \end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.25]{1987x_head}
+\caption{Guitar amplifiers, such as the classic Marshall 1987X head, are a good example of a multi-stage amplifier.  They usually have one or more gain stages available to give an overdriven and "crunchy" sound.}
+\label{fig:ch15_intro}
+\end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                 FIGURE                   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[tb]
+\centering
+\includegraphics[width=\columnwidth]{ampchart_models}
+\caption{Family of single-stage MOS transistor amplifiers and the two-port models.  This chart is important and should be committed to "memory".}
+\label{fig:ampchart_models_fig}
+\end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                   SECTION 15.2                                       %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{The Need for Multistage Amplifiers}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                 FIGURE                   %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[tb]
-\begin{center}
-\includegraphics[width=\columnwidth]{ampchart_models}
-\end{center}
-\caption{Family of single-stage MOS transistor amplifiers and the two-port models.  This chart is important and should be committed to "memory".}
-\label{fig:ampchart_models_fig}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-In the past few chapters, we have discussed single stage amplifiers in detail, building models for each as either a voltage/current or hybrid amplifier (transconductance or transresistance), see \emph{Fig.~\ref{fig:ampchart_models_fig}}.  Why should we need to cascade single-stage amplifier stages?  The simplest reason is to provide more gain.   More is better, right? No, not always, but in the right circumstance, distributing gain over multiple stages has benefits. Such benefits include the ability to realize higher bandwidth, or for driving output loads without compromising the gain.  By separating the task of amplification into multiple steps, such as to drive an external load, we can better optimize each stage.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-To begin, let's talk about gain.  In modern technology, the amount of realizable gain per stage is  limited, especially in nanoscale devices.  For example, in a technology with $L = 1\mathrm{\mu m}$, a single device could provide an intrinsic gain $g_m r_o \approx 100$, whereas a short channel transistor in 28nm technology may only provide a gain of 10.  
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-The other reason we use multiple amplifier stages is to better match the input and output source and load resistances to the amplifier.  The source or load impedance may be too high or low, and a voltage or current buffer can often provide a better interface.  
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Single stage amplifiers such as common-source stages provide very high voltage gain, but suffer from low frequency poles due to the lack of isolation from the input (gate) to the output (drain), flowing through the parasitic gate-drain capacitance $C_{gd}$.  Many multi-stage amplifiers improve the bandwidth by providing better isolation.  
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-In other situations, an amplifier may have a high impedance node to provide large gain, and any additional capacitance on this node may be detrimental to bandwidth.  As we'll see, a buffer can decouple the high impedance nodes from large load capacitors.  
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-As mentioned earlier, output stages to drive "external" loads are often needed and usually have low gain owing to the fact that the load is a very small resistance (say a speaker or antenna).  Multiple gain stages are therefore required to isolate the load from the gain stages, and an output stage is needed to drive the load.  
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Finally, more subtle applications of multi-stage amplification are for DC coupling, eliminating large passive elements such as capacitors that are needed to block the DC signal.   We can use amplifier stages to naturally "level-shift" the signal.  Multi-stage amplifiers like differential stages (covered in the next chapter) are also naturally more immune to the absolute DC level of the signal.  
+\section{The Need for Multi-stage Amplifiers}
+In the past few chapters, we have discussed single stage amplifiers in detail.  We have gone over building models for each type as either a voltage or current amplifier, or a hybrid amplifier (transconductance or transresistance).  See \emph{Fig.~\ref{fig:ampchart_models_fig}} for a reminder of these different topologies.  Why should we need to cascade single-stage amplifier stages?  The simplest reason is to provide more gain.   More is better, right? No, not always, but in the right circumstance, distributing gain over multiple stages has benefits. Such benefits include the ability to realize higher bandwidth, or for driving output loads without compromising the gain.  By separating the task of amplification into multiple steps, such as to drive an external load, we can better optimize each stage.\index{Amplifier!multi-stage}
+
+To begin, let's talk about gain.  In modern technology, the amount of realizable gain per stage is limited, especially in nanoscale devices.  For example, in a technology with $L = 1\,\mu m$, a single device could provide an intrinsic gain $g_m\,r_o \approx 100$, whereas a short channel transistor in $28\,nm$ technology may only provide a gain of $10$.  
+
+The other reason we use multiple amplifier stages is to \textit{better match the input and output source and load resistances to the amplifier}.  The source or load impedance may be too high or low, and a voltage or current buffer can often provide a better interface.  
+
+Single stage amplifiers such as common source stages provide very high voltage gain.  But they suffer from low frequency poles, due to the lack of isolation from the input (gate) to the output (drain), flowing through the parasitic gate-drain capacitance $C_{gd}$.  Many multi-stage amplifiers improve the bandwidth by \textit{providing better isolation}.  
+
+In other situations, an amplifier may have a high impedance node to provide large gain, and any additional capacitance on this node may be detrimental to bandwidth.  As we will see, \textit{a buffer can decouple the high impedance nodes from large load capacitors}.  
+
+As mentioned earlier, output stages to drive "external" loads are often needed, and they usually have low gain owing to the fact that the load is a very small resistance (say a speaker or antenna).  Multiple gain stages are therefore required to isolate the load from the gain stages, and an output stage is needed to drive the load.  
+
+Finally, more subtle applications of multi-stage amplification are for \textit{DC coupling}\index{Amplifier!DC coupling}, eliminating large passive elements such as capacitors that are needed to block the DC signal.   We can use amplifier stages to naturally \textbf{"level-shift"}\index{Amplifier!multi-stage!level-shifting} the signal.  Multi-stage amplifiers like \textit{differential stages} (covered in the next chapter) are also naturally more immune to the absolute DC level of the signal.  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                   SECTION 15.3                                       %
@@ -68,25 +68,47 @@ Finally, more subtle applications of multi-stage amplification are for DC coupli
 %             SUBSECTION 15.3.1            %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Impedance "Match"}
-On-chip circuits often use "voltage/current" matching to minimize loading.  Voltage matching means we drive a high impedance load with a low impedance source.  Current matching is the opposite, we drive a low impedance load with a high impedance load.  This results in minimal signal attenuation.  At high frequencies, we can get even higher gain through passive element (resonant) matching gain circuits, but at lower frequencies the required values of inductance are not realizable or practical, especially on-chip.
+On-chip circuits often use "voltage/current" matching to minimize loading.  Voltage matching means we drive a high impedance load with a low impedance source.  Current matching is the opposite, where we drive a low impedance load with a high impedance load.  This results in minimal signal attenuation.  At high frequencies, we can get even higher gain through passive element (resonant) matching gain circuits, but at lower frequencies the required values of inductance are not realizable or practical, especially on-chip.
+
+\emph{Table~\ref{tab:imp}} level is a quick summary of the impedance levels of various ideal amplifier topologies and their input and output resistance levels.  For example, consider a voltage amplifier driving a current amplifier.  Since the current amplifier input impedance is low, and the voltage amplifier also has low output impedance, the cascade will suffer from loading effects.  However, if we cascade a voltage-to-current transconductance amplifier, we can see that the output/inputs are well suited to driving/load and all is well.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Table~\ref{tab:imp} level is a quick summary of the impedance levels of various ideal amplifier topologies and their input and output resistance levels.   For example, consider a voltage amplifier driving a current amplifier.  Since the current amplifier input impedance is low, and the voltage amplifier also has low output impedance, the cascade will suffer from loading effects.  However, if we cascade a voltage-to-current transconductance amplifier, we can see that the output/inputs are well suited to driving/load and all is well.
-    \begin{table}[tb]
-        \begin{center}
-        \begin{tabular}{|l|c|c|}
-        \hline
-          &  $R_{in}$ &  $R_{out}$ \\
-        \hline
-        Voltage: & $\infty$ &  $0$ \\
-        Current: & $0$  &  $\infty$ \\
-        Transconductance: & $\infty$ &  $\infty$ \\
-        Transresistance: & $0$ &  $0$ \\
-        \hline
-        \end{tabular}
-        \end{center}
-        \caption{The input and output impedance of ideal amplifier types.
-        \label{tab:imp}} 
-    \end{table}
+%                 TABLE                    %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{table}[H]
+\centering
+\setlength{\tabcolsep}{20pt}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{|l|c|c|}
+    \hline
+    \textbf{Amplifier Type}  &  $R_{in}$ &  $R_{out}$\\
+    \hline
+    \textit{Voltage} & $\infty$ & $0$\\
+    \hline
+    \textit{Current} & $0$  &  $\infty$\\
+    \hline
+    \textit{Transconductance} & $\infty$ & $\infty$\\
+    \hline
+    \textit{Transresistance} & $0$ & $0$\\
+    \hline
+\end{tabular}
+\caption{The input and output impedance of ideal amplifier types.
+\label{tab:imp}} 
+\end{table}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                 FIGURE                   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[t]
+\centering
+\begin{tabular}{cc}
+\includegraphics[scale=1]{cs_cascade_sch} &
+\includegraphics[width=.5\columnwidth]{1cascade}\\
+(a) & (b)\\
+\end{tabular}
+\caption{(a) Cascade of two common-source stages.  (b) Cascading two stages can be considered as a composite single stage amplifier.}
+\label{fig:1cascade}
+\end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                   SECTION 15.4                                       %
@@ -97,20 +119,6 @@ Table~\ref{tab:imp} level is a quick summary of the impedance levels of various 
 %             SUBSECTION 15.4.1            %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Two-Stage Voltage Amplifier}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                 FIGURE                   %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[tb]
-\centering
-\begin{tabular}{cc}
-\includegraphics[scale=1]{cs_cascade_sch} &
-\includegraphics[width=.5\columnwidth]{1cascade}\\
-(a) & (b)\\
-\end{tabular}
-\caption{(a) Cascade of two common-source stages.  (b) Cascading two stages can be considered as a composite single stage amplifier.}
-\label{fig:1cascade}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 As shown in \emph{Fig.~\ref{fig:1cascade}}, simply cascading two amplifier stages is possible if the DC voltage levels are compatible. In other words, the desired operating point of each individual amplifier should not change when we connect them, because otherwise, we need AC coupling capacitors.  It's best to avoid AC coupling capacitors as they take up a lot of room on the chip or PCB and they limit the range of operation (since they kill the low frequency gain).  For this reason, it's good to think of cascading amplifiers while designing them.  If we are careful to not disturb the operating points, the cascade will result in higher gain.  We can think of the overall cascade as a single two-port model.  If the amplifiers are unilateral, then the input impedance of the cascade is simply  $R_{in} = R_{in,1}$, and the output impedance of the cascade is $R_{out} = R_{out,2}$.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 15.4.2            %
