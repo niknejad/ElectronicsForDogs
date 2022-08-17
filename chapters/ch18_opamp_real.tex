@@ -515,9 +515,9 @@ A handy rule of thumb to remember is that a $1\,k\Omega$ resistor has an integra
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Datasheets}
-Now that we have covered nearly all aspects of real op-amps, it is fun to look at some typical datasheets of practical amplifiers, and to appreciate all of the specifications.  Let's take the Analog Devices ADA4891 CMOS op-amp, summarized in \emph{Fig.~\ref{fig:adi_datasheet.png}}.  This is advertised as a general purpose high speed op-amp.  It has a \textit{gain bandwidth product} of $240\,MHz$, a \textit{slew rate} of $170\,\frac{V}{\mu s}$, a \textit{DC offset} of $2\,mV$ and an \textit{open-loop DC gain} of $66\,dB$.  Being a CMOS op-amp, the \textit{input impedance} is very large at $5\,G\Omega$, and it has an \textit{input common mode range} of $-V_s - 0.3\,V$ to $+V_s - 0.8\,V$ ($V_s$ is the supply voltage).  The \textit{common-mode rejection ratio} (CMRR) is $88\,dB$.  Take a look at the table and make sure you understand most, if not all, of the specifications!
+Now that we have covered nearly all aspects of real op-amps, it is fun to look at some typical datasheets of practical amplifiers, and to appreciate all of the specifications.  Let's take the Analog Devices ADA4891 CMOS op-amp, summarized in \emph{Fig.~\ref{fig:adi_datasheet}}.  This is advertised as a general purpose high speed op-amp.  It has a \textit{gain bandwidth product} of $240\,MHz$, a \textit{slew rate} of $170\,\frac{V}{\mu s}$, a \textit{DC offset} of $2\,mV$ and an \textit{open-loop DC gain} of $66\,dB$.  Being a CMOS op-amp, the \textit{input impedance} is very large at $5\,G\Omega$, and it has an \textit{input common mode range} of $-V_s - 0.3\,V$ to $+V_s - 0.8\,V$ ($V_s$ is the supply voltage).  The \textit{common-mode rejection ratio} (CMRR) is $88\,dB$.  Take a look at the table and make sure you understand most, if not all, of the specifications!
 
-It's important to realize that there are hundreds of op-amps that suit different applications.  For example, in \emph{Fig.~\ref{fig:opamp_table.png}}, we show a table of op-amps from Analog Devices that are sorted by the $GBW$ product.  The fastest op-amps have amazing \textit{unity gain frequencies} ($3.8\,GHz$) and very high \textit{slew rates} approaching $\frac{1\,GV}{s}$.  The cost is power consumption, which is $10's$ of $mA$.  On the other end of the spectrum, if we look for very low power op-amps, suitable for sensor or IoT applications, we also find amplifiers with amazing specifications, such as sub micro-amp current consumption, but at a severe penalty of speed, both in $GBW$ product and in slew rate.
+It's important to realize that there are hundreds of op-amps that suit different applications.  For example, in \emph{Fig.~\ref{fig:opamp_table}}, we show a table of op-amps from Analog Devices that are sorted by the $GBW$ product.  The fastest op-amps have amazing \textit{unity gain frequencies} ($3.8\,GHz$) and very high \textit{slew rates} approaching $\frac{1\,GV}{s}$.  The cost is power consumption, which is $10's$ of $mA$.  On the other end of the spectrum, if we look for very low power op-amps, suitable for sensor or IoT applications, we also find amplifiers with amazing specifications, such as sub micro-amp current consumption, but at a severe penalty of speed, both in $GBW$ product and in slew rate.
 \newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
@@ -536,7 +536,8 @@ It's important to realize that there are hundreds of op-amps that suit different
 \begin{figure}[t]
 \centering
 \includegraphics[width=\columnwidth]{opamp_table.png}
-\caption{A list of op-amps offered by Analog Devices, sorted by gain-bandwidth product.  These are the highest bandwidth and highest slew rate amplifiers.  See \url{https://www.analog.com/en/products/amplifiers/operational-amplifiers.html}.} \label{fig:opamp_table.png}
+\caption{A list of op-amps offered by Analog Devices, sorted by gain-bandwidth product.  These are the highest bandwidth and highest slew rate amplifiers.  See \url{https://www.analog.com/en/products/amplifiers/operational-amplifiers.html}.}
+\label{fig:opamp_table}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
@@ -544,7 +545,8 @@ It's important to realize that there are hundreds of op-amps that suit different
 \begin{figure}[H]
 \centering
 \includegraphics[width=\columnwidth]{opamp_lowpower.png}
-\caption{A list of op-amps offered by Analog Devices, sorted by power consumption.  These are the lowest power amplifiers suitable for IoT and sensor applications.  See \url{https://www.analog.com/en/products/amplifiers/operational-amplifiers.html}.} \label{fig:opamp_lowpower.png}
+\caption{A list of op-amps offered by Analog Devices, sorted by power consumption.  These are the lowest power amplifiers suitable for IoT and sensor applications.  See \url{https://www.analog.com/en/products/amplifiers/operational-amplifiers.html}.}
+\label{fig:opamp_lowpower}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
