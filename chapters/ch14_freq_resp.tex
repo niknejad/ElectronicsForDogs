@@ -373,51 +373,49 @@ The results are very close except for the last term, which usually does not domi
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Common Drain Amplifier Frequency Response}
-Let's now compute the bandwidth of a common drain amplifier\index{Miller Theorem!Common drain analysis}, also known as the source follower, shown in \emph{Fig.~\ref{fig:cd_amp_load}a}.  We can replace the current source with MOSFET-based current mirror, and we simply model it by $r_{oc}$.  In the small-signal model with capacitors shown in \emph{Fig.~\ref{fig:cd_amp_load}b}, we use the DC small-signal gain and the Miller effect to calculate the input capacitance.  This will allow us to estimate the dominant pole.
-\vspace{0.5cm}
+Let's now compute the bandwidth of a common drain amplifier\index{Miller Theorem!Common drain analysis}, also known as the source follower, shown in \emph{Fig.~\ref{fig:cd_amp_ss_cap_load}a}.  We can replace the current source with MOSFET-based current mirror, and we simply model it by $r_{oc}$.  In the small-signal model with capacitors shown in \emph{Fig.~\ref{fig:cd_amp_ss_cap_load}b}, we use the DC small-signal gain and the Miller effect to calculate the input capacitance.  This will allow us to estimate the dominant pole.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \centering
-\includegraphics[scale=1.45]{cd_amp_load}\\
-(a)\\[1.0cm]
-\includegraphics[scale=1.45]{cd_amp_ss_cap}\\
-(b)\\
+\includegraphics[scale=0.99]{cd_amp_ss_cap_load}\\
+\raggedright \qquad \qquad \qquad \quad(a) \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad (b)
 \caption{(a) Schematic of a common drain amplifier.  (b) Small-signal AC model of the common drain amplifier.}
-\label{fig:cd_amp_load}
+\label{fig:cd_amp_ss_cap_load}
 \end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 14.8.1            %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Voltage Gain Across \texorpdfstring{$C_{gs}$}{ the Gate-Source Capacitance}}
-Note that the Miller capacitor in this case is $C_{gs}$, the gate-source capacitor is between the input and output.  Recall the gain of a common drain amplifier:
+Note that the \textbf{Miller capacitor}\index{Miller capacitor} in this case is $C_{gs}$, the gate-source capacitor is between the input and output.  Recall the gain of a common drain amplifier:
     \begin{equation}
-        \frac{{{v_{out}}}}{{{v_{in}}}} = \frac{{{g_m}}}{{\left( {\frac{1}{{\left. {{r_o}} \right\|{r_{oc}}}} + {g_m}} \right)}} = \frac{{{g_m}(\left. {{r_o}} \right\|{r_{oc}})}}{{1 + {g_m}(\left. {{r_o}} \right\|{r_{oc}})}} = {A_{vCgs}}
+        \frac{v_{out}}{v_{in}} = \frac{g_m}{\frac{1}{r_o \parallel r_{oc}} + g_m}
+        = \frac{g_m \left(r_o \parallel r_{oc}\right)}{1 + g_m \left(r_o \parallel r_{oc}\right)}
+        = \mathlarger{A_{V,{C_{gs}}}}
     \end{equation}
 We can therefore replace the capacitance at the input with an effective capacitance:
     \begin{equation} 
-        {C_{in}} = {C_{gd}} + {C_M} 
+        C_{in} = C_{gd} + C_M
     \end{equation}
-where $C_M$ is the Miller multiplied capacitor $C_{gs}$:
+$C_M$ is the Miller multiplied capacitor, $C_{gs}$:
     \begin{equation} 
-        {C_{in}} = {C_{gd}} + (1 - {A_{v{C_{gs}}}}){C_{gs}} 
+        C_{in} = C_{gd} + (1 - A_{v_{C_{gs}}})C_{gs}
     \end{equation}
-If we substitute the low-frequency gain $A_{v{C_{gs}}}$:
+If we substitute the low-frequency gain $A_{V,{C_{gs}}}$:
     \begin{equation} 
-        {C_{in}} = {C_{gd}} + \left(1 - \frac{{{g_m}(\left. {{r_o}} \right\|{r_{oc}})}}{{1 + {g_m}(\left. {{r_o}} \right\|{r_{oc}})}} \right){C_{gs}}
+        C_{in} = C_{gd} + \left(1 - \frac{g_m \left(r_o \parallel r_{oc}\right)}
+                                            {1 + g_m \left(r_o \parallel r_{oc}\right)} \right)C_{gs}
     \end{equation}
 This can be simplified:
     \begin{equation} 
-        {C_{in}} = {C_{gd}} + \left(\frac{1}{{1 + {g_m}(\left. {{r_o}} \right\|{r_{oc}})}} \right){C_{gs}} 
+        C_{in} = C_{gd} + \left(\frac{1}{1 + g_m \left(r_o \parallel r_{oc}\right)}\right)C_{gs}
     \end{equation}
-Notice that the second term is small if $g_m r_o || r_{oc}$ is large:
+Notice that the second term is small if $g_m(r_o \parallel r_{oc})$ is large:
     \begin{equation} 
-        {C_{in}} \approx {C_{gd}} 
+        C_{in} \approx C_{gd}
     \end{equation}
-What just happened?  The Miller capacitor nearly vanishes in this case, because it's "bootstrapped", meaning the gain across the capacitor is nearly unity, and it has a positive sign, so very little current flows through it.
+What just happened?  The Miller capacitor nearly vanishes in this case, because it is \textbf{"bootstrapped"}\index{Capacitor!bootstrapping}.  A boostrapped capacitor means that the gain across it is nearly unity, and it has a positive sign.  As a result, very little current flows through it.
 %\begin{figure}[tb]
 %\centering
 %\includegraphics[scale=1]{cd_amp_ss_cap_miller}
@@ -427,72 +425,71 @@ What just happened?  The Miller capacitor nearly vanishes in this case, because 
 %             SUBSECTION 14.8.2            %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Bandwidth of Source Follower}
-The input low-pass filter’s –3 dB frequency is given by:
+The input low-pass filter’s -$3\,dB$ frequency is given by:
     \begin{equation} 
-        {\omega _p}^{ - 1} = {R_S}\left( {{C_{gd}} + \frac{{{C_{gs}}}}{{1 + {g_m}(\left. {{r_o}} \right\|{r_{oc}})}}} \right)
+        \omega_p^{-1} = R_S\left(C_{gd} + \frac{C_{gs}}{1 + g_m \left(r_o \parallel r_{oc}\right)}\right)
     \end{equation}
-Let's substitute some favorable values of $R_S$,$r_o$:
-    \begin{equation} 
-        {R_S} \approx 1/{g_m} 
-    \end{equation}
-    \begin{equation} 
-        {r_o} \gg 1/{g_m} 
-    \end{equation}
+Let's substitute some favorable values of $R_S$ and $r_o$:
+    \begin{align} 
+        R_S &\approx \mathlarger{\frac{1}{g_m}}\\[0.15cm]
+        r_o &\gg \mathlarger{\frac{1}{g_m}}
+    \end{align}
 This gives:
-    \begin{equation} 
-        {\omega _p}^{ - 1} \approx \left( {1/{g_m}} \right)\left( {{C_{gd}} + \frac{{{C_{gs}}}}{{1 + BIG}}} \right) \approx {C_{gd}}/{g_m} 
-    \end{equation}
+    \begin{align} 
+        \omega_p^{-1} &\approx \left(\frac{1}{g_m}\right)
+                                \left(C_{gd} + \cancelto{0}{\frac{C_{gs}}{1 + LARGE}}\right)\\[0.25cm]
+        &\approx \mathlarger{\frac{C_{gd}}{g_m}}
+    \end{align}
 If we simplify this, we see that:
-    \begin{equation}
-        {\omega _p} \approx {g_m}/{C_{gd}}
-    \end{equation}
+    \begin{align}
+        \Aboxed{\omega_p &\approx \frac{g_m}{C_{gd}}}
+        &\textit{Common drain bandwidth}
+        \label{eq:cd_bandwidth}
+    \end{align}
 As we will shortly show, this is a very high frequency, much higher than the validity of our approximations and models.  The net result is the input pole is likely high impedance, especially if driven by a moderate source impedance.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 14.8.3            %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Miller Summary}
 Let's summarize how the Miller effect played out in these two very different scenarios:
-\begin{itemize}
-    \item Common source amplifier:  Miller multiplied capacitor has \underline{detrimental} impact.
-        \[
-        	A_v = \text{A large negative number, say -100} 
-        \]
-        \[	
-        	{C_{Miller}} = (1 - {A_{V,{C_{gd}}}}){C_{gd}} \approx 100{C_{gd}}
-        \]
-    \item Common drain amplifier:  "Bootstrapped" capacitor has negligible impact on bandwidth.
-        \[
-        	A_v = \text{slightly less than unity and positive} 
-        \]
-        \[
-        	{C_{Miller}} = (1 - {A_{V,Cgs}}){C_{gs}} \simeq 0
-        \]
-\end{itemize}
+\vspace{0.5cm}
+    \begin{itemize}[topsep=8pt,itemsep=4pt,partopsep=4pt, parsep=4pt]
+        \item
+        {\underline{\textbf{Common source amplifier:}}  Miller multiplied capacitor has \textit{detrimental} impact.
+            \[A_v = \text{A large negative number, say -100}\]
+            \[\boxed{C_{Miller} = (1 - A_{V,{C_{gd}}})C_{gd} \approx 100\,C_{gd}}\]
+        }
+        \item
+        {\underline{\textbf{Common drain amplifier:}}  "Bootstrapped" capacitor has \textit{negligible} impact on bandwidth.
+            \[A_v = \text{slightly less than unity and positive}\]
+            \[\boxed{C_{Miller} = (1 - A_{V,{C_{gs}}})C_{gs} \simeq 0}\]
+        }
+    \end{itemize}
 \newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                 FIGURE                   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[t]
+\centering
+\includegraphics[scale=1.25]{amp_cg_ss}
+\caption{Small-signal AC model of a common gate amplifier.  Note that even though there are no coupling capacitors from input to output, there is a coupling resistor $r_o$.}
+\label{fig:cg_amp_caps}
+\end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                   SECTION 14.9                                       %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Common Gate Amplifier Bandwidth}
-The small-signal schematic of the common gate amplifier is shown in \emph{Fig.~\ref{fig:cg_amp_caps}}. While there are four capacitors in the model, three are in parallel, so we only expect two poles.  Also notice that both $C_{gd}$ and $C_{gs}$ are grounded at one node, and so there are no input-to-output coupling capacitors, and hence no Miller effect for the capacitors.  This makes the common gate amplifier in general a broadband amplifier stage.  To see this, we'll analyze the circuit, first using an approximation, and then using the complete equations.  
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                 FIGURE                   %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[tb]
-\centering
-\includegraphics[scale=1]{amp_cg_ss}
-\caption{Small-signal AC model of a common gate amplifier.  Note that even though there are no coupling capacitors from input to output, there is a coupling resistor $r_o$.}
-\label{fig:cg_amp_caps}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-To begin, observe that the resistor $r_o$ is coupled from the input to the output, and so we could apply the Miller theorem to this resistance.  What we'll find is that the impedance level at the input is low enough and dominated by the low impedance presented by the transistor, so neglecting $r_o$ does not change impedance levels appreciably.  In fact, if we ignore $r_o$ altogether, we'll find that the circuit consists of two independent nodes, and it's easily analyzed by inspection.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+The small-signal schematic of the common gate amplifier\index{Amplifier!common gate} is shown in \emph{Fig.~\ref{fig:cg_amp_caps}}. While there are four capacitors in the model, three are in parallel, so we only expect two poles.  Also notice that both $C_{gd}$ and $C_{gs}$ are grounded at one node, and so \textit{there are no input-to-output coupling capacitors}, and hence \textit{no Miller effect for the capacitors}.  This makes the common gate amplifier in general a broadband amplifier stage.  To see this, we will analyze the circuit, first using an approximation, and then using the complete equations.
+
+To begin, observe that the resistor $r_o$ is coupled from the input to the output, and so we could apply the Miller theorem to this resistance.  What we will find is that the impedance level at the input is low enough and dominated by the low impedance presented by the transistor, so that neglecting $r_o$ does not change impedance levels appreciably.  In fact, if we ignore $r_o$ altogether, we will find that the circuit consists of two independent nodes, and it is easily analyzed by inspection.
+
 At the input, the pole arising from $C_{gs}$ can be estimated by finding the equivalent resistance seen at the input node, which is dominated by the transistor $1/g_m$ in parallel with $R_s$:
     \begin{equation}
-        \omega_1 = \frac{1}{C_{gs} R_s||\frac{1}{g_m}}
+        \omega_1 = \frac{1}{C_{gs} \left(R_s \parallel \frac{1}{g_m}\right)}
     \end{equation}    
-At the output node, the parallel combination of $C_L + C_{gd}$ sees a resistance of $R_L$ in parallel with a high impedance presented by the transistor, which we'll ignore:
+At the output node, the parallel combination of $C_L + C_{gd} + C_{db}$ sees a resistance of $R_L$ in parallel with a high impedance presented by the transistor, which we'll ignore:
     \begin{equation}
         \omega_2 = \frac{1}{(C_{L} + C_{gd} + C_{db}) R_L}
     \end{equation}    
@@ -500,44 +497,55 @@ The first pole can be lower bounded by:
     \begin{equation}
         \omega = \frac{g_m}{C_{gs}}
     \end{equation}
-In the next section we'll show that this frequency is a device property known as the unity gain frequency and is usually a very high frequency for modern short channel devices biased in saturation.  The second pole depends on both the load capacitance and the load resistance, and component values can be selected to ensure sufficient bandwidth.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-It's always good to verify our assumptions by performing a more complete analysis.  The nodal equations at the input and output are given by
+In the next section we will show that this frequency is a device property known as the \textbf{unity gain frequency}\index{Unity gain frequency}, and it is usually a very high frequency for modern short channel devices biased in saturation.  The second pole depends on both the load capacitance and the load resistance, and component values can be selected to ensure sufficient bandwidth.
+
+It is always good to verify our assumptions by performing a more complete analysis.  The nodal equations at the input and output are given by:
     \begin{equation}
-        \begin{pmatrix}
-        (G_s + g_m + g_o + s C_{gs})  & - g_o\\
-        -(g_m + g_o) & (g_o + g_L + s C'_L)
-        \end{pmatrix}
-        \begin{pmatrix}
-        v_1\\v_2\\
-        \end{pmatrix}
+        \left[\begin{matrix}
+            (G_s + g_m + g_o + s\,C_{gs})  & - g_o\\[0.25cm]
+            -(g_m + g_o) & (g_o + g_L + s\,C'_L)
+        \end{matrix}\right]
+        \cdot
+        \left[\begin{matrix}
+            v_1\\[0.25cm]
+            v_2\\
+        \end{matrix}\right]
         =
-        \begin{pmatrix}
-        v_s G_s\\0\\
-        \end{pmatrix}	
+        \left[\begin{matrix}
+            v_s\,G_s\\[0.25cm]
+            0\\
+        \end{matrix}\right]
     \end{equation}
-In writing these equations, we have used conductances $g_o = 1/r_o$, for example $G_s = 1/R_s$, and an effective load capacitance $C'_L = C_{gd} + C_{db} + C_L$.  We can easily solve this 2$\times$2 system to obtain
+In writing these equations, we have used conductances the $g_o = 1/r_o$, $G_s = 1/R_s$, and an effective load capacitance of $C'_L = C_{gd} + C_{db} + C_L$.  We can easily solve this $2\times2$ system to obtain:
     \begin{equation}
-        v_2 = \frac{(g_m + g_o) G_s}{(g_o + g_L + s C'_L)(G_s + g_m + g_o + s C_{gs}) + g_o (g_m + g_o)} v_s
+        v_2 = \left(\frac{(g_m + g_o)G_s}{(g_o + g_L + s\,C'_L)(G_s + g_m + g_o + s\,C_{gs}) + g_o(g_m + g_o)}\right)v_s
     \end{equation}
-As expected, if we neglect the $g_o$ terms, we get a simple separable second-order system with an input pole and an output pole.  From the full equations, we can see why we are justified in neglecting $g_o$ as it always appears in sums with much larger conductances.  For example $g_m r_o \gg 1$ implies that $g_m \gg g_o$.  Let's first check the DC gain and verify it matches our previous calculations:
+As expected, if we neglect the $g_o$ terms, we get a simple separable second-order system with an input pole and an output pole.  From the full equations, we can see why we are justified in neglecting $g_o$ as it always appears in sums with much larger conductances.
+
+For example $g_m r_o \gg 1$ implies that $g_m \gg g_o$.  Let's first check the DC gain and verify that it matches our previous calculations:
     \begin{equation}
-        \frac{v_2}{v_s}(s = 0) = \frac{(g_m + g_o) G_s}{(g_o + g_L)(G_s + g_m + g_o) + g_o (g_m + g_o)} 
+        \frac{v_2}{v_s}\big(s = 0\big) = \frac{(g_m + g_o)G_s}{(g_o + g_L)(G_s + g_m + g_o) + g_o (g_m + g_o)}
     \end{equation}
-This expression is complicated by the feed forward gain due to $g_o$.  Neglecting $g_o$ we have a simplified expression that matches our simpler calculations:
+This expression is complicated by the feed forward gain due to $g_o$.  Neglecting $g_o$, we have a simplified expression that matches our simpler calculations:
     \begin{equation}
-        \frac{v_2}{v_s}(s = 0) \approx \frac{g_m}{1 + g_m R_s} R_L 
+        \frac{v_2}{v_s}\big(s = 0\big) \approx \left(\frac{g_m}{1 + g_m\,R_s}\right)R_L
     \end{equation}
 Finally, under the $g_o = 0$ approximation, the poles are given by:
-    \begin{equation}
-        \omega_1 = \frac{G_s + g_m}{C_{gs}}
-    \end{equation}
-and
-    \begin{equation}
-        \omega_2 = \frac{G_L}{C'_{L}}
-    \end{equation}
-which agree with our estimations, as expected.
+    \begin{align}
+        \Aboxed{\omega_1 &= \frac{G_s + g_m}{C_{gs}}}\\[0.5cm]
+        \Aboxed{\omega_2 &= \frac{G_L}{C'_{L}}}
+    \end{align}
+This result agree with our estimations, as expected.
 \newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                 FIGURE                   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[t]
+\centering
+\includegraphics[scale=1.25]{hybrid_pi_ft}
+\caption{AC schematic for calculation of the current gain of a MOS transistor.}
+\label{fig:hybrid_pi_ft}
+\end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                   SECTION 14.10                                      %
@@ -548,79 +556,67 @@ In the previous section, we encountered a lower bound for the common gate input 
     \begin{equation}
         \omega = \frac{g_m}{C_{gs}}
     \end{equation}
-We claimed that this is a very high frequency.  To show this, we're going to define the unity-gain frequency $f_T$ of a transistor, a parameter that characterizes the high frequency performance of a transistor for analog circuits.
+We claimed that this is a very high frequency.  To show this, we are going to define the unity-gain frequency\index{unity-gain frequency} $f_T$ of a transistor, a parameter that characterizes the high frequency performance of a transistor for analog circuits.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 14.10.1           %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Unity-Gain Frequency \texorpdfstring{$f_T$}{}}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                 FIGURE                   %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[tb]
-\centering
-\includegraphics[scale=1]{hybrid_pi_ft}
-\caption{AC schematic for calculation of the current gain of a MOS transistor.}
-\label{fig:hybrid_pi_ft}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Let's calculate the current gain of a MOS transistor by shorting the output, as shown in the setup in \emph{Fig.~\ref{fig:hybrid_pi_ft}}.  Note that the input $v_{gs}$ is given by:
     \begin{equation}
-        {v_{gs}} = \frac{{{i_s}}}{{s{C_{gs}} + s{C_{gd}}}}
+        v_{gs} = \frac{i_s}{s\,C_{gs} + s\,C_{gd}}
     \end{equation}
 KCL at the output results in:
     \begin{equation} 
-        {i_{out}} + \frac{{{v_{gs}}}}{{1/s{C_{gd}}}} = {g_m}{v_{gs}} 
+        i_{out} + \frac{v_{gs}}{\frac{1}{s{C_{gd}}}} = g_m\,v_{gs} 
     \end{equation}
 This generates an output current:
-    \begin{align*} 
-        {i_{out}} &= {g_m}{v_{gs}} - s{C_{gd}}{v_{gs}}\\
-        &\approx {g_m}{v_{gs}}\\
-        &= {g_m}\frac{{{i_s}}}{{s{C_{gs}} + s{C_{gd}}}}
-    \end{align*}
+    \begin{align} 
+        i_{out} &= g_m\,v_{gs} - s\,C_{gd}v_{gs}\\[0.35cm]
+        &\approx g_m\,v_{gs}
+    \end{align}
 Thus, we have the approximation:
     \begin{equation} 
-        i_{out} = {g_m}\frac{i_s}{s{C_{gs}} + s{C_{gd}}}
+        i_{out} = g_m\left(\frac{i_s}{s\,C_{gs} + s\,C_{gd}}\right)
     \end{equation}
 The approximation is valid since the $g_m$ of a transistor should dominate over the parasitic feedthrough current through $C_{gd}$.  This means the current gain $A_i$ is given by:
     \begin{equation} 
-        {A_i} = \frac{{{i_{out}}}}{{{i_s}}} = \frac{{{g_m}}}{{s{C_{gs}} + s{C_{gd}}}} 
+        A_i = \frac{i_{out}}{i_s} = \frac{g_m}{s\,C_{gs} + s\,C_{gd}}
     \end{equation}
-Making the substitution $s = j\omega$ and taking the magnitude of the gain:
+Making the substitution $s = j\omega$, and taking the magnitude of the gain:
     \begin{equation} 
-        \left| {\frac{{{I_o}}}{{{I_i}}}} \right| = \frac{{{g_m}}}{{\omega ({C_{gs}} + {C_{gd}})}} 
+        \left|\frac{I_o}{I_i}\right| = \frac{g_m}{\omega(C_{gs} + C_{gd})}
     \end{equation}
-We define $\omega_T = 2\pi f_T$ as the unity gain frequency by equating the magnitude to unity and solving for $\omega_T$:
+We define $\omega_T = 2\pi\,f_T$ as the unity gain frequency by equating the magnitude to unity and solving for $\omega_T$:
     \begin{equation} 
-        {\omega _T} = \frac{{{g_m}}}{{{C_{gs}} + {C_{gd}}}}   \label{eq:ft1}
+        \omega_T = \frac{g_m}{C_{gs} + C_{gd}}
+        \label{eq:ft1}
     \end{equation}
-Substituting the small-signal parameters:
-    \begin{equation}
-        C_{gs} = \frac{2}{3} W L C_{ox}
-    \end{equation}
-    \begin{equation}
-        C_{gd} = \frac{2}{3} W \delta L C_{ox}
-    \end{equation}
-    \begin{equation}
-        g_m = \mu C_{ox} \frac{W}{L} (V_{gs} - V_T)
-    \end{equation}
-Substituting in \emph{Eq.~\ref{eq:ft1}}, we have:
+The small-signal parameters are given by:
+    \begin{align}
+        C_{gs} &= \frac{2}{3} W L C_{ox}\\[0.45cm]
+        C_{gd} &= \frac{2}{3} W \delta L C_{ox}\\[0.45cm]
+        g_m &= \mu C_{ox} \frac{W}{L} (V_{gs} - V_T)
+    \end{align}
+Substituting the small-signal parameters into \emph{Eq.~\ref{eq:ft1}}, we have:
     \begin{equation} 
-        {\omega _T} = \frac{\mu \cancel{C_{ox}} \frac{\cancel{W}}{L} (V_{gs} - V_T)}{\frac{2}{3} \cancel{W} (L + \delta L) \cancel{C_{ox}}} = \frac{3}{2} \frac{\mu (V_{gs} - V_T)}{L(L+\delta L)}  \label{eq:ft2}
+        \omega_T = \frac{\mu\cancel{C_{ox}}\frac{\bcancel{W}}{L}(V_{GS} - V_T)}{\frac{2}{3}\bcancel{W}(L + \delta L)\cancel{C_{ox}}}
+        = \left(\frac{3}{2}\right)\frac{\mu(V_{gs} - V_T)}{L(L+\delta L)}
+        \label{eq:ft2}
     \end{equation}
-There are some nice physical relations that we can invoke to explain this equation.  For example the term
+There are some nice physical relations that we can invoke to explain this equation.  For example, the average electric field in the channel of the transistor when biased in saturation is given by:
     \begin{equation}
-        E_{sat} = \frac{(V_{gs} - V_T)}{L}
+        \mathcal{E}_{sat} = \frac{(V_{gs} - V_T)}{L}
     \end{equation}
-is the average electric field in the channel of the transistor when biased in saturation, since $V_{ds,ch} = V_{gs} - V_T$ and so $\mu E_{sat}$ is the velocity of carriers.  This means that the overall expression is approximately the time it takes a carrier to cross the channel.  
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-As gate length reduces in advanced technology nodes, the $f_T$ increases.  Today we have devices $L < 100$nm and $f_T > 100$ GHz of unity gain frequency, so when we design amplifiers with bandwidths up to 100's of MHz, this unity gain frequency is quite high.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Why do we bother to define $f_T$?  It's an important limit not only for current amplifiers, but as we'll see later, it's actually the gain-bandwidth limit for all amplifiers, including voltage amplifiers.  We'll find that even with broadband amplifier stages, it's hard to beat the $f_T$ bandwidth.  In advanced analog design courses, you'll learn that  most amplifiers are limited in gain-bandwidth to about $f_T$. 
+The reason for this is because $V_{DS,ch} = V_{GS} - V_T$, and so $\mu\mathcal{E}_{sat}$ is the velocity of carriers.  This means that the overall expression is approximately the time it takes a carrier to cross the channel.  
+
+As gate length reduces in advanced technology nodes, the $f_T$ increases.  Today we have devices $L < 100\,nm$ and $f_T > 100\,GHz$ of unity gain frequency.  So when we design amplifiers with bandwidths up to $100's$ of $MHz$, this unity gain frequency is quite high.
+
+Why do we bother to define $f_T$?  First of all, it is an important limit for current amplifiers.  In addition, we will see later that it is actually the gain-bandwidth limit for all amplifiers, including voltage amplifiers.  We will find that even with broadband amplifier stages, it is hard to beat the $f_T$ bandwidth.  In advanced analog design courses, you will learn that most amplifiers are limited in gain-bandwidth to about $f_T$. 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 14.10.2           %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Frequency Response of Multistage Amplifiers}
-We have a \textit{systematic technique} to study amplifier performance (derive transfer function, study poles/zeros/Bode plots).  In most cases, the systematic approach is too cumbersome. We have a good qualitative understanding of circuit performance (e.g., CS suffers from Miller effect, CD and CG are wideband stages).  Next we will introduce the \textit{Open Circuit Time Constants} approach, which is an analytical technique capable of estimating  the dominant (lowest) pole for an amplifier with many capacitors.
+We have a \textit{systematic technique} to study amplifier performance.  This includes deriving the transfer function, and studying the poles and zeros in a Bode plot.  In most cases, the systematic approach is too cumbersome. We have a good qualitative understanding of circuit performance (e.g., CS suffers from Miller effect, CD and CG are wideband stages).  Next we will introduce the \textbf{open circuit time constants}\index{Open circuit time constants} approach, which is an analytical technique capable of estimating  the dominant (lowest) pole for an amplifier with many capacitors.
 \newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -632,44 +628,66 @@ We have a \textit{systematic technique} to study amplifier performance (derive t
 %             SUBSECTION 14.11.1           %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{OCTC Assumptions}
-There are many assumptions that go into the analysis approach.  First, we assume the transfer function doesn't have \textit{zeros}.  We will also make a  \textit{dominant pole} approximation.  In other words, we assume that $\omega_1 \ll \min(\omega_2, \omega_3, \dots, \omega_n)$. Working with the all-pole transfer function:
+There are many assumptions that go into the analysis approach.  First, we assume the transfer function does not have \textit{zeros}.  We will also make a  \textit{dominant pole} approximation\index{Open circuit time constants!dominant pole approximation}.  In other words, we assume that $\omega_1 \ll \min(\omega_2, \omega_3, \dots, \omega_n)$. Working with the all-pole transfer function:
     \begin{equation}
-        H(j\omega ) = \frac{{{H_o}}}{{\left( {1 + j\omega {b_1} + {{(j\omega )}^2}{b_2} + {{(j\omega )}^3}{b_3} + ...} \right)}}
+        H(j\omega) = \frac{H_o}{\left(1 + j\omega\,b_1 + {(j\omega)}^2\,b_2 + {(j\omega)}^3\,b_3 + \dots \right)}
         \label{eq:h1}
     \end{equation}
 If we factor the denominator:
     \begin{equation}
-        H(j\omega ) = \frac{{{H_o}}}{{\left( {1 + j\omega /{\omega _1}} \right)\left( {1 + j\omega /{\omega _2}} \right)...\left( {1 + j\omega /{\omega _n}} \right)}}
+        H(j\omega) = \frac{H_o}{\left(1 + \frac{j\omega}{\omega_1}\right)
+                                \left(1 + \frac{j\omega}{\omega_2}\right)
+                                \dots \left(1 + \frac{j\omega}{\omega_n}\right)}
     \end{equation}
 Now multiply out the denominator again:
     \begin{equation}  
-        H(j\omega ) \approx \frac{{{H_o}}}{{1 + j\omega \left( {\frac{1}{{{\omega _1}}} + \frac{1}{{{\omega _2}}} + ... + \frac{1}{{{\omega _n}}}} \right) + \cdots }}
+        H(j\omega) \approx \frac{H_o}{1 + j\omega \left(\frac{1}{\omega_1} + \frac{1}{\omega_2}
+                                + \dots + \frac{1}{\omega_n}\right) + \cdots}
         \label{eq:h2}
     \end{equation}
-Equating \ref{eq:h1} and \ref{eq:h2}, and using $\omega_1 \ll \min(\omega_2, \omega_3, \dots, \omega_n)$, we have:
+Equating \emph{Eq.\ref{eq:h1}} and \emph{Eq.\ref{eq:h2}}, and using $\omega_1 \ll \min(\omega_2, \omega_3, \dots, \omega_n)$, we have:
     \begin{equation} 
-        {b_1} = \frac{1}{{{\omega _1}}} + \frac{1}{{{\omega _2}}} + ... + \frac{1}{{{\omega _n}}} \approx \frac{1}{{{\omega _1}}}
+        b_1 = \frac{1}{\omega_1} + \frac{1}{\omega_2} + \dots + \frac{1}{\omega_n} \approx \boxed{\frac{1}{\omega_1}}
+        \label{eq:octc_b1}
     \end{equation}
 So if we can estimate $b_1$, we can also estimate the dominant pole.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 14.11.2           %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Procedure to Find \texorpdfstring{$b_1$}{the Dominant Pole}}
-$b_1$ can be calculated as follows:  $b_1$ is the sum of \textit{open-circuit time constants} $\tau_i$ which can be found by considering each capacitor $C_i$ in the amplifier separately and finding its Thévenin resistance $R_{C_i}$.  Next we calculate the time-constant of each capacitor $\tau_i = R_{C_i} C_i$ and sum them together
+$b_1$ can be calculated as follows:  $b_1$ is the sum of \textit{open-circuit time constants} $\tau_i$.  This sum can be found by considering each capacitor $C_i$ in the amplifier separately, and finding its Thévenin resistance $R_{C_i}$.  Next, we calculate the time-constant of each capacitor $\tau_i = R_{C_i} C_i$ and sum them together:
     \begin{equation}
-        b_1 = \sum_{i=1}^n C_i R_{C_i} 
+        b_1 = \sum_{i=1}^n\,C_i\,R_{C_i} 
     \end{equation}
-and so
+Using our result from \emph{Eq.\ref{eq:octc_b1}} leads to:
     \begin{equation}
-        \omega_1 \approx \frac{1}{  \sum_{i=1}^n C_i R_{C_i}  }
+        \omega_1 \approx \frac{1}{\sum_{i=1}^n\,C_i\,R_{C_i}}
     \end{equation}
 For a proof, see \cite{GrayMeyer}.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 14.11.3           %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Finding the Thévenin Resistance}
-The key to OCTC is to find the equivalent resistance seen by each capacitor.  To do this, open-circuit all capacitors (i.e. remove them).  For capacitor $C_i$, find the resistance $R_{C_i}$ across its terminals with all independent sources removed (voltage sources shorted, current sources opened).  In some cases, we can calculate the resistance by inspection. Other times we might need to apply a test voltage (current) and find the current (voltage).  This technique provides \textit{insight for design} when one of the time constants is much larger than the others.  In this case, the bandwidth of the amplifier will be limited by the capacitor with the time constant that contributes the largest $\tau = R_{C_i} C_i$, not necessarily by the largest $C_i$.
+The key to OCTC is to find the equivalent resistance seen by each capacitor.  To do this, open-circuit all capacitors (i.e. remove them).  For capacitor $C_i$, find the resistance $R_{C_i}$ across its terminals with all independent sources removed (voltage sources shorted, current sources opened).  In some cases, we can calculate the resistance by inspection. Other times, we might need to apply a test voltage (current) and find the current (voltage).  This technique provides \textit{insight for design} when one of the time constants is much larger than the others.  In this case, the bandwidth of the amplifier will be limited by the capacitor with the time constant that contributes the largest $\tau = R_{C_i} C_i$, not necessarily by the largest $C_i$.
 \newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                 FIGURE                   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[t]
+\centering
+\includegraphics[scale=1.05]{cs_amp_ac_caps}
+\caption{The complete schematic of a common source amplifier including $C_L$ and $C_{db}$.}
+\label{fig:cs_amp_ac_caps2}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                 FIGURE                   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\centering
+\includegraphics[scale=1.15]{cs_amp_ac_caps_Cgs}
+\caption{Equivalent circuit for calculation of $R_{C_{gs}}$ for OCTC analysis.}
+\label{fig:cs_amp_ac_caps_Cgs}
+\end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                   SECTION 14.12                                      %
@@ -680,74 +698,58 @@ The key to OCTC is to find the equivalent resistance seen by each capacitor.  To
 %             SUBSECTION 14.12.1           %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Applying OCTC to CS Amplifier}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                 FIGURE                   %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[tb]
-\centering
-\includegraphics[scale=1]{cs_amp_ac_caps}
-\caption{The complete schematic of a common source amplifier including $C_L$ and $C_{db}$.} \label{fig:cs_amp_ac_caps2}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Let's revisit the common-source amplifier.  As before, we drive it with a source of impedance $R_s$ and load it with $R_L$, as shown in \emph{Fig.~\ref{fig:cs_amp_ac_caps}}.  We can conveniently add a load capacitance as it appears in parallel with $C_{db}$ and does not complicate the circuit. Since it's not obvious if there's a "dominant node" in the circuit, we must step through each capacitor and find the equivalent resistance seen by each one. 
+Let's revisit the CS amplifier.  Again, we drive it with a source impedance $R_s$, and load it with $R_L$, shown in \emph{Fig.~\ref{fig:cs_amp_ac_caps2}}.  We can conveniently add a load capacitance, because it appears in parallel with $C_{db}$ and does not complicate the circuit. It is not obvious if there is a "dominant node" in the circuit, so we must find the equivalent resistance seen by each capacitor. 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 14.12.2           %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{OCTC: \texorpdfstring{$R_{C_{gs}}$}{Equivalent Gate-Source Capacitor Resistance}}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                 FIGURE                   %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[tb]
-\centering
-\includegraphics[scale=1]{cs_amp_ac_caps_Cgs}
-\caption{Equivalent circuit for calculation of $R_{C_{gs}}$ for OCTC analysis.} \label{fig:cs_amp_ac_caps_Cgs}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Let's focus on $C_{gs}$, as shown in \emph{Fig.~\ref{fig:cs_amp_ac_caps_Cgs}}. Note that we open-circuit all the capacitors and replace $C_{gs}$ with a current source to find the equivalent resistance seen by $C_{gs}$.
- Since $C_{gd}$ is open, there's no path from the input to output, and the resistance seen by $C_{gs}$ is simply $R_s$:
+ Since $C_{gd}$ is open, there is no path from the input to output, and the resistance seen by $C_{gs}$ is simply $R_s$:
     \begin{equation}
-        {R_{C_{gs}}} = R_{s}
+        \boxed{R_{C_{gs}} = R_{s}}
     \end{equation}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 14.12.3           %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{OCTC: \texorpdfstring{$R_{C_{gd}}$}{Equivalent Gate-Drain Capacitor Resistance}}
+Next we focus on $C_{gd}$ as shown in \emph{Fig.~\ref{fig:cs_amp_ac_caps_Cgd}}.  We open-circuit all the capacitors, and replace $C_{gd}$ with a current source to find the equivalent resistance seen by $C_{gd}$.  Let ${R_L}^{'} = R_L \parallel r_o$.  Since the current $i_x$ flows into the input, we have to be a bit more careful in finding the equivalent resistance seen by $C_{gd}$.  Analyzing the circuit yields two equations:
+    \begin{align} 
+        i_x &= -g_m\,v_{gs} - \frac{v_d}{R_L'} = -g_m\,v_{gs} - \frac{v_{gs} - v_x}{{R_L}^{'}}
+                = v_{gs}\left(-g_m - \frac{1}{{R_L}^{'}}\right) + \frac{v_x}{{R_L}^{'}}
+        \label{eq:octc_nodal_1}\\[0.25cm]
+        i_x &= \frac{v_{gs}}{R_s} \implies v_{gs} = i_x\,R_s
+        \label{eq:octc_nodal_2}
+    \end{align}
+Substituting \emph{Eq.\ref{eq:octc_nodal_2}} into \emph{Eq.\ref{eq:octc_nodal_1}}, and solving for $\mathlarger{\frac{v_x}{i_x}}$, we find:
+    \begin{equation}
+        \boxed{R_{C_{gd}} = \frac{v_x}{i_x} = R_{s}(1 + {g_m}{R_L}^{'}) + {R_L}^{'}}
+    \end{equation}
+\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[tb]
-v\includegraphics[scale=1]{cs_amp_ac_caps_Cgd}
-\caption{Equivalent circuit for calculation of $R_{C_{gd}}$ for OCTC analysis.} \label{fig:cs_amp_ac_caps_Cgd}
+\begin{figure}[t]
+\centering
+\includegraphics[scale=1.05]{cs_amp_ac_caps_Cgd}
+\caption{Equivalent circuit for calculation of $R_{C_{gd}}$ for OCTC analysis.}
+\label{fig:cs_amp_ac_caps_Cgd}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Next we focus on $C_{gd}$ as shown in \emph{Fig.~\ref{fig:cs_amp_ac_caps_Cgd}}.  We open-circuit all the capacitors and replace $C_{gd}$ with a current source to find the equivalent resistance seen by $C_{gd}$.  Let $R_L' = R_L || r_o$.  Since the current $i_x$ flows into the input, we have to be a bit more careful in finding the equivalent resistance seen by $C_{gd}$:
-    \begin{equation} 
-        {i_x} = -{g_m}{v_{gs}} - \frac{{{v_d}}}{{R_L'}} = -{g_m}{v_{gs}} - \frac{{{v_{gs}}-{v_x} }}{{R_L'}} 
-    \end{equation}
-Using:
-    \begin{equation} 
-        {v_{gs}} =  {i_x}R_{s} 
-    \end{equation}
-We find:
-    \begin{equation} 
-        {R_{C_{gd}}} = \frac{{{v_x}}}{{{i_x}}} = R_{s}(1 + {g_m}R_L') + R_L' 
-    \end{equation}
+%                 FIGURE                   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\centering
+\includegraphics[scale=1.15]{cs_amp_ac_caps_Cdb}
+\caption{Equivalent circuit for calculation of $R_{C_{db}}$ for OCTC analysis.}
+\label{fig:cs_amp_ac_caps_Cdb}
+\end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 14.12.4           %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{OCTC: \texorpdfstring{$R_{C_{db}}$}{Equivalent Drain-Body Capacitor Resistance}}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                 FIGURE                   %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[tb]
-\centering
-\includegraphics[scale=1]{cs_amp_ac_caps_Cdb}
-\caption{Equivalent circuit for calculation of $R_{C_{db}}$ for OCTC analysis.} \label{fig:cs_amp_ac_caps_Cdb}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Finally we have $C_{db}$ (and $C_L$), shown in \emph{Fig.~\ref{fig:cs_amp_ac_caps_Cdb}}. To calculate the resistance seen by $C_{db} + C_L$, note that with $C_{gd}$/$C_L$ eliminated (open), there's no voltage at the input, so $v_{gs} = 0$V and so $g_m V_{gs} = 0$A and the current generator is also an open.  So by inspection:
+Finally we have $C_{db}$ (and $C_L$), shown in \emph{Fig.~\ref{fig:cs_amp_ac_caps_Cdb}}. To calculate the resistance seen by $C_{db} + C_L$, note that with $C_{gd}$ and $C_L$ eliminated (open-circuit), there is no voltage at the input.  Then $v_{gs} = 0\,V$, and so $g_m\,V_{gs} = 0\,A$, which means that the current generator is also an open.  So by inspection:
     \begin{equation}
-        {R_{{C_{db}}+C_L}} = R_L'
+        \boxed{R_{C_{db} + C_L} = {R_L}^{'}}
     \end{equation}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 14.12.5           %
@@ -755,22 +757,25 @@ Finally we have $C_{db}$ (and $C_L$), shown in \emph{Fig.~\ref{fig:cs_amp_ac_cap
 \subsection{Applying OCTC to CS Amplifier}
 Putting all of our results together, we have the sum of the time constants:
     \begin{equation} 
-        {\tau _H} = R_s{C_{gs}} + \left( {R_s(1 + {g_m}R_L') + R_L'} \right){C_{gd}} + R_L'{C_L}
+        \tau_H = R_s\,C_{gs} + \left(R_s(1 + g_m\,{R_L}^{'}) + {R_L}^{'} \right)C_{gd} + {R_L}^{'}\,C_L
+        \label{eq:sum_octc}
     \end{equation}
-which can be re-written as:
+\emph{Eq.\ref{eq:sum_octc}} can be re-written as:
     \begin{equation} 
-        {\tau _H} = R_s{C_{gs}} + R_s(1 + {g_m}R_L'){C_{gd}} + R_L'{C_{gd}} + R_L'{C_L} 
+        \tau_H = R_s\,C_{gs} + R_s(1 + g_m\,{R_L}^{'})\,C_{gd} + {R_L}^{'}\,C_{gd} + {R_L}^{'}\,C_L
+        \label{eq:sum_octc2}
     \end{equation}
-or approximately:
+We can approximate \emph{Eq.\ref{eq:sum_octc2}}:
     \begin{equation} 
-        \approx R_s\left( {{C_{gs}} + (1 + {g_m}R_L'){C_{gd}}} \right) + R_L'\left( {{C_{gd}} + {C_L}} \right)
+        \boxed{\tau_H \approx R_s\left(C_{gs} + (1 + g_m\,{R_L}^{'})C_{gd}\right) + {R_L}^{'}\left(C_{gd} + C_L\right)}
+        \label{eq:sum_octc3}
     \end{equation}
-Note that the first term is the same as the time constant from input port resulting from the Miller equivalent circuit.  The second term is the time constant contribution from the output port of the Miller equivalent circuit.  This result matches \emph{Eq.~\ref{eq:pole_almost_exact}} when we account for $C_L$ and $C_{db}$, which we neglected earlier.
+Note that the first term in \emph{Eq.\ref{eq:sum_octc3}} is the same as the time constant from input port, resulting from the Miller equivalent circuit.  The second term is the time constant contribution from the output port of the Miller equivalent circuit.  This result matches \emph{Eq.~\ref{eq:pole_almost_exact}} when we account for $C_L$ and $C_{db}$, which we neglected earlier.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 14.12.6           %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Practical Approach}
-While the method of OCTC works very well for circuits with a dominant pole, it's cumbersome to use if there are many capacitors.  In practice, we can estimate the value of the dominant pole by finding the dominant $RC$ time constants and neglecting others.  If this $RC$ time constant is larger than all others ($100\times$ for example), it's a good approximation to neglect the others and only use one time constant. Many amplifiers are \textit{designed} to have a dominant "high Z" node for stability reasons, and so we can quickly estimate the bandwidth in these cases.  As you will learn, even if such a "high Z" node does not exist, we create it by adding capacitance intentionally to \textit{compensate} the frequency response.  This concept will be introduced when we talk about feedback and stability in operational amplifiers, see Section~\ref{sec:opamp_stability}.
+The method of OCTC works very well for circuits with a dominant pole, but it is clunky with many capacitors.  In practice, we can estimate the value of the dominant pole by finding the dominant $RC$ time constants and neglecting others.  If $RC$ is larger than all others ($100\times$ for example), then it's a good approximation to neglect the others and only use one time constant. Many amplifiers are \textit{designed} to have a dominant "high Z" node for stability reasons, so we can quickly estimate the bandwidth in these cases.  As you will learn, even if such a "high Z" node does not exist, we create it by adding capacitance intentionally to \textit{compensate} the frequency response.  This concept will be introduced when we talk about feedback and stability in operational amplifiers, see Section~\ref{sec:opamp_stability}.
 \newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -778,4 +783,6 @@ While the method of OCTC works very well for circuits with a dominant pole, it's
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Chapter Summary}
-This chapter introduced several techniques to estimate the frequency response of an amplifier, from "inspection" style analysis when nodes are independent, to the Miller Theorem and approximation and finally the method of the OCTC, including the simpler version of just estimating the dominant time constants and ignoring others.  Many approximations were made because in doing hand analysis (and design) we are interested in gaining insight into circuit behavior, rather than getting precise answers.  We have full blown circuit simulation tools when we desire accuracy, but often numerical techniques don't lead to insights for design.  This is why we need both hand analysis and computer simulation to design circuits.
+This chapter introduced several techniques to estimate the frequency response of an amplifier. We started with an "inspection" style analysis when the nodes are independent, then moved on to the Miller Theorem and approximation.  Finally, we learned the method of the OCTC, including the simpler version of just estimating the dominant time constants and ignoring others.
+
+Many approximations were made, because in doing hand analysis (and design) we are interested in gaining insight into circuit behavior, rather than getting precise answers.  We have full blown circuit simulation tools when we desire accuracy, but often numerical techniques do not lead to insights for design.  This is why we need both hand analysis and computer simulation to design circuits.
