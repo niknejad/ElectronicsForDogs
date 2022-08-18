@@ -11,48 +11,53 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Chapter Preview}
-This chapter introduces a very important building block known as the differential amplifier.  This amplifier is at the heart of almost every analog amplifier, and most notably forms the input stage of every operational amplifier.  We begin by motivating the need for differential amplifiers, and then we give a pseudo-historical account of how the differential amplifier was invented.  In this way we can actually learn how the amplifier takes form into a fully symmetric structure.  We will derive the transfer function in detail for both large and small signals.  The key to the analysis will be to take advantage of the symmetry in the circuit to simplify the analysis.  To do this, we need to take arbitrary inputs and represent it as a combination of \emph{differential-mode} and \emph{common-mode} signals, which enables us to make symmetry arguments.  With such a representation, we will define common-mode and differential-mode gains, and we will discuss important concepts such as common-mode rejection.  We end the chapter by discussing more advanced differential amplifier architectures, with current source and current mirror loads, which provide high gain and good common-mode rejection.
+This chapter introduces a very important building block known as the differential amplifier.  This amplifier is at the heart of almost every analog amplifier, and most notably forms the input stage of every operational amplifier (see \emph{Fig.~\ref{fig:ch16_intro}}).
+
+We begin by motivating the need for differential amplifiers, and then we give a pseudo-historical account of how the differential amplifier was invented.  In this way we can actually learn how the amplifier takes form into a fully symmetric structure.  We will derive the transfer function in detail for both large and small signals.  The key to the analysis will be to take advantage of the symmetry in the circuit to simplify the analysis.  To do this, we need to take arbitrary inputs and represent it as a combination of \emph{differential-mode} and \emph{common-mode} signals, which enables us to make symmetry arguments.  With such a representation, we will define common-mode and differential-mode gains, and we will discuss important concepts such as common-mode rejection.
+
+We end the chapter by discussing more advanced differential amplifier architectures, with current source and current mirror loads, which provide high gain and good common-mode rejection.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% \begin{figure}[H]
-% \centering
-% \includegraphics[scale=1.00]{null}
-% \caption{null}
-% \label{fig:ch16_intro}
-% \end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.35]{op_amp_diff}
+\caption{In real op-amps there is always a non-zero voltage between the inputs.}
+\label{fig:ch16_intro}
+\end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                 FIGURE                   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[tb]
+\centering
+\includegraphics[scale=1.00]{diff_vs_cm} 
+\caption{In a differential system, two wires carry the signal with opposite phase, as shown.  The differential signal is measured between the two wires.  In a single-ended system, only a single wire carries the signal and the potential is referenced to ground.}
+\label{fig:diff_circ}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                 FIGURE                   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.85]{diff_cm_noise} 
+\caption{In a differential system, any noise pickup that is common-mode, for example from power supplies or from the substrate of the IC, is rejected since the output is a differential signal.  In a single-ended system, this noise cannot be distinguished from the signal itself.}
+\label{fig:noise_reject}
+\end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                   SECTION 16.2                                       %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Motivation for Differential Operation}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                 FIGURE                   %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[tb]
-\centering
-\includegraphics[width=0.75\columnwidth]{diff_vs_cm.pdf} 
-\caption{In a differential system, two wires carry the signal with opposite phase, as shown.  The differential signal is measured between the two wires.  In a single-ended system, only a single wire carries the signal and the potential is referenced to ground.}
-\label{fig:diffckt}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                 FIGURE                   %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[tb]
-\centering
-\includegraphics[width=0.85\columnwidth]{diff_cm_noise.pdf} 
-\caption{In a differential system, any noise pickup that is common-mode, for example from power supplies or from the substrate of the IC, is rejected since the output is a differential signal.  In a single-ended system, this noise cannot be distinguished from the signal itself.}
-\label{fig:noisereject}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-First of all, what's a differential circuit?  In \emph{Fig.~\ref{fig:diffckt}} we highlight the difference between a "single-ended" circuit and a differential circuit. In a single-ended circuit, all signals are referenced to a common ground, and signals are routed using a single wire.  In a differential circuit, each signal is represented with two wires, and optimally each wire carries half the signal such that each signal is equal and opposite in phase to the other.  In this form the signals are self-referenced without needing a ground connection.   The potential difference between the wires is known an the \emph{differential-mode} signal, and the signal in common with both is known as the \emph{common-mode} signal.  Ideally the common-mode signal is just a DC reference or bias voltage, but in practice the common-mode signal may varying due to interference or imbalances.  A good example of interference is ground or supply noise, that ideally couples to the differential wires in the same manner, producing a common-mode signal.  In a single-ended system, any common-mode noise is indistinguishable from the desired signal, and often it can swamp the desired signal.  A good example is the large AC voltages/currents flowing in power lines -- even a small fraction picked up by a sensor due to capacitive coupling can easily swamp out a micro-volt signal.  
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Differential circuits are much less sensitive to common-mode noise and interference and are preferred to the greatest extent possible.  As shown in \emph{Fig.~\ref{fig:noisereject}}, common-mode noise is rejected in a differential circuit as long as the circuits are balanced (noise is picked up as a pure common mode signal).  Other benefits of the differential configuration is that it enables us to bias amplifiers and connect multiple stages without using coupling or bypass capacitors, see \emph{Fig.~\ref{fig:diff_amp_cascade}}.  We'll cover this in detail.  
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Correct differential operation requires excellent matching of transistors and other components, which favors implementation in integrated circuti (IC) form where matched transistors can be fabricated side-by-side or even inter-digitated together (see \emph{Fig.~\ref{fig:mirror_layout}}).  Differential amplifiers require twice as many transistors, but again in an IC this is not an issue at all because transistors are essentially "free" compared to other larger components (such as resistors and capacitors).
+First of all, what is a differential circuit?  In \emph{Fig.~\ref{fig:diff_circ}} we highlight the difference between a \textbf{"single-ended"} circuit\index{Single-ended circuit} and a \textbf{differential} circuit\index{Differential circuit}. In a single-ended circuit, \textit{all signals are referenced to a common ground}, and signals are routed using a single wire.  In a differential circuit, \textit{each signal is represented with two wires}.  Also, optimally each wire carries half of the signal such that each signal's phase is equal and opposite to the other.  In this form the signals are self-referenced without needing a ground connection.  The potential difference between the wires is known as the \textbf{differential-mode signal}\index{Differential-mode signal}.  The signal in common with both is known as the \textbf{common-mode signal}\index{Common-mode signal}.
+
+Ideally the common-mode signal is just a DC reference or bias voltage, but in practice it may vary due to interference or imbalances.  A good example of interference is the ground or supply noise, that ideally couples to the differential wires in the same manner, producing a common-mode signal.  In a single-ended system, any common-mode noise is indistinguishable from the desired signal, and often it can swamp the desired signal.  A good example is the large AC voltages/currents flowing in power lines -- even a small fraction picked up by a sensor due to capacitive coupling can easily swamp out a micro-volt signal.  
+
+Differential circuits are much less sensitive to common-mode noise and interference, and are preferred to the greatest extent possible.  As shown in \emph{Fig.~\ref{fig:noise_reject}}, common-mode noise is rejected in a differential circuit as long as the circuits are balanced (noise is picked up as a pure common mode signal).  Other benefits of the differential configuration is that it enables us to bias amplifiers and connect multiple stages without using coupling or bypass capacitors.  We will cover this in detail (see \emph{Fig.~\ref{fig:diff_amp_cascade}} later in this chapter).  
+
+Correct differential operation requires excellent matching of transistors and other components.  This favors implementation in integrated circuit (IC) form, where matched transistors can be fabricated side-by-side or even inter-digitated together (see \emph{Fig.~\ref{fig:mirror_layout}}).  Differential amplifiers require twice as many transistors.  But again, in an IC this is not an issue at all, because transistors are essentially "free" compared to other larger components (such as resistors and capacitors).
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                   SECTION 16.3                                       %
@@ -63,111 +68,124 @@ Correct differential operation requires excellent matching of transistors and ot
 %             SUBSECTION 16.3.1            %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Goal:  Differential Transconductance \texorpdfstring{$G_m$}{}}
-Let's imagine that you're living in a pre-differential world where all signal processing is done in single-ended form.  You're inspired to build a transconductance stage that can be controlled by the difference in voltage between two nodes, rather than a single-ended transconductor, which is commonly used in the form of a transistor.   In other words, our goal is to have an output current that satisfies this equation:
+Let's imagine that you're living in a pre-differential world where all signal processing is done in single-ended form.  You're inspired to build a transconductance stage that can be controlled by the difference in voltage between two nodes, rather than a single-ended transconductor, which is commonly used in the form of a transistor.  In other words, our goal is to have an output current that satisfies this equation:
     \begin{equation}
         i_o = G_m (v^+ - v^-)
     \end{equation}
-Ideally the circuit should have very high output impedance and very little loading on nodes $v^+$ and $v^-$.  As a good circuit designer, you come to the realization that a common-source and common-gate amplifiers are complementary in the sense that they have opposite phase, and if you equalize the gain, you can potentially build a differential $G_m$.  In fact, you can combine the common-source and common-gate amplifier into a single transistor as shown in \emph{Fig.~\ref{fig:amp_diff_CS_CG.pdf}(a)}.  
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-calculate the gain by superposition:  If we excite $v^-$, and ground $v^+$, we have an output voltage given by:
+Ideally the circuit should have very high output impedance and very little loading on nodes $v^+$ and $v^-$.  As a good circuit designer, you come to the realization that a common source and common gate amplifiers are complementary in the sense that they have opposite phase.  If you equalize the gain, you can potentially build a \textbf{differential transconductance}\index{Differential transconductance}, $G_m$.  In fact, you can combine the common source and common gate amplifier into a single transistor as shown in \emph{Fig.~\ref{fig:amp_diff_CS_CG}a}.  Let's calculate the gain by superposition.  If we excite $v^-$, and ground $v^+$, we have an output voltage given by:
     \begin{equation}
-        v_{o,cs} = -g_m R_D v^-
+        v_{o,CS} = -g_m\,R_D\,v^-
     \end{equation} 
-Likewise if you excite the common-gate stage through $v^+$ (and ground $v^-$), we have:
+Likewise, if you excite the common gate stage through $v^+$ (and ground $v^-$), we have:
     \begin{equation}
-        v_{o,cg} = g_m R_D  v^+
+        v_{o,CG} = g_m\,R_D\,v^+
     \end{equation} 
-Summing these signals, we have
+Summing these signals, we have:
     \begin{equation}
-        v_o =   g_m R_D  (v^+ - v^- )
+        v_o = g_m R_D(v^+ - v^-)
     \end{equation}
 This looks pretty promising, so what's missing? 
+\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[tb]
+\begin{figure}[H]
 \centering
 \begin{tabular}{cc}
-\includegraphics[scale=1]{amp_diff_CS_CG.pdf} &
-\includegraphics[scale=1]{amp_diff_CS_CG_buffer.pdf}\\
+\includegraphics[scale=1.15]{amp_diff_CS_CG} &
+\includegraphics[scale=1.15]{amp_diff_CS_CG_buffer}\\
 (a) & (b)\\
 \end{tabular}
-\caption{(a) A combined common-gate and common-source amplifier.  From the $v^+$ terminal, the circuit is a common-gate amplifier whereas from the $v^-$ terminal it's a common source amplifier.  (b) A buffer is needed to raise the impedance of the common-gate amplifier if we wish to equalize the gain under arbitrary drive conditions.}
-\label{fig:amp_diff_CS_CG.pdf}
+\caption{(a) A combined common-gate and common source amplifier.  From the $v^+$ terminal, the circuit is a common gate amplifier, whereas from the $v^-$ terminal it is a common source amplifier.  (b) A buffer is needed to raise the impedance of the common gate amplifier if we wish to equalize the gain under arbitrary drive conditions.}
+\label{fig:amp_diff_CS_CG}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %              SUB-SUBSECTION              %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Problem:  Asymmetric (Low) Input Impedance}
-Notice that the gain is symmetric from the "plus" and "minus" side for an ideal voltage drive, but not for any drive with finite non-zero source resistance.  Because of the low input impedance of the common-gate stage, there's going to be a gain mismatch due to the voltage division between the source $R_s$ and the input impedance of the common gate stage, which is roughly $1/g_m$:
+Notice that the gain is symmetric from the "plus" and "minus" side for an ideal voltage drive, but not for any drive with finite non-zero source resistance.  Because of the low input impedance of the common gate stage, there is going to be a gain mismatch.  This is due to the voltage division between the source $R_s$ and the input impedance of the common gate stage, which is roughly $\frac{1}{g_m}$:
     \begin{equation}
-        v_{o,cg} = \frac{1/g_m}{1/g_m + R_s} g_m R_D  v^+ = \frac{g_m}{1 + g_m R_s}  R_D  v^+
-    \end{equation} 
+        v_{o,CG} = \left(\frac{\frac{1}{g_m}}{\frac{1}{g_m} + R_s}\right)\,g_m\,R_D\,v^+
+        = \left(\frac{g_m}{1 + g_m\,R_s}\right)\,R_D\,v^+
+    \end{equation}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %              SUB-SUBSECTION              %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Solution:  Add Buffer to Source Side}
-So what's the solution? Simply adding a voltage buffer as shown in \emph{Fig.~\ref{fig:amp_diff_CS_CG.pdf}(b)} would solve the problem, but any real buffer has output impedance, leading us back to the same issue.  For example, the source follower shown in \emph{Fig.~\ref{fig:amp_diff_CS_CG_CD.pdf}} has an output impedance of $1/g_{m,\text{buff}}$, and to minimize the voltage loss we could burn more and more power in the buffer to make the output impedance smaller, but this is not an elegant solution, because the gain mismatch will always be there.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                 FIGURE                   %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[tb]
-\centering
-\begin{tabular}{cc}
-\includegraphics[scale=1]{amp_diff_CS_CG_CD.pdf} &
-\includegraphics[scale=1]{amp_CG_CD_Model.pdf}\\
-(a) & (b)\\
-\end{tabular}
-\caption{(a) Common-source and common-gate amplifier with a source follower buffer added.  (b) The buffer output impedance $1/g_m$ degenerates the common-source stage and reduces the gain of the common-gate amplifier.}
-\label{fig:amp_diff_CS_CG_CD.pdf}
-\end{figure}
+So what is the solution?  Simply adding a voltage buffer as shown in \emph{Fig.~\ref{fig:amp_diff_CS_CG}b} would solve the problem.  However, any real buffer has an output impedance, leading us back to the same issue.  For example, the source follower shown in \emph{Fig.~\ref{fig:amp_diff_CS_CG_CD}} has an output impedance of $\frac{1}{g_{m,buff}}$.  To minimize the voltage loss we could burn more and more power in the buffer to make the output impedance smaller.  But this is not an elegant solution, because the gain mismatch will always be there.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 16.3.2            %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Gain of Source Degenerated CS}
-Let's think about this problem in another way.   The introduction of the buffer didn't solve the problem completely, and in fact it introduced another problem.  Even though the input impedance of the common source stage is very large, the gain is now degenerated by the output impedance of the buffer:   
+Let's think about this problem in another way.  The introduction of the buffer did not solve the problem completely, and in fact it introduced another problem.  Even though the input impedance of the common source stage is very large, the gain is now degenerated by the output impedance of the buffer:   
     \begin{equation}
-        v_{o,cs} = -\frac{g_m}{1+g_m \frac{1}{g_{m,buff}} } R_D v^-    
+        v_{o,CS} = -\left(\frac{g_m}{1 + g_m\left(\mathlarger{\frac{1}{g_{m,buff}}}\right)}\right)R_D\,v^-
     \end{equation}
-What if we equalized the $g_{m,\text{buff}} = g_m$ with the common source/gate stage?  Then the gain loss for the common source would be $1/2$, and the buffer driving the common-gate stage would also suffer a voltage loss of $1/2$.  In other words, in this symmetrical arrangement, the gains will be matched precisely as desired and both ports have a high input impedance.
+What if we equalized the $g_{m,buff} = g_m$ with the common source/gate stage?  Then the gain loss for the common source would be $\frac{1}{2}$, and the buffer driving the common gate stage would also suffer a voltage loss of $\frac{1}{2}$.  In other words, in this symmetrical arrangement, the gains will be matched precisely as desired and both ports have a high input impedance.
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                 FIGURE                   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[t]
+\centering
+\begin{tabular}{cc}
+\includegraphics[scale=1.25]{amp_diff_CS_CG_CD} &
+\includegraphics[scale=1.25]{amp_CG_CD_Model}\\
+(a) & (b)\\
+\end{tabular}
+\caption{(a) Common source and common gate amplifier with a source follower buffer added.  (b) The buffer output impedance $\frac{1}{g_m}$ degenerates the common source stage, and reduces the gain of the common gate amplifier.}
+\label{fig:amp_diff_CS_CG_CD}
+\end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 16.3.3            %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{A Symmetric Source Coupled Pair is Born}
+Putting these ideas together, we arrive at \emph{Fig.~\ref{fig:amp_CS_CG_sym}a}.  The resistor $R_S$ is just there for biasing, and we can replace it with a current source and combine it with the current source of the follower.  The result, redrawn in \emph{Fig.~\ref{fig:amp_CS_CG_sym}b}, is a fully symmetric circuit.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[tb]
+\begin{figure}[H]
 \centering
 \begin{tabular}{cc}
-\includegraphics[scale=1]{amp_CS_CG_sym.pdf} &
-\includegraphics[scale=1]{amp_sym_pair.pdf}\\
+\includegraphics[scale=1.25]{amp_CS_CG_sym} &
+\includegraphics[scale=1.25]{amp_sym_pair}\\
 (a) & (b)\\
 \end{tabular}
-\caption{(a) A combined common-source and common-gate amplifier with equally sized devices for the buffer and amplifier, thereby making the circuit symmetric.  (b) Redrawn circuit to emphasize the symmetry.  This circuit is known as the differential pair.}
-\label{fig:amp_CS_CG_sym.pdf}
+\caption{(a) A combined common source and common gate amplifier with equally sized devices for the buffer and amplifier, thereby making the circuit symmetric.  (b) Redrawn circuit to emphasize the symmetry.  This circuit is known as the differential pair.}
+\label{fig:amp_CS_CG_sym}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Putting these ideas together, we arrive at \emph{Fig.~\ref{fig:amp_CS_CG_sym.pdf}(a)}.  The resistor $R_S$ is just there for biasing, and we can replace it with a current source and combine it with the current source of the follower.  The result, redrawn in \emph{Fig.~\ref{fig:amp_CS_CG_sym.pdf}(b)}, is a fully symmetric circuit.  Now the circuit has two outputs, rather than one, which are in exactly the opposite phase.  
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-The key insight is that the circuit is fully symmetric and the gain from both sides is lowered by the same factor:
+\newpage
+The circuit in \emph{Fig.~\ref{fig:amp_CS_CG_sym}b} has two outputs, rather than one, which are in exactly the opposite phase.  The key insight is that the circuit is fully symmetric, and the gain from both sides is lowered by the same factor:
     \begin{equation}
-        v_{o,cs} = -\frac{g_m}{1+g_m \frac{1}{g_m} } R_D v^- = -\frac{g_m}{2} R_D v^-   
+        v_{o,CS} = -\frac{g_m}{1 + g_m\left(\frac{1}{g_m}\right)}\,R_D\,v^- = -\left(\frac{g_m}{2}\right)\,R_D\,v^-
     \end{equation}
     \begin{equation}
-        v_{o,cg} = \frac{g_m}{1+g_m \frac{1}{g_m} } R_D v^+ = +\frac{g_m}{2} R_D v^+   
+        v_{o,CG} = \frac{g_m}{1 + g_m\left(\frac{1}{g_m}\right)}\,R_D\,v^+ = +\left(\frac{g_m}{2}\right)\,R_D\,v+
     \end{equation}
-where for simplicity we only consider one output, but there are in fact two outputs, and since they are opposite in phase, we can combine them and consider the output as the voltage difference between the drain nodes:
+For simplicity, we only consider one output, but there are in fact two outputs.  Because since they are opposite in phase, we can combine them and consider the output as the voltage difference between the drain nodes:
     \begin{equation}
-        v_{o,1} = \frac{g_m}{2} R_D (v^+ - v^-)  
+        v_{o,1} = \left(\frac{g_m}{2}\right)\,R_D\,(v^+ - v^-)  
     \end{equation}
     \begin{equation}
-        v_{o,2} = \frac{g_m}{2} R_D (v^- - v^+)  
+        v_{o,2} = \left(\frac{g_m}{2}\right)\,R_D\,(v^- - v^+)  
     \end{equation}
 In other words, we have a fully differential circuit, allowing us to carry the signal differentially at both the input and output:
     \begin{equation}
-        v_{od} = v_{o,1} - v_{o,2} = g_m R_D (v^+ - v^-) = g_m R_D v_{id}  
+        v_{o,diff} = v_{o,1} - v_{o,2} = g_m\,R_D (v^+ - v^-) = g_m\,R_D\,v_{i,diff}  
     \end{equation}
+\vspace{0.25cm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                 FIGURE                   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\centering
+\includegraphics[scale=1.45]{diffamp_cm_dc}
+\caption{Differential pair under a common mode DC voltage drive.}
+\label{fig:diffamp_cm_dc}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                   SECTION 16.4                                       %
@@ -178,17 +196,7 @@ In other words, we have a fully differential circuit, allowing us to carry the s
 %             SUBSECTION 16.4.1            %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{MOS Differential Pair:  DC Bias}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                 FIGURE                   %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[tb]
-\centering
-\includegraphics[scale=1]{diffamp_cm_dc.pdf}
-\caption{Differential pair under a common mode DC voltage drive.}
-\label{fig:diffamp_cm_dc.pdf}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Consider the differential pair with a DC bias connected to both sides of the input, as shown in \emph{Fig.~\ref{fig:diffamp_cm_dc.pdf}}.  We will shortly demonstrate that the DC bias point of M1/M2 does not depend on the common gate voltage DC voltage since the current source sets the bias point of each transistor at half the bias current $I_Q$:
+Consider the differential pair with a DC bias connected to both sides of the input, as shown in \emph{Fig.~\ref{fig:diffamp_cm_dc}}.  We will shortly demonstrate that the DC bias point of M1/M2 does not depend on the common gate voltage DC voltage since the current source sets the bias point of each transistor at half the bias current $I_Q$:
     \begin{equation} 
         {I_{D1}} = {I_{D2}} = \frac{I_Q}{2}
     \end{equation}
@@ -207,23 +215,25 @@ And the differential DC output is exactly zero:
     \begin{equation}
         {v_{D1}} - {v_{D2}} = 0\mathrm{V}
     \end{equation}
-Consequently, the DC level at the output is independent of DC level at input! In \emph{Fig.~\ref{fig:diff_amp_bias_cm.pdf}} we illustrate this by varying the DC level at the input and finding the operating point in the circuit.  Clearly the circuit operating point, the region of operation of M1/M2 does not depend on the input DC level.  Note that although $V_{GS}$ and $V_{D}$ are held constant, the source voltage moves, but since the source node is driven by an ideal current source, we can tolerate this variation.  This allows us to cascade differential pairs without worrying about DC level, which obviates the need for bulky AC coupling capacitors, as shown in \emph{Fig.~\ref{fig:diff_amp_cascade}}! Is this too good to be true?  As long as we ensure that the current source is not squashed, the circuit works as advertised.  A real current source (transistor) has a finite headroom to operate, for example a $V_{od}$ for a single transistor current source.
+Consequently, the DC level at the output is independent of DC level at input! In \emph{Fig.~\ref{fig:diff_amp_bias_cm}} we illustrate this by varying the DC level at the input and finding the operating point in the circuit.  Clearly the circuit operating point, the region of operation of M1/M2 does not depend on the input DC level.  Note that although $V_{GS}$ and $V_{D}$ are held constant, the source voltage moves, but since the source node is driven by an ideal current source, we can tolerate this variation.  This allows us to cascade differential pairs without worrying about DC level, which obviates the need for bulky AC coupling capacitors, as shown in \emph{Fig.~\ref{fig:diff_amp_cascade}}! Is this too good to be true?  As long as we ensure that the current source is not squashed, the circuit works as advertised.  A real current source (transistor) has a finite headroom to operate, for example a $V_{od}$ for a single transistor current source.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[tb]
+\begin{figure}[H]
 \centering
 \includegraphics[width=\columnwidth]{diff_amp_bias_cm.pdf}
 \caption{Differential pair with varying input DC voltage common-mode drive illustrating that the DC operating point of the circuit, in so far as the bias current and the drain voltage at the output is concerned, is independent of the input DC level.}
-\label{fig:diff_amp_bias_cm.pdf}
+\label{fig:diff_amp_bias_cm}
 \end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[tb]
+\begin{figure}[t]
 \centering
 \includegraphics[scale=.8]{Diff_Cascade.pdf}
-\caption{Cascading differential amplifiers without using AC coupling capacitors is possible because each amplifier bias point is independent of the input DC level, see \emph{Fig.~\ref{fig:diff_amp_bias_cm.pdf}}.}
+\caption{Cascading differential amplifiers without using AC coupling capacitors is possible because each amplifier bias point is independent of the input DC level, see \emph{Fig.~\ref{fig:diff_amp_bias_cm}}.}
 \label{fig:diff_amp_cascade}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -237,10 +247,10 @@ Consequently, the DC level at the output is independent of DC level at input! In
 \centering
 \includegraphics[scale=1]{Diffamp_large_signal.pdf}
 \caption{Differential-Pair under arbitrary large signal drive at the inputs.}
-\label{fig:Diff_amp_large.pdf}
+\label{fig:Diff_amp_large}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Let's consider applying a differential voltage to the differential pair as shown in \emph{Fig.~\ref{fig:Diff_amp_large.pdf}}.  We apply a gate voltage $v_1$ to M1 and $v_2$ to M2, with the condition that the difference between the inputs is the differential input signal:
+Let's consider applying a differential voltage to the differential pair as shown in \emph{Fig.~\ref{fig:Diff_amp_large}}.  We apply a gate voltage $v_1$ to M1 and $v_2$ to M2, with the condition that the difference between the inputs is the differential input signal:
     \begin{equation}
         v_1 - v_2 = v_{id}
     \end{equation}
