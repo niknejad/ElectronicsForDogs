@@ -147,8 +147,8 @@ Putting these ideas together, we arrive at \emph{Fig.~\ref{fig:amp_CS_CG_sym}a}.
 \begin{figure}[H]
 \centering
 \begin{tabular}{cc}
-\includegraphics[scale=1.25]{amp_CS_CG_sym} &
-\includegraphics[scale=1.25]{amp_sym_pair}\\
+\includegraphics[scale=1.2]{amp_CS_CG_sym} &
+\includegraphics[scale=1.2]{amp_sym_pair}\\
 (a) & (b)\\
 \end{tabular}
 \caption{(a) A combined common source and common gate amplifier with equally sized devices for the buffer and amplifier, thereby making the circuit symmetric.  (b) Redrawn circuit to emphasize the symmetry.  This circuit is known as the differential pair.}
@@ -196,26 +196,24 @@ In other words, we have a fully differential circuit, allowing us to carry the s
 %             SUBSECTION 16.4.1            %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{MOS Differential Pair:  DC Bias}
-Consider the differential pair with a DC bias connected to both sides of the input, as shown in \emph{Fig.~\ref{fig:diffamp_cm_dc}}.  We will shortly demonstrate that the DC bias point of M1/M2 does not depend on the common gate voltage DC voltage since the current source sets the bias point of each transistor at half the bias current $I_Q$:
-    \begin{equation} 
-        {I_{D1}} = {I_{D2}} = \frac{I_Q}{2}
-    \end{equation}
-This must be true by a simple symmetry argument. Everything is assumed to be symmetric, and so $I_Q$ must divide in half.  That means each transistor has the same $V_{GS}$ and consequently the same overdrive $V_{od}$, assuming the threshold voltages match:
-    \begin{equation} 
-        \frac{I_Q}{2} = \frac{{{k_n}}}{2}{\left( {{V_{GS}} - {V_{tn}}} \right)^2}
-    \end{equation}
+Consider the differential pair with a DC bias connected to both sides of the input, as shown in \emph{Fig.~\ref{fig:diffamp_cm_dc}}.  We will shortly demonstrate that the DC bias point\index{DC bias point} of $M1$ and $M2$ does not depend on the common gate DC voltage, because the current source sets the bias point of each transistor at half the bias current $I_Q$:
     \begin{equation}
-        {V_{GS1}} = {V_{GS2}} = {V_{tn}} + \sqrt {\frac{I_Q}{{{k_n}}}}   = V_{tn} + V_{od}
+        I_{D_1} = I_{D_2} = \frac{I_Q}{2}
     \end{equation}
+This must be true by a simple symmetry argument.  Everything is assumed to be symmetric, and so $I_Q$ must divide in half.  That means each transistor has the same $V_{GS}$, and consequently the same overdrive $V_{OD}$, assuming that the threshold voltages match:
+    \begin{align}
+        \frac{I_Q}{2} &= \frac{k_n}{2}{\left(V_{GS} - V_{T_n}\right)^2}\\[0.25cm]
+        V_{GS_1} &= V_{GS_2} = {V_{T_n}} + \sqrt{\frac{I_Q}{k_n}} = V_{T_n} + V_{OD}
+    \end{align}
 The drain voltage for both transistors is also equal to:
     \begin{equation}
-        {v_{D1}} = {v_{D2}} = {V_{DD}} - \frac{I_Q}{2}{R_D}  
+        V_{D_1} = V_{D_2} = V_{DD} - \left(\frac{I_Q}{2}\right)\,R_D
     \end{equation}
 And the differential DC output is exactly zero:
     \begin{equation}
-        {v_{D1}} - {v_{D2}} = 0\mathrm{V}
+        V_{D_1} - V_{D_2} = 0\,V
     \end{equation}
-Consequently, the DC level at the output is independent of DC level at input! In \emph{Fig.~\ref{fig:diff_amp_bias_cm}} we illustrate this by varying the DC level at the input and finding the operating point in the circuit.  Clearly the circuit operating point, the region of operation of M1/M2 does not depend on the input DC level.  Note that although $V_{GS}$ and $V_{D}$ are held constant, the source voltage moves, but since the source node is driven by an ideal current source, we can tolerate this variation.  This allows us to cascade differential pairs without worrying about DC level, which obviates the need for bulky AC coupling capacitors, as shown in \emph{Fig.~\ref{fig:diff_amp_cascade}}! Is this too good to be true?  As long as we ensure that the current source is not squashed, the circuit works as advertised.  A real current source (transistor) has a finite headroom to operate, for example a $V_{od}$ for a single transistor current source.
+Consequently, the DC level at the output is independent of DC level at input! In \emph{Fig.~\ref{fig:diff_amp_bias_cm}}, we illustrate this by varying the DC level at the input and finding the operating point in the circuit.  Clearly, the circuit operating point and the region of operation of $M1$ and $M2$ does not depend on the input DC level.  Note that although $V_{GS}$ and $V_{D}$ are held constant, the source voltage moves.  But since the source node is driven by an ideal current source, we can tolerate this variation.  This allows us to cascade differential pairs without worrying about DC level, which obviates the need for bulky AC coupling capacitors, as shown in \emph{Fig.~\ref{fig:diff_amp_cascade}}.  Is this too good to be true?  As long as we ensure that the current source is not squashed, the circuit works as advertised.  A real current source (transistor) has a finite headroom to operate, for example a $V_{OD}$ for a single transistor current source.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -232,97 +230,101 @@ Consequently, the DC level at the output is independent of DC level at input! In
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[t]
 \centering
-\includegraphics[scale=.8]{Diff_Cascade.pdf}
+\includegraphics[scale=1.05]{Diff_Cascade.pdf}
 \caption{Cascading differential amplifiers without using AC coupling capacitors is possible because each amplifier bias point is independent of the input DC level, see \emph{Fig.~\ref{fig:diff_amp_bias_cm}}.}
 \label{fig:diff_amp_cascade}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                 FIGURE                   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\centering
+\includegraphics[scale=1.15]{Diffamp_large_signal.pdf}
+\caption{Differential-Pair under arbitrary large signal drive at the inputs.}
+\label{fig:Diff_amp_large}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 16.4.2            %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{MOS Differential-Pair:  Differential Inputs}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                 FIGURE                   %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[tb]
-\centering
-\includegraphics[scale=1]{Diffamp_large_signal.pdf}
-\caption{Differential-Pair under arbitrary large signal drive at the inputs.}
-\label{fig:Diff_amp_large}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Let's consider applying a differential voltage to the differential pair as shown in \emph{Fig.~\ref{fig:Diff_amp_large}}.  We apply a gate voltage $v_1$ to M1 and $v_2$ to M2, with the condition that the difference between the inputs is the differential input signal:
+Let's consider applying a differential voltage to the differential pair as shown in \emph{Fig.~\ref{fig:Diff_amp_large}}.  We apply a gate voltage $v_1$ to $M1$ and $v_2$ to $M2$, with the condition that the difference between the inputs is the \textit{differential input signal}\index{Amplifier!differential amplifier!differential input signal}:
     \begin{equation}
         v_1 - v_2 = v_{id}
     \end{equation}
-Since the input voltages applied to each gate is arbitrary, the current $I_Q$ no longer splits equally.  In fact, you can think of M1 and M2 as two devices competing for the current $I_Q$.  The current will favor the device with higher $v_{GS}$ and so we can think of M1/M2 as a pair of transistors that steer the current left or right depending on the magnitude of the input drive.  For large positive voltage $v_{id} = v_{GS1} - v_{GS2}$, we expect most of the current $I_Q$ to be steered into M1.  Likewise, when $v_{id}$ is large and negative, then most of the current $I_Q$ should flow into M2.  Let's confirm this observation with the MOS equations.  In general we have:
-    \begin{equation}
-        {i_{D1}} = \frac{{{k_n}}}{2}{\left( {{v_{GS1}} - {V_t}} \right)^2}
-    \end{equation}
-and
-    \begin{equation} 
-        {i_{D2}} = \frac{{{k_n}}}{2}{\left( {{v_{GS2}} - {V_t}} \right)^2}
-    \end{equation}
+Since the input voltages applied to each gate is arbitrary, the current $I_Q$ no longer splits equally.  In fact, you can think of $M1$ and $M2$ as two devices competing for the current, $I_Q$.  The current will favor the device with higher $v_{GS}$.  So we can think of $M1$ and $M2$ as a pair of transistors that steer the current left or right, depending on the magnitude of the input drive.  For large positive voltage $v_{id} = v_{GS_1} - v_{GS_2}$, we expect most of the current $I_Q$ to be steered into $M1$.  Likewise, when $v_{id}$ is large and negative, then most of the current $I_Q$ should flow into $M2$.  Let's confirm this observation with the $MOS$ equations.  In general we have:
+    \begin{align}
+        i_{D_1} = \frac{k_n}{2}{\left(v_{GS_1} - V_T\right)^2}\\[0.15cm]
+        i_{D_2} = \frac{k_n}{2}{\left(v_{GS_2} - V_T\right)^2}
+    \end{align}
 But the currents must sum to $I_Q$:
     \begin{equation}
-        {i_{D1}} + {i_{D2}} = I_Q \rightarrow {\rm{ }}{i_{D2}} = I_Q - {i_{D1}}
+        i_{D_1} + i_{D_2} = I_Q \rightarrow i_{D_2} = I_Q - i_{D_1}
     \end{equation}
-Using these relations it's possible to derive a complete expression for the drain currents of M1/M2 as a function of the differential voltage drive $v_{id}$:
+Using these relations it is possible to derive a complete expression for the drain currents of $M1$ and $M2$ as a function of the differential voltage drive $v_{id}$:
     \begin{equation}
-        {i_{D1,2}} = \frac{I_Q}{2} \pm \sqrt {{k_n}I_Q} \frac{{{v_{id}}}}{2}\sqrt {1 - \frac{{{{({v_{id}}/2)}^2}}}{{I_Q/{k_n}}}} 
+        i_{D_{1,2}} = \frac{I_Q}{2} \pm \sqrt{k_n\,I_Q} \left(\frac{v_{id}}{2}\right)
+                        \sqrt{1 - \frac{{\mathlarger{\left(\frac{v_{id}}{2}\right)}}^2}{\mathlarger{\frac{I_Q}{k_n}}}}
     \end{equation}
-Or in terms of the transistor over-drive voltage $V_{od}$, we know that the quiescent bias point satisfies:
+Or in terms of the transistor overdrive voltage $V_{od}$, we know that the \textit{quiescent bias point}\index{Quiescent bias point} satisfies:
     \begin{equation}
-        \frac{I_Q}{2} = \frac{1}{2}{k_n}V_{od}^2{\rm{ }} \rightarrow {k_n} = I_Q/V_{od}^2 
+        \frac{I_Q}{2} = \left(\frac{1}{2}\right)\,k_n\,{V_{OD}}^2 \;\longrightarrow\; k_n = \frac{I_Q}{{V_{OD}}^2}
     \end{equation}
 Allowing us to express the current in the following insightful form:
     \begin{equation} 
-        {i_{D1,2}} = \frac{I_Q}{2} \pm \frac{I_Q}{{{V_{od}}}}\frac{{{v_{id}}}}{2}\sqrt {1 - \frac{{{{({v_{id}}/2)}^2}}}{{V_{od}^2}}}
+        i_{D_{1,2}} = \frac{I_Q}{2} \pm \left(\frac{I_Q}{V_{OD}}\right) \left(\frac{v_{id}}{2}\right)
+                        \sqrt{1 - \frac{{\mathlarger{\left(\frac{v_{id}}{2}\right)}}^2}{{V_{OD}}^2}}
         \label{eq:diff_large}
     \end{equation}
-The full derivation is presented in Section~\ref{sec:derive_diff_large} for your reference.  A plot of the currents through each transistor is shown in \emph{Fig.~\ref{fig:mosdiffamp_id}}.  As expected, the curves are symmetric with respect to the two transistors and the input voltage $v_{id}$, where a positive voltage $v_{id}$ steers the current into M1.  The steering is very linear near the origin, and if the input is sufficiently large, we see that the current is steered entirely in one direction or the other.  When $v_{id} = \sqrt{2} V_{od}$, \emph{Eq.~\ref{eq:diff_large}} can be simplified:
+The full derivation is presented in \emph{Sec.~\ref{sec:derive_diff_large}} for your reference.  A plot of the currents through each transistor is shown in \emph{Fig.~\ref{fig:mosdiffamp_id}}.  As expected, the curves are symmetric with respect to the two transistors and the input voltage $v_{id}$, where a positive voltage $v_{id}$ steers the current into $M1$.  The steering is very linear near the origin, and if the input is sufficiently large, we see that the current is steered entirely in one direction or the other.  When $v_{id} = \sqrt{2}\,V_{OD}$, \emph{Eq.~\ref{eq:diff_large}} can be simplified:
     \begin{equation} 
-        {i_{D1,2}} = \frac{I_Q}{2} \pm \frac{I_Q}{{{\cancel{V_{od}}}}}\frac{{{\sqrt{2} \cancel{V_{od}}}}}{2} \sqrt {1 - \frac{{{{({\sqrt{2}\cancel{V_{od}}}/2)}^2}}}{{\cancel{V_{od}^2}}}}	= \frac{I_Q}{2} \pm \frac{I_Q}{2} = \left\{ \begin{array}{cc} +I_Q &  \to i_{D1} \\ 0 & \to i_{D2} \end{array} \right.
+        i_{D_{1,2}} = \frac{I_Q}{2} \pm \left(\frac{I_Q}{\cancel{V_{OD}}}\right) \left(\frac{\sqrt{2}\,\cancel{V_{OD}}}{2}\right)
+                        \sqrt{1 - \frac{{\left(\frac{\sqrt{2}\,\bcancel{V_{OD}}}{2}\right)}^2}{{\bcancel{V_{OD}}}^2}}
+                    = \frac{I_Q}{2} \pm \frac{I_Q}{2}
+                    = \left\{\begin{array}{c c}
+                        +I_Q & \to i_{D_1}\\
+                        0 & \to i_{D_2}
+                    \end{array}\right.
     \end{equation}
-We see that all the current $I_Q$ goes to $i_{D1}$ when the input is sufficiently large and M2 shuts off.  When $v_{id} = - \sqrt{2} V_{od}$, the situation is exactly the opposite, with M1 shutting off and M2 getting all the current $I_Q$.
+We see that all the current $I_Q$ goes to $i_{D1}$ when the input is sufficiently large and $M2$ shuts off.  When $v_{id} = -\sqrt{2}\,V_{OD}$, the situation is exactly the opposite, with $M1$ shutting off and $M2$ getting all the current $I_Q$.
+
+The slope of the curves in \emph{Fig.~\ref{fig:mosdiffamp_id}} is the differential pair $G_m$ for each transistor.   The linear range of operation of the $MOS$ differential pair can be extended by operating the transistor at a higher value of $V_{OD}$, as shown in \emph{Fig.~\ref{fig:mosdiffamp_id_od}}.  At the origin, we can estimate the slope by considering a small input signal $v_{id}$, which causes the square root to be simplify:
+    \begin{equation} 
+        \sqrt{1 - \frac{{\mathlarger{\left(\frac{v_{id}}{2}\right)}}^2}{{V_{OD}}^2}} \approx 1
+    \end{equation}
+This results in linear deviations of the currents from the DC operation points:
+    \begin{align} 
+        i_{D_1} &= \frac{I_Q}{2} + \left(\frac{I_Q}{V_{OD}}\right) \left(\frac{v_{id}}{2}\right)\\
+        i_{D_2} &= \frac{I_Q}{2} - \left(\frac{I_Q}{V_{OD}}\right) \left(\frac{v_{id}}{2}\right)
+    \end{align}
+It is clear that the first term is the bias current through $M1$ and $M2$.  The slope of the linear deviation is actually familiar.  It looks like the transistor $g_m$:
+    \begin{equation}
+        g_m = \frac{2\,I_D}{V_{OD}}
+    \end{equation}
+Since each transistor is biased at $\frac{I_Q}{2}$, the expression can be interpreted as follows:
+    \begin{equation} 
+        i_{D_{1,2}} = \frac{I_Q}{2} \pm \mathlarger{g_{m_{1,2}}} \left(\frac{v_{id}}{2}\right)
+    \end{equation}
+In other words, each transistor is excited in the small-signal with a voltage of $\frac{v_{id}}{2}$.  This is expected since the voltage $v_{id}$ is dropped across two series connected transistors (back-to-back), and the voltage splits in two.  What's surprising is that the $g_m$ looks like it is the transconductance of a common source stage, even though the source coupled node is "floating".  This requires some further explanation, provided next.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[tb]
+\begin{figure}[H]
 \centering
-\includegraphics[width=.7\columnwidth]{mosdiffamp_id}
-\caption{The currents in each branch of the differential-pair circuit as a function of the input differential voltage $v_{id}$.  For zero drive, each transistor shares half of the current $I_Q$.  When the differential pair is steered with a voltage of $\pm \sqrt{2} V_{od}$, the current switches completely to one branch.}
+\includegraphics[scale=0.825]{mosdiffamp_id}
+\caption{The currents in each branch of the differential pair circuit as a function of the input differential voltage $v_{id}$.  For zero drive, each transistor shares half of the current $I_Q$.  When the differential pair is steered with a voltage of $\pm \sqrt{2} V_{OD}$, the current switches completely to one branch.}
 \label{fig:mosdiffamp_id}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[tb]
+\begin{figure}[H]
 \centering
-\includegraphics[width=.7\columnwidth]{mosdiffamp_id_od}
-\caption{Family of currents in each branch of the differential-pair circuit as a function of the input differential voltage $v_{id}$ with varying over-drive voltage $V_{od}$.  Larger over-drive results in a larger linear range.}
+\includegraphics[scale=0.825]{mosdiffamp_id_od}
+\caption{Family of currents in each branch of the differential pair circuit as a function of the input differential voltage $v_{id}$, with varying overdrive voltage $V_{OD}$.  Larger overdrive results in a larger linear range.}
 \label{fig:mosdiffamp_id_od}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-The slope of the curves in \emph{Fig.~\ref{fig:mosdiffamp_id}} is the differential pair $G_m$ for each transistor.   The linear range of operation of the MOS differential pair can be extended by operating the transistor at a higher value of $V_{od}$, as shown in \emph{Fig.~\ref{fig:mosdiffamp_id_od}}.   At the origin, we can estimate the slope by considering a small input signal $v_{id}$, which causes the square root to be simplify
-    \begin{equation} 
-        \sqrt {1 - \frac{{{{({v_{id}}/2)}^2}}}{{V_{od}^2}}}  \approx 1
-    \end{equation}
-which results in linear deviations of the currents from the DC operation points:
-    \begin{equation} 
-        {i_{D1}} = \frac{I_Q}{2} + \frac{I_Q}{{{V_{od}}}}\frac{{{v_{id}}}}{2} 
-    \end{equation}
-    \begin{equation} 
-        {i_{D2}} = \frac{I_Q}{2} - \frac{I_Q}{{{V_{od}}}}\frac{{{v_{id}}}}{2}
-    \end{equation}
-It's clear that the first term is the bias current through M1/M2.  The slope of the linear deviation is actually familiar, it's looks like the transistor $g_m$:
-    \begin{equation}
-        g_m = \frac{2 I_D}{V_{od}}
-    \end{equation}
-Since each transistor is biased at $I_Q/2$, the expression can be interpreted as follows:
-    \begin{equation} 
-        {i_{D1,2}} = \frac{I_Q}{2} \pm g_{m1,2} \frac{{{v_{id}}}}{2}
-    \end{equation}
-In other words, each transistor is excited in the small-signal with a voltage of $v_{id}/2$.  This is expected since the voltage $v_{id}$ is dropped across two series connected transistors (back-to-back), and the voltage splits in two.  What's surprising is that the $g_m$ looks like it's the transconductance of a common source stage, even though the source coupled node is "floating".  This requires some further explanation, provided next.
+\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                   SECTION 16.5                                       %
