@@ -38,7 +38,7 @@ In this chapter we will be looking at various techniques to calculate the freque
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Frequency Response General Considerations}
-For any circuit transfer function\index{Transfer function}, the number of poles is a property of the circuit, and does not depend on the choice of input/output terminals.  The number of \textit{poles}\index{Poles} is given by the \textit{number of independent capacitors and inductors}.  The zeros\index{Zeros}, on the other hand, depends on the transfer function, in other words the \textit{choice of the input and output ports}.
+For any circuit transfer function\index{Transfer function}, the number of poles is a property of the circuit, and does not depend on the choice of input/output terminals.  The number of \textit{poles}\index{Transfer function!poles} is given by the \textit{number of independent capacitors and inductors}.  The zeros\index{Transfer function!zeros}, on the other hand, depends on the transfer function, in other words the \textit{choice of the input and output ports}.
 
 In this chapter we will be pursuing techniques to discover the poles of an amplifier.  In many cases, the poles are actually easy to find and can be done by "inspection".  Consider the example shown in \emph{Fig.~\ref{fig:amp_two_poles_indep}}, consisting of an input capacitance $C_{in}$ and an output capacitance $C_{out}$.  We expect the circuit to have two poles, and we can almost read-off the poles by noting the input capacitance forms a low-pass filter.  The input pole is given by:
     \[
@@ -94,7 +94,7 @@ You should learn to identify these independent poles in the transfer function of
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Review MOS Parasitic Capacitors}
-Recall from \emph{Ch.~\ref{ch:ch10_mos_ss_ac}} that a MOS device has many internal capacitors that we have been ignoring up to now when calculating the \textit{low-frequency} or \textit{pass-band response}\index{MOSFET!Low-frequency response}\index{MOSFET!Pass-band response}.  As shown in \emph{Fig.~\ref{fig:mos_caps_xsect}a}, these capacitors are either intrinsic to the operation of the device, such as $C_{ox}$, or are present due to parasitic junctions and overlap/fringing between metals and contacts and the source/drain.  In the saturation region, we calculate the value of each capacitor and use the AC small-signal model\index{MOSFET!Small-signal mmodel}, such as the three-terminal version shown in \emph{Fig.~\ref{fig:mos_caps_xsect}b}.
+Recall from \emph{Ch.~\ref{ch:ch10_mos_ss_ac}} that a MOS device has many internal capacitors that we have been ignoring up to now when calculating the \textit{low-frequency} or \textit{pass-band response}\index{MOSFET!low-frequency response}\index{MOSFET!pass-band response}.  As shown in \emph{Fig.~\ref{fig:mos_caps_xsect}a}, these capacitors are either intrinsic to the operation of the device, such as $C_{ox}$, or are present due to parasitic junctions and overlap/fringing between metals and contacts and the source/drain.  In the saturation region, we calculate the value of each capacitor and use the AC small-signal model\index{MOSFET!small-signal!model}, such as the three-terminal version shown in \emph{Fig.~\ref{fig:mos_caps_xsect}b}.
 \vspace{0.5cm}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
@@ -215,7 +215,7 @@ Let's combine these two equations into a matrix:
             0\\
         \end{matrix}\right] 
     \end{equation}
-Using Cramer's Rule\index{Cramer's Rule} or another approach, it is easy to show that the transfer function is given by:
+Using \textbf{Cramer's rule}\index{Cramer's rule} or another approach, it is easy to show that the transfer function is given by:
     \begin{equation}
         v_o = v_s\left(\frac{-g_m\,R'_L\left(1 - \mathlarger{\frac{s\,C_{gd}}{g_m}}\right)}
                     {1 + s\left(R'_L\,C_{gd} + R_s(C_{gs} + C_{gd}) + R_s\,C_{gd}\,g_m\,R'_L \right) 
@@ -306,7 +306,7 @@ If this seems like a "sleight of hand", keep in mind that in practice $Z_F$ will
 %             SUBSECTION 14.6.2            %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{The Miller Effect of a Capacitor}
-Applying the \textbf{Miller Theorem}\index{Miller Theorem} to a capacitor, shown in \emph{Fig.~\ref{fig:miller2}}, we have a capacitor that couples two nodes.  In this case, it is across an inverting amplifier, and so the effective capacitance is boosted:
+Applying the \textbf{Miller theorem}\index{Miller's theorem} to a capacitor, shown in \emph{Fig.~\ref{fig:miller2}}, we have a capacitor that couples two nodes.  In this case, it is across an inverting amplifier, and so the effective capacitance is boosted:
     \begin{equation}
         Z_M = \frac{1}{j\omega C_M} = \frac{\frac{1}{j\omega\,C_{gd}}}{1 - A}
     \end{equation}
@@ -325,7 +325,7 @@ Note that for a common-source amplifier $A$ is negative, so the overall capacita
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Common-Source:  Miller Approach Frequency Response Calculation}
-Now we apply the Miller Theorem\index{Miller Theorem!Common source analysis} to the $C_{gd}$ feedback capacitor in the MOS amplifier, shown in \emph{Fig.~\ref{fig:cs_amp_cgd}}:  
+Now we apply the Miller theorem\index{Miller's theorem!Common source analysis} to the $C_{gd}$ feedback capacitor in the MOS amplifier, shown in \emph{Fig.~\ref{fig:cs_amp_cgd}}:  
     \begin{equation}
         C_{in} = \frac{1}{{j\omega\,C_M}} = \left(\frac{1}{1 - A_{v,C_{gd}}}\right) \left(\frac{1}{j\omega\,C_{gd}}\right)
         = \frac{1}{j\omega \left[\left(1 - A_{v,C_{gd}}\right)C_{gd}\right]}
@@ -373,7 +373,7 @@ The results are very close except for the last term, which usually does not domi
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Common Drain Amplifier Frequency Response}
-Let's now compute the bandwidth of a common drain amplifier\index{Miller Theorem!Common drain analysis}, also known as the source follower, shown in \emph{Fig.~\ref{fig:cd_amp_ss_cap_load}a}.  We can replace the current source with MOSFET-based current mirror, and we simply model it by $r_{oc}$.  In the small-signal model with capacitors shown in \emph{Fig.~\ref{fig:cd_amp_ss_cap_load}b}, we use the DC small-signal gain and the Miller effect to calculate the input capacitance.  This will allow us to estimate the dominant pole.
+Let's now compute the bandwidth of a common drain amplifier\index{Miller's theorem!Common drain analysis}, also known as the source follower, shown in \emph{Fig.~\ref{fig:cd_amp_ss_cap_load}a}.  We can replace the current source with MOSFET-based current mirror, and we simply model it by $r_{oc}$.  In the small-signal model with capacitors shown in \emph{Fig.~\ref{fig:cd_amp_ss_cap_load}b}, we use the DC small-signal gain and the Miller effect to calculate the input capacitance.  This will allow us to estimate the dominant pole.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -497,7 +497,7 @@ The first pole can be lower bounded by:
     \begin{equation}
         \omega = \frac{g_m}{C_{gs}}
     \end{equation}
-In the next section we will show that this frequency is a device property known as the \textbf{unity gain frequency}\index{Unity gain frequency}, and it is usually a very high frequency for modern short channel devices biased in saturation.  The second pole depends on both the load capacitance and the load resistance, and component values can be selected to ensure sufficient bandwidth.
+In the next section we will show that this frequency is a device property known as the \textbf{unity gain frequency}\index{Unity-gain frequency}, and it is usually a very high frequency for modern short channel devices biased in saturation.  The second pole depends on both the load capacitance and the load resistance, and component values can be selected to ensure sufficient bandwidth.
 
 It is always good to verify our assumptions by performing a more complete analysis.  The nodal equations at the input and output are given by:
     \begin{equation}
@@ -556,7 +556,7 @@ In the previous section, we encountered a lower bound for the common gate input 
     \begin{equation}
         \omega = \frac{g_m}{C_{gs}}
     \end{equation}
-We claimed that this is a very high frequency.  To show this, we are going to define the unity-gain frequency\index{unity-gain frequency} $f_T$ of a transistor, a parameter that characterizes the high frequency performance of a transistor for analog circuits.
+We claimed that this is a very high frequency.  To show this, we are going to define the unity-gain frequency\index{Unity-gain frequency} $f_T$ of a transistor, a parameter that characterizes the high frequency performance of a transistor for analog circuits.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 14.10.1           %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -776,6 +776,7 @@ Note that the first term in \emph{Eq.\ref{eq:sum_octc3}} is the same as the time
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Practical Approach}
 The method of OCTC works very well for circuits with a dominant pole, but it is clunky with many capacitors.  In practice, we can estimate the value of the dominant pole by finding the dominant $RC$ time constants and neglecting others.  If $RC$ is larger than all others ($100\times$ for example), then it's a good approximation to neglect the others and only use one time constant. Many amplifiers are \textit{designed} to have a dominant "high Z" node for stability reasons, so we can quickly estimate the bandwidth in these cases.  As you will learn, even if such a "high Z" node does not exist, we create it by adding capacitance intentionally to \textit{compensate} the frequency response.  This concept will be introduced when we talk about feedback and stability in operational amplifiers, see Section~\ref{sec:opamp_stability}.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

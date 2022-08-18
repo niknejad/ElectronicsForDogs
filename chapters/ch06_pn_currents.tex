@@ -117,7 +117,7 @@ Our drawings of $PN$-junctions so far has been very idealized.  The actual struc
 %             SUBSECTION 6.3.1             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Equilibrium versus Non-Equilibrium}
-The Law of Mass Action\index{Law of Mass Action} says that in equilibrium, the product of the concentration of holes and electrons is constant
+The Law of Mass Action\index{Law of mass action} says that in equilibrium, the product of the concentration of holes and electrons is constant
     \begin{equation*}
         np = n_i^2
     \end{equation*}
@@ -177,7 +177,7 @@ Here the rate is negative when $\Delta p > 0$, because recombination will outwei
 %              SUB-SUBSECTION              %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection*{Minority Carrier Lifetime}
-It is common practice to lump the constants $c_p\,N_T$ into a term called the \textbf{minority carrier lifetime}\index{PN-junction!Minority carrier lifetime} $\tau_p$, because from the above equation it's clear that their product has units of inverse time:
+It is common practice to lump the constants $c_p\,N_T$ into a term called the \textbf{minority carrier lifetime}\index{PN-junction!minority carriers!lifetime} $\tau_p$, because from the above equation it is clear that their product has units of inverse time:
     \begin{equation}
         \frac{\partial \Delta p}{\partial t} \bigg\rvert_{\text{thermal R-G}} = - c_p\,N_T\,\Delta p = -\frac{\Delta p}{\tau_p}
         \label{eq:lifetime}
@@ -314,7 +314,7 @@ The result is known as \textbf{Boltzmann's Law}:
     \end{align}
 In \emph{Eq.~\ref{eq:boltzmann_law}}, $V_D$ is the forward bias voltage that we apply, and $\varphi_{bi}$ is the built-in potential\index{PN-junction!built-in potential}.  This implies an exponentially larger number of minority carriers that are injected into the regions.
 
-We actually derived this equation in the last chapter under thermal equilibrium, but it is important to realize that we are now in a non-equilibrium situation.  So strictly speaking, our derivation does not apply.  In practice, it can be shown that the law is valid under \textbf{"low level injection"}\index{PN-junction!Low-level injection} conditions.  In other words, when the density of minority carriers injected remains much smaller than the number of majority carriers, the law is valid.  Using Boltzmann's Law, the \textbf{minority carrier concentrations}\index{PN-junction!Minority carrier concentration} at the edges of the depletion region are given by:
+We actually derived this equation in the last chapter under thermal equilibrium, but it is important to realize that we are now in a non-equilibrium situation.  So strictly speaking, our derivation does not apply.  In practice, it can be shown that the law is valid under \textbf{"low level injection"}\index{PN-junction!low-level injection} conditions.  In other words, when the density of minority carriers injected remains much smaller than the number of majority carriers, the law is valid.  Using Boltzmann's Law, the \textbf{minority carrier concentrations}\index{PN-junction!minority carriers!concentration} at the edges of the depletion region are given by:
     \begin{align} 
         p_n(x = x_n) &= N_A\,e^{-q({\varphi_B} - V_D)/kT} &\textit{Minority $e^-$ concentration, edge of depletion}\\ \\
         n_p(x = -x_p) &= N_D\,e^{-q({\varphi_B} - V_D)/kT} &\textit{Minority $h^+$ concentration, edge of depletion}
@@ -413,7 +413,7 @@ Imagine a "wall" that is a certain height (say 6 feet tall), and imagine that on
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Diode Small Signal Model}
-In many applications, we are concerned with the diode response to a \textbf{small signal}\index{Diode!Small-signal model}.  In these situations, we usually bias the diode with a DC voltage to the desired \textbf{operating point}\index{Biasing!operating point}, either in forward or reverse biased region.  Then we apply a small incremental signal to the diode.  A good example is when the diode is used as a switch.  In this case we either turn the diode on and rely on its low impedance to pass small signals, or turn it off to isolate small signals from the rest of the circuit. Many mobile phones use a diode exactly as described above to share a single antenna between the receiver and transmitter.
+In many applications, we are concerned with the diode response to a \textbf{small signal}\index{Diode!Small-signal model}.  In these situations, we usually bias the diode with a DC voltage to the desired \textbf{operating point}\index{Operating point}, either in forward or reverse biased region.  Then we apply a small incremental signal to the diode.  A good example is when the diode is used as a switch.  In this case we either turn the diode on and rely on its low impedance to pass small signals, or turn it off to isolate small signals from the rest of the circuit. Many mobile phones use a diode exactly as described above to share a single antenna between the receiver and transmitter.
 
 To understand how the forward biased diode responds to small signals, the $I-V$ relation of a diode is first approximated:
     \begin{align}
@@ -424,7 +424,7 @@ For $x = v_d/kT/q$ and $v_d \ll kT/q$ (small-signals less than $26\,mV$),  we ca
     \begin{equation*}
         e^x = 1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} + \cdots
     \end{equation*}
-In other words, the total current can be written in terms of the \textbf{DC bias}\index{Biasing!DC bias} current and the incremental AC current:
+In other words, the total current can be written in terms of the \textbf{DC bias}\index{Amplifier!biasing!DC bias} current and the incremental AC current:
     \begin{equation*}
         I_D + i_D \approx I_D \left( 1 + \frac{q\,v_d}{kT} + \cdots \right)
     \end{equation*}
@@ -657,7 +657,7 @@ For \textbf{LEDs}\index{Diode!light-emitting} (see \emph{Fig.~\ref{fig:led}}), i
 %              SUB-SUBSECTION              %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection*{Direct versus Indirect band gap Materials}
-In this book we don't go into the details, but it is important for now to realize that electrons have both energy $E$ and momentum $k$.  In a solid, the allowed energy-momentum states are dictated by quantum mechanics\index{Quantum mechanics} and plotted in an \textbf{E-k diagram}\index{E-k diagram}, such as the ones shown in \emph{Fig.~\ref{fig:band gap_direct}}.  In a direct band gap\index{Direct band gap} semiconductor, the bands overlap and an electron can absorb a photon \emph{directly}, and become a conduction band electron with the same momentum.   In an indirect band gap\index{indirect band gap}, the top of the bands do not line up in $k$ space, so the assistance of a phonon is needed for optical generation, making the process less efficient and less likely to occur.  Silicon is an indirect band gap material, while many compound semiconductors (group $III + V$ elements together) are direct band gap materials.
+In this book we don't go into the details, but it is important for now to realize that electrons have both energy $E$ and momentum $k$.  In a solid, the allowed energy-momentum states are dictated by quantum mechanics\index{Quantum mechanics} and plotted in an \textbf{E-k diagram}\index{E-k diagram}, such as the ones shown in \emph{Fig.~\ref{fig:band gap_direct}}.  In a direct band gap\index{Direct band gap} semiconductor, the bands overlap and an electron can absorb a photon \emph{directly}, and become a conduction band electron with the same momentum.   In an indirect band gap\index{Indirect band gap}, the top of the bands do not line up in $k$ space, so the assistance of a phonon is needed for optical generation, making the process less efficient and less likely to occur.  Silicon is an indirect band gap material, while many compound semiconductors (group $III + V$ elements together) are direct band gap materials.
 
 It is also important to know how semiconductors absorb light.  A qualitative plot of photon absorption based on wavelength is shown in \emph{Fig.~\ref{fig:semi_absorb_photon}}.  Light intensity is absorbed by a semiconductor as long as the photon energy $E = h\nu = hc/\lambda $ is larger than the band gap.   Light intensity drops off exponentially $e^{-\alpha x}$ where $\alpha$ is the \textbf{absorption coefficient}\index{Photon!absorption coefficient}.  
 
@@ -718,12 +718,12 @@ In \emph{Eq.~\ref{eq:photon_wavelength}} we have used common units of $eV$, beca
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{References}
 Much of this material comes from teaching EE 105 at UC Berkeley for several years.  The notes have benefited greatly from Pierret\cite{pierret} (\emph{Semiconductor Fundamentals: Volume I}), and most recently from Chenming Hu\cite{hu} (\emph{Modern Semiconductor Devices for Integrated Circuits}).
-\newpage
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                                   SECTION 6.9                                        %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Chapter Summary}
-In this chapter we ...
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \newpage
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %                                   SECTION 6.9                                        %
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \section{Chapter Summary}
+% In this chapter we ...

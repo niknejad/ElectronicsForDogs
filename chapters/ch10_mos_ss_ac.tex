@@ -65,7 +65,7 @@ As shown in the device cross-section of \emph{Fig.~\ref{fig:moscapsxsect}}, MOSF
 %             SUBSECTION 10.2.2            %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Gate-Source Capacitance \texorpdfstring{$C_{GS}$}{}}
-Since the drain is isolated from the channel (in saturation), the oxide capacitance $C_{ox}$ is formed from the gate to source, as shown in \emph{Fig.~\ref{fig:mos_caps_Cgs}}.  But since the inversion charge is "wedge" shaped (inversion decreases as we travel from the source to drain), the \textbf{effective capacitance}\index{MOSFET!gate-source capacitance} is lower.  A detailed calculation shows that:
+Since the drain is isolated from the channel (in saturation), the oxide capacitance $C_{ox}$ is formed from the gate to source, as shown in \emph{Fig.~\ref{fig:mos_caps_Cgs}}.  But since the inversion charge is "wedge" shaped (inversion decreases as we travel from the source to drain), the \textbf{effective capacitance}\index{MOSFET!capacitances!gate-source} is lower.  A detailed calculation shows that:
     \begin{align}
         \Aboxed{C_{gs} &= \left(\frac{2}{3}\right)W\,L\,C_{ox} + C_{ov}} &\textit{Gate-source capacitance in saturation}
     \end{align} 
@@ -97,7 +97,7 @@ The physical origin of the overlap capacitance is the overlap between the gate a
 %             SUBSECTION 10.2.3            %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Gate-Drain Capacitance \texorpdfstring{$C_{GD}$}{}}
-Focusing now on the drain side, \emph{Fig.~\ref{fig:mos_caps_Cgd}}, we see that the same overlap occurs on the drain side.  This \textbf{gate-drain capacitance}\index{MOSFET!gate-drain capacitance} in another undesirable parasitic:
+Focusing now on the drain side, \emph{Fig.~\ref{fig:mos_caps_Cgd}}, we see that the same overlap occurs on the drain side.  This \textbf{gate-drain capacitance}\index{MOSFET!capacitances!gate-drain} in another undesirable parasitic:
     \begin{align}
         \Aboxed{C_{gd} &= C_{ov} + C_{fringe} = L_{ov}\,W\,C_{ox} + C_{fringe}} &\textit{Gate-drain capacitance in saturation}
     \end{align}
@@ -106,7 +106,7 @@ Since the MOSFET drain and source are physically identical, this is not surprisi
 %             SUBSECTION 10.2.4            %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Drain/Source-Bulk Capacitances \texorpdfstring{$C_{DB}\text{ and }C_{SB}$}{}}
-The \textbf{Drain-Bulk}\index{MOSFET!drain-bulk capacitance} and \textbf{Source-Bulk}\index{MOSFET!source-bulk capacitance} capacitances are two more undesired parasitics.  They are caused by $PN$-junction depletion regions that isolate the drain/source from the body. The junction forms a "box" inside the body, and so there are five junctions to consider. \textit{Four side-wall junctions} and one \textit{bottom wall} junction, shown in \emph{Fig.~\ref{fig:cap_junc_3d}}.
+The \textbf{Drain-Bulk}\index{MOSFET!capacitances!drain-bulk} and \textbf{Source-Bulk}\index{MOSFET!capacitances!source-bulk} capacitances are two more undesired parasitics.  They are caused by $PN$-junction depletion regions that isolate the drain/source from the body. The junction forms a "box" inside the body, and so there are five junctions to consider. \textit{Four side-wall junctions} and one \textit{bottom wall} junction, shown in \emph{Fig.~\ref{fig:cap_junc_3d}}.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -257,11 +257,11 @@ In most transistors $C_{ox} > C_{dep}$, so the back-gate transconductance is sma
 %             SUBSECTION 10.4.1            %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Four-Terminal Small-Signal Model}
-We now complete the small-signal model\index{MOSFET!small-signal current with body bias} by noting that the drain-source current depends on $v_{gs}$ (transconductance), $v_{ds}$ (output resistance of device), and also on $v_{bs}$ (back-gate):
+We now complete the small-signal model\index{MOSFET!small-signal!current with body bias} by noting that the drain-source current depends on $v_{gs}$ (transconductance), $v_{ds}$ (output resistance of device), and also on $v_{bs}$ (back-gate):
     \begin{align}
         \Aboxed{i_{ds} &= g_m\,v_{gs} + \left( \frac{1}{r_o} \right)v_{ds} + g_{mb}\,v_{bs}} &\textit{Small-signal current with body effect}
     \end{align}
-This equation is captured by the equivalent circuit shown in \emph{Fig.~\ref{fig:mos4term_dc_gmb}}.  This model naturally shows the symmetry between the front-gate and the back-gate.  If we include all the capacitors as well, we arrive at \emph{Fig.~\ref{fig:mos4term_ac_gmb}}, the \textbf{complete small-signal model}\index{MOSFET!Complete small-signal model} for an NMOS transistor.
+This equation is captured by the equivalent circuit shown in \emph{Fig.~\ref{fig:mos4term_dc_gmb}}.  This model naturally shows the symmetry between the front-gate and the back-gate.  If we include all the capacitors as well, we arrive at \emph{Fig.~\ref{fig:mos4term_ac_gmb}}, the \textbf{complete small-signal model}\index{MOSFET!small-signal!complete model} for an $NMOS$ transistor.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 10.4.2            %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -277,11 +277,11 @@ Using the same arguments, we can also conclude that a PMOS device is also descri
 \label{fig:pmos4term_ac}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newpage
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                                 SECTION 10.5                                         %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Chapter Summary}
-In this chapter we ...
+% \newpage
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %                                 SECTION 10.5                                         %
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \section{Chapter Summary}
+% In this chapter we ...

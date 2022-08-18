@@ -44,7 +44,7 @@ We begin the chapter by discussing the structure of the MOSFET, discussing the d
 %             SUBSECTION 8.2.1             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{MOSFET Top View and Layout}
-The cross-section and top view of a \textbf{MOSFET}\index{MOSFET} are shown in \emph{Fig.~\ref{fig:mosfet_layout}}.  A MOS transistor is a \textit{four terminal device} that conducts current between two of its terminals under the control of the third terminal, the \textbf{"gate"}\index{MOSFET!gate} (G).  In a MOSFET, the terminals that carry current are known as the \textbf{"drain"}\index{MOSFET!drain} (D) and \textbf{"source"}\index{MOSFET!source} (S), in analogy with liquid flow.  The "source" supplies electrons, and the \textit{electrons flow from the source to the drain}.  Since electrons carry negative charge, the \textit{current flow is from the drain to the source}, which is confusing but standard convention.  The fourth terminal is the \textbf{"body"}\index{MOSFET!body} (B), which establishes a potential reference for the gate terminal.  Often the body and source are shorted together, and this leads to a "source referenced" notion of the gate voltage.  In general, it is the gate-to-body voltage that determines the operating point\index{Operating point} of the MOS-C, and therefore the MOSFET.
+The cross-section and top view of a \textbf{MOSFET}\index{MOSFET} are shown in \emph{Fig.~\ref{fig:mosfet_layout}}.  A MOS transistor is a \textit{four-terminal device} that conducts current between two of its terminals under the control of the third terminal, the \textbf{"gate"}\index{MOSFET!terminals!gate} (G).  In a MOSFET, the \textbf{terminals} that carry current are known as the \textbf{"drain"}\index{MOSFET!terminals!drain} (D) and \textbf{"source"}\index{MOSFET!terminals!source} (S), in analogy with liquid flow.  The "source" supplies electrons, and the \textit{electrons flow from the source to the drain}.  Since electrons carry negative charge, the \textit{current flow is from the drain to the source}, which is confusing but standard convention.  The fourth terminal is the \textbf{"body"}\index{MOSFET!terminals!body} (B), which establishes a potential reference for the gate terminal.  Often the body and source are shorted together, and this leads to a "source referenced" notion of the gate voltage.  In general, it is the gate-to-body voltage that determines the operating point\index{Operating point} of the MOS-C, and therefore the MOSFET.
 
 A top view of the MOSFET shown in \emph{Fig.~\ref{fig:mosfet_layout}}.  It is important to note that the dimensions $L$ and $W$ are layout dependent, and can be varied by the circuit designer.  These parameters control the size of the channel that forms (from the source to the drain) which allows current to flow when the device is biased in inversion.  The parameter $W$ is the \textbf{device width}\index{MOSFET!device width}.  The larger the width, the more current the transistor can conduct.  The device dimension $L$ is the \textbf{channel length}\index{MOSFET!channel length}. The shorter the channel, the more conductive the channel.
 
@@ -95,7 +95,7 @@ It is important to note that the MOSFET is a four terminal device, but in most s
 \subsection{MOSFET Flavors:  PMOS and NMOS}
 MOSFETs are also known by other names, namely the \textbf{IGFET}\index{IGFET}, or \textbf{I}nsulated \textbf{G}ate \textbf{F}ield-\textbf{E}ffect \textbf{T}ransistors.  This name is not really in common use, and MOSFET is much more common.  FETs are a general class of devices that include other devices such as \textbf{J}unction-\textbf{FET}s\index{JFET} (J-FET or \textbf{JFET}) and \textbf{M}etal-\textbf{S}emiconductor-\textbf{FET}s, or \textbf{MESFET}\index{MESFET}s.  We will focus on MOSFETs in this book, although the behavior of MOSFETs, JFETs, and MESFETs are all very similar from the high level perspective of design.  In fact, we will show in the next chapter that by employing small-signal models, all devices essentially look the same.
 
-For a given technology, it may be possible to fabricate two complementary devices, shown in \emph{Fig.~\ref{fig:pmos_xsect}}.  For example, in this chapter we'll see that we can fabricate a MOSFET on a $P$-type body (often the substrate), resulting in an NMOS or \textbf{NFET device}\index{MOSFET!N-type}, or on an $N$-type body, resulting in a PMOS or \textbf{PFET device}\index{MOSFET!P-type}.  These devices are complementary in the sense that the currents and voltages are essentially all the negative of each other.  We already saw this with a MOS-C\index{MOS-C!N-type}, where for an $N$-type device a sufficiently positive gate voltage results in inversion, whereas for a $P$-type MOS-C\index{MOS-C!P-type}, a negative gate-to-body voltage is needed. The same is true of MOSFET devices.
+For a given technology, it may be possible to fabricate two complementary devices, shown in \emph{Fig.~\ref{fig:pmos_xsect}}.  For example, in this chapter we'll see that we can fabricate a MOSFET on a $P$-type body (often the substrate), resulting in an NMOS or \textbf{NFET device}\index{MOSFET!types!$N$-type}, or on an $N$-type body, resulting in a PMOS or \textbf{PFET device}\index{MOSFET!types!$P$-type}.  These devices are complementary in the sense that the currents and voltages are essentially all the negative of each other.  We already saw this with a MOS-C\index{MOS capacitor!types!$N$-type}, where for an $N$-type device a sufficiently positive gate voltage results in inversion, whereas for a $P$-type MOS-C\index{MOS capacitor!types!$P$-type}, a negative gate-to-body voltage is needed. The same is true of MOSFET devices.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -129,7 +129,7 @@ For a given technology, it may be possible to fabricate two complementary device
 %             SUBSECTION 8.2.4             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{CMOS Technology}
-Finally, we should discuss the term \textbf{"CMOS"}\index{MOSFET!C-type}, which stands for "\textbf{C}omplementary \textbf{MOS}", or a technology capability to fabricate both NMOS and PMOS devices.  CMOS technology is now universal for silicon-based technology.  As shown in \emph{Fig.~\ref{fig:cmos_xsect}}, both devices are fabricated on the same substrate by creating wells (oppositely doped to the body) to house devices.  With a $P$-type substrate shown, the NMOS devices can be fabricated directly in the body, and the PMOS devices are fabricated in so-called $N$-well regions.  These \textbf{well regions}\index{MOSFET!well regions} are counter-doped to make them $N$-type.  Then $P$-type source/drain junctions are added to make the PMOS device.  The wells need to be biased such that at all times the well-to-body diode is reverse biased\index{PN-junction!reverse bias}.  The well bias is established through the body connection.
+Finally, we should discuss the term \textbf{"CMOS"}\index{MOSFET!types!C-type}, which stands for "\textbf{C}omplementary \textbf{MOS}", or a technology capability to fabricate both NMOS and PMOS devices.  CMOS technology is now universal for silicon-based technology.  As shown in \emph{Fig.~\ref{fig:cmos_xsect}}, both devices are fabricated on the same substrate by creating wells (oppositely doped to the body) to house devices.  With a $P$-type substrate shown, the NMOS devices can be fabricated directly in the body, and the PMOS devices are fabricated in so-called $N$-well regions.  These \textbf{well regions}\index{MOSFET!well regions} are counter-doped to make them $N$-type.  Then $P$-type source/drain junctions are added to make the PMOS device.  The wells need to be biased such that at all times the well-to-body diode is reverse biased\index{PN-junction!reverse-bias}.  The well bias is established through the body connection.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 8.2.5             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -160,12 +160,12 @@ We begin by looking at the MOSFET as a MOS-C, and note the importance of the gat
 \label{fig:mos_cutoff}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-As shown in \emph{Fig.~\ref{fig:mos_cutoff}}, we can look at the MOSFET as a MOS capacitor with two $n^+$ diffusion regions on each side. When $V_{GB} < V_T$, the device is either in accumulation\index{MOS-C!accumulation} or in depletion\index{MOS-C!depeletion}.  Because there are no (or very few) inversion charges at the surface, there is no path for current to flow from the source to the drain.  No matter how large we make $V_{DS}$ (up to breakdown limits), current does not flow through two back-to-back diodes that are of opposite polarity.
+As shown in \emph{Fig.~\ref{fig:mos_cutoff}}, we can look at the MOSFET as a MOS capacitor with two $n^+$ diffusion regions on each side. When $V_{GB} < V_T$, the device is either in accumulation\index{MOS capacitor!regions of operation!accumulation} or in depletion\index{MOS capacitor!regions of operation!depletion}.  Because there are no (or very few) inversion charges at the surface, there is no path for current to flow from the source to the drain.  No matter how large we make $V_{DS}$ (up to breakdown limits), current does not flow through two back-to-back diodes that are of opposite polarity.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 8.3.2             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Inversion\texorpdfstring{$,\;V_{GS}>V_T\text{ and }V_{DS}>0$}{}}
-On the other hand, if the gate is biased above threshold, the surface is inverted\index{MOS-C!inversion}, or for an NMOS there is an island filled with electrons that extends from the source to the drain.  This inverted region forms a channel of inversion charges (in this case electrons) that connects the drain and source, as shown in \emph{Fig.~\ref{fig:mos_triode}}.  The inversion charges originate from $n^+$ diffusion regions, so this region can form quickly, unlike a MOS-C where the inversion layer was formed thermally.  If a drain-source voltage ($V_{DS}$) is applied, electrons will flow from source to drain.  \textit{Note: Don't forget that electrons flow S $\rightarrow$ D, whereas current flows from D $\rightarrow$ S}.
+On the other hand, if the gate is biased above threshold, the surface is inverted\index{MOS capacitor!regions of operation!inversion}, or for an NMOS there is an island filled with electrons that extends from the source to the drain.  This inverted region forms a channel of inversion charges (in this case electrons) that connects the drain and source, as shown in \emph{Fig.~\ref{fig:mos_triode}}.  The inversion charges originate from $n^+$ diffusion regions, so this region can form quickly, unlike a MOS-C where the inversion layer was formed thermally.  If a drain-source voltage ($V_{DS}$) is applied, electrons will flow from source to drain.  \textit{Note: Don't forget that electrons flow S $\rightarrow$ D, whereas current flows from D $\rightarrow$ S}.
 \newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
@@ -196,7 +196,7 @@ On the other hand, if the gate is biased above threshold, the surface is inverte
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 As shown in \emph{Fig.~\ref{fig:idvgs_sweep}(a)}, suppose we connect an NMOS device drain and gate to a positive voltage $V_{DS} > 0\,V$, and sweep the source connected to the gate.  In this experiment, we monitor the drain-to-source current $I_{DS}$.  As shown in the resulting \textbf{drain current-gate voltage curve}\index{MOSFET!$I_D-V_G$ curve}\big(\emph{Fig.~\ref{fig:idvgs_sweep}(b)}\big), the current is initially zero, and the transistor only conducts when the gate-to-source voltage exceeds a threshold.  The body of the transistor and source are both tied to ground, so in this case the gate-to-source voltage is also the gate-to-body voltage.  We know that when we cross the $V_T$(threshold voltage)\index{MOSFET!threshold voltage} of the device, an inversion layer forms and this must be responsible for the current flow.
 
-We find that the current increases rapidly as we cross the threshold, and it reaches a point where it simply increases linearly with applied gate-to-source voltage.  Also, if we zoom in to the region near the threshold, we will observe very small conduction, in a region called \textbf{"sub-threshold region"}\index{MOSFET!sub-threshold region}, where minute current flow is possible.  We will explain this current flow when we study bipolar junction transistors (BJTs) in \emph{Ch.~\ref{ch:ch11_bjt}}. For now, in this chapter we will ignore this region.
+We find that the current increases rapidly as we cross the threshold, and it reaches a point where it simply increases linearly with applied gate-to-source voltage.  Also, if we zoom in to the region near the threshold, we will observe very small conduction, in a region called \textbf{"sub-threshold region"}\index{MOSFET!regions of operation!sub-threshold}, where minute current flow is possible.  We will explain this current flow when we study bipolar junction transistors (BJTs) in \emph{Ch.~\ref{ch:ch11_bjt}}. For now, in this chapter we will ignore this region.
 \newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
@@ -217,7 +217,7 @@ We find that the current increases rapidly as we cross the threshold, and it rea
 \subsection{Observed Behavior: \texorpdfstring{$I_{DS} - V_{DS}$}{Drain Current vs. Drain Voltage}}
 Now suppose that we fix the gate voltage to constant values and sweep the drain-to-source voltage, as shown in \emph{Fig.~\ref{fig:ids_vds}(a)}.  What we observe is a \textbf{family of curves}\index{MOSFET!$I_D-V_D$ family of curves}, with each curve corresponding to a particular value of the gate voltage.  Just as before, if the gate-to-source voltage is below the threshold, then no current flows and we observe the flat line at $0\,A$. For a gate-to-source voltage above threshold, we observe an $I$-$V$ behavior of a non-linear resistor.  For low values of drain-to-source voltage, the device is like a normal resistor. As the voltage is increased, the resistance behaves non-linearly and the rate of increase of current slows as the curve bends over.
 
-Eventually the current stops growing and remains essentially constant, acting like a current source.  The dashed line separates the current into two regions, called the \textbf{"Triode Region"}\index{MOSFET!triode region} and the \textbf{"Saturation Region"}\index{MOSFET!saturation region}.  In the saturation region, the current is saturated at a fixed value and increases very little for variations in the drain-source voltage.  We draw schematic symbols in each region to emphasize the behavior of the device, first as a conductor, then a non-linear conductor, and finally as a current source.  Now it should be clear why a transistor can act as both a source of transconductance or a resistor.
+Eventually the current stops growing and remains essentially constant, acting like a current source.  The dashed line separates the current into two regions, called the \textbf{"Triode Region"}\index{MOSFET!regions of operation!triode} and the \textbf{"Saturation Region"}\index{MOSFET!regions of operation!saturation}.  In the saturation region, the current is saturated at a fixed value and increases very little for variations in the drain-source voltage.  We draw schematic symbols in each region to emphasize the behavior of the device, first as a conductor, then a non-linear conductor, and finally as a current source.  Now it should be clear why a transistor can act as both a source of transconductance or a resistor.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                   SECTION 8.4                                        %
@@ -262,7 +262,7 @@ Notice that this electric field is different from the MOS-C vertical electric fi
         \mathcal{E}_y = -\frac{V_{DS}}{L}
         \label{eq:lateral_field}
     \end{equation}\textbf{}
-In \emph{Eq.~\ref{eq:lateral_field}} $L$ is the channel length, because the voltage is dropped uniformly across the channel.  Again, this assumption is only valid if the channel is \textit{uniform}.  Making this last substitution completes the derivation of current versus voltage for the MOSFET in the \textbf{linear regime}\index{MOSFET!linear regime}:
+In \emph{Eq.~\ref{eq:lateral_field}} $L$ is the channel length, because the voltage is dropped uniformly across the channel.  Again, this assumption is only valid if the channel is \textit{uniform}.  Making this last substitution completes the derivation of current versus voltage for the MOSFET in the \textbf{linear regime}\index{MOSFET!regions of operation!linear}:
     \begin{align}
         \Aboxed{ I_{DS} &= \frac{W}{L}\mu_n\,C_{ox}\,(V_{GS} - V_{T_n})V_{DS} } &\textit{MOSFET drain current, linear regime}
     \end{align}
@@ -442,7 +442,7 @@ The observed experimental behavior of devices beyond a drain voltage of $V_{DS} 
 %             SUBSECTION 8.5.1             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{The Saturation Region}
-From our equations, we have that when $V_{DS} > V_{GS} - V_T$, there is no inversion charge at the drain, so what happens? Intuitively, it seems like the channel from the source to the drain is interrupted, or pinched off, so you might think this would lead to zero current again.  This intuition is so strong that this region is sometimes called the \textbf{"pinch-off"}\index{MOSFET!pinch-off region} region, but the current does not abruptly go to zero as intuition might lead you to believe.  
+From our equations, we have that when $V_{DS} > V_{GS} - V_T$, there is no inversion charge at the drain, so what happens? Intuitively, it seems like the channel from the source to the drain is interrupted, or pinched off, so you might think this would lead to zero current again.  This intuition is so strong that this region is sometimes called the \textbf{"pinch-off"}\index{MOSFET!regions of operation!pinch-off} region, but the current does not abruptly go to zero as intuition might lead you to believe.  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 8.5.2             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -547,7 +547,7 @@ The name "Early" is related to the Early Effect, named after its discoverer Jame
 \subsection{Summary: Regions of Operation}
 Now we will summarize the various conditions that dictate which region of operation a MOSFET is operating in, and the currents associated with them.
 \subsubsection{\textbf{Cut-off region:} $V_{GS} < V_T$}
-In cut-off mode the transistor is off, and there is effectively no current that flows\footnote{This is an approximation we will make in this class.  In later courses you will learn about sub-threshold\index{MOSFET!sub-threshold} conduction and leakage in the device.}:
+In cut-off mode the transistor is off, and there is effectively no current that flows\footnote{This is an approximation we will make in this class.  In later courses you will learn about sub-threshold\index{MOSFET!regions of operation!sub-threshold} conduction and leakage in the device.}:
     \begin{equation*}
         \boxed{ I_{DS,off} = 0\mathrm{A} }
     \end{equation*}
@@ -606,11 +606,11 @@ Since we inverted all the terms, we take an absolute value of the threshold volt
 \label{fig:ids_pmos_negative}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newpage
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                                   SECTION 8.7                                        %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Chapter Summary}
-In this chapter we ...
+% \newpage
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %                                   SECTION 8.7                                        %
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \section{Chapter Summary}
+% In this chapter we ...

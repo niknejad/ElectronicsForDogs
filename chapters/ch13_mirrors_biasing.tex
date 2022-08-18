@@ -56,7 +56,7 @@ In each amplifier shown in \emph{Fig.~\ref{fig:0highZload.pdf}}, to maximize gai
 %             SUBSECTION 13.2.2            %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Headroom Limitations}
-\index{headroom}
+\index{Amplifier!headroom}
 To keep the transistor in saturation requires $V_{DS} > V_{OD}$ (the over-drive voltage, $V_{GS} - V_T$).  For a fixed bias current, if we increase $R_L$, eventually we squash the transistor.  This means that it goes from the saturation region to the triode region, and the gain of the circuit is compromised.  This is illustrated in \emph{Fig.~\ref{fig:1cs_headroom.pdf}}.  One solution is to use a larger $V_{DD}$, but in practice this solution is hard to implement because each generation of IC technology has a voltage supply limit.  For example, today's nanoscale transistors can only tolerate $\sim 1\,V$ of voltage supply due to the thin oxides in the devices.  Even "thick oxide" devices, available for I/O\footnote{Iinput/output devices are used for driving external loads and receiving inputs from the outside of the chip.}, typically work at a maximum voltage of 2.5V or 3.3V (these voltage levels are standardized).
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
@@ -120,7 +120,7 @@ A good strategy is to observe that while two arbitrary transistors are not well 
 %             SUBSECTION 13.3.1            %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Diode Connected Device}
-The \textbf{diode connected MOS transistor}\index{MOSFET!diode connected}, shown in \emph{Fig.~\ref{fig:3mos_diode.pdf}}, is a two-terminal device.  It is never in the triode region, because of the gate-drain connection.  Since $V_{DS} = V_{GS}$, as long as $V_{GS}$ is over the threshold voltage, then the drain-source voltage is a threshold voltage away from saturation, since $V_{DS} = V_{GS} = V_{D,sat} + V_T$.  As we sweep $V_{GS}$ and observe the drain-source current, the transistor goes from "off" state (below threshold) to the "on" state.  It is called a diode because of the rectifying action of the the $I$-$V$ relation. Current can pass in one direction, but not the other, similar to a $PN$-junction diode.  The curve is not exponential, though, since the MOS device $I$-$V$ relation is quadratic.  If we pass a known current into a diode, the $V_{GS}$ value will be well-defined and equal to the value needed to generate the current. It is like an inverse function, that takes a current and generates the correct $V_{GS}$:
+The \textbf{diode connected MOS transistor}\index{MOSFET!types!diode connected}, shown in \emph{Fig.~\ref{fig:3mos_diode.pdf}}, is a two-terminal device.  It is never in the triode region, because of the gate-drain connection.  Since $V_{DS} = V_{GS}$, as long as $V_{GS}$ is over the threshold voltage, then the drain-source voltage is a threshold voltage away from saturation, since $V_{DS} = V_{GS} = V_{D,sat} + V_T$.  As we sweep $V_{GS}$ and observe the drain-source current, the transistor goes from "off" state (below threshold) to the "on" state.  It is called a diode because of the rectifying action of the the $I$-$V$ relation. Current can pass in one direction, but not the other, similar to a $PN$-junction diode.  The curve is not exponential, though, since the MOS device $I$-$V$ relation is quadratic.  If we pass a known current into a diode, the $V_{GS}$ value will be well-defined and equal to the value needed to generate the current. It is like an inverse function, that takes a current and generates the correct $V_{GS}$:
     \begin{equation*}
         V_{GS} = V_T + \sqrt{\frac{2\,I_{DS}}{\frac{W}{L} \mu C_{ox}}} = V_T + V_{OD}
     \end{equation*}
@@ -130,7 +130,7 @@ If the current injected into the device is very low, $V_{OD}$ will be low and th
 %             SUBSECTION 13.3.2            %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Diode Connected -- Small-Signal Model}
-We can derive the small-signal model\index{Small-signal model} by shorting out the gate-drain capacitor in the hybrid-$\pi$ model, shown in \emph{Fig.~\ref{fig:4mos_diode_ss.pdf}}.  Note that a $g_m$ generator with its controlling terminals connected to the $g_m$ is more simply a conductor.  From the perspective of the driving terminal, the MOS diode is just a conductance.
+We can derive the small-signal model\index{Small-signal!model} by shorting out the gate-drain capacitor in the hybrid-$\pi$ model, shown in \emph{Fig.~\ref{fig:4mos_diode_ss.pdf}}.  Note that a $g_m$ generator with its controlling terminals connected to the $g_m$ is more simply a conductor.  From the perspective of the driving terminal, the MOS diode is just a conductance.
 \vspace{1cm}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
@@ -252,7 +252,7 @@ As shown in \emph{Fig.~\ref{fig:7mirror_current_source.pdf}}, a current mirror a
 %             SUBSECTION 13.3.6            %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Small-Signal Resistance of Current Source}
-The output impedance seen by the load can be calculated using the small-signal model\index{Small-signal model} shown in \emph{Fig.~\ref{fig:mirror_small_signal}}.  Use a test generator $v_t$, and find the current draw from the source.  Note that $M1$ is not driven by a source, because $I_{ref}$ is DC, which means that it is an open circuit in the small-signal model.  Thus, without a source, $M1$ is effectively driven with zero $v_{gs}$ and has no output, pulling the $v_{gs}$ of both transistors to ground.  Then $M2$'s dependent $g_m$ is zero, and the only current draw is from $r_{o,2}$.
+The output impedance seen by the load can be calculated using the small-signal model\index{Small-signal!model} shown in \emph{Fig.~\ref{fig:mirror_small_signal}}.  Use a test generator $v_t$, and find the current draw from the source.  Note that $M1$ is not driven by a source, because $I_{ref}$ is DC, which means that it is an open circuit in the small-signal model.  Thus, without a source, $M1$ is effectively driven with zero $v_{gs}$ and has no output, pulling the $v_{gs}$ of both transistors to ground.  Then $M2$'s dependent $g_m$ is zero, and the only current draw is from $r_{o,2}$.
 \newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
@@ -323,7 +323,7 @@ To keep $V_S$ the same, if $I_{OUT}$ is $N$ times larger, then $R_S$ should be $
 %             SUBSECTION 13.4.3            %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Cascode (or Stacked) Current Source}
-The stacked current mirror, commonly known as the \textbf{cascode current mirror}\index{Cascode current mirror}, is shown in \emph{Fig.~\ref{fig:mirror_cascode}}.  Notice that $V_{GS_2}$ is held constant like a normal mirror, but now $V_{DS_2}$ is also held  approximately constant by $M3/M4$.  This makes the output current variation much smaller than a single transistor. 
+The stacked current mirror, commonly known as the \textbf{cascode current mirror}\index{Amplifier!types!cascode current mirror}, is shown in \emph{Fig.~\ref{fig:mirror_cascode}}.  Notice that $V_{GS_2}$ is held constant like a normal mirror, but now $V_{DS_2}$ is also held  approximately constant by $M3/M4$.  This makes the output current variation much smaller than a single transistor. 
 
 We can easily compute the boost in output impedance by noting that $R_S = r_{o_1}$ as far as transistor M4 is concerned: 
     \begin{equation}
@@ -366,7 +366,7 @@ Now the minimum $V_{DS_4} = V_{OD}$ implies that the cascode mirror has a \textb
         \Aboxed{V_{min} &= V_T + 2\,V_{OD}} &\textit{Cascode minimum operating voltage}
         \label{eq:cascode_min_voltage}
     \end{align}
-This can be quite a large voltage penalty compared to a simple mirror, but an easy solution is to bias the gate of $M4$ with $V_T + 2 V_{OD}$ using a separate transistor, shown in \emph{Fig.~\ref{fig:cascode_hiswing}}.  The transistor overdrive voltage is twice as large by scaling the device down by $4\times$.  In a more advanced analog integrated circuits course you will learn about other ways to realize the \textbf{"high swing" cascode}\index{Amplifier!High swing cascode}.
+This can be quite a large voltage penalty compared to a simple mirror, but an easy solution is to bias the gate of $M4$ with $V_T + 2 V_{OD}$ using a separate transistor, shown in \emph{Fig.~\ref{fig:cascode_hiswing}}.  The transistor overdrive voltage is twice as large by scaling the device down by $4\times$.  In a more advanced analog integrated circuits course you will learn about other ways to realize the \textbf{"high swing" cascode}\index{Amplifier!high swing cascode}.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -424,7 +424,7 @@ One nice observation is that a current mirror can have multiple outputs.  Think 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Example:  Source-Follower with Real Current Source}
-In this example, we will \textbf{bias}\index{Biasing!Common drain amplifier} a source-follower (common drain amplifier) using a current mirror, as shown in \emph{Fig.~\ref{fig:cd_amp_dc}}.  The gate bias voltage $V_{bias,Q}$ needs to be large enough so that the resulting $V_{DS}$ on the drain of the mirror does not "squash" the transistor into the triode region.  Other than that there is a lot of flexibility, making this circuit very useful.  In multi-stage amplifiers, the DC bias of the previous stage driving this circuit just needs to be large enough, but the exact value does not matter.
+In this example, we will \textbf{bias}\index{Amplifier!biasing!common drain using a current mirror} a source-follower (common drain amplifier) using a current mirror, as shown in \emph{Fig.~\ref{fig:cd_amp_dc}}.  The gate bias voltage $V_{bias,Q}$ needs to be large enough so that the resulting $V_{DS}$ on the drain of the mirror does not "squash" the transistor into the triode region.  Other than that there is a lot of flexibility, making this circuit very useful.  In multi-stage amplifiers, the DC bias of the previous stage driving this circuit just needs to be large enough, but the exact value does not matter.
 \vspace{0.5cm}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
@@ -566,11 +566,11 @@ Notice that the current $I_{D_4}$ does not depend on the supply voltage or the d
     \end{equation}
 For this reason, this circuit is known as a \textbf{constant transconductance reference}\index{Amplifier!constant transconductance reference}, because all transistors biased with this current will have a $g_m$ that is constant and independent of process and temperature.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newpage
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                                 SECTION 13.8                                         %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Chapter Summary}
-In this chapter we ...
+% \newpage
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %                                 SECTION 13.8                                         %
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \section{Chapter Summary}
+% In this chapter we ...

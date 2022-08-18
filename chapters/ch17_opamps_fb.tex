@@ -11,7 +11,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Chapter Preview}
-In this chapter we will explore operational amplifiers\index{Op-amps!ideal} (see \emph{Fig.~\ref{fig:ch17_intro}}), usually referred to as op-amps, and feedback.  In particular, we will see how feedback impacts the frequency response of operational amplifiers.  We assume some familiarity with ideal op-amps, and the "Golden Rules" for analyzing op-amp circuits, but our goal is to learn to analyze actual op-amps, not ideal ones.
+In this chapter we will explore operational amplifiers\index{Op-amp!ideal} (see \emph{Fig.~\ref{fig:ch17_intro}}), usually referred to as op-amps, and feedback.  In particular, we will see how feedback impacts the frequency response of operational amplifiers.  We assume some familiarity with ideal op-amps, and the "Golden Rules" for analyzing op-amp circuits, but our goal is to learn to analyze actual op-amps, not ideal ones.
 
 We will set the context of the chapter by reviewing feedback theory in general, and motivate why feedback is important and useful.  To analyze op-amps, we need an equivalent circuit model, something more sophisticated than the "Golden Rules" (infinite gain, infinite input impedance), but not too complicated.   We will be inspired by a physical model based on the real inner workings of an op-amp, and armed with this model we will discuss important concepts such as the gain-bandwidth product, the unity gain frequency, and the gain-bandwidth trade offs.
 
@@ -115,7 +115,7 @@ For very large gain $G$, such that $Gf \gg 1$, we have:
         &\textit{Feedback factor}
         \label{eq:feedback_factor}
     \end{align}
-This end result is very interesting because it says the transfer function does not depend on $G$, but only on the feedback!  Imagine if $G$ is an unknown or ill-defined function.  For example, if we design an amplifier, the gain will vary due to process variations, temperature, voltage variations (supply), or through aging.  All of these effects make it very difficult to build a reliable and precise amplifier without feedback.  With feedback, we can make a precise gain if we can make a well defined \textbf{feedback factor}\index{Feedback!Feedback factor} $f$.
+This end result is very interesting because it says the transfer function does not depend on $G$, but only on the feedback!  Imagine if $G$ is an unknown or ill-defined function.  For example, if we design an amplifier, the gain will vary due to process variations, temperature, voltage variations (supply), or through aging.  All of these effects make it very difficult to build a reliable and precise amplifier without feedback.  With feedback, we can make a precise gain if we can make a well defined \textbf{feedback factor}\index{Feedback!feedback factor} $f$.
 \newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
@@ -232,7 +232,7 @@ If $T \gg 1$, then the noise is rejected by $1/(1+T)$. Any unwanted signal, incl
 \subsection{Positive Feedback}
 Up to now we have been considering a \textbf{negative feedback}\index{Feedback!negative} system, whereby the output is subtracted from the input. If we were to add the output to the input, the system would be a \textbf{positive feedback}\index{Feedback!positive} system, as shown in \emph{Fig.~\ref{fig:fbblock_gain_noise_pos}c}.
 
-Positive feedback is also useful and has applications, but they are very different.  For example, positive feedback systems tend to “rail out”, in other words they can be regenerative.  This is great for building \textbf{hysteresis}\index{Hysteresis} or a memory element, and indeed a basic SRAM cell is a positive feedback loop involving two CMOS inverters.  Positive feedback systems can still be designed to provide gain, but the loop gain should be less than unity, $T < 1$.  The reason for this are clear if we imagine that the current output is the input gained up, plus an infinite number of copies that go around the loop and add to the output.  This is exactly a \textbf{geometric series}\index{Series!geometric}\footnote{See appendix ~\ref{sec:geometric} for a review of the geometric series.}, and it converges as long as $T< 1$, and it converges to a value of
+Positive feedback is also useful and has applications, but they are very different.  For example, positive feedback systems tend to “rail out”, in other words they can be regenerative.  This is great for building \textbf{hysteresis}\index{Hysteresis} or a memory element, and indeed a basic SRAM cell is a positive feedback loop involving two CMOS inverters.  Positive feedback systems can still be designed to provide gain, but the loop gain should be less than unity, $T < 1$.  The reason for this are clear if we imagine that the current output is the input gained up, plus an infinite number of copies that go around the loop and add to the output.  This is exactly a \textbf{geometric series}\index{Geometric series}\footnote{See appendix ~\ref{sec:geometric} for a review of the geometric series.}, and it converges as long as $T< 1$, and it converges to a value of
     \begin{equation}
         G_{closed} = G \cdot \sum_{i=0}^\infty T^i = \frac{G}{1 - T}
     \end{equation}
@@ -268,7 +268,7 @@ Even though noise can be treated as a linear phenomena, for convenience we will 
 %             SUBSECTION 17.4.2            %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{World's Simplest Op-Amp Model}
-The world's simplest op-amp model is shown in \emph{Fig.~\ref{fig:opamp_model}}. This is the "VCVS'' model, or the \textbf{Voltage-Controlled Voltage Source}\index{Voltage source!Voltage-controlled} model.  While it captures finite gain and output resistance, it fails to capture frequency dependence.
+The world's simplest op-amp model is shown in \emph{Fig.~\ref{fig:opamp_model}}. This is the "VCVS'' model, or the \textbf{voltage-controlled voltage source}\index{Voltage-controlled voltage source} model.  While it captures finite gain and output resistance, it fails to capture frequency dependence.
 \vspace{0.5cm}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
@@ -316,7 +316,7 @@ The model shown in \emph{Fig.~\ref{fig:opamp_model_pole}}, uses a $G_m$ cell, or
 %             SUBSECTION 17.4.5            %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Operational Transconductance Amplifier (OTA)}
-Notice that if you "slice off" the triangular head of an op-amp, the result is the transconductance stage (see dashed lines in \emph{Fig.~\ref{fig:opamp_model_pole}}), and has a special symbol shown in \emph{Fig.~\ref{fig:OTA}}a.  It is known as an \textbf{Operational Transconductance Amplifier}\index{Amplifier!Operational transconductance}, also known as an "OTA".  An OTA is essentially a differential transistor pair with a high output impedance node, for example using a mirror as shown in \emph{Fig.~\ref{fig:OTA}}b.
+Notice that if you "slice off" the triangular head of an op-amp, the result is the transconductance stage (see dashed lines in \emph{Fig.~\ref{fig:opamp_model_pole}}), and has a special symbol shown in \emph{Fig.~\ref{fig:OTA}}a.  It is known as an \textbf{operational transconductance amplifier}\index{Amplifier!operational transconductance}, also known as an "OTA".  An OTA is essentially a differential transistor pair with a high output impedance node, for example using a mirror as shown in \emph{Fig.~\ref{fig:OTA}}b.
 
 Since an OTA is essentially a $G_m$ amplifier, it converts a differential voltage into an output current.  So if we want to drive a load resistor, we need an output stage (buffer).  As such, many real op-amps are internally constructed from an OTA + buffer as shown.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -587,7 +587,7 @@ Consider the equivalent circuit for an amplifier with unity gain feedback, shown
 %             SUBSECTION 17.5.9            %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Turning a Current Source into a Resistor}
-This problem should be somewhat familiar.  Recall that a \textit{MOS diode}\index{MOSFET!Diode connected} has an output impedance of $1/g_m$, not $r_o$, because of the drain-gate connection.  As shown in \emph{Fig.~\ref{fig:tia_zout}}, when a \textit{voltage-controlled current source}\index{Current source!voltage-controlled} has an output impedance that depends on the controlling voltage, it is just a resistor of value $1/G_m$.  Likewise, if we calculate $Z_{out}$ at the internal node of the op-amp, as shown in \emph{Fig.~\ref{fig:opamp_model_fb_unity_label}}, the impedance is much lower than $R_x$.  Here we see the action of the feedback is to lower the impedance seen by the capacitor ($C_x$) by the loop gain.  This has a result of expanding the bandwidth by the same factor.
+This problem should be somewhat familiar.  Recall that a \textit{MOS diode}\index{MOSFET!types!diode connected} has an output impedance of $1/g_m$, not $r_o$, because of the drain-gate connection.  As shown in \emph{Fig.~\ref{fig:tia_zout}}, when a \textit{voltage-controlled current source}\index{Voltage-controlled current source} has an output impedance that depends on the controlling voltage, it is just a resistor of value $1/G_m$.  Likewise, if we calculate $Z_{out}$ at the internal node of the op-amp, as shown in \emph{Fig.~\ref{fig:opamp_model_fb_unity_label}}, the impedance is much lower than $R_x$.  Here we see the action of the feedback is to lower the impedance seen by the capacitor ($C_x$) by the loop gain.  This has a result of expanding the bandwidth by the same factor.
     \begin{equation}
         Z_{out} = R_x || \frac{1}{G_m} \approx \frac{1}{G_m}
     \end{equation}
@@ -648,7 +648,7 @@ As the frequency increases, the phase of the output signal lags the input, asymp
 %             SUBSECTION 17.6.2            %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Non-Dominant Poles}
-As we have seen, poles in the system tend to make an amplifier less stable. A single pole cannot do harm, because it has a maximum phase shift of $90^\circ$.  However, a second pole will bring our system to the edge of stability, as shown in \emph{Figs.~\ref{fig:mag2pole} and \ref{fig:phase2pole}}.  For this reason, \textbf{non-dominant poles}\index{Poles!non-dominant} should be at a much higher frequency than the unity-gain frequency, so that when the phase shift reaches $180^\circ$, the loop gain is less than unity.
+As we have seen, poles in the system tend to make an amplifier less stable. A single pole cannot do harm, because it has a maximum phase shift of $90^\circ$.  However, a second pole will bring our system to the edge of stability, as shown in \emph{Figs.~\ref{fig:mag2pole} and \ref{fig:phase2pole}}.  For this reason, \textbf{non-dominant poles}\index{Transfer function!poles!non-dominant} should be at a much higher frequency than the unity-gain frequency, so that when the phase shift reaches $180^\circ$, the loop gain is less than unity.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 17.6.3            %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -701,11 +701,11 @@ Consider the frequency $\omega_x$ that satisfies $ T(j\omega_x) = G(j{\omega _x}
 % In practice if the gain varies over process / temperature / voltage, then the circuit can go stable and oscillate
 % Positive feedback also has a narrow-banding effect (opposite of negative feedback)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newpage
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                                 SECTION 17.7                                         %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Chapter Summary}
-In this chapter we ...
+% \newpage
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %                                 SECTION 17.7                                         %
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \section{Chapter Summary}
+% In this chapter we ...

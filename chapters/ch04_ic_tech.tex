@@ -37,7 +37,7 @@ In this short chapter we discuss integrated circuit device fabrication, in parti
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{IC Fabrication: Si Substrate}
-For most semiconductors, a pure \textbf{ingot}\index{Ingot} of a silicon ($Si$) crystal cut into thin wafers is the starting material for fabrication.  The $Si$ wafer is extremely pure ($\sim$1 part in a billion impurities).  As we learned in the last chapter, this level of purity is necessary in order selectively dope the semiconductor to alter its properties.  The Si crystal structure has a density of about $\num{5e22}$, and we typically dope regions of the substrate with doping levels ranging from  $10^{14}$ – $10^{18}$.  We want the unintentional dopants (impurities) to be about one to two orders of magnitude less dense $\sim$ $10^{12}$ in order to realize a high quality device.  
+For most semiconductors, a pure \textit{ingot} of a silicon ($Si$) crystal cut into thin wafers is the starting material for fabrication.  The $Si$ wafer is extremely pure ($\sim$1 part in a billion impurities).  As we learned in the last chapter, this level of purity is necessary in order selectively dope the semiconductor to alter its properties.  The Si crystal structure has a density of about $\num{5e22}$, and we typically dope regions of the substrate with doping levels ranging from  $10^{14}$ – $10^{18}$.  We want the unintentional dopants (impurities) to be about one to two orders of magnitude less dense $\sim$ $10^{12}$ in order to realize a high quality device.  
 
 $Si$ wafers are polished to about $700\;\mu m$ thick with a mirror finish.  The $Si$ forms the substrate for the IC, and all the structures are built on the thin films on the top layer of the substrate.  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -70,7 +70,7 @@ The steps involved in ion implantation are shown in \emph{Fig.~\ref{fig:mod2-2_I
 \label{fig:mod2-2_ICtech_sld_5}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Using ion implantation and diffusion, we can create a so-called \textbf{"diffusion resistor"}\index{Diffusion resistor}, shown in \emph{Fig.~\ref{fig:mod2-2_ICtech_sld_5}}.  The thickness and dopant concentration of resistor is set by process steps, whereas the shape of the resistor is set by design (layout).   Metal contacts are connected to ends of the resistor.  You may be wondering why current would flow through a thin diffusion layer rather than through the silicon substrate, which is comparatively much larger (wider and thicker).  The reason is that the resistor is DC isolated from the substrate, and only high frequency AC currents can flow from the diffusion region into the substrate.  In other words, there is a distributed capacitor from the resistor to the substrate, which is usually connected to ground potential.  This happens because the diffusion region is \emph{N}-type and the substrate is \emph{P}-type.  This \textbf{$PN$-junction}\index{PN-junction} should be \textbf{reverse biased}\index{PN-junction!Reverse biased} at all times (meaning the diffusion resistor should never be biased at a negative potential with respect to the substrate).  We will learn the details of \emph{PN}-junctions in the next chapter.
+Using ion implantation and diffusion, we can create a so-called \textbf{"diffusion resistor"}\index{Diffusion resistor}, shown in \emph{Fig.~\ref{fig:mod2-2_ICtech_sld_5}}.  The thickness and dopant concentration of resistor is set by process steps, whereas the shape of the resistor is set by design (layout).   Metal contacts are connected to ends of the resistor.  You may be wondering why current would flow through a thin diffusion layer rather than through the silicon substrate, which is comparatively much larger (wider and thicker).  The reason is that the resistor is DC isolated from the substrate, and only high frequency AC currents can flow from the diffusion region into the substrate.  In other words, there is a distributed capacitor from the resistor to the substrate, which is usually connected to ground potential.  This happens because the diffusion region is \emph{N}-type and the substrate is \emph{P}-type.  This \textbf{$PN$-junction}\index{PN-junction} should be \textbf{reverse biased}\index{PN-junction!reverse-bias} at all times (meaning the diffusion resistor should never be biased at a negative potential with respect to the substrate).  We will learn the details of \emph{PN}-junctions in the next chapter.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 4.3.2             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -109,7 +109,7 @@ The voltage $V$ dropped across the resistor can be written in terms of electric 
     \begin{equation*} 
         I =  \left( \sigma\frac{V}{L} \right) t\,W = \left( \frac{\sigma t\,W} {L} \right)  V= \frac{1}{R} V
     \end{equation*}
-This is nothing but Ohm's Law\index{Ohm's Law}, with the material resistance given by:
+This is nothing but Ohm's Law\index{Ohm's law}, with the material resistance given by:
     \begin{align} 
         R &= \frac{L}{W}\,\frac{1}{{\sigma \,t}} &\textit{Material resistance} 
     \end{align}
@@ -185,7 +185,7 @@ In words, if the electric field changes magnitude, then there has to be some cha
 \label{fig:mod2-2_ICtech_sld_11}
 \end{figure}
 
-\textbf{Gauss’ Law}\index{Gauss' Law} equivalently says that if there is a \textit{net} electric field leaving a region, there has to be positive charge in that region (see \emph{Fig.~\ref{fig:mod2-2_ICtech_sld_11}(b)}).  If we integrate the electric field over a closed surface, then the result will be the net charge inside:
+\textbf{Gauss’ law}\index{Gauss' law} equivalently says that if there is a \textit{net} electric field leaving a region, there has to be positive charge in that region (see \emph{Fig.~\ref{fig:mod2-2_ICtech_sld_11}(b)}).  If we integrate the electric field over a closed surface, then the result will be the net charge inside:
     \begin{align}
     	\oint {\mathcal{E} \cdot dS} &= \frac{Q}{\varepsilon} &\textit{Gauss' Law, closed surface}
     \end{align}
@@ -193,7 +193,7 @@ We can derive this from the divergence of charge by integrating over the volume 
     \begin{equation}
         \oint\limits_V {\nabla \cdot \mathcal{E}\,dV =} \oint\limits_V {\frac{\rho}{\varepsilon}dV = \frac{Q}{\varepsilon}} 
     \end{equation}
-The volume integral can be converted into a surface integral using the \textbf{Divergence Theorem}\index{Divergence Theorem}:
+The volume integral can be converted into a surface integral using the \textbf{divergence theorem}\index{Divergence theorem}:
     \begin{equation} 
         \oint\limits_V {\nabla \cdot \mathcal{E}\,dV = } \oint\limits_S {\mathcal{E} \cdot dS = } \frac{Q}{\varepsilon}
     \end{equation}
@@ -321,7 +321,7 @@ The field is discontinuous across the boundary, which implies charge density at 
 \label{fig:mod2-2_ICtech_sld_17}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-By forming a thin oxide and metal (or polysilicon) plates, an \textbf{MIM capacitor}\index{MIM Capacitor} is formed (\emph{Fig.~\ref{fig:mod2-2_ICtech_sld_17}}).  Metal plates make a higher quality capacitor, but for certain applications, polysilicon gates are sufficient.  Contacts are made to top and bottom plates.  Parasitic capacitance\index{Parasitic capacitance} exists between bottom plate and substrate.
+By forming a thin oxide and metal (or polysilicon) plates, an \textbf{MIM capacitor}\index{MIM capacitor} is formed (\emph{Fig.~\ref{fig:mod2-2_ICtech_sld_17}}).  Metal plates make a higher quality capacitor, but for certain applications, polysilicon gates are sufficient.  Contacts are made to top and bottom plates.  Parasitic capacitance\index{Parasitic capacitance} exists between bottom plate and substrate.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 4.5.2             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -386,7 +386,7 @@ We will soon meet capacitors that have a non-linear Q-V relationship.  If plates
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-For a \textbf{non-linear capacitor}\index{Capacitors!non-linear}, we have a general relationship between the charge and the voltage (see \emph{Fig.~\ref{fig:mod2-2_ICtech_sld_20}}):
+For a \textbf{non-linear capacitor}\index{Capacitor!non-linear}, we have a general relationship between the charge and the voltage (see \emph{Fig.~\ref{fig:mod2-2_ICtech_sld_20}}):
     \begin{equation} 
         Q = f({V_s}) \ne C{V_s} 
     \end{equation}
@@ -410,7 +410,7 @@ $f(V_s)$ is a constant amount of charge.  The incremental charge is therefore:
 %             SUBSECTION 4.5.4             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Small Signal Capacitance}
-To find the \textbf{"small-signal capacitance"}\index{Small-signal capacitance}, break the equation for total charge into two terms:
+To find the \textbf{"small-signal capacitance"}\index{Small-signal!capacitance}, break the equation for total charge into two terms:
     \begin{equation} 
         Q = {Q_0} + q \approx f({V_s}) + {\left. {\frac{{df(V)}}{{dV}}} \right|_{V = {V_s}}}{v_s} 
     \end{equation}
@@ -424,7 +424,7 @@ To find the \textbf{"small-signal capacitance"}\index{Small-signal capacitance},
 %             SUBSECTION 4.5.5             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Example of Non-Linear Capacitor}
-We will see that for a \emph{PN}-junction, the charge is a function of the reverse bias\index{Reverse bias}:
+We will see that for a \emph{PN}-junction, the charge is a function of the reverse bias\index{PN-junction!reverse-bias}:
     \begin{equation} 
         {Q_j}(V) =  - q{N_A}{x_p}\sqrt {1 - \frac{V}{{{\varphi _b}}}} 
     \end{equation}
@@ -433,11 +433,11 @@ The small signal capacitance is therefore given by:
         {C_j}(V) = \frac{{dQ_j^{}}}{{dV}} = \frac{{q{N_A}{x_p}}}{{2{\varphi _b}}}\frac{1}{{\sqrt {1 - \frac{V}{{{\varphi _b}}}}}} = \frac{{C_{j0}^{}}}{{\sqrt {1 - \frac{V}{{{\varphi _b}}}}}} 
     \end{equation}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newpage
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                                   SECTION 4.6                                        %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Chapter Summary}
-In this chapter we ...
+% \newpage
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %                                   SECTION 4.6                                        %
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \section{Chapter Summary}
+% In this chapter we ...

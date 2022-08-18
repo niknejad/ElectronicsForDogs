@@ -13,7 +13,7 @@
 \section{Chapter Preview}
 When the inventors of the bipolar transistor at Bell Labs first built a working device (see \emph{Fig.~\ref{fig:ch09_intro_bjt_invent}}), the next thing they did was to build an audio amplifier to prove that the transistor was actually working.  In this chapter we are going to introduce you to your first amplifier, and discuss how we go about analyzing the amplifier using the $I$-$V$ equations we derived in the previous chapter.  The amplifier will be a \emph{"common source"} amplifier.  We will discuss bias points, also known as the operating point, and what happens when a signal is applied.
 
-Throughout the chapter we will make a very common and important assumption, which leads to the \emph{small signal analysis}\index{Small signal analysis} technique.  This technique simply states that if the signal amplitudes are small (we will define what "small" means), we can analyze the circuit using linear techniques. This leads us to a linearized model of the circuit, which is much easier to analyze.  Finally, we will introduce the equivalent linear circuit model for a MOS transistor, and derive its small-signal parameters, such as transconductance and output resistance.  In the next chapter, we will cover charge storage effects and modify the model to include capacitors, which are needed to properly account for the frequency response of amplifiers.
+Throughout the chapter we will make a very common and important assumption, which leads to the \emph{small signal analysis}\index{Small-signal!analysis} technique.  This technique simply states that if the signal amplitudes are small (we will define what "small" means), we can analyze the circuit using linear techniques. This leads us to a linearized model of the circuit, which is much easier to analyze.  Finally, we will introduce the equivalent linear circuit model for a MOS transistor, and derive its small-signal parameters, such as transconductance and output resistance.  In the next chapter, we will cover charge storage effects and modify the model to include capacitors, which are needed to properly account for the frequency response of amplifiers.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -50,8 +50,8 @@ A plot of input and output signals is shown in \emph{Fig.~\ref{fig:gain}}.  Note
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 9.2.2             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Common-Source Amplifier}
-The amplifier that we have presented is known as a \textbf{Common Source}\index{Amplifers!Common source} (CS) amplifier, because the transistor source terminal is in common with both the input signal and the output signal.  Or more simply, the source is grounded to the "common" node, also known as the reference voltage.  Another way to understand this is that the "common" node does not carry the signal (both input and output).  Since a transistor has three terminals (actually 4, but the body is usually tied to the source), and a voltage is defined by 2 terminals, then you can readily count and see that there are three simple configurations for a single transistor amplifier, "common source", "common drain", and "common gate".  In this chapter we'll focus on the common source variety.
+\subsection{Common Source Amplifier}
+The amplifier that we have presented is known as a \textbf{common cource}\index{Amplifier!common source} (CS) amplifier, because the transistor source terminal is in common with both the input signal and the output signal.  Or more simply, the source is grounded to the "common" node, also known as the reference voltage.  Another way to understand this is that the "common" node does not carry the signal (both input and output).  Since a transistor has three terminals (actually 4, but the body is usually tied to the source), and a voltage is defined by 2 terminals, then you can readily count and see that there are three simple configurations for a single transistor amplifier, "common source", "common drain", and "common gate".  In this chapter we'll focus on the common source variety.
 \newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
@@ -93,7 +93,7 @@ In many applications of interest, we can make this approximation and assume the 
 %             SUBSECTION 9.3.2             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Selecting the Output Bias Point}
-As shown in \emph{Fig.~\ref{fig:csamp_dc}}, we must select the CS amplifier Q points to produce the desired response.  A common choice is to bias $V_{GS}$ so that the output is \textbf{mid-rail}\index{Biasing!mid-rail} (between $V_{DD}$ and ground).  This is a design choice, not a requirement, but doing so results in a large swing at the output\index{Output swing}.  Notice that the output cannot go larger than $V_{DD}$, and to provide gain (remain in saturation) it should not go lower than $V_{GS}-V_T$, so any drain-source voltage greater than $V_{DS,sat} = V_{GS}-V_T$ and smaller than $V_{DD}$ is possible.  Mid-rail is a good back-of-the-envelope value to maximize the \textbf{AC sinusoidal swing}\index{Output swing} (this assumes $V_{DS,sat}$ is very small).  This places a constraint on the DC drain current through the resistor:
+As shown in \emph{Fig.~\ref{fig:csamp_dc}}, we must select the CS amplifier Q points to produce the desired response.  A common choice is to bias $V_{GS}$ so that the output is \textbf{mid-rail}\index{Amplifier!biasing!mid-rail} (between $V_{DD}$ and ground).  This is a design choice, not a requirement, but doing so results in a large swing at the output\index{Output swing}.  Notice that the output cannot go larger than $V_{DD}$, and to provide gain (remain in saturation) it should not go lower than $V_{GS}-V_T$, so any drain-source voltage greater than $V_{DS,sat} = V_{GS}-V_T$ and smaller than $V_{DD}$ is possible.  Mid-rail is a good back-of-the-envelope value to maximize the \textbf{AC sinusoidal swing}\index{Output swing} (this assumes $V_{DS,sat}$ is very small).  This places a constraint on the DC drain current through the resistor:
     \begin{equation}
         I_R = \frac{V_{DD} - V_o}{R_D} = \frac{V_{DD} - V_{DS}}{R_D}
     \end{equation}
@@ -220,7 +220,7 @@ Since $V_{DD} > V_{GS} - V_T$, the output voltage is a larger copy of the input,
 \section{Amplifier Design and Analysis Using the Small-Signal Approach}
 Even though we arrived at a final answer, we did make two key simplifying assumptions.  First we neglected the device output resistance.  Second, we ignored all charge storage effects.  Together, these effects lead to a set of coupled non-linear differential equations\index{Differential equation!non-linear}, which are painfully difficult to solve in the general case.
 
-In the second approach, called the \textit{"Small-Signal Analysis"}\index{Small-signal analysis}, we solve the problem in two steps.  First we solve for DC voltages and currents.  In this step we ignore AC signal sources.  This step is essentially to find the bias point of the MOSFET.  Notice that this step is identical to the steps we took earlier.  Next we substitute a small-signal model for the MOSFET, and the small-signal models of the other circuit elements.  This allows us to use standard AC circuit analysis techniques to arrive at the desired solution, say the voltage gain. This constitutes small-signal analysis.  In the next chapter we will add capacitors to allow us to predict the frequency response\index{Frequency response} of amplifiers.
+In the second approach, called the \textit{"small-signal analysis"}\index{Small-signal!analysis}, we solve the problem in two steps.  First we solve for DC voltages and currents.  In this step we ignore AC signal sources.  This step is essentially to find the bias point of the MOSFET.  Notice that this step is identical to the steps we took earlier.  Next we substitute a small-signal model for the MOSFET, and the small-signal models of the other circuit elements.  This allows us to use standard AC circuit analysis techniques to arrive at the desired solution, say the voltage gain. This constitutes small-signal analysis.  In the next chapter we will add capacitors to allow us to predict the frequency response\index{Frequency response} of amplifiers.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 9.4.1             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -330,7 +330,7 @@ If $\lambda$ is small, then the current is approximately the term in the denomin
 %             SUBSECTION 9.4.4             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Small-Signal Model for MOSFET}
-The derived equation for the small-signal linearized current\index{MOSFET!small-signal current}, repeated here for convenience:
+The derived equation for the small-signal linearized current\index{MOSFET!small-signal!current}, repeated here for convenience:
     \begin{align}
         \Aboxed{i_{ds} &= g_m\,v_{gs} + \left( \frac{1}{r_o} \right) v_{ds}} &\textit{MOSFET small-signal current}
         \label{eq:mosfet_small_signal_current}
@@ -357,7 +357,7 @@ Earlier we solved for the small-signal response of the amplifier the "hard way".
 %              SUB-SUBSECTION              %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Small Signal Analysis:  Step 1 and 2}
-We already found the DC operating point in the earlier part of this chapter.  From the DC operating point we can next calculate the \textbf{small-signal parameters}\index{MOSFET!small-signal parameters} of the transistor:
+We already found the DC operating point in the earlier part of this chapter.  From the DC operating point we can next calculate the \textbf{small-signal parameters}\index{MOSFET!small-signal!parameters} of the transistor:
     \begin{align*}
         \Aboxed{g_m &= \frac{2\,I_{DS}}{(V_{GS} - V_T)}} &\textit{Transconductance}\\[0.5cm]
         \Aboxed{r_o &\approx \frac{1}{\lambda\,I_{DS}}} &\textit{Output resistance}
@@ -377,7 +377,7 @@ We already found the DC operating point in the earlier part of this chapter.  Fr
 \begin{figure}[H]
 \centering
 \includegraphics[scale=1.25]{cs_amp_ss1}
-\caption{The small-signal AC model of the NMOS common-source amplifier\index{Amplifier!common-source}. Note that this is derived by replacing the NMOS transistor (\emph{Fig.~\ref{fig:cs_amp_ac}}) with its small-signal equivalent circuit (\emph{Fig.~\ref{fig:mos3term_ac_nocap}}).}
+\caption{The small-signal AC model of the $NMOS$ common source amplifier\index{Amplifier!common source}. Note that this is derived by replacing the $NMOS$ transistor (\emph{Fig.~\ref{fig:cs_amp_ac}}) with its small-signal equivalent circuit (\emph{Fig.~\ref{fig:mos3term_ac_nocap}}).}
 \label{fig:cs_amp_ss1}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -481,11 +481,12 @@ Which is better, the NMOS or PMOS?  Traditionally NMOS amplifiers are preferred,
 We have actually made a lot of approximations up to now.  But simplicity is a good thing, and the models we have developed in this chapter will form the core of our analysis and intuition.  When we want to model other "second-order" effects, in some cases we must introduce the fourth terminal of the MOSFET, or bring back the body of the transistor.  We will show that the body of the transistor acts like a second gate, or "back gate", and cannot be ignored if the body-source voltage is moving around.  We also know that the source/drain junctions of the transistor form $PN$-junction\index{PN-junction!inside of MOSFETs} diodes with body, which  introduces parasitic capacitance\index{Parasitic capacitance}.  In fact, we also ignored the gate-oxide capacitance. It turns out that we can simply add many of these capacitors to our small-signal model, as we will show in the next chapter.
 
 Also modern transistors are very short channel length devices, and there are many "short channel" effects\index{MOSFET!short-channel effects} that we are ignoring.  Some of these effects are velocity saturation, and other "high field" effects.  Finally, we have been assuming that you have to bias the transistor in the strong inversion region $V_{GS} > V_T$.  However, it turns out that even with moderate inversion, or even sub-threshold bias, the transistor still behaves like a transistor for AC signals.  This is especially useful in low power circuits which are preferentially biased in moderate or weak-inversion (sub-threshold).  This is a more advanced topic that you can learn in your next course on circuit design.
-\newpage
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                                   SECTION 9.7                                        %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Chapter Summary}
-In this chapter we ...
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \newpage
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %                                   SECTION 9.7                                        %
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \section{Chapter Summary}
+% In this chapter we ...

@@ -49,7 +49,7 @@ The key is that we drive a pair of nodes with a sinusoidal current or voltage --
 %              SUB-SUBSECTION              %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Example 1 – ECG Amplifier}
-The \textbf{electrocardiogram}\index{Amplifiers!electrocardiogram} (ECG) is a measurement of the voltage between two points on the body.  For example, as shown in \emph{Fig.~\ref{fig:ecg}}, the voltage across the chest measured from the "right arm" (RA) to the "left arm" (LA) is what's known as lead I.  The ground reference is often the "right leg" (RL).  This voltage is the "input voltage" and we need to amplify it and reject any \textbf{common-mode}\index{Common-mode} noise (see Section~\ref{sec:cmrr}), especially 60 Hz or 50 Hz AC line voltage, which is often orders of magnitude larger than the desired signal.  The output voltage may be single-ended and referenced to a different ground, as shown in the figure.  In this scenario, we define the transfer function as:
+The \textbf{electrocardiogram}\index{Amplifier!electrocardiogram} (ECG) is a measurement of the voltage between two points on the body.  For example, as shown in \emph{Fig.~\ref{fig:ecg}}, the voltage across the chest measured from the "right arm" (RA) to the "left arm" (LA) is what's known as lead I.  The ground reference is often the "right leg" (RL).  This voltage is the "input voltage" and we need to amplify it and reject any \textbf{common-mode}\index{Common-mode} noise (see Section~\ref{sec:cmrr}), especially 60 Hz or 50 Hz AC line voltage, which is often orders of magnitude larger than the desired signal.  The output voltage may be single-ended and referenced to a different ground, as shown in the figure.  In this scenario, we define the transfer function as:
     \begin{equation}
         G_v(f) = \frac{V_{out}}{V_1 - V_2 }
     \end{equation}
@@ -108,7 +108,7 @@ In this example, the presence of the source impedance changed everything.  In ge
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 For many applications, we need to process a voltage, so a "transimpedance" amplifier is needed to convert the current to the voltage through $R_F$ as shown.\footnote{Why not simply use a resistor in parallel with the diode to convert the current into a voltage?}
 
-Shown in \emph{Fig.~\ref{fig:pd_detect}(a)}, the source is a \textbf{photodiode}\index{Photodiode}, a device that has an output current proportional to the number of impinging photons.  Again, upon first inspection it seems that the diode is "shorted" to ground through the virtual ground connection, but the diode is better modeled as a current source.  The input current is therefore the signal of interest, as shown in \emph{Fig.~\ref{fig:pd_detect}(b)}.  It is important to include the \textbf{source capacitance}\index{Capacitance!source} ($C_D$), which limits the high frequency performance.  One benefit of the amplifier is that the signal across $C_D$ is mostly shorted, and therefore the impact is not as severe as it would be otherwise.
+Shown in \emph{Fig.~\ref{fig:pd_detect}(a)}, the source is a \textbf{photodiode}\index{Photodiode}, a device that has an output current proportional to the number of impinging photons.  Again, upon first inspection it seems that the diode is "shorted" to ground through the virtual ground connection, but the diode is better modeled as a current source.  The input current is therefore the signal of interest, as shown in \emph{Fig.~\ref{fig:pd_detect}(b)}.  It is important to include the \textbf{source capacitance}\index{Capacitor!source capacitance} ($C_D$), which limits the high frequency performance.  One benefit of the amplifier is that the signal across $C_D$ is mostly shorted, and therefore the impact is not as severe as it would be otherwise.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 2.2.2             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -127,7 +127,7 @@ If \textit{G > }1, the circuit has voltage (current) gain.   If \textit{G} < 1, 
 \begin{figure}[H]
 \centering
 \includegraphics[width=.8\columnwidth]{mod1_3_1_twoport}
-\caption{An arbitrary \textbf{two-port}\index{Port models!Two-port} consisting of a linear time-invariant circuit.}
+\caption{An arbitrary \textbf{two-port}\index{Port models!two-port} consisting of a linear time-invariant circuit.}
 \label{fig:twoportivgain}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -136,11 +136,11 @@ If \textit{G > }1, the circuit has voltage (current) gain.   If \textit{G} < 1, 
 %             SUBSECTION 2.2.3             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Trans-Impedance and Trans-Admittance}
-Current/voltage gain are unitless quantities, but we can define a signal as a voltage or a current, or both (or even a power, or the product).   If the transfer involves voltage to current or vice versa, we must be careful to define the units.  We have a \textbf{trans-impedance}\index{Amplifiers!trans-impedance} (TIA) amplifier gain
+Current/voltage gain are unitless quantities, but we can define a signal as a voltage or a current, or both (or even a power, or the product).   If the transfer involves voltage to current or vice versa, we must be careful to define the units.  We have a \textbf{trans-impedance}\index{Amplifier!trans-impedance} (TIA) amplifier gain
     \begin{equation}
         J(\omega ) = \frac{{{V_2}}}{{{I_1}}} = \left| {\frac{{{V_2}}}{{{I_1}}}} \right|{e^{j({\varphi _2} - {\varphi _1})}}  [\Omega ]
     \end{equation}
-Less commonly, we have a \textbf{trans-admittance}\index{Amplifiers!trans-admittance} (TAA) amplifier:
+Less commonly, we have a \textbf{trans-admittance}\index{Amplifier!trans-admittance} (TAA) amplifier:
     \begin{equation}
         K(\omega ) = \frac{{{I_2}}}{{{V_1}}} = \left| {\frac{{{I_2}}}{{{V_1}}}} \right|{e^{j({\varphi _2} - {\varphi _1})}}  [S]
     \end{equation}
@@ -154,7 +154,7 @@ Less commonly, we have a \textbf{trans-admittance}\index{Amplifiers!trans-admitt
 \begin{figure}[tb]
 \centering
 \includegraphics[width=.65\columnwidth]{mod1_3_2_oneport}
-\caption{An arbitrary \textbf{one-port}\index{Port models!One-port} linear time-invariant circuit.}
+\caption{An arbitrary \textbf{one-port}\index{Port models!one-port} linear time-invariant circuit.}
 \label{fig:oneport}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -254,7 +254,7 @@ While the frequency response requires us to keep track of the transfer function 
 %             SUBSECTION 2.4.1             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Phasors}
-With our new confidence in complex numbers, we can go full steam ahead and work with them directly.  We can even drop the time factor, $e^{j\omega t}$, since it will cancel out of the equations.  In other words, the part that matters is the amplitude and phase shift of the resulting complex exponential, not the complex exponential itself.  Let's define this part as the \textbf{"phasor"}\index{Phasor}.
+With our new confidence in complex numbers, we can go full steam ahead and work with them directly.  We can even drop the time factor, $e^{j\omega t}$, since it will cancel out of the equations.  In other words, the part that matters is the amplitude and phase shift of the resulting complex exponential, not the complex exponential itself.  Let's define this part as the \textbf{"phasor"}\index{Phasors}.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 We excite system with a phasor: ${\tilde V_1} = {V_1}{e^{j{\varphi _1}}}$ and the response  will also be phasor: ${\tilde V_2} = {V_2}{e^{j{\varphi _2}}}$.   
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -302,7 +302,7 @@ Or more simply, the phasor relation:
     \begin{equation}
         {I_c} = j\omega \,C\,{V_c}
     \end{equation}
-This is \textbf{"Ohm's Law"}\index{Ohm's Law} in the frequency domain\index{Frequency domain} for a capacitor.
+This is \textbf{"Ohm's law"}\index{Ohm's law} in the frequency-domain\index{Frequency-domain} for a capacitor.
 \newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 2.4.3             %
@@ -368,7 +368,7 @@ The fastest way to solve the problem is to say that the LPF is really a \textbf{
 %             SUBSECTION 2.5.2             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Bigger Example (no problem!)}
-Consider a more complicated example shown in \emph{Fig.~\ref{fig:bigexample}}.  To find $v_o$, you can do \textbf{nodal analysis}\index{Nodal analysis} or use \textbf{network theorems}\index{Network theorems} to simplify the circuit.  Let's find the \textbf{Thévenin equivalent}\index{Network theorems!Thévenin equivalence} from $C_2$'s perspective.  The open-circuit voltage is just the first voltage divider:
+Consider a more complicated example shown in \emph{Fig.~\ref{fig:bigexample}}.  To find $v_o$, you can do \textbf{nodal analysis}\index{Nodal analysis} or use \textbf{network theorems}\index{Network theorems} to simplify the circuit.  Let's find the \textbf{Thévenin equivalent}\index{Thévenin equivalent} from $C_2$'s perspective.  The open-circuit voltage is just the first voltage divider:
     \begin{equation}
         v_{th} = \frac{Z_{C_1}}{R_1 + Z_{C_1}}\,v_s 
     \end{equation}
@@ -453,7 +453,7 @@ It's easy to show that the same voltage multiplication occurs across the capacit
         \frac{v_s}{Z(j\omega_0)} = \frac{1}{j\omega_0 R C} \frac{v_s}{R} = - j Q
         \times v_s
     \end{equation}
-This voltage multiplication property is the key feature of the circuit that allows it to be used as an \textbf{impedance transformer}\index{Transformers!impedance}.\footnote{It is important to distinguish this $Q$ factor from the intrinsic $Q$ of the inductor and capacitor.  For now, we assume the inductor and capacitor are ideal.}
+This voltage multiplication property is the key feature of the circuit that allows it to be used as an \textbf{impedance transformer}\index{Transformer!impedance}.\footnote{It is important to distinguish this $Q$ factor from the intrinsic $Q$ of the inductor and capacitor.  For now, we assume the inductor and capacitor are ideal.}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %              SUB-SUBSECTION              %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -759,7 +759,7 @@ Note that if $({\varphi _i} - {\varphi _v}) = \frac{\pi }{2}$, then ${P_{av}} = 
 
 \vspace{0.25cm}
 \noindent
-An important lesson from this calculation is that since power is a non-linear function, we cannot simply take the real part of the product of the phasors\index{Phasor}:
+An important lesson from this calculation is that since power is a non-linear function, we cannot simply take the real part of the product of the phasors\index{Phasors}:
     \begin{equation}
         P \ne {\mathop{\rm Re}\nolimits} [I \cdot V]
     \end{equation}
@@ -808,6 +808,7 @@ Check the result for a real impedance (resistor) to verify we have not made any 
 Notice that if the voltage and the current are $90^\circ$ out of phase (inductors and capacitors), then their product is such that during one half the cycle power flows in, and in the other half cycle power flows out, as illustrated in \emph{Fig.~\ref{fig:powerflow}}.  This means there is no net power flow into these components.
 
 For a resistor, on the other hand, since current and voltage are in phase, it doesn't matter what direction current flows, it is always in phase with the voltage and dissipating power.  Also, power flows twice per cycle!
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

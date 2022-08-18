@@ -123,7 +123,7 @@ On-chip circuits often use "voltage/current" matching to minimize loading.  Volt
 %             SUBSECTION 15.4.1            %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Two-Stage Voltage Amplifier}
-As shown in \emph{Fig.~\ref{fig:1cascade}}, simply cascading two amplifier stages is possible if the DC voltage levels are compatible. In other words, \textit{the desired operating point\index{Aplifier!operating point} of each individual amplifier should not change when we connect them}.  Otherwise, we would need AC coupling capacitors, but it is best to avoidusing them.  AC coupling capacitors\index{AC coupling capacitors} take up a lot of room on the chip or PCB, and they limit the range of operation (since they kill the low frequency gain).  For this reason, it is good to think of cascading amplifiers while designing them.  \textit{If we are careful to not disturb the operating points, the cascade will result in higher gain}.  We can think of the overall cascade as a single two-port model\index{Two-port model}.  If the amplifiers are unilateral, then the input impedance of the cascade is simply $R_{in} = R_{in,1}$, and the output impedance of the cascade is $R_{out} = R_{out,2}$.
+As shown in \emph{Fig.~\ref{fig:1cascade}}, simply cascading two amplifier stages is possible if the DC voltage levels are compatible. In other words, \textit{the desired operating point\index{Amplifier!operating point} of each individual amplifier should not change when we connect them}.  Otherwise, we would need AC coupling capacitors, but it is best to avoidusing them.  AC coupling capacitors\index{AC coupling capacitors} take up a lot of room on the chip or PCB, and they limit the range of operation (since they kill the low frequency gain).  For this reason, it is good to think of cascading amplifiers while designing them.  \textit{If we are careful to not disturb the operating points, the cascade will result in higher gain}.  We can think of the overall cascade as a single two-port model\index{Port models!two-port}.  If the amplifiers are unilateral, then the input impedance of the cascade is simply $R_{in} = R_{in,1}$, and the output impedance of the cascade is $R_{out} = R_{out,2}$.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 15.4.2            %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -157,7 +157,7 @@ And the \textit{output impedance} is given by the second stage:
 %             SUBSECTION 15.4.3            %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{CS Cascade Frequency Response}
-The AC schematic shown in \emph{Fig.~\ref{fig:3cs_casc_ss_cap}} looks complicated, with six capacitors shown.  But if we combine parallel components and also apply the Miller Theorem\index{Miller Theorem}, we can identify three independent nodes.  At the input, applying Miller's theorem:
+The AC schematic shown in \emph{Fig.~\ref{fig:3cs_casc_ss_cap}} looks complicated, with six capacitors shown.  But if we combine parallel components and also apply the Miller theorem\index{Miller's theorem}, we can identify three independent nodes.  At the input, applying Miller's theorem:
     \begin{equation} 
         C_{M_1} = C_{gs,1} + C_{gd,1} (1 - A_{v_1})
     \end{equation}
@@ -342,7 +342,7 @@ Consider the cascade shown in \emph{Fig.~\ref{fig:10cs_cg_cascade}}.  The common
 %             SUBSECTION 15.6.2            %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Merged CS + CG = Cascode}
-As seen in \emph{Fig.~\ref{fig:10cascode_dc}}, we can share the bias currents between the two amplifier stages by stacking them into a common structure, commonly known as a \textbf{cascode}\index{Amplifier!mult-stage!cascode}\index{Cascode amplifier}.  While this circuit has \textit{reduced headroom}\index{Amplifier!headroom}, it can be seen as a "supercharged" common source stage.  We know that the $g_m$ of the combined $M1$/$M2$ amplifier is the same as a single transistor, but the output impedance is boosted by the $g_m\,r_o$ of the transistor.
+As seen in \emph{Fig.~\ref{fig:10cascode_dc}}, we can share the bias currents between the two amplifier stages by stacking them into a common structure, commonly known as a \textbf{cascode}\index{Amplifier!multi-stage!cascode}\index{Amplifier!types!cascode}.  While this circuit has \textit{reduced headroom}\index{Amplifier!headroom}, it can be seen as a "supercharged" common source stage.  We know that the $g_m$ of the combined $M1$/$M2$ amplifier is the same as a single transistor, but the output impedance is boosted by the $g_m\,r_o$ of the transistor.
 \newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
@@ -370,7 +370,7 @@ This is substantially higher than the maximum gain of a single transistor, givin
 %             SUBSECTION 15.6.4            %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Cascode Bandwidth}
-To analyze the bandwidth of the cascade, let's add all the transistor parasitic capacitors, as shown in \emph{Fig.~\ref{fig:12cascode_caps}a}.  Notice that with all the parasitic capacitors in this circuit, our first step is try to combine as many as possible.   Let's identify three key nodes in the circuit: the gate \emph{g}, the internal node at the drain of $M1$ labeled \emph{i}, and the output labeled \emph{o}, shown in \emph{Fig.~\ref{fig:12cascode_caps}b}.  Next, we can apply Miller's theorem\index{Miller theorem} to get a sense for the bandwidth limiting stages.  We immediately notice a difference in the Miller capacitance.  For $M2$, its $C_{gd}$ is simply grounded, and it is \textit{not} Miller multiplied.  On the other hand, for $M1$, the Miller capacitance is "shielded" from the high voltage gain at the output node.  We will also show that the voltage gain experienced at the intermediate node is much lower.  
+To analyze the bandwidth of the cascade, let's add all the transistor parasitic capacitors, as shown in \emph{Fig.~\ref{fig:12cascode_caps}a}.  Notice that with all the parasitic capacitors in this circuit, our first step is try to combine as many as possible.   Let's identify three key nodes in the circuit: the gate \emph{g}, the internal node at the drain of $M1$ labeled \emph{i}, and the output labeled \emph{o}, shown in \emph{Fig.~\ref{fig:12cascode_caps}b}.  Next, we can apply Miller's theorem\index{Miller's theorem} to get a sense for the bandwidth limiting stages.  We immediately notice a difference in the Miller capacitance.  For $M2$, its $C_{gd}$ is simply grounded, and it is \textit{not} Miller multiplied.  On the other hand, for $M1$, the Miller capacitance is "shielded" from the high voltage gain at the output node.  We will also show that the voltage gain experienced at the intermediate node is much lower.  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -516,7 +516,7 @@ Let's end this chapter by bringing together all the various concepts to analyze 
 %             SUBSECTION 15.7.1            %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Cutting Through the Complexity}
-The key to analyzing a big circuit is to cut out all the clutter.  To do this, identify the "signal path" between the input and output, and aggressively eliminate "background" transistors to reduce the clutter, as shown in \emph{Fig.~\ref{fig:17cascode_folded_declutter}}.  Transistors $M5$-$M8$ are all \textit{diode connected}\index{MOSFET!diode connected}, and essentially provide DC levels to bias up the other transistors.  So we simply ignore them for the AC analysis.  For these "background" transistors, we need to understand their role (e.g. DC biasing) and model them appropriately.  If they are just providing DC voltages, we can assume that these connections are AC grounds.  Later, for estimating the frequency response, we need to identify the "high-Z" (high impedance) nodes, so keep these in mind as we traverse the circuit.
+The key to analyzing a big circuit is to cut out all the clutter.  To do this, identify the "signal path" between the input and output, and aggressively eliminate "background" transistors to reduce the clutter, as shown in \emph{Fig.~\ref{fig:17cascode_folded_declutter}}.  Transistors $M5$-$M8$ are all \textit{diode connected}\index{MOSFET!types!diode connected}, and essentially provide DC levels to bias up the other transistors.  So we simply ignore them for the AC analysis.  For these "background" transistors, we need to understand their role (e.g. DC biasing) and model them appropriately.  If they are just providing DC voltages, we can assume that these connections are AC grounds.  Later, for estimating the frequency response, we need to identify the "high-Z" (high impedance) nodes, so keep these in mind as we traverse the circuit.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -566,14 +566,14 @@ Now let's put the circuit under the microscope to see if we missed anything.  No
     \end{align} 
 If the above equation is "obvious" to you, congratulations.  You have made it, and can now analyze multi-stage amplifiers by "inspection".  If not, don't worry, it just takes some time and practice.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newpage
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                                 SECTION 15.8                                         %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Chapter Summary}
-In this chapter we ...
+% \newpage
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %                                 SECTION 15.8                                         %
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \section{Chapter Summary}
+% In this chapter we ...
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

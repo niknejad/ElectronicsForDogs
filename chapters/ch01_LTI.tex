@@ -33,7 +33,7 @@ In this chapter we will review linearity in the context of an Linear Time-Invari
 %             SUBSECTION 1.2.1             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Example: Low Pass Filter (LPF)}
-Let's begin with an example calculation.  Suppose we have a \textbf{low pass filter}\index{Filters!Low pass} as shown in \emph{Fig.~\ref{fig:lpf}}.
+Let's begin with an example calculation.  Suppose we have a \textbf{low pass filter}\index{Filters!low-pass} as shown in \emph{Fig.~\ref{fig:lpf}}.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 FIGURE                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -195,14 +195,14 @@ A system $\mathbf{L}$ is linear if it satisfies the following requirement:
     \end{equation}
 In this notation, $\mathbf{L}$ is an operator that corresponds to the action of the system at hand. If we input $x(t)$ an input into our system, the system outputs $y(t)$.  In a \textbf{linear system}\index{Linear systems}, if we scale the input, we also scale the output by the same amount. Also, if we take a superposition of inputs, the output is the same superposition of the inputs.
 
-Now, a system is \textbf{time invariant}\index{Linear systems!Time invariant} if its response is not a function of time. In other words, the system does not "age" and it does not care when you apply the input.  If you apply an input today and observe the output, and come back tomorrow and put in the same input, the output should look the same.  Mathematically, we can summarize this behavior with the following equations:
+Now, a system is \textbf{time invariant}\index{Linear systems!time invariant} if its response is not a function of time. In other words, the system does not "age" and it does not care when you apply the input.  If you apply an input today and observe the output, and come back tomorrow and put in the same input, the output should look the same.  Mathematically, we can summarize this behavior with the following equations:
     \begin{equation}
         y(t) = \mathbf{L} [x(t)]
     \end{equation}
     \begin{equation}
         \mathbf{L} [x(t-\tau)] = y(t-\tau)
     \end{equation}
-Notice that \textbf{time shifting}\index{Linear systems!Time shifting} the input just corresponds to applying the same time shift to the output.  Another way to think of time-invariance is to say that the system has no  "clock" or time reference, or that the transfer function is not a function of time.  It does not matter when you apply the input.  The transfer function is going to be the same. 
+Notice that \textbf{time shifting}\index{Linear systems!time shifting} the input just corresponds to applying the same time shift to the output.  Another way to think of time-invariance is to say that the system has no  "clock" or time reference, or that the transfer function is not a function of time.  It does not matter when you apply the input.  The transfer function is going to be the same. 
 
  If you are familiar with discrete linear system, you know that linearity and superposition are fundamental properties. 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -245,7 +245,7 @@ Complex exponentials actually make things less complex.  To see this, first note
     \begin{equation}
         \int e^{j\omega x} dx = \frac{1}{j \omega} e^{j\omega t}
     \end{equation}
-So now any ordinary \textbf{differential equation}\index{Differential equations!ordinary} (ODE), a sum of differentiation operators, is reduced now to trivial algebraic manipulations.  In fact, we'll show that you don't even need to directly derive the ODE by using \textbf{phasors}\index{Phasors} (a phasor is essentially a shorthand notation for a complex number).   The key is to observe that the current/voltage relation for any element can be derived for \textbf{complex exponential}\index{Complex exponential} excitation.
+So now any ordinary \textbf{differential equation}\index{Differential equation!ordinary} (ODE), a sum of differentiation operators, is reduced now to trivial algebraic manipulations.  In fact, we'll show that you don't even need to directly derive the ODE by using \textbf{phasors}\index{Phasors} (a phasor is essentially a shorthand notation for a complex number).   The key is to observe that the current/voltage relation for any element can be derived for \textbf{complex exponential}\index{Complex exponential} excitation.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 1.4.2             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -584,7 +584,7 @@ Now imagine taking the limit as $\Delta\rightarrow 0$
     \end{equation}
 What do we get?  Is this thing even a function?  A pictorial representation of the limiting process is shown in \emph{Fig.~\ref{fig:rect_func_delta}}.  We see that the function becomes more and more narrow and taller and taller.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
- No, it's not an ordinary function.\footnote{Mathematicians have made sense of it.  Now it's known as a distribution or generalized function.}  The \textbf{delta function}\index{Dirac Delta Function} was originally introduced by Oliver Heaviside $\sim$1900, Dirac co-invented it and gets credit as it's known as the "Dirac Delta Function".\footnote{Heaviside was derided by the mathematicians of the day for his methods.  He often got the right answer without being mathematically rigorous, but that's because he was way ahead of everyone in his techniques, and it took a while for the mathematical world to catch up.}
+ No, it's not an ordinary function.\footnote{Mathematicians have made sense of it.  Now it's known as a distribution or generalized function.}  The \textbf{delta function}\index{Dirac delta function} was originally introduced by Oliver Heaviside $\sim$1900, Dirac co-invented it and gets credit as it's known as the "Dirac Delta Function".\footnote{Heaviside was derided by the mathematicians of the day for his methods.  He often got the right answer without being mathematically rigorous, but that's because he was way ahead of everyone in his techniques, and it took a while for the mathematical world to catch up.}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %              SUB-SUBSECTION              %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -595,7 +595,7 @@ What do we get?  Is this thing even a function?  A pictorial representation of t
 \begin{figure}[tb]
 \centering
 \includegraphics[width=.5\columnwidth]{delta_sift}
-\caption{The \textbf{"sifting" property}\index{Dirac Delta Function!sifting property} of the Delta function yields the function value at any point. }
+\caption{The \textbf{"sifting" property}\index{Dirac delta function!sifting property} of the Delta function yields the function value at any point. }
 \label{fig:delta_sift}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -620,7 +620,7 @@ In some ways this is not really a deep result in the sense of  saying that a fun
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Back to Time Domain:  Impulse Response}
-Up to now we studied the sinusoidal steady-state response using the complex exponential.  But we are now armed with the right tools to tackle the \textbf{general response}\index{Linear system!general response} of a linear system to an arbitrary input in time.  Using the fundamental properties of linearity and superposition, we have
+Up to now we studied the sinusoidal steady-state response using the complex exponential.  But we are now armed with the right tools to tackle the \textbf{general response}\index{Linear systems!general response} of a linear system to an arbitrary input in time.  Using the fundamental properties of linearity and superposition, we have
     \begin{equation}
         y\left(t\right)=\ \mathbf{L}\left[x\left(t\right)\right]=\mathbf{L}\left[\int\delta\left(t-\tau\right)x\left(\tau\right)d\tau\right]
     \end{equation}
@@ -964,7 +964,7 @@ Now if we filter the signal + noise, we can reduce the noise without impacting t
         \item{\href{http://rfic.eecs.berkeley.edu/~niknejad/photos/ee105/tones\_lpf.mp3}{Low-pass filtered signal + noise}}
     \end{itemize}
 \vspace{0.15cm}
- This is used extensively in practice to improve the signal quality.  To improve the signal quality further, we build a \textbf{band-pass filter}\index{Filters!Band-pass} to pick out just the tone of interest.  The first filter picks up the first tone, and eliminates most of the noise.
+ This is used extensively in practice to improve the signal quality.  To improve the signal quality further, we build a \textbf{band-pass filter}\index{Filters!band-pass} to pick out just the tone of interest.  The first filter picks up the first tone, and eliminates most of the noise.
 \vspace{0.15cm}
     \begin{itemize}
         \item{\href{http://rfic.eecs.berkeley.edu/~niknejad/photos/ee105/tones\_bpf\_wC.mp3}{Band-pass filtered centered around first tone}}
@@ -982,6 +982,7 @@ Now we apply a bandpass filter with a  wider passband, allowing both tones to pa
 As we have demonstrated throughout this chapter, linear system theory is powerful and very useful for design and analysis.  But you may object and say that most real systems are non-linear, so why is this stuff useful?
 
 When systems are non-linear, we often "linearize" them about an operating point, and use linear theory to understand the response to "small" perturbations.  We will be doing this extensively in this course.  Soon you will find that the silicon transistor and diodes are non-linear, so we will build "small-signal" models that are linear.  This is useful as long as the signals of interest don't deviate too much from the operating point.  If they do, we need non-linear techniques.  Even in these situations,  we can gain useful insights from the small-signal approximation, and it is the starting point for design and analysis.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
