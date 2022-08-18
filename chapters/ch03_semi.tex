@@ -160,12 +160,12 @@ Or in terms of mobility:
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Conduction in Metals}
 Can we apply this simple "gas" model to a conductor?  The  high conductivity\index{Conductivity} of metals is due to large concentration of free electrons.   These electrons are not attached to the solid but are free to move about the solid.  In other words, we have an "electron gas".   In metal sodium, for example,  each atom contributes a free electron: 
-    \[
-        N = 2.5 \times {10^{22}}{\rm{atoms/c}}{{\rm{m}}^{\rm{3}}}
-    \]
+    \[N = \SI{2.5e22}{atoms \per {cm}^3}\]
 From the measured value of conductivity (easy to make in the lab), we can back calculate the \textbf{mean free-time}\index{Mean free-time}:
     \begin{equation}
-        \tau  = \frac{{\sigma \,m}}{{N{e^2}}} = \frac{{\left( {1.9 \times {{10}^{17}}} \right)\,\left( {9 \times {{10}^{ - 28}}} \right)}}{{\left( {2.5 \times {{10}^{22}}} \right)\,\left( {23 \times {{10}^{ - 20}}} \right)}} = 3 \times {10^{ - 14}}\sec
+        \tau  = \frac{\sigma\,m}{N{e^2}}
+        = \frac{(\num{1.9e17})(\num{9e-28})}{(\num{2.5e22})(\num{23e-20})}
+        = \SI{3e14}{\sec}
     \end{equation}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %              SUB-SUBSECTION              %
@@ -173,47 +173,21 @@ From the measured value of conductivity (easy to make in the lab), we can back c
 \subsubsection{A Deep Puzzle}
 This value of mean free-time is surprisingly long.  The mean velocity for an electron at room temperature is about: 
     \begin{equation}
-        \frac{{m{v^2}}}{2} = \frac{3}{2}kT  v = 3 \times {10^7}{\rm{cm}}/\sec
+        \frac{m{v^2}}{2} = \left(\frac{3}{2}\right)kTv = \SI{3e7}{\sec}
     \end{equation}
-At this speed, the electron travels a distance of $v\tau  = 3 \times {10^{ - 7}}{\rm{cm}}$.  The molecular spacing between adjacent ions is only $3.8 \times {10^{ - 8}}{\rm{cm}}$.  Why is it that the electron is on average zooming by 10 positively charged ions?
+At this speed, the electron travels a distance of $v\tau  = \SI{3e-7}{\cm}$.  The molecular spacing between adjacent ions is only $\SI{3.8e-8}{\cm}$.  Why is it that the electron is on average zooming by 10 positively charged ions?
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 3.2.6             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Wave Nature of Electron}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                 FIGURE                   %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}
-\centering
-\includegraphics[width=.75\columnwidth]{crystal_blochwave}
-\caption{Measurements show that the average distance electrons move in a crystal is much larger than the inter-atomic distance, indicating that the electrons somehow move through the nuclei unperturbed.  In fact, a free electron in a periodic arrangement of atoms can move freely around the crystal as a "free particle" with an \emph{effective mass} that takes into account the potential of the nuclei in the crystal.  In other words, the electron does not scatter simply because it encounters an atom.}
-\label{fig:slide15}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
- The free carrier can penetrate right through positively charged host atoms, as shown schematically in \emph{Fig.~\ref{fig:slide15}}.  \textbf{Quantum mechanics}\index{Quantum mechanics} explains this.  For a periodic arrangement of potential functions, the electron does not scatter. The influence of the crystal is that it will travel freely with an \textbf{effective mass}\index{Effective mass} different from the \textbf{rest mass}\index{Rest mass} or \textbf{free-electron mass}\index{Free-electron mass}.  So why does it scatter at all?
- \newpage
+The free carrier can penetrate right through positively charged host atoms, as shown schematically in \emph{Fig.~\ref{fig:rand_thermal_motion}a}.  \textbf{quantum mechanics}\index{Quantum mechanics} explains this.  For a periodic arrangement of potential functions, the electron does not scatter. The influence of the crystal is that it will travel freely with an \textbf{effective mass}\index{Effective mass} different from the \textbf{rest mass}\index{Rest mass} or \textbf{free-electron mass}\index{Free-electron mass}.  So why does it scatter at all?
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 3.2.7             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Scattering in Metals}
-At temperature $T$, the atoms are in random motions in the host atoms (see \emph{Fig.~\ref{fig:slide16}(a)}), and so the potential function experienced by charged carriers is not periodic, but quasi-periodic. 
+At temperature $T$, the atoms are in random motions in the host atoms (see \emph{Fig.~\ref{fig:rand_thermal_motion}b}), and so the potential function experienced by charged carriers is not periodic, but quasi-periodic. 
 
-Even at extremely low temperatures, the presence of an impurity upsets the periodicity, as shown in \emph{Fig.~\ref{fig:slide16}(b)}.  These two mechanisms, vibrations in the crystal (\textbf{phonons}\index{Phonon} in the parlance of solid-state physics) and impurities are the source of \textbf{scattering}\index{Phonon!scattering}, and thus resistance, in metals.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                 FIGURE                   %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[tb]
-\centering
-\begin{tabular}{ccc}
-\includegraphics[width=.3\columnwidth]{lattice_vibrate} &
-\hspace{.15\columnwidth} &
-\includegraphics[width=.3\columnwidth]{lattice_impurity}\\
-(a) & & (b)\\
-\end{tabular}
-\caption{(a) The random thermal motion of atoms in a crystal (\emph{lattice vibrations}) disturbs the periodicity of the array and results in scattering of free carriers.  (b) The presence of an impurity atom (shown in red) also disturbs the periodicity of the array and results in scattering.}
-\label{fig:slide16}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Even at extremely low temperatures, the presence of an impurity upsets the periodicity, as shown in \emph{Fig.~\ref{fig:rand_thermal_motion}c}.  These two mechanisms, vibrations in the crystal (\textbf{phonons}\index{Phonon} in the parlance of solid-state physics) and impurities are the source of \textbf{scattering}\index{Phonon!scattering}, and thus resistance, in metals.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             SUBSECTION 3.2.8             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -222,7 +196,22 @@ Using our ideal gas model for conductors, we have the following result:
     \begin{equation}
         \sigma = {e^2}\left( {\frac{{{N^ + }{\tau ^ + }}}{{{M^ + }}} + \frac{{{N^ - }{\tau ^ - }}}{{{M^ - }}}} \right)
     \end{equation}
-The conductivity is determined by the density of free charge carriers (both positive and negative), the charge of carrier (usually just \textit{e}), the effective mass of carrier (different inside solid), and the mean relaxation time (time for memory loss … usually the time between collisions).   This is turn is determined by several mechanisms, e.g. scattering by impurities and scattering due to vibrations in crystal.
+The conductivity is determined by the density of free charge carriers (both positive and negative), the charge of carrier ($e$), the effective mass\index{Effective mass} of carrier (different inside solid), and the mean relaxation time (the time of the memory loss, usually the time between collisions).  This is turn is determined by several mechanisms, e.g. scattering by impurities and scattering due to vibrations in crystal.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                 FIGURE                   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\centering
+\begin{tabular}{ccc}
+\includegraphics[width=.35\columnwidth]{crystal_blochwave}\qquad \qquad \qquad&
+\includegraphics[width=.15\columnwidth]{lattice_vibrate}\qquad \qquad \qquad&
+\includegraphics[width=.15\columnwidth]{lattice_impurity}\\
+(a)\qquad \qquad \qquad & (b)\qquad \qquad \qquad & (c)\\
+\end{tabular}
+\caption{(a) Measurements show that the average distance electrons move in a crystal is much larger than the inter-atomic distance, indicating that the electrons somehow move through the nuclei unperturbed.  In fact, a free electron in a periodic arrangement of atoms can move freely around the crystal as a "free particle" with an \emph{effective mass} that takes into account the potential of the nuclei in the crystal.  In other words, the electron does not scatter simply because it encounters an atom.  (b) The random thermal motion of atoms in a crystal (\emph{lattice vibrations}) disturbs the periodicity of the array and results in scattering of free carriers.  (c) The presence of an impurity atom (shown in red) also disturbs the periodicity of the array and results in scattering.}
+\label{fig:rand_thermal_motion}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -498,7 +487,7 @@ We call this the \textbf{law of mass action}\index{Law of mass action}:
     \end{align}
 Recall that $kT$ is proportional to the thermal energy and  $E_g$ is the band gap.  The above equation says that the number of carriers at an “excess” energy above the valence band depends strongly on how much thermal energy we have in the system.
 
-The origin of this equation can be explained using a simple analogy.  Instead of a band gap, imagine a wall.  Let’s say that the wall is 6.5 feet tall and anyone with a height over 5.8 feet can hop over the wall.  If we take a classroom full of students and plot the distribution of heights, we get a normal distribution as shown in \emph{Fig.~\ref{fig:normal_dist}}.  The average height is 5.3 feet and we have marked the local of 5.8, the necessary energy required to get over this wall.  If we integrate under the curve to find the total number of students tall enough, we can see that it’s not unreasonable that the integral over the tail of the distribution is approximately exponential as we have claimed.  If we raise the barrier height, exponentially fewer students can make it over the wall.
+The origin of this equation can be explained using a simple analogy.  Instead of a band gap, imagine a wall.  Let’s say that the wall is $6.5$ feet tall and anyone with a height over $5.8$ feet can hop over the wall.  If we take a classroom full of students and plot the distribution of heights, we get a normal distribution.  The average height is $5.3$ feet and we have marked the local of $5.8$, the necessary energy required to get over this wall.  If we integrate under the curve to find the total number of students tall enough, we can see that it’s not unreasonable that the integral over the tail of the distribution is approximately exponential as we have claimed.  If we raise the barrier height, exponentially fewer students can make it over the wall.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                   SECTION 3.5                                        %

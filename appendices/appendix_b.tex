@@ -11,15 +11,23 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Linear Dependence and Independence}
-null
+First let's review the definitions of linear dependence and independence\cite{lay}:
+    \begin{definition}
+    An indexed set of vectors $\left\{v_1, v_2, \dots v_i\right\}$ in ${\mathbb{R}}^n$ is said to be \textbf{linearly independent} if $\alpha_1 \cdot v_1 + \alpha_2 \cdot v_2 \dots + \alpha_i \cdot v_i = 0$ has only the trivial solution, where all $\alpha_i \in \mathbb{Z}$.
+    \end{definition}
+    \begin{definition}
+    An indexed set of vectors $\left\{v_1, v_2, \dots v_n\right\}$ in ${\mathbb{R}}^n$ is said to be \textbf{linearly dependent} if there exists a $\alpha_1 \dots \alpha_i$, not all zero, that satisfies $\alpha_1 \cdot v_1 + \alpha_2 \cdot v_2 \dots + \alpha_i \cdot v_i = 0$, where all $\alpha_i \in \mathbb{Z}$.
+    \end{definition}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%              SUB-SUBSECTION              %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Proof of Sine and Cosine's Linear Independence}
-\vspace{0.5cm}
 \textbf{Claim. } $a \cdot \sin(x) + b \cdot \cos(x) = 0$ is linearly independent.
     \begin{proof}
         Using the definition of linear independence, we will show that $a$ and $b$ must be zero for all $x$ in the interval $[0, 2\pi]$.
         
-        \vspace{0.5cm}
-        \noindent
+        \vspace{0.15cm}
+        \noindent\ignorespacesafterend
         We can find $a$ by setting $x = \frac{\pi}{2}$:
         \begin{align*}
             a \cdot \cancelto{1}{\sin \bigg(\frac{\pi}{2} \bigg)}

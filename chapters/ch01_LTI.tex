@@ -145,7 +145,7 @@ Plots of the magnitude and phase response are shown in \emph{Fig.~\ref{fig:magph
 
 As is common practice in electrical engineering, we more often plot the magnitude on a log-log scale with units of dB,  as shown in \emph{Fig.~\ref{fig:magphase}(c)}.  On the deciBel (deci = 10) scale, we take the base 10 $\log_{10}$ and multiply by $10$ to get rid of fractional parts.  The "Bel" part is in honor of the inventor of the phone,.  The dB scale allows us to expand the passband and more clearly understand the behavior of the transfer function as a function of frequency.  The multiplication by 10 is just for convenience.
 
-But you'll notice that we often multiply log by $20$ rather than $10$ in the definition of $dB$.  Why is that?  Remember that power is proportional to voltage squared\footnote{See Appendix~\ref{sec:power_decibel} for a review of power and decibel conversions.}:
+But you'll notice that we often multiply log by $20$ rather than $10$ in the definition of $dB$.  Why is that?  Remember that power is proportional to voltage squared:
     \begin{equation}
         \mathrm{dB} = 10 \log\left( \frac{V_o}{V_s} \right)^2 = 20 \log\left( \frac{V_o}{V_s} \right)
     \end{equation}
@@ -888,7 +888,7 @@ In previous courses, you may have learned that you can represent a periodic func
         x(t) = \sum_{n = -\infty}^{\infty} c_n e^{j 2 \pi n f_0 t}
         \label{eq:fourier_series}
     \end{equation}
-In this equation $f_0 = 1/T$ is the fundamental frequency of the function of period $T$.  For many practical signals of interest, we can go back and forth between the time or frequency domain, in the sense that the coefficients $c_n$ are a complete representation of the signal (invertable).  The FFT (\textbf{Fast Fourier Transform}\footnote{see Appendix~\ref{app:fft} for a review of the FFT}) is an efficient way to compute the Fourier Series.   We know that the magnitude of the coefficients $c_n$ determine the amount of power concentrated around a certain frequency.  If a function varies gradually in time with a time scale say less than $T$, then coefficients above $n =  f_0 T $ will be smaller in magnitude.
+In this equation $f_0 = 1/T$ is the fundamental frequency of the function of period $T$.  For many practical signals of interest, we can go back and forth between the time or frequency domain, in the sense that the coefficients $c_n$ are a complete representation of the signal (invertable).  The FFT (\textbf{fast fourier fransform} is an efficient way to compute the Fourier Series.   We know that the magnitude of the coefficients $c_n$ determine the amount of power concentrated around a certain frequency.  If a function varies gradually in time with a time scale say less than $T$, then coefficients above $n =  f_0 T $ will be smaller in magnitude.
 
 The Fourier Transform is a natural extension of the Fourier Series into the continuous time domain and it works for non-periodic functions (it has a line spectrum for periodic functions)
     \begin{equation}

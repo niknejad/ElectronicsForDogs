@@ -12,13 +12,22 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Geometric Series}
 \label{sec:geometric}
-
+Recall the \textit{geometric series}\index{Geometric series} from calculus\cite{stewart}:
+    \begin{align}
+        a + ar + ar^2 + a\,r^3 + \dots + ar^{n - 1} &= \sum_{n=1}^{\infty} {ar}^{n - 1} &a \ne 0
+        \label{eq:geometric_sum}
+    \end{align}
+Each term is obtained from the preceding one by multiplying it with the \textit{common ratio}, $r$.  If $\left|r\right| \geq 1$, then the series diverges.  However, if $\left|r\right| < 1$ the series is convergent, and it's sum can be expressed as:
+    \begin{align}
+        \Aboxed{\sum_{n=1}^{\infty} {ar}^{n - 1} &= \frac{a}{1 - r}} &\left|r\right| < 1
+        \label{eq:geometric_series}
+    \end{align}
 \section{Taylor Series}
 \label{sec:taylor}
-Recall from calculus the general form of a power series centered about $a$:
+Also recall from calculus\cite{stewart} the general form of a power series centered about $a$:
     \begin{equation}
         f(x) = \sum_{n=0}^{\infty} c_n {\big(x - a\big)}^n = c_0 + c_1{\big(x - a\big)}
-            + c_2{\big(x - a\big)}^2 + c_3{\big(x - a\big)}^3 + ...
+            + c_2{\big(x - a\big)}^2 + c_3{\big(x - a\big)}^3 + \dots
         \label{eq:power_series}
     \end{equation}
 How do we solve for the coefficients of this infinite series?
@@ -37,7 +46,7 @@ Now we want to solve for each $n$th consecutive coefficient in the series.  To d
 Starting with the first derivative, we have:
     \begin{equation*}
         \frac{df(x)}{dx} = c_1 + 2c_2{\big(x - a\big)} + 3c_3{\big(x - a\big)}^2
-        + 4c_3{\big(x - a\big)}^3 + ...
+        + 4c_3{\big(x - a\big)}^3 + \dots
     \end{equation*}
 This yields:
     \begin{equation*}
@@ -46,7 +55,7 @@ This yields:
 Continuing with the second derivative:
     \begin{equation*}
         \frac{{df(x)}^2}{d^2x} = (1 \cdot 2)c_2 + (2 \cdot 3)c_3{\big(x - a\big)} + (3 \cdot 4)c_4{\big(x - a\big)}^2
-        + ...
+        + \dots
     \end{equation*}
 Yielding:
     \begin{equation*}
@@ -55,7 +64,7 @@ Yielding:
 Then the third derivative:
     \begin{equation*}
         \frac{{df(x)}^3}{d^3x} = (1 \cdot 2 \cdot 3)c_3{\big(x - a\big)}
-        + (1 \cdot 2 \cdot 3 \cdot 4)c_4{\big(x - a\big)} + ...
+        + (1 \cdot 2 \cdot 3 \cdot 4)c_4{\big(x - a\big)} + \dots
     \end{equation*}
 Which yields:
     \begin{equation*}
@@ -66,15 +75,15 @@ A pattern has presented itself which will continue for all consecutive terms.  F
         c_n = \frac{1}{n!} \cdot \frac{{df(a)}^n}{d^nx}
         \label{eq:power_co}
     \end{equation}
-Plugging \emph{Eq.~\ref{eq:power_first}} and \emph{Eq.~\ref{eq:power_co}} into \emph{Eq.~\ref{eq:power_series}} gives us the general form of a Taylor series using prime notation:
+Plugging \emph{Eq.~\ref{eq:power_first}} and \emph{Eq.~\ref{eq:power_co}} into \emph{Eq.~\ref{eq:power_series}} gives us the general form of a \textit{Taylor series}\index{Taylor series} using prime notation:
     \begin{equation}
-        f(x) = \sum_{n=0}^{\infty}\frac{f^{(n)}(a)}{n!}{\big(x - a\big)}^n = f(a)
-        + \frac{f'(a)}{1!}{\big(x - a\big)} + \frac{f''(a)}{2!}{\big(x - a\big)}^2 + ...
+        \boxed{f(x) = \sum_{n=0}^{\infty}\frac{f^{(n)}(a)}{n!}{\big(x - a\big)}^n = f(a)
+        + \frac{f'(a)}{1!}{\big(x - a\big)} + \frac{f''(a)}{2!}{\big(x - a\big)}^2 + \dots}
         \label{eq:taylor_series}
     \end{equation}
-For the special case where $a = 0$ in \emph{Eq.~\ref{eq:taylor_series}}, we have the general form of a Maclaurin series:
+For the special case where $a = 0$ in \emph{Eq.~\ref{eq:taylor_series}}, we have the general form of a \textit{Maclaurin series}\index{Maclaurin series}:
     \begin{equation}
-        f(x) = \sum_{n=0}^{\infty}\frac{f^{(n)}(0)}{n!}{x}^n = f(0)
-        + \frac{f'(0)}{1!}{x} + \frac{f''(0)}{2!}{x}^2 + ...
+        \boxed{f(x) = \sum_{n=0}^{\infty}\frac{f^{(n)}(0)}{n!}{x}^n = f(0)
+        + \frac{f'(0)}{1!}{x} + \frac{f''(0)}{2!}{x}^2 + \dots}
         \label{eq:maclaurin_series}
     \end{equation}
